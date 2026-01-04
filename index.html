@@ -6,7 +6,7 @@
   <title>Institute for Signature Reduction</title>
   <meta name="site-verification" content="ISR-VERIFIED">
 
-  <!-- Fonts: serif for body and sans for headings -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -19,150 +19,49 @@
       --gov-secondary-text: #323a45;
     }
 
-    body, h1, h2, p, ul, li, nav, footer {
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Source Serif Pro', serif;
-      background: #fff;
-      color: var(--gov-text);
-      line-height: 1.6;
-      padding-top: 60px;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Source Serif Pro', serif; background:#fff; color:var(--gov-text); line-height:1.6; }
+    a { color: var(--gov-primary-blue); text-decoration:none; }
+    a:hover { text-decoration:underline; }
 
     /* HEADER */
-    header {
-      background: var(--gov-gray-light);
-      border-bottom: 3px solid var(--gov-gray-border);
-      text-align: center;
-      padding: 20px 0;
-    }
-    header img {
-      height: 90px;
-      margin: 6px 0;
-    }
-    header h1 {
-      font-family: 'Public Sans', sans-serif;
-      font-size: 1.7em;
-      font-weight: 600;
-      color: var(--gov-darkest);
-    }
+    header { text-align:center; padding:20px 0; }
+    header img { height:120px; margin:0; cursor:pointer; }
 
     /* NAVIGATION */
-    nav {
-      background: #fff;
-      border-bottom: 1px solid var(--gov-gray-border);
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      padding: 10px;
-      font-family: 'Public Sans', sans-serif;
-      font-size: 0.9em;
-    }
-    nav a {
-      text-decoration: none;
-      color: var(--gov-primary-blue);
-      font-weight: 600;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
+    nav { background:#fff; border-bottom:1px solid var(--gov-gray-border); }
+    nav ul { list-style:none; display:flex; justify-content:center; flex-wrap:wrap; gap:20px; padding:10px; font-family:'Public Sans',sans-serif; font-weight:600; }
+    nav a { font-size:0.95em; }
 
-    /* MAIN CONTENT */
-    main {
-      max-width: 980px;
-      margin: 28px auto;
-      padding: 0 18px;
-    }
-    section {
-      margin-bottom: 40px;
-    }
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .section-title svg {
-      width: 22px;
-      height: 22px;
-      fill: var(--gov-primary-blue);
-    }
-    h2 {
-      font-family: 'Public Sans', sans-serif;
-      font-size: 1.25em;
-      font-weight: 600;
-      color: var(--gov-primary-blue);
-      border-left: 5px solid var(--gov-primary-blue);
-      padding-left: 10px;
-      margin-bottom: 12px;
-    }
-    p {
-      margin-bottom: 14px;
-    }
-    ul {
-      margin-left: 22px;
-      margin-bottom: 14px;
-    }
+    /* MAIN GRID */
+    main { max-width:1100px; margin:28px auto; padding:0 18px; display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:32px; }
+    section { background:#f9f9f9; padding:16px 20px; border-radius:6px; }
+    h2 { font-family:'Public Sans',sans-serif; font-size:1.25em; font-weight:600; color:var(--gov-primary-blue); border-left:5px solid var(--gov-primary-blue); padding-left:10px; margin-bottom:12px; }
+    p { margin-bottom:12px; }
+    ul { margin-left:22px; margin-bottom:12px; }
+    .section-title { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+    .section-title svg { width:22px; height:22px; fill:var(--gov-primary-blue); }
 
-    /* CONTEXT IMAGE */
-    .context {
-      width: 100%;
-      margin: 36px 0;
-    }
-    .context img {
-      width: 100%;
-      height: auto;
-      filter: grayscale(90%) contrast(1.02);
-    }
+    /* Context Image */
+    .context img { width:100%; height:auto; filter:grayscale(90%) contrast(1.02); border-radius:6px; }
 
     /* Publications */
-    .publication {
-      background: var(--gov-gray-light);
-      padding: 12px 16px;
-      margin-bottom: 12px;
-      border-left: 4px solid var(--gov-primary-blue);
-      font-family: 'Public Sans', sans-serif;
-    }
-    .publication a {
-      font-weight: 600;
-      color: var(--gov-primary-blue);
-      text-decoration: none;
-    }
+    .publication { background:var(--gov-gray-light); padding:12px 16px; margin-bottom:12px; border-left:4px solid var(--gov-primary-blue); font-family:'Public Sans',sans-serif; }
+    .publication a { font-weight:600; }
 
-    /* FOOTER */
-    footer {
-      background: var(--gov-gray-light);
-      border-top: 3px solid var(--gov-gray-border);
-      text-align: center;
-      padding: 18px 10px;
-      font-size: 0.85em;
-      font-family: 'Public Sans', sans-serif;
-      color: var(--gov-secondary-text);
-    }
-    .flag img {
-      height: 18px;
-      margin-top: 6px;
-    }
-    .verification {
-      margin-top: 4px;
-    }
+    /* Footer */
+    footer { background:#fff; border-top:3px solid var(--gov-gray-border); text-align:center; padding:18px 10px; font-size:0.85em; font-family:'Public Sans',sans-serif; color:var(--gov-secondary-text); display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:10px; }
+    .flag img { height:18px; vertical-align:middle; }
+    .verification { margin-top:4px; font-size:0.9em; }
 
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      nav ul { flex-wrap: wrap; gap: 14px; font-size: 0.88em; }
-      header h1 { font-size: 1.5em; }
-    }
+    /* Responsive */
+    @media(max-width:768px){ nav ul{gap:12px; font-size:0.88em;} header img{height:100px;} }
   </style>
 </head>
-
 <body>
 
 <header>
-  <img src="logo.png" alt="ISR Logo">
+  <a href="https://www.isrprivacymatters.org"><img src="logo.png" alt="ISR Logo"></a>
 </header>
 
 <nav>
@@ -177,107 +76,94 @@
 </nav>
 
 <main>
+  <section id="mission">
+    <p>
+      The Institute for Signature Reduction (ISR) is an independent 501(c)(3) nonprofit charitable organization
+      dedicated to advancing education, research, and doctrine related to digital force protection,
+      operational privacy, and signature reduction. ISR stewards practitioner-informed doctrine to
+      ensure lessons learned in complex operating environments are translated into durable institutional knowledge.
+    </p>
+  </section>
 
-<section id="mission">
-  <p>
-    The Institute for Signature Reduction (ISR) is an independent 501(c)(3) nonprofit charitable organization
-    dedicated to advancing education, research, and doctrine related to digital force protection,
-    operational privacy, and signature reduction. ISR serves as a vehicle to steward practitioner-informed
-    doctrine over time, ensuring lessons learned in complex operating environments are translated into
-    durable institutional knowledge.
-  </p>
-</section>
+  <section id="purpose">
+    <div class="section-title">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2L2 7v2h20V7L12 2zM4 10v8H2v2h20v-2h-2v-8H4zm7 10H9v-4h2v4zm4 0h-2v-4h2v4z"/></svg>
+      <h2>Mission and Purpose</h2>
+    </div>
+    <p>
+      ISR supports irregular warfare and strategic competition through signature reduction,
+      survivability, and force protection. It bridges practitioner experience and academic rigor
+      in service of government, defense institutions, and academia.
+    </p>
+  </section>
 
-<section id="purpose">
-  <div class="section-title">
-    <!-- Mission icon (government/building style) -->
-    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2L2 7v2h20V7L12 2zM4 10v8H2v2h20v-2h-2v-8H4zm7 10H9v-4h2v4zm4 0h-2v-4h2v4z"/></svg>
-    <h2>Mission and Purpose</h2>
-  </div>
-  <p>
-    ISR supports the development of irregular warfare and strategic competition through the lens of
-    signature reduction, survivability, and force protection. The Institute bridges practitioner experience
-    and academic rigor in service of government, defense institutions, and academia.
-  </p>
-</section>
+  <section id="focus">
+    <div class="section-title">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a2 2 0 110 4 2 2 0 010-4m6.66 4.5a2 2 0 11-3.32 2 2 2 0 013.32-2M5.34 6.5a2 2 0 11-3.32 2 2 2 0 013.32-2M12 12a2 2 0 110 4 2 2 0 010-4m6.66 4.5a2 2 0 11-3.32 2 2 2 0 013.32-2M5.34 12.5a2 2 0 11-3.32 2 2 2 0 013.32-2"/></svg>
+      <h2>Areas of Focus</h2>
+    </div>
+    <ul>
+      <li>Signature reduction across physical, digital, and electromagnetic domains</li>
+      <li>Digital force protection and operational privacy</li>
+      <li>Irregular warfare and strategic competition</li>
+      <li>Small team survivability in contested environments</li>
+      <li>Practitioner-informed doctrine development</li>
+    </ul>
+  </section>
 
-<section id="focus">
-  <div class="section-title">
-    <!-- Network/connection icon -->
-    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a2 2 0 110 4 2 2 0 010-4m6.66 4.5a2 2 0 11-3.32 2 2 2 0 013.32-2M5.34 6.5a2 2 0 11-3.32 2 2 2 0 013.32-2M12 12a2 2 0 110 4 2 2 0 010-4m6.66 4.5a2 2 0 11-3.32 2 2 2 0 013.32-2M5.34 12.5a2 2 0 11-3.32 2 2 2 0 013.32-2"/></svg>
-    <h2>Areas of Focus</h2>
-  </div>
-  <ul>
-    <li>Signature reduction across physical, digital, and electromagnetic domains</li>
-    <li>Digital force protection and operational privacy</li>
-    <li>Irregular warfare and strategic competition</li>
-    <li>Small team survivability in contested environments</li>
-    <li>Practitioner-informed doctrine development</li>
-  </ul>
-</section>
+  <section class="context">
+    <img src="strategic_context.png" alt="Strategic environment illustration">
+  </section>
 
-<section class="context">
-  <img src="strategic_context.png" alt="Abstract strategic environment illustration">
-</section>
+  <section id="doctrine">
+    <div class="section-title">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 4h12v2H6V4zm0 4h12v12H6V8z"/></svg>
+      <h2>Doctrine, Education, and Institutional Role</h2>
+    </div>
+    <p>
+      ISR develops and stewards doctrine related to signature reduction and operational survivability.
+      It supports educational frameworks that inform institutional adaptation, helping government
+      and academic partners integrate practitioner-validated concepts into professional learning and long-term planning.
+    </p>
+  </section>
 
-<section id="doctrine">
-  <div class="section-title">
-    <!-- Document/book icon -->
-    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 4h12v2H6V4zm0 4h12v12H6V8z"/></svg>
-    <h2>Doctrine, Education, and Institutional Role</h2>
-  </div>
-  <p>
-    ISR develops and stewards doctrine related to signature reduction and operational survivability within
-    evolving environments. ISR also supports educational frameworks that inform institutional adaptation.
-  </p>
-  <p>
-    These efforts help government and academic partners integrate practitioner-validated concepts into
-    professional learning and long-term planning.
-  </p>
-</section>
+  <section id="publications">
+    <div class="section-title">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 4H4v16h16V4zM6 6h12v2H6V6zm0 4h12v8H6v-8z"/></svg>
+      <h2>Publications and Commentary</h2>
+    </div>
+    <div class="publication">
+      <a href="https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/" target="_blank">
+        “Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for Strategic Competition” — Small Wars Journal
+      </a>
+    </div>
+    <p>Additional publications and institutional contributions are released periodically through professional journals and academic forums.</p>
+  </section>
 
-<section id="publications">
-  <div class="section-title">
-    <!-- Publication icon -->
-    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 4H4v16h16V4zM6 6h12v2H6V6zm0 4h12v8H6v-8z"/></svg>
-    <h2>Publications and Commentary</h2>
-  </div>
+  <section id="affiliations">
+    <div class="section-title">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      <h2>Affiliations</h2>
+    </div>
+    <p>
+      For applied training derived from ISR doctrine, see the authorized training partner:
+      <a href="https://www.signaturemanagementunit.com">Signature Management Unit</a>.
+    </p>
+  </section>
 
-  <div class="publication">
-    <a href="https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/" target="_blank">
-      “Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for Strategic Competition” — Small Wars Journal
-    </a>
-  </div>
-
-  <p>Additional publications and institutional contributions are released periodically through professional journals and academic forums.</p>
-</section>
-
-<section id="affiliations">
-  <div class="section-title">
-    <!-- Affiliation/organization icon -->
-    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-    <h2>Affiliations</h2>
-  </div>
-  <p>
-    For applied training derived from ISR doctrine, see the authorized training partner:
-    <a href="https://signaturemanagementunit.com">Signature Management Unit</a>.
-  </p>
-</section>
-
-<section id="contact">
-  <div class="section-title">
-    <!-- Contact icon -->
-    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm8 10l5-5H7l5 5z"/></svg>
-    <h2>Contact</h2>
-  </div>
-  <p>Secure inquiries: <strong>info@isrprivacymatters.org</strong></p>
-</section>
-
+  <section id="contact">
+    <div class="section-title">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm8 10l5-5H7l5 5z"/></svg>
+      <h2>Contact</h2>
+    </div>
+    <p>Secure inquiries: <strong>info@isrprivacymatters.org</strong></p>
+    <p>🔒 Do not share classified or sensitive information.</p>
+  </section>
 </main>
 
 <footer>
   <p>© Institute for Signature Reduction</p>
-  <div class="flag"><img src="us_flag.png" alt="United States Flag"></div>
+  <img src="us_flag.png" alt="United States Flag" class="flag">
   <div class="verification">🔒 Verified ISR Site</div>
 </footer>
 

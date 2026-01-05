@@ -6,7 +6,7 @@
   <title>Institute for Signature Reduction</title>
   <meta name="site-verification" content="ISR-VERIFIED">
 
-  <!-- Fonts -->
+  <!-- Fonts: serif for body and sans for headings -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -19,19 +19,23 @@
       --gov-secondary-text: #323a45;
     }
 
-    body, h1, h2, p, ul, li, nav, footer { margin: 0; padding: 0; }
+    body, h1, h2, p, ul, li, nav, footer {
+      margin: 0;
+      padding: 0;
+    }
     body {
       font-family: 'Source Serif Pro', serif;
       background: #fff;
       color: var(--gov-text);
       line-height: 1.6;
-      padding-top: 20px;
+      padding-top: 60px;
+      text-align: justify;
     }
 
     /* HEADER */
     header {
       text-align: center;
-      padding: 12px 0;
+      padding: 20px 0;
     }
     header img {
       height: 120px;
@@ -43,14 +47,12 @@
     nav {
       background: #fff;
       border-bottom: 1px solid var(--gov-gray-border);
-      margin-bottom: 20px;
     }
     nav ul {
       list-style: none;
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
+      gap: 24px;
       padding: 10px;
       font-family: 'Public Sans', sans-serif;
       font-size: 0.9em;
@@ -60,35 +62,31 @@
       color: var(--gov-primary-blue);
       font-weight: 600;
     }
-    nav a:hover { text-decoration: underline; }
+    nav a:hover {
+      text-decoration: underline;
+    }
 
     /* MAIN CONTENT */
     main {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 16px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 36px;
+      max-width: 980px;
+      margin: 28px auto;
+      padding: 0 18px;
     }
-
     section {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      margin-bottom: 40px;
     }
-
     .section-title {
       display: flex;
       align-items: center;
       gap: 8px;
+      margin-bottom: 10px;
     }
     .section-title svg {
       width: 18px;
       height: 18px;
       fill: var(--gov-primary-blue);
+      flex-shrink: 0;
     }
-
     h2 {
       font-family: 'Public Sans', sans-serif;
       font-size: 1.25em;
@@ -96,15 +94,39 @@
       color: var(--gov-primary-blue);
       border-left: 5px solid var(--gov-primary-blue);
       padding-left: 10px;
+      margin-bottom: 12px;
+    }
+    p {
+      margin-bottom: 12px;
+    }
+    ul {
+      margin-left: 22px;
+      margin-bottom: 12px;
     }
 
-    p { margin-bottom: 10px; text-align: justify; }
-    ul { margin-left: 22px; margin-bottom: 14px; }
+    /* Cards / Publications */
+    .publication {
+      background: var(--gov-gray-light);
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      border-left: 4px solid var(--gov-primary-blue);
+      font-family: 'Public Sans', sans-serif;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .publication a {
+      font-weight: 600;
+      color: var(--gov-primary-blue);
+      text-decoration: none;
+    }
+    .publication:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
 
-    /* CONTEXT IMAGE */
+    /* Context Image */
     .context {
       width: 100%;
-      margin: 20px 0;
+      margin: 36px 0;
     }
     .context img {
       width: 100%;
@@ -113,44 +135,12 @@
       filter: grayscale(90%) contrast(1.02);
     }
 
-    /* Doctrine Grid */
-    .doctrine-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .doctrine-card {
-      border: 1px solid var(--gov-gray-border);
-      padding: 16px;
-      border-radius: 4px;
-      background: var(--gov-gray-light);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .doctrine-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    }
-
-    /* Publications */
-    .publication {
-      background: var(--gov-gray-light);
-      padding: 12px 16px;
-      margin-bottom: 12px;
-      border-left: 4px solid var(--gov-primary-blue);
-      font-family: 'Public Sans', sans-serif;
-    }
-    .publication a {
-      font-weight: 600;
-      color: var(--gov-primary-blue);
-      text-decoration: none;
-    }
-
     /* FOOTER */
     footer {
-      background: #fff;
-      border-top: 2px solid var(--gov-gray-border);
+      background: var(--gov-gray-light);
+      border-top: 3px solid var(--gov-gray-border);
       text-align: center;
-      padding: 12px 10px;
+      padding: 18px 10px;
       font-size: 0.85em;
       font-family: 'Public Sans', sans-serif;
       color: var(--gov-secondary-text);
@@ -160,20 +150,20 @@
       gap: 6px;
       flex-wrap: wrap;
     }
-    footer img.flag {
-      height: 16px;
-      vertical-align: middle;
+    footer .flag img {
+      height: 18px;
     }
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
-      nav ul { gap: 12px; font-size: 0.88em; }
+      nav ul { flex-wrap: wrap; gap: 14px; font-size: 0.88em; }
       header img { height: 100px; }
-      h2 { font-size: 1.1em; }
+      main { padding: 0 12px; }
       .context img { max-height: 300px; }
     }
   </style>
 </head>
+
 <body>
 
 <header>
@@ -218,10 +208,10 @@
 </section>
 
 <section id="focus">
-  <h2>
+  <div class="section-title">
     <svg viewBox="0 0 24 24"><path d="M12 2a2 2 0 110 4 2 2 0 010-4m6.66 4.5a2 2 0 11-3.32 2 2 2 0 013.32-2M5.34 6.5a2 2 0 11-3.32 2 2 2 0 013.32-2M12 12a2 2 0 110 4 2 2 0 010-4m6.66 4.5a2 2 0 11-3.32 2 2 2 0 013.32-2M5.34 12.5a2 2 0 11-3.32 2 2 2 0 013.32-2"/></svg>
-    Areas of Focus
-  </h2>
+    <h2>Areas of Focus</h2>
+  </div>
   <ul>
     <li>Signature reduction across physical, digital, and electromagnetic domains</li>
     <li>Digital force protection and operational privacy</li>
@@ -240,24 +230,14 @@
     <svg viewBox="0 0 24 24"><path d="M6 4h12v2H6V4zm0 4h12v12H6V8z"/></svg>
     <h2>Doctrine, Education, and Institutional Role</h2>
   </div>
-  <div class="doctrine-grid">
-    <div class="doctrine-card">
-      <p>
-        ISR develops and stewards doctrine related to signature reduction and operational survivability within
-        evolving environments.
-      </p>
-    </div>
-    <div class="doctrine-card">
-      <p>
-        ISR supports educational frameworks that inform institutional adaptation and professional learning.
-      </p>
-    </div>
-    <div class="doctrine-card">
-      <p>
-        Efforts integrate practitioner-validated concepts into government, academic, and institutional long-term planning.
-      </p>
-    </div>
-  </div>
+  <p>
+    ISR develops and stewards doctrine related to signature reduction and operational survivability within
+    evolving environments. ISR also supports educational frameworks that inform institutional adaptation.
+  </p>
+  <p>
+    These efforts help government and academic partners integrate practitioner-validated concepts into
+    professional learning and long-term planning.
+  </p>
 </section>
 
 <section id="publications">
@@ -265,11 +245,13 @@
     <svg viewBox="0 0 24 24"><path d="M20 4H4v16h16V4zM6 6h12v2H6V6zm0 4h12v8H6v-8z"/></svg>
     <h2>Publications and Commentary</h2>
   </div>
+
   <div class="publication">
     <a href="https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/" target="_blank">
       “Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for Strategic Competition” — Small Wars Journal
     </a>
   </div>
+
   <p>Additional publications and institutional contributions are released periodically through professional journals and academic forums.</p>
 </section>
 
@@ -289,14 +271,14 @@
     <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm8 10l5-5H7l5 5z"/></svg>
     <h2>Contact</h2>
   </div>
-  <p>Secure inquiries: <strong>info@isrprivacymatters.org</strong></p>
+  <p><strong>info@isrprivacymatters.org</strong></p>
 </section>
 
 </main>
 
 <footer>
   <p>© Institute for Signature Reduction</p>
-  <img class="flag" src="us_flag.png" alt="US Flag">
+  <div class="flag"><img src="us_flag.png" alt="United States Flag"></div>
 </footer>
 
 </body>

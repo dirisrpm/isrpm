@@ -84,8 +84,8 @@
       gap: 8px;
     }
     .section-title svg {
-      width: 22px;
-      height: 22px;
+      width: 18px;
+      height: 18px;
       fill: var(--gov-primary-blue);
     }
 
@@ -100,14 +100,6 @@
 
     p { margin-bottom: 10px; text-align: justify; }
     ul { margin-left: 22px; margin-bottom: 14px; }
-
-    ul li svg {
-      width: 18px;
-      height: 18px;
-      margin-right: 6px;
-      vertical-align: middle;
-      fill: var(--gov-primary-blue);
-    }
 
     /* CONTEXT IMAGE */
     .context {
@@ -132,6 +124,11 @@
       padding: 16px;
       border-radius: 4px;
       background: var(--gov-gray-light);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .doctrine-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
     }
 
     /* Publications */
@@ -166,10 +163,6 @@
     footer img.flag {
       height: 16px;
       vertical-align: middle;
-    }
-    .verification {
-      margin-top: 4px;
-      font-size: 0.9em;
     }
 
     /* RESPONSIVE */
@@ -214,7 +207,7 @@
 
 <section id="purpose">
   <div class="section-title">
-    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2L2 7v2h20V7L12 2zM4 10v8H2v2h20v-2h-2v-8H4zm7 10H9v-4h2v4zm4 0h-2v-4h2v4z"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M12 2L2 7v2h20V7L12 2zM4 10v8H2v2h20v-2h-2v-8H4zm7 10H9v-4h2v4zm4 0h-2v-4h2v4z"/></svg>
     <h2>Mission and Purpose</h2>
   </div>
   <p>
@@ -226,7 +219,7 @@
 
 <section id="focus">
   <h2>
-    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a2 2 0 110 4 2 2 0 010-4m6.66 4.5a2 2 0 11-3.32 2 2 2 0 013.32-2M5.34 6.5a2 2 0 11-3.32 2 2 2 0 013.32-2M12 12a2 2 0 110 4 2 2 0 010-4m6.66 4.5a2 2 0 11-3.32 2 2 2 0 013.32-2M5.34 12.5a2 2 0 11-3.32 2 2 2 0 013.32-2"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M12 2a2 2 0 110 4 2 2 0 010-4m6.66 4.5a2 2 0 11-3.32 2 2 2 0 013.32-2M5.34 6.5a2 2 0 11-3.32 2 2 2 0 013.32-2M12 12a2 2 0 110 4 2 2 0 010-4m6.66 4.5a2 2 0 11-3.32 2 2 2 0 013.32-2M5.34 12.5a2 2 0 11-3.32 2 2 2 0 013.32-2"/></svg>
     Areas of Focus
   </h2>
   <ul>
@@ -296,15 +289,14 @@
     <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm8 10l5-5H7l5 5z"/></svg>
     <h2>Contact</h2>
   </div>
-  <p><strong>info@isrprivacymatters.org</strong></p>
+  <p>Secure inquiries: <strong>info@isrprivacymatters.org</strong></p>
 </section>
 
 </main>
 
 <footer>
   <p>© Institute for Signature Reduction</p>
-  <img class="flag" src="us_flag.png" alt="US Flag"><div class="verification">Verified ISR Site</div>
-  
+  <img class="flag" src="us_flag.png" alt="US Flag">
 </footer>
 
 </body>

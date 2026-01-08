@@ -53,7 +53,7 @@ Yes, it’s that simple. No WordPress, no plugins, no surprises.
 
 ## License
 
-All content © 2025–2026 Institute for Signature Reduction (ISR).    
+All content © Institute for Signature Reduction (ISR).    
 
 ---
 

@@ -24,7 +24,6 @@ This repository hosts the **ISR static site**:
 
 - Single-page layout  
 - Clean, professional design  
-- Monospace font: *Anonymous Pro* (because we like things neat and readable)  
 - Fully compatible with GitHub Pages for free hosting  
 
 Think of it as a digital calling card — professional, secure, and succinct.  
@@ -39,15 +38,10 @@ Think of it as a digital calling card — professional, secure, and succinct.
 
 ---
 
-## Updating Content
-
-Since this is a single-page static site:
-
-1. Edit `index.html` directly.  
-2. Commit and push your changes.  
-3. GitHub Pages will automatically reflect the updates.  
+## About the Content
 
 Yes, it’s that simple. No WordPress, no plugins, no surprises.  
+Select editorial, analytical, and design workflows are supported by AI-enabled tools under human direction and review.
 
 ---
 

@@ -135,6 +135,29 @@
       filter: grayscale(90%) contrast(1.02);
     }
 
+    /* GLOBAL RESPONSIVE IMAGES */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* PUBLICATION GRAPHICS */
+.publication img {
+  margin-top: 14px;
+  max-width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+}
+
+/* RESPONSIVE IMAGE TUNING */
+@media (max-width: 768px) {
+  .publication img {
+    max-height: 300px;
+  }
+}
+
+    
     /* FOOTER */
     footer {
       background: var(--gov-gray-light);
@@ -295,7 +318,7 @@
       behavior, and exploiting ambiguity to preserve freedom of maneuver within an environment defined by
       pervasive technical observation.
     </p>
-    <img src="uts_environment.png" alt="Ubiquitous Technical Surveillance Conceptual Graphic">
+    <img src="UTS_environment.png" alt="Ubiquitous Technical Surveillance Conceptual Graphic">
   </div>
 
   <p>

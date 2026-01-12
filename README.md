@@ -2,13 +2,13 @@
 
 Welcome to the official GitHub repository for the **Institute for Signature Reduction (ISR)** single-page website!  
 
-Yes, it’s just one page. Yes, it’s simple. And yes, it works. 
+Yes, it’s just one page. Yes, it’s simple. And yes, it works (mostly). 
 
 ---
 
 ## About ISR
 
-The **Institute for Signature Reduction (ISR)** is a 501(c)(3) nonprofit charitable organization advancing education, research, and training in:
+The **Institute for Signature Reduction (ISR)** is an independent 501(c)(3) nonprofit charitable organization advancing education, research, and training in:
 
 - Digital force protection  
 - Cyber privacy  
@@ -39,9 +39,8 @@ Think of it as a digital calling card — professional, secure, and succinct.
 ---
 
 ## About the Content
-
-Yes, it’s that simple. No WordPress, no plugins, no surprises.  
-Select editorial, analytical, and design workflows are supported by AI-enabled tools under human direction and review.
+- Yes, it’s that simple. No WordPress, no plugins, no surprises.  
+- Select editorial, analytical, and design workflows are supported by AI-enabled tools under human direction and review.
 
 ---
 

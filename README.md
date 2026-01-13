@@ -1,4 +1,4 @@
-# Institute for Signature Reduction (ISR) Website
+## **Privacy Matters** Now More Than Ever
 
 Welcome to the official GitHub repository for the **Institute for Signature Reduction (ISR)** single-page website!  
 

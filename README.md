@@ -46,7 +46,17 @@ Think of it as a digital calling card — professional, secure, and succinct.
 
 ## License
 
-All content © Institute for Signature Reduction (ISR).    
+All content © Institute for Signature Reduction (ISR).  
+
+---
+
+## Repository Use, Attribution, and Branding
+
+- This repository is the sole authoritative source for the **official ISR website**. All official content, updates, and maintenance are performed exclusively by the ISR team or authorized representatives. This repository and the associated live site are the only sources through which official ISR web content and contact information are published.
+
+- The codebase is open source and may be forked or reused in accordance with the project license. Such reuse does not grant permission to represent, brand, or imply affiliation with ISR, nor to present a derivative work as an official ISR site. Any public-facing fork must clearly identify itself as unofficial, remove or replace ISR branding and identifying marks, and provide appropriate attribution.
+
+- ISR names, logos, written content, publications, and other identifying materials are not licensed as part of this repository. No third party is authorized to claim to act on behalf of, speak for, or represent ISR through a copied or derivative version of this site.
 
 ---
 
@@ -56,4 +66,4 @@ If you can read this, you’ve already found the “signature reduction” in ac
 
 ---
 
-*Privacy matters.*  
+**Privacy Matters.**  

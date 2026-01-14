@@ -18,21 +18,6 @@
       --gov-secondary-text: #323a45;
     }
 
-.section-title {
-  display: flex;
-  align-items: center; 
-  gap: 8px;
-  margin-bottom: 10px;
-}
-
-.section-title svg {
-  width: 18px;       
-  height: 18px;      
-  fill: var(--gov-primary-blue);
-  flex-shrink: 0;
-  vertical-align: middle; 
-}
-    
     body, h1, h2, p, ul, li, nav, footer {
       margin: 0;
       padding: 0;
@@ -46,7 +31,6 @@
       text-align: justify;
     }
 
-    /* HEADER — LOCKED */
     header {
       text-align: center;
       padding: 20px 0;
@@ -58,10 +42,13 @@
       cursor: pointer;
     }
 
-    /* NAVIGATION */
     nav {
-      background: #fff;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: #ffffff;
       border-bottom: 1px solid var(--gov-gray-border);
+      z-index: 1000;
     }
     nav ul {
       list-style: none;
@@ -77,16 +64,7 @@
       color: var(--gov-primary-blue);
       font-weight: 600;
     }
-nav {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  background: #ffffff;
-  border-bottom: 1px solid var(--gov-gray-border);
-  z-index: 1000;
-}
 
-    /* MAIN CONTENT */
     main {
       max-width: 980px;
       margin: 28px auto;
@@ -109,7 +87,6 @@ nav {
     p { margin-bottom: 12px; }
     ul { margin-left: 22px; margin-bottom: 12px; }
 
-    /* GLOBAL IMAGE CENTERING */
     img {
       max-width: 100%;
       height: auto;
@@ -118,78 +95,70 @@ nav {
       margin-right: auto;
     }
 
-    /* CONTEXT IMAGE */
     .context img {
       max-height: 400px;
       object-fit: contain;
       filter: grayscale(90%) contrast(1.02);
     }
 
-    /* PUBLICATIONS */
-    .publication {
+    .publication-card {
       background: var(--gov-gray-light);
-      padding: 12px 16px;
-      margin-bottom: 12px;
-      border-left: 4px solid var(--gov-primary-blue);
-      font-family: 'Public Sans', sans-serif;
+      padding: 16px;
+      margin-bottom: 20px;
+      border-left: 5px solid var(--gov-primary-blue);
     }
-
-    .publication img {
-      margin-top: 14px;
-      margin-bottom: 14px;
+    .publication-card h3 {
+      margin-bottom: 6px;
+    }
+    .publication-card p {
+      font-size: 0.88em;
+      color: var(--gov-secondary-text);
+      line-height: 1.45;
+    }
+    .publication-card img {
+      margin-top: 12px;
+      margin-bottom: 12px;
       max-height: 420px;
       object-fit: contain;
     }
-.publication p {
-  font-size: 0.88em;
-  font-style: normal;
-  color: var(--gov-secondary-text);
-  line-height: 1.45;
-}
 
     footer {
-  background: var(--gov-gray-light);
-  border-top: 3px solid var(--gov-gray-border);
-  padding: 18px 10px;
-  font-size: 0.85em;
-  font-family: 'Public Sans', sans-serif;
-  color: var(--gov-secondary-text);
-  text-align: center;          
-  display: block;              
-}
-
-footer .verification {
-  font-size: 0.75em;
-  color: #666;
-  margin-top: 6px;             
-  display: inline-flex;        
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-}
-
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      header img { height: 100px; }
-      .context img,
-      .publication img { max-height: 300px; }
+      background: var(--gov-gray-light);
+      border-top: 3px solid var(--gov-gray-border);
+      padding: 18px 10px;
+      font-size: 0.85em;
+      font-family: 'Public Sans', sans-serif;
+      color: var(--gov-secondary-text);
+      text-align: center;
     }
 
     .divider {
-  width: 100%;
-  max-width: 980px; 
-  border-top: 1px solid var(--gov-gray-border);
-  margin: 32px auto;
-}
-@media (max-width: 768px) {
-  nav ul {
-    flex-wrap: wrap;            
-    gap: 14px;
-    font-size: 0.85em;
-    padding: 10px 8px;
-  }
-}
+      width: 100%;
+      max-width: 980px; 
+      border-top: 1px solid var(--gov-gray-border);
+      margin: 32px auto;
+    }
+
+    @media (max-width: 768px) {
+      header img { height: 100px; }
+      .context img,
+      .publication-card img { max-height: 300px; }
+      nav ul { flex-wrap: wrap; gap: 14px; font-size: 0.85em; padding: 10px 8px; }
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center; 
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .section-title svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--gov-primary-blue);
+      flex-shrink: 0;
+      vertical-align: middle; 
+    }
 
   </style>
 </head>
@@ -201,9 +170,6 @@ footer .verification {
     <img src="logo.png" alt="ISR Logo">
   </a>
 </header>
-
-</body>
-</html>
 
 <nav>
   <ul>
@@ -255,7 +221,7 @@ footer .verification {
     <li>Practitioner-informed doctrine development</li>
   </ul>
 </section>
- 
+
 <section class="context">
   <img src="strategic_context.png" alt="Abstract strategic environment illustration">
 </section>
@@ -277,78 +243,47 @@ footer .verification {
 </section>
 <div class="divider"></div>
 
+<!-- Publications Section -->
 <section id="publications">
-  <h2>Publications and Commentary</h2>
+  <div class="section-title">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 2a2 2 0 110 4 2 2 0 010-4m6.66 4.5a2 2 0 11-3.32 2 2 2 0 013.32-2M5.34 6.5a2 2 0 11-3.32 2 2 2 0 013.32-2M12 12a2 2 0 110 4 2 2 0 010-4m6.66 4.5a2 2 0 11-3.32 2 2 2 0 013.32-2M5.34 12.5a2 2 0 11-3.32 2 2 2 0 013.32-2"/>
+    </svg>
+    <h2>Publications & Commentary</h2>
+  </div>
 
-  <div class="publication">
+  <!-- Publication 1 -->
+  <div class="publication-card">
+    <h3>Counteroffensive Irregular Warfare</h3>
+    <p><em>Small Wars Journal, Dec 2025</em></p>
+    <p><strong>Executive takeaway:</strong> Signature Reduction is a counteroffensive doctrine enabling maneuver and survivability under pervasive surveillance, integrating human, digital, and operational tradecraft considerations.</p>
     <a href="https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/" target="_blank">
-      “Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for Strategic Competition” — Small Wars Journal
+      <img src="signature_reduction_doctrine.png" alt="Signature Reduction Doctrine Conceptual Graphic">
+    </a>
+    <p><em>Moede, Christopher. Institute for Signature Reduction (2025). Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction. Small Wars Journal. https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/</em></p>
+  </div>
+
+  <!-- Publication 2 -->
+  <div class="publication-card">
+    <h3>Signature Reduction Framework</h3>
+    <p><strong>Conceptual Doctrine Graphic</strong></p>
+    <p><strong>Executive takeaway:</strong> Mitigates risk by reducing observable indicators across physical, digital, and electromagnetic domains, enabling small teams and organizations to operate below thresholds of detection and attribution.</p>
+    <a href="signature_reduction_doctrine.png" target="_blank">
+      <img src="signature_reduction_doctrine.png" alt="Signature Reduction Doctrine Conceptual Graphic">
     </a>
   </div>
 
-  <div class="publication">
-    <strong>Signature Reduction Framework</strong>
-<a href="signature_reduction_doctrine.png" target="_blank">
-  <img src="signature_reduction_doctrine.png" alt="Signature Reduction Doctrine Conceptual Graphic">
-</a>
-
-    <p><em>
-      Signature Reduction is a counteroffensive doctrine of irregular warfare that deliberately manages and
-      mitigates risk to force and mission by reducing observable indicators across the physical, digital,
-      and electromagnetic domains. It emphasizes the intentional integration of human behavior, operational
-      tradecraft, and technology use to preserve freedom of action within contested, surveilled, and
-      adversary-influenced operational environments.
-    </em></p>
-
-    <p><em>
-      Rooted in special operations concepts such as Operational Preparation of the Environment (OPE),
-      Signature Reduction treats observability, detectability, and attribution as a dynamic and adversarial condition rather than a static
-      vulnerability. Actions taken in one domain are understood to generate effects and exposure in others,
-      requiring continuous assessment, adaptation, and asymmetric responses to detection risk.
-    </em></p>
-
-    <p><em>
-      Unified by an adaptive, human-centered mindset, the doctrine positions individuals, small teams, and
-      organizations to operate below thresholds of detection or attribution while shaping the environment
-      in support of irregular warfare objectives. Signature Reduction is not concealment, operational security, or force protection alone, but an
-      enabling framework that restores maneuver, survivability, and initiative under conditions of
-      ubiquitous sensing.
-    </em></p>
+  <!-- Publication 3 -->
+  <div class="publication-card">
+    <h3>Ubiquitous Technical Surveillance (UTS)</h3>
+    <p><strong>Conceptual Graphic</strong></p>
+    <p><strong>Executive takeaway:</strong> UTS describes a persistent, multi-layered sensing environment where routine behaviors generate detectable signatures. Signature Reduction manages exposure and shapes operational behavior to maintain freedom of maneuver.</p>
+    <a href="uts_environment (1).png" target="_blank">
+      <img src="uts_environment (1).png" alt="Ubiquitous Technical Surveillance Conceptual Graphic">
+    </a>
   </div>
 
-  <div class="publication">
-    <strong>Ubiquitous Technical Surveillance (UTS)</strong>
-<a href="uts_environment (1).png" target="_blank">
-  <img src="uts_environment (1).png" alt="Ubiquitous Technical Surveillance Conceptual Graphic">
-</a>
-
-    <p><em>
-      Ubiquitous Technical Surveillance (UTS) describes the contemporary operating environment characterized
-      by persistent, multi-layered sensing across physical, digital, and electromagnetic spaces. This
-      environment is enabled by commercial data aggregation, networked sensors, platform convergence, and
-      automated analysis that collectively erode traditional distinctions between civilian and military
-      observation.
-    </em></p>
-
-    <p><em>
-      Within a UTS environment, routine behaviors generate detectable signatures that may be collected,
-      fused, and exploited by state and non-state actors alike. Surveillance is continuous, often opaque,
-      and increasingly asymmetric, compressing decision timelines and complicating traditional force
-      protection and operational security measures.
-    </em></p>
-
-    <p><em>
-      UTS serves as the benchmark problem set against which Signature Reduction competes. Rather than seeking
-      to defeat surveillance systems directly, Signature Reduction operates by managing exposure, shaping
-      behavior, and exploiting ambiguity to preserve freedom of maneuver within an environment defined by
-      pervasive technical observation.
-    </em></p>
-  </div>
-
-  <p>
-    Additional publications and institutional contributions are released periodically through professional
-    journals, academic forums, and doctrinal working groups.
-  </p>
+  <p>Additional publications and institutional contributions are released periodically through professional journals, academic forums, and doctrinal working groups.</p>
 </section>
 <div class="divider"></div>
 
@@ -376,10 +311,17 @@ footer .verification {
 
 <footer>
   <p>© Institute for Signature Reduction. All Rights Reserved.</p>
-  <div class="verification">
+  <p>
     <img src="us_flag.png" alt="US Flag" style="height:14px; vertical-align:middle;">
-    Official ISR Site
-  </div>
+    Official ISR Website
+  </p>
+  <p>
+    <em>All doctrine, publications, and graphics are produced and maintained exclusively by ISR. 
+    No third party is authorized to reproduce or represent this site.</em>
+  </p>
+  <p>
+    <em>The Institute for Signature Reduction is an independent 501(c)(3) Nonprofit Charitable Organization</em>
+  </p>
 </footer>
 
 </body>

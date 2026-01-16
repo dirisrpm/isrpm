@@ -29,6 +29,7 @@ body {
   line-height: 1.65;
 }
 
+/* Header & Logo */
 header {
   text-align: center;
   padding: 28px 16px 18px;
@@ -107,8 +108,6 @@ img {
   filter: grayscale(90%) contrast(1.05);
 }
 
-/* Publications */
-
 .publication-card {
   background: var(--panel);
   border-left: 5px solid var(--accent);
@@ -133,14 +132,12 @@ img {
   max-height: 420px;
 }
 
-/* Executive summary */
 .exec {
   font-family: 'Inter', sans-serif;
   font-size: 0.9em;
   color: var(--ash);
 }
 
-/* Expandable details */
 .pub-details {
   margin-top: 12px;
   font-family: 'Inter', sans-serif;
@@ -171,7 +168,6 @@ img {
   font-style: italic;
 }
 
-/* Footer */
 footer {
   background: var(--panel);
   border-top: 1px solid var(--border);
@@ -193,7 +189,6 @@ footer img {
   height: 14px;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   nav ul {
     flex-wrap: wrap;
@@ -209,16 +204,10 @@ footer img {
 
 <body>
 
-<header>
-  <a href="https://www.isrprivacymatters.org">
-    <img src="logo.png" alt="ISR Logo">
-  </a>
-</header>
-
 <nav>
   <ul>
+    <li><a href="#home">Home</a></li>
     <li><a href="#mission">Mission</a></li>
-    <li><a href="#focus">Focus</a></li>
     <li><a href="#doctrine">Doctrine</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="#affiliations">Affiliations</a></li>
@@ -226,9 +215,16 @@ footer img {
   </ul>
 </nav>
 
+<header id="home">
+  <a href="https://www.isrprivacymatters.org">
+    <img src="logo.png" alt="ISR Logo">
+  </a>
+</header>
+
 <main>
 
 <section id="mission">
+  <h2>Mission</h2>
   <p>
     The Institute for Signature Reduction (ISR) is an independent 501(c)(3) nonprofit charitable organization
     dedicated to advancing education, research, and irregular warfare doctrine related to digital force protection,
@@ -236,9 +232,7 @@ footer img {
   </p>
 </section>
 
-<div class="divider"></div>
-
-<section id="focus">
+<section id="focus-areas">
   <h2>Areas of Focus</h2>
   <ul>
     <li>Signature reduction across physical, digital, and electromagnetic domains</li>
@@ -260,7 +254,9 @@ footer img {
   <p>
     ISR develops and stewards irregular warfare doctrine related to signature reduction and operational survivability
     within environments shaped by persistent sensing, attribution risk, and asymmetric observation. 
-    <p>The Institute bridges practitioner experience
+  </p>
+  <p>
+    The Institute bridges practitioner experience
     and academic rigor in service of government, defense institutions, and academia.
   </p>
 </section>
@@ -297,24 +293,25 @@ footer img {
     <details class="pub-details">
       <summary>Extended doctrinal context</summary>
       <p>
-          Signature Reduction is a counteroffensive doctrine of irregular warfare that deliberately manages and
-      mitigates risk to force and mission by reducing observable indicators across the physical, digital,
-      and electromagnetic domains. It emphasizes the intentional integration of human behavior, operational
-      tradecraft, and technology use to preserve freedom of action within contested, surveilled, and
-      adversary-influenced operational environments.
+        Signature Reduction is a counteroffensive doctrine of irregular warfare that deliberately manages and
+        mitigates risk to force and mission by reducing observable indicators across the physical, digital,
+        and electromagnetic domains. It emphasizes the intentional integration of human behavior, operational
+        tradecraft, and technology use to preserve freedom of action within contested, surveilled, and
+        adversary-influenced operational environments.
       </p>
       <p>
-       Rooted in special operations concepts such as Operational Preparation of the Environment (OPE),
-      Signature Reduction treats observability, detectability, and attribution as a dynamic and adversarial condition rather than a static
-      vulnerability. Actions taken in one domain are understood to generate effects and exposure in others,
-      requiring continuous assessment, adaptation, and asymmetric responses to detection risk.
+        Rooted in special operations concepts such as Operational Preparation of the Environment (OPE),
+        Signature Reduction treats observability, detectability, and attribution as a dynamic and adversarial
+        condition rather than a static vulnerability. Actions taken in one domain are understood to generate
+        effects and exposure in others, requiring continuous assessment, adaptation, and asymmetric responses
+        to detection risk.
       </p>
       <p>
         Unified by an adaptive, human-centered mindset, the doctrine positions individuals, small teams, and
-      organizations to operate below thresholds of detection or attribution while shaping the environment
-      in support of irregular warfare objectives. Signature Reduction is not concealment, operational security, or force protection alone, but an
-      enabling framework that restores maneuver, survivability, and initiative under conditions of
-      ubiquitous sensing.
+        organizations to operate below thresholds of detection or attribution while shaping the environment
+        in support of irregular warfare objectives. Signature Reduction is not concealment, operational security,
+        or force protection alone, but an enabling framework that restores maneuver, survivability, and initiative
+        under conditions of ubiquitous sensing.
       </p>
     </details>
   </div>
@@ -334,64 +331,64 @@ footer img {
     <details class="pub-details">
       <summary>Extended discussion</summary>
       <p>
-         Ubiquitous Technical Surveillance (UTS) describes the contemporary operating environment characterized
-      by persistent, multi-layered sensing across physical, digital, and electromagnetic spaces. This
-      environment is enabled by commercial data aggregation, networked sensors, platform convergence, and
-      automated analysis that collectively erode traditional distinctions between civilian and military
-      observation.
+        Ubiquitous Technical Surveillance (UTS) describes the contemporary operating environment characterized
+        by persistent, multi-layered sensing across physical, digital, and electromagnetic spaces. This
+        environment is enabled by commercial data aggregation, networked sensors, platform convergence, and
+        automated analysis that collectively erode traditional distinctions between civilian and military
+        observation.
       </p>
       <p>
         Within a UTS environment, routine behaviors generate detectable signatures that may be collected,
-      fused, and exploited by state and non-state actors alike. Surveillance is continuous, often opaque,
-      and increasingly asymmetric, compressing decision timelines and complicating traditional force
-      protection and operational security measures.
+        fused, and exploited by state and non-state actors alike. Surveillance is continuous, often opaque,
+        and increasingly asymmetric, compressing decision timelines and complicating traditional force
+        protection and operational security measures.
       </p>
       <p>
-       UTS serves as the benchmark problem set against which Signature Reduction competes. Rather than seeking
-      to defeat surveillance systems directly, Signature Reduction operates by managing exposure, shaping
-      behavior, and exploiting ambiguity to preserve freedom of maneuver within an environment defined by
-      pervasive technical observation.
+        UTS serves as the benchmark problem set against which Signature Reduction competes. Rather than seeking
+        to defeat surveillance systems directly, Signature Reduction operates by managing exposure, shaping
+        behavior, and exploiting ambiguity to preserve freedom of maneuver within an environment defined by
+        pervasive technical observation.
       </p>
     </details>
   
   </div>
+
   <div class="publication-card">
-  <h3>End User Device Manual: Practical Cyber Hygiene for a UTS Environment</h3>
-  <div class="meta">Institute for Signature Reduction</div>
+    <h3>End User Device Manual: Practical Cyber Hygiene for a UTS Environment</h3>
+    <div class="meta">Institute for Signature Reduction</div>
 
-  <p class="exec">
-    <strong>Executive takeaway:</strong>
-    This manual offers practical cyber hygiene guidance for end-user devices, which represent a primary vector of exposure within contemporary
-    operating environments. 
-  </p>
-
-  <details class="pub-details">
-    <summary>Extended discussion</summary>
-
-    <p>
-      Written primarily for military special operations personnel, the End User Device Manual translates
-      signature reduction principles into actionable considerations for daily device use. The guidance focuses
-      on how routine behaviors, configurations, and usage patterns generate cumulative digital exposure across
-      commercial networks, platforms, and sensing ecosystems.
+    <p class="exec">
+      <strong>Executive takeaway:</strong>
+      This manual offers practical cyber hygiene guidance for end-user devices, which represent a primary vector of exposure within contemporary
+      operating environments. 
     </p>
 
-    <p>
-      While developed with high-risk operational contexts in mind, the manual is broadly applicable to anyone
-      carrying an end-user device—including government personnel, journalists, aid workers, travelers, and
-      civilians operating within surveilled or data-rich environments. The emphasis is not on tools or evasion,
-      but on disciplined habits, risk awareness, and survivability-minded decision-making.
-    </p>
+    <details class="pub-details">
+      <summary>Extended discussion</summary>
 
-    <p>
-      <strong>Dissemination:</strong> This publication is available on a request-only basis for institutional,
-      educational, and training purposes. Certain content is context-dependent and intended to be shared
-      responsibly in alignment with ISR’s mission to advance digital force protection and operational privacy.
-    </p>
-  </details>
-</div>
+      <p>
+        Written primarily for military special operations personnel, the End User Device Manual translates
+        signature reduction principles into actionable considerations for daily device use. The guidance focuses
+        on how routine behaviors, configurations, and usage patterns generate cumulative digital exposure across
+        commercial networks, platforms, and sensing ecosystems.
+      </p>
 
+      <p>
+        While developed with high-risk operational contexts in mind, the manual is broadly applicable to anyone
+        carrying an end-user device—including government personnel, journalists, aid workers, travelers, and
+        civilians operating within surveilled or data-rich environments. The emphasis is not on tools or evasion,
+        but on disciplined habits, risk awareness, and survivability-minded decision-making.
+      </p>
 
- <p>Additional publications and institutional contributions are released periodically through professional journals, academic forums, and doctrinal working groups.</p>
+      <p>
+        <strong>Dissemination:</strong> This publication is available on a request-only basis for institutional,
+        educational, and training purposes. Certain content is context-dependent and intended to be shared
+        responsibly in alignment with ISR’s mission to advance digital force protection and operational privacy.
+      </p>
+    </details>
+  </div>
+
+  <p>Additional publications and institutional contributions are released periodically through professional journals, academic forums, and doctrinal working groups.</p>
 </section>
 
 <div class="divider"></div>

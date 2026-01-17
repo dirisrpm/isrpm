@@ -29,7 +29,6 @@ body {
   line-height: 1.65;
 }
 
-/* Header & Logo */
 header {
   text-align: center;
   padding: 28px 16px 18px;
@@ -74,6 +73,27 @@ section {
   margin-bottom: 44px;
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.taxonomy-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
 h2 {
   font-family: 'Inter', sans-serif;
   font-size: 1.3em;
@@ -105,6 +125,11 @@ img {
 
 .context img {
   max-height: 420px;
+  filter: grayscale(90%) contrast(0.95);
+  transition: filter 0.8s ease;
+}
+
+.context img.visible {
   filter: grayscale(90%) contrast(1.05);
 }
 
@@ -141,6 +166,8 @@ img {
 .pub-details {
   margin-top: 12px;
   font-family: 'Inter', sans-serif;
+  border-left: 2px solid var(--border);
+  padding-left: 10px;
 }
 
 .pub-details summary {
@@ -215,7 +242,7 @@ footer img {
   </ul>
 </nav>
 
-<header id="home">
+<header id="home" class="reveal">
   <a href="https://www.isrprivacymatters.org">
     <img src="logo.png" alt="ISR Logo">
   </a>
@@ -223,7 +250,7 @@ footer img {
 
 <main>
 
-<section id="mission">
+<section id="mission" class="reveal">
   <h2>Mission</h2>
   <p>
     The Institute for Signature Reduction (ISR) is an independent 501(c)(3) nonprofit charitable organization
@@ -232,7 +259,7 @@ footer img {
   </p>
 </section>
 
-<section id="focus-areas">
+<section id="focus-areas" class="reveal">
   <h2>Areas of Focus</h2>
   <ul>
     <li>Signature reduction across physical, digital, and electromagnetic domains</li>
@@ -243,14 +270,15 @@ footer img {
   </ul>
 </section>
 
-<section class="context">
+<section class="context reveal">
   <img src="strategic_context.png" alt="Strategic environment illustration">
 </section>
 
 <div class="divider"></div>
 
-<section id="doctrine">
-  <h2>Doctrine and Institutional Role</h2>
+<section id="doctrine" class="reveal">
+  <span class="taxonomy-tag">Doctrine & Institutional Role</span>
+  <h2>Stewards of Irregular Warfare</h2>
   <p>
     ISR develops and stewards irregular warfare doctrine related to signature reduction and operational survivability
     within environments shaped by persistent sensing, attribution risk, and asymmetric observation. 
@@ -263,10 +291,12 @@ footer img {
 
 <div class="divider"></div>
 
-<section id="publications">
-  <h2>Publications & Commentary</h2>
+<section id="publications" class="reveal">
+  <span class="taxonomy-tag">Publications & Commentary</span>
+  <h2>Recent Publications</h2>
 
-  <div class="publication-card">
+  <div class="publication-card reveal">
+    <span class="taxonomy-tag">Expert Analysis</span>
     <h3>Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for Strategic Competition</h3>
     <div class="meta">Small Wars Journal</div>
     <p class="exec">
@@ -278,20 +308,19 @@ footer img {
     </a>
   </div>
 
-  <div class="publication-card">
-    <h3>Signature Reduction Framework</h3>
+  <div class="publication-card reveal">
+    <span class="taxonomy-tag">Conceptual Framework</span>
+    <h3>Understanding Signature Reduction</h3>
     <div class="meta">Institute for Signature Reduction</div>
     <p class="exec">
-      <strong>Executive takeaway:</strong> A counteroffensive doctrine that reduces observable indicators across domains
+      <strong>Executive takeaway:</strong> Signature Reduction is a counteroffensive doctrine that reduces observable indicators across domains
       to preserve freedom of action below thresholds of detection and attribution.
     </p>
-
     <a href="signature_reduction_doctrine.png" target="_blank">
       <img src="signature_reduction_doctrine.png" alt="Signature Reduction Graphic">
     </a>
-
     <details class="pub-details">
-      <summary>Extended doctrinal context</summary>
+      <summary>Read more</summary>
       <p>
         Signature Reduction is a counteroffensive doctrine of irregular warfare that deliberately manages and
         mitigates risk to force and mission by reducing observable indicators across the physical, digital,
@@ -316,20 +345,19 @@ footer img {
     </details>
   </div>
 
-  <div class="publication-card">
+  <div class="publication-card reveal">
+    <span class="taxonomy-tag">Foundational Concept</span>
     <h3>Ubiquitous Technical Surveillance (UTS)</h3>
     <div class="meta">Institute for Signature Reduction</div>
     <p class="exec">
       <strong>Executive takeaway:</strong> Called an "existential threat" by the Central Intelligence Agency and others, UTS defines the benchmark surveillance environment against which Signature
       Reduction competes.
     </p>
-
     <a href="uts_environment (1).png" target="_blank">
       <img src="uts_environment (1).png" alt="UTS Graphic">
     </a>
-
     <details class="pub-details">
-      <summary>Extended discussion</summary>
+      <summary>Read more</summary>
       <p>
         Ubiquitous Technical Surveillance (UTS) describes the contemporary operating environment characterized
         by persistent, multi-layered sensing across physical, digital, and electromagnetic spaces. This
@@ -350,42 +378,37 @@ footer img {
         pervasive technical observation.
       </p>
     </details>
-  
   </div>
-  
-<div class="publication-card">
-<h3>Human Judgment in Gray Zone Warfare</h3>
+
+  <div class="publication-card reveal">
+    <span class="taxonomy-tag">Conceptual Framework</span>
+    <h3>Human Judgment in Gray Zone Warfare</h3>
     <div class="meta">Institute for Signature Reduction</div>
     <p class="exec">
-      <strong>Executive takeaway:</strong> A conceptual framework illustrating how human judgment stemming from Signature Reduction functions as the decisive locus for managing
+      <strong>Executive takeaway:</strong> Human judgment stemming from Signature Reduction functions as the decisive locus for managing
       detectability, attribution risk, and freedom of action under conditions of ubiquitous technical surveillance.
     </p>
-
     <a href="human_judgment.png" target="_blank">
       <img src="human_judgment.png" alt="Human Judgment Graphic">
     </a>
-
     <details class="pub-details">
-      <summary>Extended discussion</summary>
+      <summary>Read more</summary>
       <p>
         This graphic presents human judgment as the central mechanism through which institutions, organizations,
         teams, and individuals navigate contested operational environments characterized by persistent,
         cross-domain surveillance and automated attribution pressures.
       </p>
-
       <p>
         Rather than depicting signature reduction as a purely technical or procedural solution, the framework
         emphasizes judgment as a continuous, deliberative process—one that integrates ground truth,
         strategic threat awareness, and behavioral adaptation to preserve initiative and operational freedom.
       </p>
-
       <p>
         The diagram is intentionally structured as a snapshot in time, representing a moment within an ongoing,
         iterative cycle of assessment and adjustment. In asymmetric environments where surveillance systems
         operate persistently and at scale, adaptability is not inherent to the system but is introduced through
         selective, human-centered decision-making rooted in signature reduction doctrine.
       </p>
-
       <p>
         By situating human judgment between strategic surveillance ecosystems and on-the-ground operational
         realities, the framework underscores the role of signature reduction as an attribution management
@@ -393,36 +416,31 @@ footer img {
         or concealment.
       </p>
     </details>
+  </div>
 
-</div>
-
-  <div class="publication-card">
+  <div class="publication-card reveal">
+    <span class="taxonomy-tag">Practitioner Guidance</span>
     <h3>End User Device Manual: Practical Cyber Hygiene for a UTS Environment</h3>
     <div class="meta">Institute for Signature Reduction</div>
-
     <p class="exec">
       <strong>Executive takeaway:</strong>
       This manual offers practical cyber hygiene guidance for end-user devices, which represent a primary vector of exposure within contemporary
       operating environments. 
     </p>
-
     <details class="pub-details">
       <summary>Extended discussion</summary>
-
       <p>
         Written primarily for military special operations personnel, the End User Device Manual translates
         signature reduction principles into actionable considerations for daily device use. The guidance focuses
         on how routine behaviors, configurations, and usage patterns generate cumulative digital exposure across
         commercial networks, platforms, and sensing ecosystems.
       </p>
-
       <p>
         While developed with high-risk operational contexts in mind, the manual is broadly applicable to anyone
         carrying an end-user device—including government personnel, journalists, aid workers, travelers, and
         civilians operating within surveilled or data-rich environments. The emphasis is not on tools or evasion,
         but on disciplined habits, risk awareness, and survivability-minded decision-making.
       </p>
-
       <p>
         <strong>Dissemination:</strong> This publication is available on a request-only basis for institutional,
         educational, and training purposes. Certain content is context-dependent and intended to be shared
@@ -431,12 +449,11 @@ footer img {
     </details>
   </div>
 
-  <p>Additional publications and institutional contributions are released periodically through professional journals, academic forums, and doctrinal working groups.</p>
 </section>
 
 <div class="divider"></div>
 
-<section id="affiliations">
+<section id="affiliations" class="reveal">
   <h2>Affiliations</h2>
   <p>
     For applied training derived from ISR doctrine, see our authorized training partner:
@@ -446,20 +463,35 @@ footer img {
 
 <div class="divider"></div>
 
-<section id="contact">
+<section id="contact" class="reveal">
   <h2>Contact</h2>
   <p><strong>info&#64;isrprivacymatters.org</strong></p>
 </section>
 
 </main>
 
-<footer>
+<footer class="reveal">
   <p>© Institute for Signature Reduction. All Rights Reserved.</p>
   <div class="verification">
     <img src="us_flag.png" alt="US Flag">
     Official ISR Site
   </div>
 </footer>
+
+<script>
+const revealElements = document.querySelectorAll('.reveal, .context img');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+revealElements.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>

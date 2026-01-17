@@ -7,6 +7,9 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+<!-- Optional: add favicon here -->
+<!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+
 <style>
 :root {
   --ink: #1f2933;
@@ -20,6 +23,10 @@
 }
 
 * { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -36,6 +43,8 @@ header {
 
 header img {
   height: 110px;
+  display: block;
+  margin: 0 auto;
 }
 
 nav {
@@ -143,7 +152,7 @@ img {
   color: var(--ink);
   opacity: 0;
   transform: translateY(12px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.2s ease;
   border-radius: 4px;
 }
 
@@ -155,6 +164,7 @@ img {
 .institution-callout:hover,
 .institution-callout:focus {
   box-shadow: 0 0 8px rgba(30,58,95,0.15);
+  outline: none;
 }
 
 .publication-card {
@@ -162,6 +172,14 @@ img {
   border-left: 5px solid var(--accent);
   padding: 18px 20px;
   margin-bottom: 28px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.publication-card:hover,
+.publication-card:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30,58,95,0.15);
+  outline: none;
 }
 
 .publication-card h3 {
@@ -268,7 +286,7 @@ footer img {
 
 <header id="home" class="reveal">
   <a href="https://www.isrprivacymatters.org">
-    <img src="logo.png" alt="ISR Logo">
+    <img src="logo.png" alt="ISR Logo" loading="lazy">
   </a>
 </header>
 
@@ -300,7 +318,7 @@ footer img {
 </section>
 
 <section class="context reveal">
-  <img src="strategic_context.png" alt="Strategic environment illustration">
+  <img src="strategic_context.png" alt="Strategic environment illustration" loading="lazy">
 </section>
 
 <div class="divider"></div>
@@ -346,7 +364,7 @@ footer img {
       to preserve freedom of action below thresholds of detection and attribution.
     </p>
     <a href="signature_reduction_doctrine.png" target="_blank">
-      <img src="signature_reduction_doctrine.png" alt="Signature Reduction Graphic">
+      <img src="signature_reduction_doctrine.png" alt="Signature Reduction Graphic" loading="lazy">
     </a>
     <details class="pub-details">
       <summary>Read more</summary>
@@ -383,7 +401,7 @@ footer img {
       Reduction competes.
     </p>
     <a href="uts_environment (1).png" target="_blank">
-      <img src="uts_environment (1).png" alt="UTS Graphic">
+      <img src="uts_environment (1).png" alt="UTS Graphic" loading="lazy">
     </a>
     <details class="pub-details">
       <summary>Read more</summary>
@@ -418,7 +436,7 @@ footer img {
       detectability, attribution risk, and freedom of action under conditions of ubiquitous technical surveillance.
     </p>
     <a href="human_judgment.png" target="_blank">
-      <img src="human_judgment.png" alt="Human Judgment Graphic">
+      <img src="human_judgment.png" alt="Human Judgment Graphic" loading="lazy">
     </a>
     <details class="pub-details">
       <summary>Read more</summary>

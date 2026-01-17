@@ -133,6 +133,30 @@ img {
   filter: grayscale(90%) contrast(1.05);
 }
 
+.institution-callout {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88em;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  border-radius: 4px;
+}
+
+.institution-callout.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.institution-callout:hover,
+.institution-callout:focus {
+  box-shadow: 0 0 8px rgba(30,58,95,0.15);
+}
+
 .publication-card {
   background: var(--panel);
   border-left: 5px solid var(--accent);
@@ -251,7 +275,12 @@ footer img {
 <main>
 
 <section id="mission" class="reveal">
-  <h2>Mission</h2>
+  <h2>Privacy Matters</h2>
+
+  <div class="institution-callout reveal" tabindex="0">
+    <strong>About ISR:</strong> An independent institute bridging practitioner expertise and research to advance signature reduction and operational privacy.
+  </div>
+
   <p>
     The Institute for Signature Reduction (ISR) is an independent 501(c)(3) nonprofit charitable organization
     dedicated to advancing education, research, and irregular warfare doctrine related to digital force protection,
@@ -293,7 +322,7 @@ footer img {
 
 <section id="publications" class="reveal">
   <span class="taxonomy-tag">Publications & Commentary</span>
-  <h2>Recent Publications</h2>
+  <h2>Recent Publications from the Institute</h2>
 
   <div class="publication-card reveal">
     <span class="taxonomy-tag">Expert Analysis</span>
@@ -313,7 +342,7 @@ footer img {
     <h3>Understanding Signature Reduction</h3>
     <div class="meta">Institute for Signature Reduction</div>
     <p class="exec">
-      <strong>Executive takeaway:</strong> Signature Reduction is a counteroffensive doctrine that reduces observable indicators across domains
+      <strong>Executive takeaway:</strong> A counteroffensive doctrine that reduces observable indicators across domains
       to preserve freedom of action below thresholds of detection and attribution.
     </p>
     <a href="signature_reduction_doctrine.png" target="_blank">
@@ -347,7 +376,7 @@ footer img {
 
   <div class="publication-card reveal">
     <span class="taxonomy-tag">Foundational Concept</span>
-    <h3>Ubiquitous Technical Surveillance (UTS)</h3>
+    <h3>The Problem of Ubiquitous Technical Surveillance (UTS)</h3>
     <div class="meta">Institute for Signature Reduction</div>
     <p class="exec">
       <strong>Executive takeaway:</strong> Called an "existential threat" by the Central Intelligence Agency and others, UTS defines the benchmark surveillance environment against which Signature
@@ -412,7 +441,7 @@ footer img {
       <p>
         By situating human judgment between strategic surveillance ecosystems and on-the-ground operational
         realities, the framework underscores the role of signature reduction as an attribution management
-        doctrine of irregular warfare—one that enables deliberate action in the grazy zone without reliance on constant disruption, deception,
+        doctrine of irregular warfare—one that enables deliberate action in the gray zone without reliance on constant disruption, deception,
         or concealment.
       </p>
     </details>
@@ -428,7 +457,7 @@ footer img {
       operating environments. 
     </p>
     <details class="pub-details">
-      <summary>Extended discussion</summary>
+      <summary>Read more</summary>
       <p>
         Written primarily for military special operations personnel, the End User Device Manual translates
         signature reduction principles into actionable considerations for daily device use. The guidance focuses

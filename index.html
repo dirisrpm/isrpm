@@ -7,9 +7,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-<!-- Optional: add favicon here -->
-<!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
-
 <style>
 :root {
   --ink: #1f2933;
@@ -36,6 +33,27 @@ body {
   line-height: 1.65;
 }
 
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  z-index: 1500;
+  background: linear-gradient(90deg, rgba(30,58,95,0.15), rgba(59,130,246,0.15), rgba(30,58,95,0.15));
+  border-radius: 2px;
+  opacity: 0.25;
+  transition: width 0.2s ease;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.95);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+}
+
 header {
   text-align: center;
   padding: 28px 16px 18px;
@@ -45,14 +63,6 @@ header img {
   height: 110px;
   display: block;
   margin: 0 auto;
-}
-
-nav {
-  position: sticky;
-  top: 0;
-  background: #ffffff;
-  border-bottom: 1px solid var(--border);
-  z-index: 1000;
 }
 
 nav ul {
@@ -273,6 +283,8 @@ footer img {
 
 <body>
 
+<div id="scroll-progress"></div>
+
 <nav>
   <ul>
     <li><a href="#home">Home</a></li>
@@ -342,7 +354,7 @@ footer img {
   <span class="taxonomy-tag">Publications & Commentary</span>
   <h2>Recent Publications from the Institute</h2>
 
-  <div class="publication-card reveal">
+<div class="publication-card reveal">
     <span class="taxonomy-tag">Expert Analysis</span>
     <h3>Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for Strategic Competition</h3>
     <div class="meta">Small Wars Journal</div>
@@ -526,6 +538,7 @@ footer img {
 </footer>
 
 <script>
+// Reveal on scroll
 const revealElements = document.querySelectorAll('.reveal, .context img');
 
 const observer = new IntersectionObserver(entries => {
@@ -538,6 +551,15 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.15 });
 
 revealElements.forEach(el => observer.observe(el));
+
+// Subtle scroll progress bar
+const progressBar = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const scrolled = (scrollTop / docHeight) * 100;
+  progressBar.style.width = scrolled + '%';
+});
 </script>
 
 </body>

@@ -40,7 +40,7 @@ Think of it as a digital calling card — professional, secure, and succinct.
 
 ## About the Content
 - Yes, it’s that simple. No WordPress, no plugins, no surprises.  
-- Select editorial, analytical, and design workflows are supported by AI-enabled tools under human direction and review.
+- Some fine print: Select editorial, analytical, and design workflows are supported by AI-enabled tools under **human direction and review**.
 
 ---
 

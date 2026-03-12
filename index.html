@@ -308,20 +308,22 @@ footer img {
   <h2>Privacy Matters</h2>
 
   <div class="institution-callout reveal" tabindex="0">
-    <strong>About ISR:</strong> An independent institute bridging practitioner expertise and research to advance signature reduction and operational privacy.
+    <strong>About ISR:</strong> An independent nonprofit institute dedicated to the development, publication, and stewardship of signature reduction doctrine and operational privacy research.
   </div>
 
   <p>
     The Institute for Signature Reduction (ISR) is an independent 501(c)(3) nonprofit charitable organization
     dedicated to advancing education, research, and irregular warfare doctrine related to digital force protection,
-    operational privacy, and signature reduction.
+    operational privacy, and signature reduction. The Institute develops and publishes practitioner-informed
+    doctrine and educational materials intended to support institutions operating within environments shaped by
+    persistent sensing, attribution risk, and asymmetric observation.
   </p>
 </section>
 
 <section id="focus-areas" class="reveal">
   <h2>Areas of Focus</h2>
   <ul>
-    <li>Signature reduction across physical, digital, and electromagnetic domains</li>
+    <li>Signature reduction across physical and digital domains</li>
     <li>Digital force protection and operational privacy</li>
     <li>Small team survivability in contested environments</li>
     <li>Irregular warfare and strategic competition</li>
@@ -340,11 +342,12 @@ footer img {
   <h2>Stewards of Irregular Warfare</h2>
   <p>
     ISR develops and stewards irregular warfare doctrine related to signature reduction and operational survivability
-    within environments shaped by persistent sensing, attribution risk, and asymmetric observation. 
+    within environments shaped by persistent sensing, attribution risk, and asymmetric observation.
   </p>
   <p>
-    The Institute bridges practitioner experience
-    and academic rigor in service of government, defense institutions, and academia.
+    The Institute bridges practitioner experience and academic rigor in service of government, defense institutions,
+    and academia, producing doctrine publications and educational materials that support continued study and
+    professional education in signature reduction.
   </p>
 </section>
 
@@ -534,8 +537,10 @@ footer img {
 <section id="affiliations" class="reveal">
   <h2>Affiliations</h2>
   <p>
-    For applied training derived from ISR doctrine, see our authorized training partner:
-    <a href="https://signaturemanagementunit.com">Signature Management Unit</a>.
+    Applied operational education programs derived from ISR doctrine are delivered by the
+    <a href="https://signaturemanagementunit.com">Signature Management Unit (SMU)</a>,
+    an independent practitioner-led organization that provides operational instruction and
+    facilitated programs for government partners.
   </p>
 </section>
 
@@ -561,7 +566,6 @@ Correspondence is reviewed on a periodic basis and evaluated for institutional r
 </footer>
 
 <script>
-// Reveal on scroll
 const revealElements = document.querySelectorAll('.reveal, .context img');
 
 const observer = new IntersectionObserver(entries => {
@@ -575,7 +579,6 @@ const observer = new IntersectionObserver(entries => {
 
 revealElements.forEach(el => observer.observe(el));
 
-// Subtle scroll progress bar
 const progressBar = document.getElementById('scroll-progress');
 window.addEventListener('scroll', () => {
   const scrollTop = window.scrollY;

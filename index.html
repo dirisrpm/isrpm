@@ -98,6 +98,8 @@ border-top:1px solid var(--border);
 margin:50px 0;
 }
 
+/* DIAGRAMS */
+
 .diagram{
 max-width:800px;
 width:100%;
@@ -107,7 +109,17 @@ cursor:pointer;
 transition:opacity .2s ease;
 }
 
-.diagram:hover{
+.diagram-small{
+max-width:620px;
+width:100%;
+display:block;
+margin:25px auto;
+cursor:pointer;
+transition:opacity .2s ease;
+}
+
+.diagram:hover,
+.diagram-small:hover{
 opacity:.85;
 }
 
@@ -214,7 +226,9 @@ height:90px;
 
 <header class="reveal">
 
+<a href="/">
 <img src="images/logo.png">
+</a>
 
 </header>
 
@@ -257,7 +271,7 @@ Under these conditions, ordinary actions generate observable signatures that may
 </p>
 
 <a href="images/uts_environment (1).png" target="_blank">
-<img src="images/uts_environment (1).png" class="diagram">
+<img src="images/uts_environment (1).png" class="diagram-small">
 </a>
 
 </section>
@@ -275,7 +289,7 @@ Operational exposure increasingly emerges through correlation rather than isolat
 </p>
 
 <a href="images/attribution_chain.png" target="_blank">
-<img src="images/attribution_chain.png" class="diagram">
+<img src="images/attribution_chain.png" class="diagram-small">
 </a>
 
 <p class="exec">

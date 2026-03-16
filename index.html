@@ -47,6 +47,7 @@ padding:14px;
 margin:0;
 font-family:'Inter',sans-serif;
 font-size:.9em;
+flex-wrap:wrap;
 }
 
 nav a{
@@ -97,18 +98,30 @@ border-top:1px solid var(--border);
 margin:50px 0;
 }
 
-img{
-max-width:100%;
+/* IMAGE SYSTEM */
+
+.diagram{
+max-width:800px;
+width:100%;
 display:block;
-margin:0 auto;
+margin:25px auto;
+cursor:pointer;
+transition:opacity .2s ease;
 }
 
-.doctrine-map{
-background:var(--panel);
-border:1px solid var(--border);
-padding:30px;
-margin-top:30px;
+.diagram:hover{
+opacity:.85;
 }
+
+.image-standard{
+max-width:720px;
+width:100%;
+display:block;
+margin:20px auto;
+cursor:pointer;
+}
+
+/* CALLOUT */
 
 .institution-callout{
 background:#e6ebf2;
@@ -118,6 +131,8 @@ font-family:'Inter',sans-serif;
 font-size:.9em;
 margin-bottom:20px;
 }
+
+/* CARDS */
 
 .publication-card{
 background:var(--panel);
@@ -132,6 +147,8 @@ font-size:1.05em;
 margin-top:0;
 }
 
+/* FOOTER */
+
 footer{
 border-top:1px solid var(--border);
 background:var(--panel);
@@ -142,6 +159,22 @@ font-size:.85em;
 color:#4b5563;
 }
 
+.verification{
+margin-top:8px;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:6px;
+font-size:.8em;
+color:var(--muted);
+}
+
+.verification img{
+height:16px;
+}
+
+/* REVEAL */
+
 .reveal{
 opacity:0;
 transform:translateY(15px);
@@ -151,6 +184,21 @@ transition:all .6s ease;
 .reveal.visible{
 opacity:1;
 transform:translateY(0);
+}
+
+/* MOBILE */
+
+@media (max-width:600px){
+
+nav ul{
+gap:14px;
+font-size:.85em;
+}
+
+header img{
+height:90px;
+}
+
 }
 
 </style>
@@ -180,9 +228,6 @@ transform:translateY(0);
 
 <img src="images/logo.png">
 
-
-</div>
-
 </header>
 
 
@@ -194,7 +239,7 @@ transform:translateY(0);
 <h2>Privacy Matters</h2>
 
 <div class="institution-callout">
-The Institute for Signature Reduction (ISR) develops irregular warfare doctrine for gray zone manuever and operational initiative under conditions of ubiquitous technical surveillance.
+The Institute for Signature Reduction (ISR) develops irregular warfare doctrine for gray zone maneuver and operational initiative under conditions of ubiquitous technical surveillance.
 </div>
 
 <p>
@@ -223,7 +268,9 @@ UTS describes an environment characterized by persistent sensing across online, 
 Under these conditions, ordinary actions generate observable signatures that may be collected and aggregated across platforms.
 </p>
 
-<img src="images/uts_environment (1).png">
+<a href="images/uts_environment (1).png" target="_blank">
+<img src="images/uts_environment (1).png" class="diagram">
+</a>
 
 </section>
 
@@ -239,7 +286,9 @@ Under these conditions, ordinary actions generate observable signatures that may
 Operational exposure increasingly emerges through correlation rather than isolated detection events. Observable behaviors accumulate within surveillance systems until they can be linked to individuals, organizations, and intent.
 </p>
 
-<img src="images/attribution_chain.png">
+<a href="images/attribution_chain.png" target="_blank">
+<img src="images/attribution_chain.png" class="diagram">
+</a>
 
 <p class="exec">
 Observation, collection, correlation, and attribution form the operational pressure shaping modern irregular warfare environments.
@@ -267,7 +316,9 @@ Signature reduction governs human behavior across domains to manage observabilit
 
 </ul>
 
-<img src="images/signature_reduction_doctrine.png">
+<a href="images/signature_reduction_doctrine.png" target="_blank">
+<img src="images/signature_reduction_doctrine.png" class="diagram">
+</a>
 
 </section>
 
@@ -287,7 +338,9 @@ Signature reduction governs human behavior across domains to manage observabilit
 Human judgment functions as the decisive mechanism for managing detectability and attribution risk under persistent surveillance.
 </p>
 
-<img src="images/human_judgment.png">
+<a href="images/human_judgment.png" target="_blank">
+<img src="images/human_judgment.png" class="image-standard">
+</a>
 
 </div>
 
@@ -302,62 +355,93 @@ Human judgment functions as the decisive mechanism for managing detectability an
 <h2>Doctrine Publications</h2>
 
 <div class="publication-card reveal">
-    <h3>Ubiquitous Technical Surveillance and the Renewal of Irregular Warfare</h3>
-    <div class="meta">Small Wars Journal</div>
-    <p class="exec">
-      <strong>Executive takeaway:</strong> Ubiquitous technical surveillance signifies a shift in warfare dynamics, challenging traditional assumptions while emphasizing human judgment in irregular conflicts.</p>
-    <a href="https://smallwarsjournal.com/2026/02/13/ubiquitous-technical-surveillance/" target="_blank">
-      View publication on Small Wars Journal
-    </a>
-    <br>
-    <a href="archive/uts_irregular_warfare.pdf" download>
-      Download PDF
-    </a>
-  </div>
+
+<h3>Ubiquitous Technical Surveillance and the Renewal of Irregular Warfare</h3>
+
+<div class="meta">Small Wars Journal</div>
+
+<p class="exec">
+<strong>Executive takeaway:</strong>
+Ubiquitous technical surveillance signifies a shift in warfare dynamics, challenging traditional assumptions while emphasizing human judgment in irregular conflicts.
+</p>
+
+<a href="https://smallwarsjournal.com/2026/02/13/ubiquitous-technical-surveillance/" target="_blank">
+View publication
+</a>
+
+<br>
+
+<a href="archive/uts_irregular_warfare.pdf" download>
+Download PDF
+</a>
+
+</div>
+
 
 <div class="publication-card reveal">
-    <h3>Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for Strategic Competition</h3>
-    <div class="meta">Small Wars Journal</div>
-    <p class="exec">
-      <strong>Executive takeaway:</strong> Signature Reduction enables maneuver and survivability under conditions of
-      pervasive surveillance by integrating human behavior, operational tradecraft, and technology use.
-    </p>
-    <a href="https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/" target="_blank">
-      View publication on Small Wars Journal
-    </a>
-    <br>
-    <a href="archive/counteroffensive_irregular_warfare.pdf" download>
-      Download PDF
-    </a>
-  </div>
+
+<h3>Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for Strategic Competition</h3>
+
+<div class="meta">Small Wars Journal</div>
+
+<p class="exec">
+
+<strong>Executive takeaway:</strong>
+
+Signature Reduction enables maneuver and survivability under conditions of pervasive surveillance by integrating human behavior, operational tradecraft, and technology use.
+
+</p>
+
+<a href="https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/" target="_blank">
+View publication
+</a>
+
+<br>
+
+<a href="archive/counteroffensive_irregular_warfare.pdf" download>
+Download PDF
+</a>
+
+</div>
 
 </section>
 
 
 <div class="divider"></div>
+
 
 <section id="affiliations" class="reveal">
-  <h2>Affiliations</h2>
-  <p>
-    Applied operational programs derived from ISR doctrine are delivered by the
-    <a href="https://signaturemanagementunit.com">Signature Management Unit (SMU)</a>,
-    an independent practitioner-led organization that provides operational instruction and
-    facilitated programs for government partners.
-  </p>
-  </div>
+
+<h2>Affiliations</h2>
+
+<p>
+Applied operational programs derived from ISR doctrine are delivered by the
+<a href="https://signaturemanagementunit.com">Signature Management Unit (SMU)</a>,
+an independent practitioner-led organization that provides operational instruction and facilitated programs for government partners.
+</p>
+
 </section>
 
+
 <div class="divider"></div>
+
 
 <section id="contact" class="reveal">
 
 <h2>Contact</h2>
 
- <p><strong>info&#64;isrprivacymatters.org</strong></p>
-  <p><em>The Institute for Signature Reduction maintains a selective engagement posture in support of its mission.
-Correspondence is reviewed on a periodic basis. Not all inquiries will receive a reply. Thank you for your understanding.</em></p>
+<p><strong>info&#64;isrprivacymatters.org</strong></p>
 
-<p>ISR is an independent U.S.-based 501(c)(3) nonprofit charitable organization. IRS determination documentation is maintained and available upon request.</p>
+<p><em>
+
+The Institute for Signature Reduction maintains a selective engagement posture in support of its mission.
+Correspondence is reviewed on a periodic basis. Not all inquiries will receive a reply.
+
+</em></p>
+
+<p>
+ISR is an independent U.S.-based 501(c)(3) nonprofit charitable organization. IRS determination documentation is maintained and available upon request.
+</p>
 
 </section>
 
@@ -366,11 +450,16 @@ Correspondence is reviewed on a periodic basis. Not all inquiries will receive a
 
 
 <footer>
- <p>© Institute for Signature Reduction. All Rights Reserved.</p>
-  <div class="verification">
-    <img src="images/us_flag.png" alt="US Flag">
-    Official ISR Site
-  </div>
+
+<p>© Institute for Signature Reduction. All Rights Reserved.</p>
+
+<div class="verification">
+
+<img src="images/us_flag.png" alt="US Flag">
+
+Official ISR Site
+
+</div>
 
 </footer>
 

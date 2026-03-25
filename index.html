@@ -150,6 +150,13 @@ p{
   margin-top:0;
 }
 
+.meta{
+  font-size:.8em;
+  color:var(--muted);
+  margin-bottom:6px;
+  font-family:'Inter',sans-serif;
+}
+
 footer{
   border-top:1px solid var(--border);
   background:var(--panel);
@@ -185,7 +192,6 @@ footer{
   transform:translateY(0);
 }
 
-/* Lightbox styles */
 #lightboxOverlay{
   position:fixed;
   top:0;
@@ -226,7 +232,7 @@ footer{
 <li><a href="#environment" class="nav-link">UTS</a></li>
 <li><a href="#attribution" class="nav-link">Attribution</a></li>
 <li><a href="#models" class="nav-link">Models</a></li>
-<li><a href="#publications" class="nav-link">Publications</a></li>
+<li><a href="#publications" class="nav-link">Corpus</a></li>
 <li><a href="#contact" class="nav-link">Contact</a></li>
 </ul>
 </nav>
@@ -253,7 +259,7 @@ The Institute for Signature Reduction (ISR) develops irregular warfare doctrine 
 <section id="doctrine" class="reveal">
 <h2>Signature Reduction Doctrine</h2>
 
-<p>Signature Reduction Doctrine provides a systematic approach to preserving operational freedom of manuever by managing observability across all domains. Rather than attempting to eliminate surveillance, it focuses on disrupting correlation,  managing aggregation, and shaping the patterns that enable attribution.</p>
+<p>Signature Reduction Doctrine provides a systematic approach to preserving operational freedom of maneuver by managing observability across all domains. Rather than attempting to eliminate surveillance, it focuses on disrupting correlation,  managing aggregation, and shaping the patterns that enable attribution.</p>
 
 <h3>Core Principles</h3>
 <ul>
@@ -271,7 +277,7 @@ The Institute for Signature Reduction (ISR) develops irregular warfare doctrine 
 <li>Financial & Administrative: Privacy first infrastructure, personal and professional minimization.</li>
 </ul>
 
-<p>Case Example: An operator may use force protection routes, encrypted messaging, and managed digital footprints to perform physical reconnaissance while minimizing observable patterns, enabling prolonged manuever in a gray zone environment.</p>
+<p>Case Example: An operator may use force protection routes, encrypted messaging, and managed digital footprints to perform physical reconnaissance while minimizing observable patterns, enabling prolonged maneuver in a gray zone environment.</p>
 
 <a href="images/signature_reduction_doctrine.png" target="_blank">
 <img src="images/signature_reduction_doctrine.png" class="diagram lightbox-img">
@@ -317,10 +323,20 @@ The Institute for Signature Reduction (ISR) develops irregular warfare doctrine 
 <div class="divider"></div>
 
 <section id="publications" class="reveal">
-<h2>Doctrine Publications</h2>
+<h2>Doctrine Corpus</h2>
+
+<div class="institution-callout">
+ISR doctrine is developed iteratively through published works that collectively define its conceptual and operational framework.
+</div>
+
+<p class="exec">
+The following publications constitute a developing body of doctrine. They are not standalone articles but components of a coherent framework addressing the operational realities of ubiquitous technical surveillance and the requirements of signature reduction.
+</p>
+
+<h3>Foundational Works</h3>
 
 <div class="publication-card reveal">
-<h3>Ubiquitous Technical Surveillance and the Renewal of Irregular Warfare</h3>
+<h3>I. Ubiquitous Technical Surveillance and the Renewal of Irregular Warfare</h3>
 <div class="meta">Small Wars Journal</div>
 <p class="exec"><strong>Executive takeaway:</strong> Ubiquitous technical surveillance signifies a shift in warfare dynamics, challenging traditional assumptions while emphasizing human judgment in irregular conflicts.</p>
 <a href="https://smallwarsjournal.com/2026/02/13/ubiquitous-technical-surveillance/" target="_blank">View publication</a><br>
@@ -328,11 +344,27 @@ The Institute for Signature Reduction (ISR) develops irregular warfare doctrine 
 </div>
 
 <div class="publication-card reveal">
-<h3>Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for Strategic Competition</h3>
+<h3>II. Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for Strategic Competition</h3>
 <div class="meta">Small Wars Journal</div>
 <p class="exec"><strong>Executive takeaway:</strong> Signature Reduction enables maneuver and survivability under conditions of pervasive surveillance by integrating human behavior, operational tradecraft, and technology use.</p>
 <a href="https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/" target="_blank">View publication</a><br>
 <a href="archive/counteroffensive.pdf" download>Download PDF</a>
+</div>
+
+<h3>Analytical Extensions</h3>
+
+<div class="publication-card reveal">
+<h3>III. Operating in the Age of Attribution: GRU Lessons for Digital Force Protection</h3>
+<div class="meta">Publishing soon</div>
+<p class="exec"><strong>Executive takeaway:</strong> GRU exposures show that small behaviors aggregated across systems enable attribution, underscoring the need for disciplined digital force protection.</p>
+
+</div>
+
+<div class="publication-card reveal">
+<h3>IV. Intervening in the Attribution Chain: Signature Reduction Under Cross-Domain Surveillance</h3>
+<div class="meta">Publishing soon</div>
+<p class="exec"><strong>Executive takeaway:</strong> Operational exposure is not instantaneous but emerges through a chain of observation, collection, correlation, and attribution—each stage offering opportunities for intervention to preserve maneuver.</p>
+
 </div>
 
 </section>
@@ -363,13 +395,11 @@ Official ISR Site
 </div>
 </footer>
 
-<!-- Lightbox overlay -->
 <div id="lightboxOverlay">
 <img src="" alt="Enlarged Image">
 </div>
 
 <script>
-// Intersection Observer for reveal animations
 const observer = new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting){ entry.target.classList.add("visible") }
@@ -379,7 +409,6 @@ document.querySelectorAll(".reveal").forEach(el=>{
   observer.observe(el)
 })
 
-// Scrollspy for nav highlight
 const sections = document.querySelectorAll("main section");
 const navLinks = document.querySelectorAll(".nav-link");
 window.addEventListener("scroll",()=>{
@@ -394,7 +423,6 @@ window.addEventListener("scroll",()=>{
   });
 });
 
-// Lightbox functionality
 const lightbox = document.getElementById("lightboxOverlay");
 const lightboxImg = lightbox.querySelector("img");
 document.querySelectorAll(".lightbox-img").forEach(img=>{

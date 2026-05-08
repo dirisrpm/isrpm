@@ -4,433 +4,892 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Institute for Signature Reduction</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="description" content="The Institute for Signature Reduction develops doctrine and ongoing research addressing ubiquitous technical surveillance, attribution pressure, and operational maneuver under conditions of persistent observability.">
 
 <style>
+
 :root{
   --accent:#1e3a5f;
-  --accent-light:#3a5f7f; 
-  --border:#d1d5db;
-  --panel:#f5f7fa;
-  --muted:#6b7280;
+  --accent-soft:#526d8a;
+  --border:#d6d9de;
+  --panel:#f7f8fa;
   --ink:#1f2933;
+  --muted:#6b7280;
+  --max-width:1040px;
 }
 
-*{box-sizing:border-box;}
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
   margin:0;
-  font-family:'Source Serif Pro',serif;
-  line-height:1.65;
+  background:#ffffff;
   color:var(--ink);
+  font-family:Georgia, "Times New Roman", serif;
+  line-height:1.75;
+  text-rendering:optimizeLegibility;
+}
+
+img{
+  max-width:100%;
+  height:auto;
+}
+
+a{
+  color:var(--accent);
+}
+
+.skip-link{
+  position:absolute;
+  left:-9999px;
+}
+
+.skip-link:focus{
+  left:20px;
+  top:20px;
   background:white;
+  padding:12px 16px;
+  border:1px solid var(--border);
+  z-index:5000;
 }
 
 nav{
   position:sticky;
   top:0;
-  background:white;
-  border-bottom:1px solid var(--border);
-  z-index:1001;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(0,0,0,.06);
+  z-index:1000;
 }
 
 nav ul{
+  margin:0;
+  padding:18px 20px;
   display:flex;
   justify-content:center;
-  gap:30px;
-  list-style:none;
-  padding:14px;
-  margin:0;
-  font-family:'Inter',sans-serif;
-  font-size:.9em;
   flex-wrap:wrap;
+  gap:34px;
+  list-style:none;
 }
 
 nav a{
   text-decoration:none;
-  color:var(--accent);
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:.92rem;
   font-weight:600;
-  transition: color .3s ease;
+  letter-spacing:.02em;
+  color:var(--accent);
 }
 
-nav a.active{
-  color:var(--accent-light);
+nav a:hover{
+  color:var(--accent-soft);
 }
 
-header{
+.hero{
+  padding:90px 20px 70px;
   text-align:center;
-  padding:30px 20px 10px;
 }
 
-header img{
-  height:110px;
+.hero img{
+  width:128px;
+  margin-bottom:26px;
+}
+
+.hero h1{
+  margin:0 0 20px;
+  color:var(--accent);
+  font-size:2.6rem;
+  font-weight:normal;
+  letter-spacing:.01em;
+}
+
+.hero p{
+  max-width:760px;
+  margin:0 auto 18px;
+  font-size:1.08rem;
+  color:#374151;
+}
+
+.hero-subtle{
+  color:var(--muted);
+  font-size:.94rem;
 }
 
 main{
-  max-width:1000px;
-  margin:40px auto;
-  padding:0 20px;
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:0 24px 100px;
 }
 
 section{
-  margin-bottom:60px;
+  margin-bottom:120px;
 }
 
 h2{
-  font-family:'Inter',sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
   color:var(--accent);
-  font-size:1.3em;
-  border-left:4px solid var(--accent);
-  padding-left:12px;
+  font-size:1.45rem;
+  margin-bottom:28px;
+  font-weight:700;
+  letter-spacing:.01em;
+}
+
+h3{
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:1.02rem;
+  margin-top:42px;
+  margin-bottom:14px;
+  color:#223548;
 }
 
 p{
-  margin-bottom:14px;
+  margin-bottom:18px;
 }
 
-.exec{
-  font-family:'Inter',sans-serif;
-  font-size:.9em;
-  color:#4b5563;
+ul{
+  padding-left:24px;
 }
 
-.divider{
-  border-top:1px solid var(--border);
-  margin:50px 0;
+li{
+  margin-bottom:10px;
 }
 
-.diagram{
-  max-width:700px;
-  width:100%;
-  display:block;
-  margin:25px auto;
-  cursor:pointer;
-  transition:opacity .2s ease;
+.intro-text{
+  font-size:1.08rem;
 }
 
-.diagram:hover{
-  opacity:.85;
+.subdued{
+  color:var(--muted);
 }
 
-.image-standard{
-  max-width:720px;
-  width:100%;
-  display:block;
-  margin:20px auto;
-  cursor:pointer;
-}
-
-.institution-callout{
-  background:#e6ebf2;
+.callout{
   border-left:3px solid var(--accent);
-  padding:14px;
-  font-family:'Inter',sans-serif;
-  font-size:.9em;
-  margin-bottom:20px;
+  padding-left:20px;
+  margin:34px 0;
+  font-size:1.05rem;
+  color:#374151;
 }
 
-.publication-card{
-  background:var(--panel);
-  border-left:5px solid var(--accent);
-  padding:18px;
-  margin-bottom:26px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.current-work{
+  background:linear-gradient(to bottom,#f8fafc,#ffffff);
+  border-top:1px solid rgba(0,0,0,.06);
+  border-bottom:1px solid rgba(0,0,0,.06);
+  padding:48px;
 }
 
-.publication-card:hover{
-  transform:translateY(-2px);
-  box-shadow:0 4px 12px rgba(30,58,95,0.15);
+.current-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  margin-top:30px;
 }
 
-.publication-card h3{
-  font-family:'Inter',sans-serif;
-  font-size:1.05em;
+.current-block h3{
   margin-top:0;
 }
 
-.meta{
-  font-size:.8em;
-  color:var(--muted);
-  margin-bottom:6px;
-  font-family:'Inter',sans-serif;
-}
-
-footer{
-  border-top:1px solid var(--border);
-  background:var(--panel);
-  padding:26px;
+.figure{
+  margin:54px auto;
   text-align:center;
-  font-family:'Inter',sans-serif;
-  font-size:.85em;
-  color:#4b5563;
 }
 
-.verification{
-  margin-top:8px;
+.figure img{
+  width:100%;
+  border:1px solid rgba(0,0,0,.08);
+}
+
+figcaption{
+  margin-top:12px;
+  color:var(--muted);
+  font-size:.92rem;
+}
+
+.cross-structure{
+  display:grid;
+  grid-template-columns:1fr 220px 1fr;
+  grid-template-rows:auto auto auto;
+  gap:34px;
+  align-items:center;
+  justify-items:center;
+  margin-top:60px;
+  margin-bottom:40px;
+}
+
+.cross-block{
+  width:100%;
+  max-width:320px;
+}
+
+.cross-block h3{
+  margin-top:0;
+  border-bottom:1px solid var(--border);
+  padding-bottom:10px;
+}
+
+.top-block{
+  grid-column:2;
+  grid-row:1;
+  text-align:center;
+}
+
+.left-block{
+  grid-column:1;
+  grid-row:2;
+  text-align:right;
+}
+
+.right-block{
+  grid-column:3;
+  grid-row:2;
+  text-align:left;
+}
+
+.bottom-block{
+  grid-column:2;
+  grid-row:3;
+  text-align:center;
+}
+
+.cross-center{
+  grid-column:2;
+  grid-row:2;
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:6px;
-  font-size:.8em;
-  color:var(--muted);
 }
 
-.verification img{
-  height:12px;
-}
-
-.reveal{
-  opacity:0;
-  transform:translateY(15px);
-  transition:all .6s ease;
-}
-
-.reveal.visible{
-  opacity:1;
-  transform:translateY(0);
-}
-
-#lightboxOverlay{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.85);
-  display:none;
-  justify-content:center;
+.cross-core{
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  border:1px solid rgba(0,0,0,.08);
+  display:flex;
   align-items:center;
-  z-index:2000;
-}
-#lightboxOverlay img{
-  max-width:90%;
-  max-height:90%;
-  box-shadow:0 4px 12px rgba(0,0,0,0.5);
-  border:4px solid white;
+  justify-content:center;
+  font-family:Arial, Helvetica, sans-serif;
+  letter-spacing:.18em;
+  font-size:.92rem;
+  color:var(--accent);
+  background:linear-gradient(to bottom,#fafbfd,#f3f6f9);
 }
 
-@media (max-width:600px){
-  nav ul{
-    gap:14px;
-    font-size:.85em;
-  }
-  header img{
-    height:90px;
-  }
+.left-block ul{
+  list-style-position:inside;
+  padding-left:0;
 }
+
+.right-block ul{
+  padding-left:22px;
+}
+
+.top-block ul,
+.bottom-block ul{
+  list-style-position:inside;
+  padding-left:0;
+}
+
+.doctrine-entry{
+  margin-bottom:58px;
+}
+
+.doctrine-id{
+  font-family:Arial, Helvetica, sans-serif;
+  color:var(--muted);
+  font-size:.8rem;
+  letter-spacing:.08em;
+  margin-bottom:10px;
+}
+
+.doctrine-entry h3{
+  margin-top:0;
+  font-size:1.18rem;
+}
+
+.meta{
+  font-family:Arial, Helvetica, sans-serif;
+  color:var(--muted);
+  font-size:.88rem;
+  margin-bottom:16px;
+}
+
+.links{
+  margin-top:18px;
+}
+
+.links a{
+  margin-right:20px;
+  text-decoration:none;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:.92rem;
+}
+
+.pull-quote{
+  max-width:720px;
+  margin:80px auto;
+  text-align:center;
+  font-size:1.35rem;
+  line-height:1.8;
+  color:#2f3d4c;
+}
+
+.pull-quote span{
+  display:block;
+  margin-top:14px;
+  font-size:.9rem;
+  color:var(--muted);
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.affiliation{
+  padding-top:10px;
+}
+
+footer{
+  border-top:1px solid rgba(0,0,0,.08);
+  padding:42px 20px;
+  text-align:center;
+  background:#fbfbfc;
+}
+
+footer p{
+  margin:8px 0;
+}
+
+.footer-small{
+  color:var(--muted);
+  font-size:.88rem;
+}
+
+@media (max-width:900px){
+
+  .cross-structure{
+    display:flex;
+    flex-direction:column;
+    gap:46px;
+  }
+
+  .cross-block{
+    max-width:100%;
+    text-align:left !important;
+  }
+
+  .cross-core{
+    width:110px;
+    height:110px;
+  }
+
+}
+
+@media (max-width:820px){
+
+  .hero{
+    padding:70px 20px 56px;
+  }
+
+  .hero h1{
+    font-size:2rem;
+  }
+
+  .current-grid{
+    grid-template-columns:1fr;
+  }
+
+  section{
+    margin-bottom:90px;
+  }
+
+  nav ul{
+    gap:18px;
+  }
+
+}
+
+@media print{
+
+  nav{
+    position:static;
+    backdrop-filter:none;
+  }
+
+  body{
+    background:white;
+    color:black;
+  }
+
+  a{
+    color:black;
+    text-decoration:none;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce){
+
+  *{
+    scroll-behavior:auto !important;
+  }
+
+}
+
 </style>
 </head>
 
 <body>
 
-<nav>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav aria-label="Primary Navigation">
 <ul>
-<li><a href="#home" class="nav-link">Home</a></li>
-<li><a href="#doctrine" class="nav-link">Signature Reduction</a></li>
-<li><a href="#environment" class="nav-link">UTS</a></li>
-<li><a href="#models" class="nav-link">Models</a></li>
-<li><a href="#publications" class="nav-link">Corpus</a></li>
-<li><a href="#contact" class="nav-link">Contact</a></li>
+<li><a href="#institution">Institution</a></li>
+<li><a href="#current">Current Work</a></li>
+<li><a href="#environment">UTS</a></li>
+<li><a href="#doctrine">Doctrine</a></li>
+<li><a href="#structure">Structure</a></li>
+<li><a href="#corpus">Publications</a></li>
+<li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
 
-<header class="reveal">
-  <a href="https://www.isrprivacymatters.org">
-    <img src="images/logo.png" alt="ISR Logo">
-  </a>
-</header>
+<header class="hero" id="institution">
 
-<main>
-
-<section id="home" class="reveal">
-<h2>Privacy Matters</h2>
-<div class="institution-callout">
-The Institute for Signature Reduction (ISR) develops irregular warfare doctrine for gray zone maneuver and operational initiative under conditions of ubiquitous technical surveillance.
-</div>
-<p>Routine behavior increasingly generates observable signals captured by financial systems, cameras, digital networks, and data platforms. These signals accumulate across domains and may be correlated to reveal identity, relationships, and intent.</p>
-<p>ISR research examines this environment through a coherent doctrinal framework linking the strategic condition of ubiquitous technical surveillance to the operational problem of attribution pressure and the countervailing doctrine of signature reduction.</p>
-</section>
-
-<div class="divider"></div>
-
-<section id="doctrine" class="reveal">
-<h2>Signature Reduction</h2>
-
-<p>Signature Reduction Doctrine provides a systematic approach to preserving operational freedom of maneuver by managing multi-domain observability. Rather than attempting to eliminate surveillance, it focuses on disrupting correlation,  managing aggregation, and shaping the patterns that enable attribution.</p>
-
-<h3>Core Principles</h3>
-<ul>
-<li><strong>Operational Awareness:</strong> Maintain situational and behavioral awareness to recognize when actions generate observable signatures.</li>
-<li><strong>Digital Force Protection:</strong> Reduce digital exposure through intentional individual and organizational technology use.</li>
-<li><strong>Behavioral Discipline:</strong> Manage patterns in physical movements, routines, and interactions to shape observable signatures.</li>
-<li><strong>Integrated Tradecraft:</strong> Apply human judgment in concert with technical protocols across domains to reduce exposure.</li>
-</ul>
-
-<h3>Applications & Examples</h3>
-<p>Signature reduction is applied across domains:</p>
-<ul>
-<li>Digital: Secure communications, compartmentalized online activity, and encrypted and open source means.</li>
-<li>Physical: Movement discipline, environmental attribution considerations, and managing observable cues.</li>
-<li>Financial & Administrative: Privacy first infrastructure, personal and professional minimization.</li>
-</ul>
-
-<p>Case Example: An operator may use force protection routes, encrypted messaging, and managed digital footprints to perform physical reconnaissance while minimizing observable patterns, enabling prolonged maneuver in a gray zone environment.</p>
-
-<img src="images/signature_reduction.png" class="diagram lightbox-img">
+<a href="index.html">
+<img src="images/logo.png" alt="Institute for Signature Reduction emblem">
 </a>
 
-</section>
-
-<div class="divider"></div>
-
-<section id="environment" class="reveal">
-<h2>Ubiquitous Technical Surveillance</h2>
-<p>UTS describes an environment characterized by persistent sensing across online, electronic, visual-physical, financial, and travel systems enabled by networked sensors and large-scale data aggregation.</p>
-<p>Under these conditions, ordinary actions generate observable signatures that may be collected and aggregated across platforms.</p>
-<img src="images/uts_environment (1).png" class="diagram lightbox-img">
-</a>
-</section>
-
-<div class="divider"></div>
-
-<section id="models" class="reveal">
-<h2>Conceptual Models</h2>
-<div class="publication-card">
-<h3>Human Judgment in Gray Zone Warfare</h3>
-<p class="exec">Human judgment functions as the decisive mechanism for managing detectability and attribution risk under persistent surveillance.</p>
-<img src="images/human_judgment.png" class="image-standard lightbox-img">
-</a>
-</div>
-<div class="publication-card">
-<h3>The Attribution Chain</h3>
-<p class="exec">Operational exposure increasingly emerges through correlation rather than isolated detection events. Observable behaviors accumulate within surveillance systems until they can be linked to individuals, organizations, and intent. Observation, collection, correlation, and attribution form the operational pressure shaping modern irregular warfare environments. Signature reduction directly counters these pressures.</p>
-<img src="images/attribution_chain.png" class="image-standard lightbox-img">
-</a>
-
-</div>
-</section>
-
-<div class="divider"></div>
-
-<section id="publications" class="reveal">
-<h2>Doctrine Corpus</h2>
-
-<p class="exec">
-The following publications constitute a developing body of doctrine. They are not standalone articles but components of a coherent framework addressing the operational realities of ubiquitous technical surveillance and the requirements of signature reduction.
+<p>
+The Institute for Signature Reduction (ISR) develops irregular warfare doctrine and ongoing research addressing operational maneuver, attribution pressure, and human judgment under conditions of ubiquitous technical surveillance.
 </p>
 
-<h3>Foundational Works</h3>
+</header>
 
-<div class="publication-card reveal">
-<h3>I. Ubiquitous Technical Surveillance and the Renewal of Irregular Warfare</h3>
-<div class="meta">Small Wars Journal</div>
-<p class="exec"><strong>Executive takeaway:</strong> Ubiquitous technical surveillance signifies a shift in warfare dynamics, challenging traditional assumptions while emphasizing human judgment in irregular conflicts.</p>
-<a href="https://smallwarsjournal.com/2026/02/13/ubiquitous-technical-surveillance/" target="_blank">View publication</a><br>
-<a href="archive/uts.pdf" download>Download PDF</a>
+<main id="main-content">
+
+<section>
+
+<div class="callout">
+Routine behavior increasingly generates observable signals across financial systems, mobile networks, travel infrastructure, administrative databases, online platforms, and persistent sensing environments. These signals accumulate across domains and may be correlated to reveal identity, relationships, location, and intent.
 </div>
 
-<div class="publication-card reveal">
-<h3>II. Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for Strategic Competition</h3>
-<div class="meta">Small Wars Journal</div>
-<p class="exec"><strong>Executive takeaway:</strong> Signature Reduction enables maneuver and survivability under conditions of pervasive surveillance by integrating human behavior, operational tradecraft, and technology use.</p>
-<a href="https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/" target="_blank">View publication</a><br>
-<a href="archive/counteroffensive.pdf" download>Download PDF</a>
+<p class="intro-text">
+ISR examines these conditions through a coherent doctrinal framework linking the strategic environment of ubiquitous technical surveillance to the operational problems of attribution pressure and observability management.
+</p>
+
+<p>
+The Institute approaches these developments as enduring structural conditions rather than temporary technological trends. ISR doctrine therefore emphasizes durable operational principles grounded in human judgment, behavioral discipline, environmental awareness, and long-term tradecraft.
+</p>
+
+</section>
+
+<section id="current" class="current-work">
+
+<h2>Current Work</h2>
+
+<p>
+ISR continues to develop doctrine, analytical research, and operational concepts addressing maneuver under conditions of persistent surveillance and cross-domain attribution.
+</p>
+
+<div class="current-grid">
+
+<div class="current-block">
+
+<h3>Current Research Areas</h3>
+
+<ul>
+<li>Digital Force Protection</li>
+<li>Cross-domain attribution</li>
+<li>Behavioral observability</li>
+<li>Operational judgment</li>
+<li>Gray zone maneuver</li>
+<li>Signature shaping</li>
+</ul>
+
 </div>
 
-<div class="publication-card reveal">
-<h3>III. From Signature Reduction to Digital Force Protection: Operationalizing Counteroffensive Irregular Warfare Doctrine in the Digital Domain</h3>
-<div class="meta">Joint Special Operations University</div>
-<p class="exec"><strong>Executive takeaway:</strong> As ubiquitous technical surveillance collapses the boundaries between war and non-war, digital force protection emerges as the operational form of signature reduction doctrine in the digital domain - a counteroffensive maneuver capability that preserves SOF freedom of action through managed observability, attribution disruption, and pre-deployment signature shaping.</p>
-Publishing soon
+<div class="current-block">
+
+<h3>Ongoing Publication Development</h3>
+
+<ul>
+<li>Digital Force Protection doctrine</li>
+<li>Attribution chain intervention models</li>
+<li>Operational signature management</li>
+<li>Human judgment in persistent surveillance environments</li>
+<li>Educational and practitioner frameworks</li>
+</ul>
 
 </div>
-<h3>Analytical Extensions</h3>
-
-<div class="publication-card reveal">
-<h3>IV. Operating in the Age of Attribution: GRU Lessons for Digital Force Protection</h3>
-<div class="meta">Small Wars Journal</div>
-<p class="exec"><strong>Executive takeaway:</strong> GRU exposures show that small behaviors aggregated across systems enable attribution, underscoring the need for disciplined digital force protection.</p>
-<a href="https://smallwarsjournal.com/2026/04/15/gru-lessons-for-digital-force-protection/" target="_blank">View publication</a><br>
-<a href="archive/attribution.pdf" download>Download PDF</a>
-
-</div>
-
-<div class="publication-card reveal">
-<h3>V. Intervening in the Attribution Chain: Signature Reduction Under Cross-Domain Surveillance</h3>
-<div class="meta">Small Wars Journal</div>
-<p class="exec"><strong>Executive takeaway:</strong> Operational exposure is not instantaneous but emerges through a chain of observation, collection, correlation, and attribution—each stage offering opportunities for intervention to preserve maneuver.</p>
-Publishing soon
 
 </div>
 
 </section>
 
-<div class="divider"></div>
+<section id="environment">
 
-<section id="affiliations" class="reveal">
-<h2>Affiliations</h2>
-<p>Applied operational programs derived from ISR doctrine are delivered by the <a href="https://signaturemanagementunit.com">Signature Management Unit (SMU)</a>, an independent practitioner-led organization that provides operational instruction and facilitated programs for government partners.</p>
+<h2>Foundational Environment</h2>
+
+<h3>Ubiquitous Technical Surveillance (UTS)</h3>
+
+<p>
+UTS describes an environment characterized by persistent sensing across digital, electronic, financial, administrative, and physical systems enabled by networked infrastructure and large-scale data aggregation.
+</p>
+
+<p>
+Under these conditions, ordinary activity generates observable signatures which may be collected, retained, aggregated, correlated, and attributed across systems over time.
+</p>
+
+<figure class="figure">
+<img src="images/uts_environment.png" alt="Diagram depicting ubiquitous technical surveillance across digital, financial, administrative, and physical systems.">
+<figcaption>
+Persistent sensing environments create enduring conditions of observability and attribution pressure.
+</figcaption>
+</figure>
+
 </section>
 
-<div class="divider"></div>
+<section id="doctrine">
 
-<section id="contact" class="reveal">
+<h2>Operational Doctrine</h2>
+
+<h3>Signature Reduction</h3>
+
+<p>
+Signature Reduction Doctrine provides a systematic approach to preserving operational freedom of maneuver through the disciplined management of multi-domain observability.
+</p>
+
+<p>
+Rather than attempting to eliminate surveillance, the doctrine focuses on disrupting correlation, shaping exposure, managing aggregation, and intervening within the attribution chain.
+</p>
+
+<h3>Core Principles</h3>
+
+<ul>
+<li>
+<strong>Operational Awareness:</strong>
+Recognize how routine activity generates observable signatures across domains.
+</li>
+
+<li>
+<strong>Behavioral Discipline:</strong>
+Manage patterns in movement, communication, technology use, and routine activity.
+</li>
+
+<li>
+<strong>Digital Force Protection:</strong>
+Reduce unnecessary exposure through intentional digital infrastructure and technology practices.
+</li>
+
+<li>
+<strong>Integrated Tradecraft:</strong>
+Apply human judgment alongside technical protocols to preserve maneuver and reduce attribution risk.
+</li>
+</ul>
+
+<figure class="figure">
+<img src="images/signature_reduction.png" alt="Diagram illustrating signature reduction doctrine and observability management across domains.">
+<figcaption>
+Signature reduction preserves maneuver through observability management rather than invisibility.
+</figcaption>
+</figure>
+
+</section>
+
+<section>
+
+<div class="pull-quote">
+“Operational exposure increasingly emerges through accumulation and correlation rather than isolated detection events.”
+<span>ISR doctrinal framework</span>
+</div>
+
+</section>
+
+<section id="structure">
+
+<h2>Doctrine Structure</h2>
+
+<p>
+ISR doctrine is cumulative and internally linked. Individual publications are not intended as isolated essays, but as components within a developing doctrinal framework addressing maneuver under conditions of persistent surveillance.
+</p>
+
+<div class="cross-structure">
+
+<div class="cross-block top-block">
+
+<h3>Operational Problem</h3>
+
+<ul>
+<li>Attribution pressure</li>
+<li>Correlation systems</li>
+<li>Pattern accumulation</li>
+<li>Identity exposure</li>
+</ul>
+
+</div>
+
+<div class="cross-block left-block">
+
+<h3>Environment</h3>
+
+<ul>
+<li>Ubiquitous Technical Surveillance</li>
+<li>Persistent sensing</li>
+<li>Cross-domain observability</li>
+<li>Data aggregation systems</li>
+</ul>
+
+</div>
+
+<div class="cross-center">
+
+<div class="cross-core">
+ISR
+</div>
+
+</div>
+
+<div class="cross-block right-block">
+
+<h3>Operational Response</h3>
+
+<ul>
+<li>Signature Reduction</li>
+<li>Digital Force Protection</li>
+<li>Observability management</li>
+<li>Attribution intervention</li>
+</ul>
+
+</div>
+
+<div class="cross-block bottom-block">
+
+<h3>Human Mechanism</h3>
+
+<ul>
+<li>Human judgment</li>
+<li>Behavioral discipline</li>
+<li>Operational awareness</li>
+<li>Integrated tradecraft</li>
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="corpus">
+
+<h2>Publications</h2>
+
+<p>
+ISR publications constitute an ongoing body of doctrine and analytical research addressing maneuver, attribution, and operational survivability under conditions of ubiquitous technical surveillance.
+</p>
+
+<div class="doctrine-entry">
+
+<div class="doctrine-id">
+ISR-DOC-001
+</div>
+
+<h3>
+I. Ubiquitous Technical Surveillance and the Renewal of Irregular Warfare
+</h3>
+
+<div class="meta">
+Small Wars Journal
+</div>
+
+<p>
+Ubiquitous technical surveillance represents a structural shift in warfare conditions, altering assumptions surrounding concealment, maneuver, and operational exposure while elevating the importance of human judgment in irregular conflict.
+</p>
+
+<div class="links">
+<a href="https://smallwarsjournal.com/2026/02/13/ubiquitous-technical-surveillance/" target="_blank" rel="noopener noreferrer">
+View Publication
+</a>
+
+<a href="archive/isr-doc-001.pdf">
+PDF Edition
+</a>
+</div>
+
+</div>
+
+<div class="doctrine-entry">
+
+<div class="doctrine-id">
+ISR-DOC-002
+</div>
+
+<h3>
+II. Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for Strategic Competition
+</h3>
+
+<div class="meta">
+Small Wars Journal
+</div>
+
+<p>
+Signature Reduction Doctrine preserves operational freedom of maneuver through the disciplined management of attribution pressure, observability, and behavioral exposure across domains.
+</p>
+
+<div class="links">
+<a href="https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/" target="_blank" rel="noopener noreferrer">
+View Publication
+</a>
+
+<a href="archive/isr-doc-002.pdf">
+PDF Edition
+</a>
+</div>
+
+</div>
+
+<div class="doctrine-entry">
+
+<div class="doctrine-id">
+ISR-DOC-003
+</div>
+
+<h3>
+III. From Signature Reduction to Digital Force Protection
+</h3>
+
+<div class="meta">
+Joint Special Operations University · Forthcoming
+</div>
+
+<p>
+Digital Force Protection operationalizes signature reduction doctrine within digital environments through intentional infrastructure, managed observability, attribution disruption, and signature shaping.
+</p>
+
+</div>
+
+<div class="doctrine-entry">
+
+<div class="doctrine-id">
+ISR-DOC-004
+</div>
+
+<h3>
+IV. Operating in the Age of Attribution: GRU Lessons for Digital Force Protection
+</h3>
+
+<div class="meta">
+Small Wars Journal
+</div>
+
+<p>
+Operational exposure increasingly emerges through the accumulation of seemingly minor behaviors across systems, demonstrating the necessity of disciplined digital force protection and behavioral management.
+</p>
+
+<div class="links">
+<a href="https://smallwarsjournal.com/2026/04/15/gru-lessons-for-digital-force-protection/" target="_blank" rel="noopener noreferrer">
+View Publication
+</a>
+
+<a href="archive/isr-doc-004.pdf">
+PDF Edition
+</a>
+</div>
+
+</div>
+
+<div class="doctrine-entry">
+
+<div class="doctrine-id">
+ISR-DOC-005
+</div>
+
+<h3>
+V. Intervening in the Attribution Chain: Signature Reduction Under Cross-Domain Surveillance
+</h3>
+
+<div class="meta">
+Small Wars Journal · Forthcoming
+</div>
+
+<p>
+Attribution emerges progressively through observation, collection, aggregation, and correlation. Each stage presents opportunities for operational intervention and maneuver preservation.
+</p>
+
+</div>
+
+<div class="doctrine-entry">
+
+<div class="doctrine-id">
+ISR-DOC-006
+</div>
+
+<h3>
+VI. Human Primacy in Irregular Warfare
+</h3>
+
+<div class="meta">
+Institute for Signature Reduction · Forthcoming
+</div>
+
+<p>
+As technological systems accelerate collection, correlation, and targeting, operational initiative increasingly depends upon disciplined human judgment capable of maneuvering under persistent observation and uncertainty.
+
+</p>
+
+</div>
+
+</section>
+
+<section class="affiliation">
+
+<h2>Institutional Continuity</h2>
+
+<p>
+ISR maintains ongoing doctrinal development, publication stewardship, and educational continuity through independent research, practitioner engagement, and long-term operational study.
+</p>
+
+<p>
+Applied operational instruction derived from ISR doctrine is delivered independently through the Signature Management Unit (SMU), a practitioner-led organization providing facilitated instruction and operational education programs for government partners.
+</p>
+
+</section>
+
+<section id="contact">
+
 <h2>Contact</h2>
-<p><strong>info&#64;isrprivacymatters.org</strong></p>
-<p><em>The Institute for Signature Reduction maintains a selective engagement posture in support of its mission. Correspondence is reviewed on a periodic basis. Not all inquiries will receive a reply.</em></p>
-<p>ISR is an independent U.S.-based 501(c)(3) nonprofit charitable organization. IRS determination documentation is maintained and available upon request.</p>
+
+<p>
+<strong>info&#64;isrprivacymatters.org</strong>
+</p>
+
+<p class="subdued">
+The Institute for Signature Reduction maintains a selective engagement posture in support of its mission. Correspondence is reviewed periodically. Not all inquiries will receive a reply.
+</p>
+
+<p class="subdued">
+ISR is an independent United States 501(c)(3) nonprofit charitable organization.
+</p>
+
 </section>
 
 </main>
 
 <footer>
-<p>© Institute for Signature Reduction. All Rights Reserved.</p>
-<div class="verification">
-<img src="images/us_flag.png" alt="US Flag">
+
+<p>
+© Institute for Signature Reduction
+</p>
+
+<p class="footer-small">
 Official ISR Site
-</div>
+</p>
+
 </footer>
-
-<div id="lightboxOverlay">
-<img src="" alt="Enlarged Image">
-</div>
-
-<script>
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){ entry.target.classList.add("visible") }
-  })
-},{threshold:0.15})
-document.querySelectorAll(".reveal").forEach(el=>{
-  observer.observe(el)
-})
-
-const sections = document.querySelectorAll("main section");
-const navLinks = document.querySelectorAll(".nav-link");
-window.addEventListener("scroll",()=>{
-  let current = "";
-  sections.forEach(section=>{
-    const sectionTop = section.offsetTop - 70;
-    if(pageYOffset >= sectionTop){ current = section.getAttribute("id"); }
-  });
-  navLinks.forEach(link=>{
-    link.classList.remove("active");
-    if(link.getAttribute("href") === "#"+current){ link.classList.add("active"); }
-  });
-});
-
-const lightbox = document.getElementById("lightboxOverlay");
-const lightboxImg = lightbox.querySelector("img");
-document.querySelectorAll(".lightbox-img").forEach(img=>{
-  img.addEventListener("click",()=>{
-    lightbox.style.display="flex";
-    lightboxImg.src=img.src;
-  });
-});
-lightbox.addEventListener("click",()=>{ lightbox.style.display="none"; });
-</script>
 
 </body>
 </html>

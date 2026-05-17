@@ -36,6 +36,8 @@ body{
   font-family:Georgia, "Times New Roman", serif;
   line-height:1.75;
   text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
 img{
@@ -45,6 +47,11 @@ img{
 
 a{
   color:var(--accent);
+  transition:color .18s ease;
+}
+
+a:hover{
+  color:var(--accent-soft);
 }
 
 .skip-link{
@@ -89,10 +96,6 @@ nav a{
   color:var(--accent);
 }
 
-nav a:hover{
-  color:var(--accent-soft);
-}
-
 .hero{
   padding:90px 20px 85px;
   text-align:center;
@@ -130,7 +133,7 @@ main{
 }
 
 section{
-  margin-bottom:120px;
+  margin-bottom:100px;
 }
 
 h2{
@@ -148,6 +151,17 @@ h3{
   margin-top:42px;
   margin-bottom:14px;
   color:#223548;
+}
+
+.pub-category{
+  margin-top:60px;
+  margin-bottom:36px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--border);
+  font-size:1rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--muted);
 }
 
 p{
@@ -352,6 +366,23 @@ figcaption{
   font-family:Arial, Helvetica, sans-serif;
 }
 
+.concepts-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  margin-top:36px;
+}
+
+.concept-block{
+  padding:28px;
+  border:1px solid rgba(0,0,0,.06);
+  background:#fafbfd;
+}
+
+.concept-block h3{
+  margin-top:0;
+}
+
 .affiliation{
   padding-top:10px;
 }
@@ -399,6 +430,10 @@ footer p{
     height:110px;
   }
 
+  .concepts-grid{
+    grid-template-columns:1fr;
+  }
+
 }
 
 @media (max-width:820px){
@@ -421,7 +456,7 @@ footer p{
   }
 
   section{
-    margin-bottom:90px;
+    margin-bottom:80px;
   }
 
   nav ul{
@@ -469,6 +504,7 @@ footer p{
 <li><a href="#institution">Institution</a></li>
 <li><a href="#current">Current Work</a></li>
 <li><a href="#environment">UTS</a></li>
+<li><a href="#concepts">Concepts</a></li>
 <li><a href="#doctrine">Doctrine</a></li>
 <li><a href="#structure">Structure</a></li>
 <li><a href="#corpus">Publications</a></li>
@@ -484,6 +520,10 @@ footer p{
 
 <p>
 The Institute for Signature Reduction (ISR) develops irregular warfare doctrine and ongoing research addressing operational maneuver, attribution pressure, and human judgment under conditions of ubiquitous technical surveillance.
+</p>
+
+<p class="hero-subtle">
+ISR is an independent research institution focused on operational doctrine, irregular warfare, attribution dynamics, and maneuver under conditions of persistent technical surveillance.
 </p>
 
 </header>
@@ -569,6 +609,56 @@ Under these conditions, ordinary activity generates observable signatures which 
 Persistent sensing environments create enduring conditions of observability and attribution pressure.
 </figcaption>
 </figure>
+
+</section>
+
+<section id="concepts">
+
+<h2>Foundational Concepts</h2>
+
+<div class="concepts-grid">
+
+<div class="concept-block">
+
+<h3>Ubiquitous Technical Surveillance</h3>
+
+<p>
+Persistent sensing and data aggregation across digital, financial, administrative, electronic, and physical systems.
+</p>
+
+</div>
+
+<div class="concept-block">
+
+<h3>Attribution Pressure</h3>
+
+<p>
+The cumulative operational pressure generated through cross-domain observability, behavioral exposure, and correlation systems.
+</p>
+
+</div>
+
+<div class="concept-block">
+
+<h3>Signature Reduction</h3>
+
+<p>
+The disciplined management of observability in order to preserve operational maneuver and reduce attribution risk.
+</p>
+
+</div>
+
+<div class="concept-block">
+
+<h3>Digital Force Protection</h3>
+
+<p>
+Operational practices designed to reduce unnecessary exposure within digital environments through intentional infrastructure and behavioral discipline.
+</p>
+
+</div>
+
+</div>
 
 </section>
 
@@ -710,6 +800,8 @@ ISR
 ISR publications constitute an ongoing body of doctrine and analytical research addressing maneuver, attribution, and operational survivability under conditions of ubiquitous technical surveillance.
 </p>
 
+<h3 class="pub-category">Foundational Doctrine</h3>
+
 <div class="doctrine-entry">
 
 <div class="doctrine-id">
@@ -721,7 +813,7 @@ I. Ubiquitous Technical Surveillance and the Renewal of Irregular Warfare
 </h3>
 
 <div class="meta">
-Small Wars Journal
+Foundational Doctrine · Small Wars Journal · February 2026
 </div>
 
 <p>
@@ -751,7 +843,7 @@ II. Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for St
 </h3>
 
 <div class="meta">
-Small Wars Journal
+Foundational Doctrine · Small Wars Journal · December 2025
 </div>
 
 <p>
@@ -781,7 +873,7 @@ III. From Signature Reduction to Digital Force Protection
 </h3>
 
 <div class="meta">
-Joint Special Operations University · Forthcoming
+Doctrinal Development · Joint Special Operations University · Forthcoming
 </div>
 
 <p>
@@ -789,6 +881,8 @@ Digital Force Protection operationalizes signature reduction doctrine within dig
 </p>
 
 </div>
+
+<h3 class="pub-category">Applied Operational Analysis</h3>
 
 <div class="doctrine-entry">
 
@@ -801,7 +895,7 @@ IV. Operating in the Age of Attribution: GRU Lessons for Digital Force Protectio
 </h3>
 
 <div class="meta">
-Small Wars Journal
+Operational Analysis · Small Wars Journal · April 2026
 </div>
 
 <p>
@@ -831,7 +925,7 @@ V. Intervening in the Attribution Chain: Signature Reduction Under Cross-Domain 
 </h3>
 
 <div class="meta">
-Small Wars Journal · Forthcoming
+Operational Doctrine · Small Wars Journal · Forthcoming
 </div>
 
 <p>
@@ -839,7 +933,6 @@ Attribution emerges progressively through observation, collection, aggregation, 
 </p>
 
 </div>
-
 
 <div class="doctrine-entry">
 
@@ -852,17 +945,21 @@ VI. Human Primacy in Irregular Warfare
 </h3>
 
 <div class="meta">
-Institute for Signature Reduction
+ISR Internal Publication · May 2026
 </div>
 
 <p>
 As technological systems accelerate collection, correlation, and targeting, operational initiative increasingly depends upon disciplined human judgment capable of maneuvering under persistent observation and uncertainty.
 </p>
+
 <div class="links">
 <a href="archive/isr-doc-006.pdf" target="_blank" rel="noopener noreferrer">
 View Publication
 </a>
 </div>
+
+</div>
+
 </section>
 
 <section class="affiliation">
@@ -876,7 +973,8 @@ ISR maintains ongoing doctrinal development, publication stewardship, and educat
 <p>
 Applied operational instruction derived from ISR doctrine is delivered independently through the 
 <a href="https://www.signaturemanagementunit.com" target="_blank" rel="noopener noreferrer">
-Signature Management Unit (SMU)</a>, a practitioner-led organization providing facilitated instruction and operational education programs for government partners.
+Signature Management Unit (SMU)
+</a>, a practitioner-led organization providing facilitated instruction and operational education programs for government partners.
 </p>
 
 </section>
@@ -891,6 +989,10 @@ Signature Management Unit (SMU)</a>, a practitioner-led organization providing f
 
 <p class="subdued">
 The Institute for Signature Reduction maintains a selective engagement posture in support of its mission. Correspondence is reviewed periodically. Not all inquiries will receive a reply.
+</p>
+
+<p class="subdued">
+ISR publications may be cited using ISR document identifiers.
 </p>
 
 <p class="subdued">

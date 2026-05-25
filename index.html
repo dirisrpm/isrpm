@@ -1,1017 +1,1103 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Institute for Signature Reduction</title>
+<meta name="description" content="The Institute for Signature Reduction develops irregular warfare doctrine addressing operational maneuver, attribution pressure, and human judgment under conditions of ubiquitous technical surveillance.">
+<meta property="og:title" content="Institute for Signature Reduction">
+<meta property="og:description" content="Doctrine addressing maneuver, attribution pressure, and human judgment under ubiquitous technical surveillance.">
+<meta property="og:type" content="website">
 
-<meta name="description" content="The Institute for Signature Reduction develops doctrine and ongoing research addressing ubiquitous technical surveillance, attribution pressure, and operational maneuver under conditions of persistent observability.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 
 <style>
-
-:root{
-  --accent:#1e3a5f;
-  --accent-soft:#526d8a;
-  --border:#d6d9de;
-  --panel:#f7f8fa;
-  --ink:#1f2933;
-  --muted:#6b7280;
-  --max-width:1040px;
+:root {
+  --accent: #1a3352;
+  --accent-mid: #2a5280;
+  --accent-light: #dde8f3;
+  --accent-pale: #f0f5fb;
+  --ink: #1c2530;
+  --ink-mid: #3d4e5e;
+  --ink-soft: #6b7a8a;
+  --ink-faint: #9aa5b0;
+  --border: rgba(30,51,82,.12);
+  --border-mid: rgba(30,51,82,.2);
+  --surface: #f8fafc;
+  --surface-mid: #f0f4f8;
+  --white: #ffffff;
+  --max: 1080px;
+  --serif: 'EB Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --radius: 6px;
+  --radius-lg: 10px;
+  --trans: .18s ease;
 }
 
-*{
-  box-sizing:border-box;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-html{
-  scroll-behavior:smooth;
+::selection { background: var(--accent-light); color: var(--accent); }
+
+a { color: var(--accent); transition: color var(--trans); }
+a:hover { color: var(--accent-mid); }
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* ─── SKIP LINK ─── */
+.skip-link {
+  position: absolute; left: -9999px;
+  background: white; padding: 12px 18px;
+  border: 1px solid var(--border); z-index: 9999;
+}
+.skip-link:focus { left: 16px; top: 16px; }
+
+/* ─── NAV ─── */
+nav {
+  position: sticky; top: 0; z-index: 800;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: var(--max); margin: 0 auto;
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
+}
+.nav-logo {
+  font-family: var(--mono);
+  font-size: .72rem; letter-spacing: .14em;
+  color: var(--accent); text-decoration: none;
+  font-weight: 400;
+}
+.nav-links {
+  display: flex; gap: 32px; list-style: none;
+}
+.nav-links a {
+  font-family: var(--sans); font-size: .78rem;
+  font-weight: 400; letter-spacing: .04em;
+  color: var(--ink-soft); text-decoration: none;
+  transition: color var(--trans);
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* ─── HERO ─── */
+.hero {
+  padding: 88px 32px 72px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, var(--accent-pale) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: .68rem; letter-spacing: .18em;
+  color: var(--ink-faint); margin-bottom: 28px;
+  text-transform: uppercase; position: relative;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: 2.5rem; font-weight: 400;
+  color: var(--ink); line-height: 1.35;
+  max-width: 720px; margin: 0 auto 24px;
+  position: relative;
+}
+.hero h1 em {
+  font-style: italic; color: var(--accent-mid);
+}
+.hero-sub {
+  font-family: var(--sans); font-size: .95rem;
+  color: var(--ink-mid); max-width: 600px;
+  margin: 0 auto 44px; line-height: 1.8;
+  font-weight: 300; position: relative;
+}
+.hero-logo {
+  position: relative;
+  display: flex; justify-content: center; margin-bottom: 44px;
+}
+.hero-logo img { width: 100px; opacity: .85; }
+
+/* ─── SIGNAL DIAGRAM ─── */
+.signal-section {
+  padding: 0 32px 56px;
+  max-width: var(--max); margin: 0 auto;
+}
+.signal-wrap {
+  margin-top: 52px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.signal-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex; align-items: center; gap: 10px;
+}
+.signal-header-label {
+  font-family: var(--mono);
+  font-size: .65rem; letter-spacing: .12em;
+  color: var(--ink-faint); text-transform: uppercase;
+}
+.signal-body { padding: 32px 24px; }
+.signal-nodes {
+  display: flex; align-items: center;
+  justify-content: center; flex-wrap: wrap;
+  gap: 0; margin-bottom: 24px;
+}
+.sig-node {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 8px;
+  padding: 4px 14px;
+}
+.sig-icon {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--accent-light);
+  background: var(--accent-pale);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: var(--accent-mid);
+  transition: all var(--trans);
+}
+.sig-icon:hover { background: var(--accent-light); transform: translateY(-2px); }
+.sig-label {
+  font-family: var(--mono); font-size: .62rem;
+  letter-spacing: .06em; color: var(--ink-soft);
+}
+.sig-connector {
+  width: 28px; height: 1px;
+  background: var(--accent-light);
+  position: relative; align-self: center; margin-bottom: 22px;
+  flex-shrink: 0;
+}
+.sig-connector::after {
+  content: '';
+  position: absolute; right: -4px; top: -3px;
+  width: 0; height: 0;
+  border-left: 5px solid var(--accent-light);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+.signal-result {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  display: flex; align-items: center;
+  justify-content: center; gap: 12px;
+  flex-wrap: wrap;
+}
+.signal-result-label {
+  font-family: var(--sans); font-size: .8rem;
+  color: var(--ink-soft); font-weight: 300;
+}
+.signal-tags {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  justify-content: center;
+}
+.signal-tag {
+  font-family: var(--mono); font-size: .65rem;
+  letter-spacing: .06em; padding: 4px 12px;
+  background: var(--accent-light); color: var(--accent);
+  border-radius: 20px;
 }
 
-body{
-  margin:0;
-  background:#ffffff;
-  color:var(--ink);
-  font-family:Georgia, "Times New Roman", serif;
-  line-height:1.75;
-  text-rendering:optimizeLegibility;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+/* ─── SECTION WRAPPER ─── */
+.section-wrap {
+  max-width: var(--max); margin: 0 auto;
+  padding: 0 32px;
 }
 
-img{
-  max-width:100%;
-  height:auto;
+/* ─── DOCTRINE JOURNEY ─── */
+.journey { padding-bottom: 20px; }
+.journey-intro {
+  padding: 72px 0 48px;
+  border-bottom: 1px solid var(--border);
+}
+.journey-intro .eyebrow {
+  font-family: var(--mono); font-size: .65rem;
+  letter-spacing: .16em; color: var(--ink-faint);
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.journey-intro h2 {
+  font-family: var(--serif); font-size: 1.6rem;
+  font-weight: 400; color: var(--ink);
+  max-width: 560px; line-height: 1.4;
 }
 
-a{
-  color:var(--accent);
-  transition:color .18s ease;
+.doctrine-step {
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 56px; padding: 64px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.doctrine-step:last-child { border-bottom: none; }
+
+.step-sidebar {}
+.step-num {
+  font-family: var(--mono); font-size: .65rem;
+  letter-spacing: .14em; color: var(--ink-faint);
+  margin-bottom: 10px;
+}
+.step-title {
+  font-family: var(--sans); font-size: 1.05rem;
+  font-weight: 500; color: var(--ink);
+  line-height: 1.35; margin-bottom: 14px;
+}
+.step-rule {
+  width: 28px; height: 2px;
+  background: var(--accent); margin-bottom: 18px;
+}
+.step-concept {
+  font-family: var(--mono); font-size: .62rem;
+  letter-spacing: .1em; color: var(--accent-mid);
+  text-transform: uppercase;
 }
 
-a:hover{
-  color:var(--accent-soft);
+.step-content p {
+  font-size: 1.05rem; color: var(--ink-mid);
+  line-height: 1.9; margin-bottom: 18px;
+}
+.step-content p:last-child { margin-bottom: 0; }
+
+.callout {
+  border-left: 2px solid var(--accent);
+  padding: 4px 0 4px 20px;
+  margin: 28px 0;
+  font-size: 1rem; color: var(--ink);
+  line-height: 1.85; border-radius: 0;
 }
 
-.skip-link{
-  position:absolute;
-  left:-9999px;
+.step-sub {
+  font-family: var(--sans); font-size: .88rem;
+  font-weight: 500; color: var(--ink);
+  margin: 24px 0 8px;
 }
 
-.skip-link:focus{
-  left:20px;
-  top:20px;
-  background:white;
-  padding:12px 16px;
-  border:1px solid var(--border);
-  z-index:5000;
+/* ─── DOCTRINE MAP ─── */
+.map-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 64px 0;
+}
+.map-header {
+  margin-bottom: 36px;
+}
+.map-header .eyebrow {
+  font-family: var(--mono); font-size: .65rem;
+  letter-spacing: .16em; color: var(--ink-faint);
+  text-transform: uppercase; margin-bottom: 12px;
+}
+.map-header h2 {
+  font-family: var(--serif); font-size: 1.5rem;
+  font-weight: 400; color: var(--ink);
+}
+.map-header p {
+  font-family: var(--sans); font-size: .85rem;
+  color: var(--ink-soft); margin-top: 8px; font-weight: 300;
+}
+.map-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.map-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  cursor: pointer;
+  transition: border-color var(--trans), box-shadow var(--trans);
+  user-select: none;
+}
+.map-card:hover { border-color: var(--accent-mid); }
+.map-card.open {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-pale);
+}
+.map-card-id {
+  font-family: var(--mono); font-size: .6rem;
+  letter-spacing: .1em; color: var(--ink-faint);
+  margin-bottom: 8px; text-transform: uppercase;
+}
+.map-card-title {
+  font-family: var(--sans); font-size: .92rem;
+  font-weight: 500; color: var(--ink);
+  margin-bottom: 0;
+}
+.map-card-body {
+  font-family: var(--sans); font-size: .82rem;
+  color: var(--ink-soft); line-height: 1.65;
+  margin-top: 12px; padding-top: 12px;
+  border-top: 1px solid var(--border);
+  display: none;
+}
+.map-card.open .map-card-body { display: block; }
+.map-card-toggle {
+  display: flex; align-items: center; gap: 4px;
+  margin-top: 12px; font-family: var(--sans);
+  font-size: .75rem; color: var(--ink-faint);
+}
+.map-card.open .map-card-toggle { color: var(--accent-mid); }
+.map-card-toggle i { font-size: 14px; transition: transform .2s; }
+.map-card.open .map-card-toggle i { transform: rotate(180deg); }
+
+/* ─── ATTRIBUTION CHAIN ─── */
+.chain-section { padding: 72px 0; }
+.chain-header { margin-bottom: 36px; }
+.chain-header .eyebrow {
+  font-family: var(--mono); font-size: .65rem;
+  letter-spacing: .16em; color: var(--ink-faint);
+  text-transform: uppercase; margin-bottom: 12px;
+}
+.chain-header h2 {
+  font-family: var(--serif); font-size: 1.5rem;
+  font-weight: 400; color: var(--ink);
+}
+.chain-header p {
+  font-family: var(--sans); font-size: .85rem;
+  color: var(--ink-soft); margin-top: 8px; font-weight: 300;
+}
+.chain-steps {
+  display: flex; border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+  margin-bottom: 16px;
+}
+.chain-step {
+  flex: 1; padding: 18px 16px;
+  border-right: 1px solid var(--border);
+  cursor: pointer;
+  transition: background var(--trans);
+  position: relative;
+}
+.chain-step:last-child { border-right: none; }
+.chain-step:hover { background: var(--surface); }
+.chain-step.active { background: var(--accent-pale); }
+.chain-step.active::after {
+  content: '';
+  position: absolute; bottom: -1px; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid var(--accent-light);
+}
+.cs-num {
+  font-family: var(--mono); font-size: .58rem;
+  letter-spacing: .1em; color: var(--ink-faint);
+  margin-bottom: 6px;
+}
+.cs-name {
+  font-family: var(--sans); font-size: .82rem;
+  font-weight: 500; color: var(--ink);
+  margin-bottom: 3px;
+}
+.cs-sub {
+  font-family: var(--mono); font-size: .6rem;
+  color: var(--ink-faint); letter-spacing: .04em;
+}
+.chain-step.active .cs-sub { color: var(--accent-mid); }
+
+.chain-detail {
+  background: var(--accent-pale);
+  border: 1px solid var(--accent-light);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  font-family: var(--sans); font-size: .85rem;
+  color: var(--ink-mid); line-height: 1.75;
+  min-height: 80px;
+  transition: opacity .15s;
+}
+.chain-detail strong { color: var(--ink); font-weight: 500; }
+.chain-intervention {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: var(--mono); font-size: .65rem;
+  letter-spacing: .06em; padding: 3px 10px;
+  background: var(--accent-light); color: var(--accent);
+  border-radius: 20px;
 }
 
-nav{
-  position:sticky;
-  top:0;
-  background:rgba(255,255,255,.97);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid rgba(0,0,0,.06);
-  z-index:1000;
+/* ─── PULL QUOTE ─── */
+.pull-section {
+  padding: 80px 32px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.pull-quote {
+  font-family: var(--serif);
+  font-size: 1.5rem; font-style: italic;
+  color: var(--ink); line-height: 1.85;
+  max-width: 680px; margin: 0 auto 18px;
+}
+.pull-cite {
+  font-family: var(--mono); font-size: .65rem;
+  letter-spacing: .14em; color: var(--ink-faint);
+  text-transform: uppercase;
 }
 
-nav ul{
-  margin:0;
-  padding:18px 20px;
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:34px;
-  list-style:none;
+/* ─── PUBLICATIONS ─── */
+.pubs-section { padding: 72px 0; }
+.pubs-header-row {
+  display: flex; align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.pubs-title {
+  font-family: var(--serif); font-size: 1.5rem;
+  font-weight: 400; color: var(--ink);
+}
+.pubs-cat {
+  font-family: var(--mono); font-size: .62rem;
+  letter-spacing: .12em; color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.pubs-cat-label {
+  font-family: var(--mono); font-size: .62rem;
+  letter-spacing: .12em; color: var(--ink-faint);
+  text-transform: uppercase;
+  padding: 28px 0 12px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+.pub-row {
+  display: grid; grid-template-columns: 96px 1fr auto;
+  gap: 24px; align-items: start;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+.pub-row:last-child { border-bottom: none; }
+.pub-id {
+  font-family: var(--mono); font-size: .62rem;
+  letter-spacing: .07em; color: var(--ink-faint);
+  padding-top: 3px;
+}
+.pub-name {
+  font-family: var(--sans); font-size: .9rem;
+  font-weight: 500; color: var(--ink);
+  margin-bottom: 5px; line-height: 1.4;
+}
+.pub-meta {
+  font-family: var(--sans); font-size: .76rem;
+  color: var(--ink-faint); margin-bottom: 6px;
+}
+.pub-badge {
+  display: inline-block;
+  font-family: var(--mono); font-size: .58rem;
+  letter-spacing: .06em; padding: 3px 9px;
+  border-radius: 20px; text-transform: uppercase;
+}
+.pub-badge.available {
+  background: var(--accent-light); color: var(--accent);
+}
+.pub-badge.forthcoming {
+  background: var(--surface-mid); color: var(--ink-faint);
+}
+.pub-link {
+  font-family: var(--sans); font-size: .78rem;
+  color: var(--accent-mid); text-decoration: none;
+  white-space: nowrap; padding-top: 3px;
+  display: flex; align-items: center; gap: 4px;
+  transition: color var(--trans);
+}
+.pub-link:hover { color: var(--accent); }
+.pub-link i { font-size: 13px; }
+
+/* ─── AFFILIATION ─── */
+.affil-section {
+  padding: 60px 0;
+  border-top: 1px solid var(--border);
+}
+.affil-section h2 {
+  font-family: var(--serif); font-size: 1.3rem;
+  font-weight: 400; margin-bottom: 18px; color: var(--ink);
+}
+.affil-section p {
+  font-size: 1rem; color: var(--ink-mid); line-height: 1.9;
+  max-width: 680px; margin-bottom: 14px;
 }
 
-nav a{
-  text-decoration:none;
-  font-family:Arial, Helvetica, sans-serif;
-  font-size:.92rem;
-  font-weight:600;
-  letter-spacing:.02em;
-  color:var(--accent);
+/* ─── CONTACT ─── */
+.contact-section {
+  padding: 60px 0 80px;
+  border-top: 1px solid var(--border);
+}
+.contact-section h2 {
+  font-family: var(--serif); font-size: 1.3rem;
+  font-weight: 400; margin-bottom: 20px; color: var(--ink);
+}
+.contact-email {
+  font-family: var(--mono); font-size: .85rem;
+  letter-spacing: .04em; color: var(--accent);
+  margin-bottom: 20px;
+}
+.contact-note {
+  font-family: var(--sans); font-size: .82rem;
+  color: var(--ink-soft); line-height: 1.75;
+  max-width: 560px; margin-bottom: 10px;
+  font-weight: 300;
 }
 
-.hero{
-  padding:90px 20px 85px;
-  text-align:center;
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding: 32px;
+}
+.footer-inner {
+  max-width: var(--max); margin: 0 auto;
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 12px;
+}
+.footer-left {
+  font-family: var(--sans); font-size: .76rem;
+  color: var(--ink-soft); font-weight: 300;
+  display: flex; align-items: center; gap: 10px;
+}
+.footer-left img { width: 16px; opacity: .5; }
+.footer-right {
+  font-family: var(--mono); font-size: .65rem;
+  letter-spacing: .08em; color: var(--ink-faint);
 }
 
-.hero img{
-  width:380px;
-  margin-bottom:52px;
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+.hero-eyebrow { animation: fadeUp .5s ease both; }
+.hero-logo    { animation: fadeUp .5s ease .1s both; }
+.hero h1      { animation: fadeUp .5s ease .2s both; }
+.hero-sub     { animation: fadeUp .5s ease .3s both; }
 
-.hero h1{
-  margin:0 0 20px;
-  color:var(--accent);
-  font-size:2.6rem;
-  font-weight:normal;
-  letter-spacing:.01em;
-}
-
-.hero p{
-  max-width:760px;
-  margin:0 auto 18px;
-  font-size:1.08rem;
-  color:#374151;
-}
-
-.hero-subtle{
-  color:var(--muted);
-  font-size:.94rem;
-}
-
-main{
-  max-width:var(--max-width);
-  margin:0 auto;
-  padding:0 24px 100px;
-}
-
-section{
-  margin-bottom:100px;
-}
-
-h2{
-  font-family:Arial, Helvetica, sans-serif;
-  color:var(--accent);
-  font-size:1.45rem;
-  margin-bottom:28px;
-  font-weight:700;
-  letter-spacing:.01em;
-}
-
-h3{
-  font-family:Arial, Helvetica, sans-serif;
-  font-size:1.02rem;
-  margin-top:42px;
-  margin-bottom:14px;
-  color:#223548;
-}
-
-.pub-category{
-  margin-top:60px;
-  margin-bottom:36px;
-  padding-bottom:12px;
-  border-bottom:1px solid var(--border);
-  font-size:1rem;
-  letter-spacing:.04em;
-  text-transform:uppercase;
-  color:var(--muted);
-}
-
-p{
-  margin-bottom:18px;
-}
-
-ul{
-  padding-left:24px;
-}
-
-li{
-  margin-bottom:10px;
-}
-
-.intro-text{
-  font-size:1.08rem;
-}
-
-.subdued{
-  color:var(--muted);
-}
-
-.callout{
-  border-left:3px solid var(--accent);
-  padding-left:20px;
-  margin:34px 0;
-  font-size:1.05rem;
-  color:#374151;
-}
-
-.current-work{
-  background:linear-gradient(to bottom,#f8fafc,#ffffff);
-  border-top:1px solid rgba(0,0,0,.06);
-  border-bottom:1px solid rgba(0,0,0,.06);
-  padding:48px;
-}
-
-.current-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  margin-top:30px;
-}
-
-.current-block h3{
-  margin-top:0;
-}
-
-.figure{
-  margin:54px auto;
-  text-align:center;
-}
-
-.figure img{
-  width:100%;
-  border:1px solid rgba(0,0,0,.08);
-}
-
-.uts-figure img{
-  max-width:420px;
-}
-
-figcaption{
-  margin-top:12px;
-  color:var(--muted);
-  font-size:.92rem;
-}
-
-.cross-structure{
-  display:grid;
-  grid-template-columns:1fr 220px 1fr;
-  grid-template-rows:auto auto auto;
-  gap:34px;
-  align-items:center;
-  justify-items:center;
-  margin-top:60px;
-  margin-bottom:40px;
-}
-
-.cross-block{
-  width:100%;
-  max-width:320px;
-}
-
-.cross-block h3{
-  margin-top:0;
-  border-bottom:1px solid var(--border);
-  padding-bottom:10px;
-}
-
-.top-block{
-  grid-column:2;
-  grid-row:1;
-  text-align:center;
-}
-
-.left-block{
-  grid-column:1;
-  grid-row:2;
-  text-align:right;
-}
-
-.right-block{
-  grid-column:3;
-  grid-row:2;
-  text-align:left;
-}
-
-.bottom-block{
-  grid-column:2;
-  grid-row:3;
-  text-align:center;
-}
-
-.cross-center{
-  grid-column:2;
-  grid-row:2;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.cross-core{
-  width:140px;
-  height:140px;
-  border-radius:50%;
-  border:1px solid rgba(0,0,0,.08);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:Arial, Helvetica, sans-serif;
-  letter-spacing:.18em;
-  font-size:.92rem;
-  color:var(--accent);
-  background:linear-gradient(to bottom,#fafbfd,#f3f6f9);
-}
-
-.left-block ul{
-  list-style-position:inside;
-  padding-left:0;
-}
-
-.right-block ul{
-  padding-left:22px;
-}
-
-.top-block ul,
-.bottom-block ul{
-  list-style-position:inside;
-  padding-left:0;
-}
-
-.doctrine-entry{
-  margin-bottom:58px;
-}
-
-.doctrine-id{
-  font-family:Arial, Helvetica, sans-serif;
-  color:var(--muted);
-  font-size:.8rem;
-  letter-spacing:.08em;
-  margin-bottom:10px;
-}
-
-.doctrine-entry h3{
-  margin-top:0;
-  font-size:1.18rem;
-}
-
-.meta{
-  font-family:Arial, Helvetica, sans-serif;
-  color:var(--muted);
-  font-size:.88rem;
-  margin-bottom:16px;
-}
-
-.links{
-  margin-top:18px;
-}
-
-.links a{
-  margin-right:20px;
-  text-decoration:none;
-  font-family:Arial, Helvetica, sans-serif;
-  font-size:.92rem;
-}
-
-.pull-quote{
-  max-width:720px;
-  margin:80px auto;
-  text-align:center;
-  font-size:1.35rem;
-  line-height:1.8;
-  color:#2f3d4c;
-}
-
-.pull-quote span{
-  display:block;
-  margin-top:14px;
-  font-size:.9rem;
-  color:var(--muted);
-  font-family:Arial, Helvetica, sans-serif;
-}
-
-.concepts-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  margin-top:36px;
-}
-
-.concept-block{
-  padding:28px;
-  border:1px solid rgba(0,0,0,.06);
-  background:#fafbfd;
-}
-
-.concept-block h3{
-  margin-top:0;
-}
-
-.affiliation{
-  padding-top:10px;
-}
-
-footer{
-  border-top:1px solid rgba(0,0,0,.08);
-  padding:42px 20px;
-  text-align:center;
-  background:#fbfbfc;
-}
-
-footer p{
-  margin:8px 0;
-}
-
-.footer-small{
-  color:var(--muted);
-  font-size:.88rem;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:8px;
-}
-
-.footer-flag{
-  width:18px;
-  height:auto;
-}
-
-@media (max-width:900px){
-
-  .cross-structure{
-    display:flex;
-    flex-direction:column;
-    gap:46px;
+/* ─── RESPONSIVE ─── */
+@media (max-width: 820px) {
+  .hero h1 { font-size: 1.9rem; }
+  .doctrine-step {
+    grid-template-columns: 1fr;
+    gap: 28px; padding: 48px 0;
   }
-
-  .cross-block{
-    max-width:100%;
-    text-align:left !important;
-  }
-
-  .cross-core{
-    width:110px;
-    height:110px;
-  }
-
-  .concepts-grid{
-    grid-template-columns:1fr;
-  }
-
+  .step-sidebar { display: flex; gap: 16px; align-items: flex-start; }
+  .step-rule { display: none; }
+  .map-grid { grid-template-columns: 1fr; }
+  .chain-steps { flex-wrap: nowrap; overflow-x: auto; }
+  .chain-step { min-width: 110px; }
+  .pub-row { grid-template-columns: 72px 1fr; }
+  .pub-link { display: none; }
+  .nav-links { display: none; }
 }
 
-@media (max-width:820px){
-
-  .hero{
-    padding:70px 20px 56px;
-  }
-
-  .hero h1{
-    font-size:2rem;
-  }
-
-  .hero img{
-    width:280px;
-    margin-bottom:40px;
-  }
-
-  .current-grid{
-    grid-template-columns:1fr;
-  }
-
-  section{
-    margin-bottom:80px;
-  }
-
-  nav ul{
-    gap:18px;
-  }
-
+@media (max-width: 540px) {
+  .hero { padding: 64px 20px 56px; }
+  .section-wrap { padding: 0 20px; }
+  .signal-section { padding: 0 20px 48px; }
+  .pull-section { padding: 56px 20px; }
+  .pull-quote { font-size: 1.2rem; }
+  footer { padding: 24px 20px; }
+  .signal-nodes { gap: 0; }
+  .sig-node { padding: 4px 8px; }
+  .sig-icon { width: 36px; height: 36px; font-size: 15px; }
+  .sig-connector { width: 16px; }
 }
 
-@media print{
-
-  nav{
-    position:static;
-    backdrop-filter:none;
-  }
-
-  body{
-    background:white;
-    color:black;
-  }
-
-  a{
-    color:black;
-    text-decoration:none;
-  }
-
+@media print {
+  nav { position: static; }
+  .map-card-body { display: block !important; }
 }
 
-@media (prefers-reduced-motion: reduce){
-
-  *{
-    scroll-behavior:auto !important;
-  }
-
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }
-
 </style>
 </head>
 
 <body>
 
-<a href="#main-content" class="skip-link">Skip to main content</a>
+<a href="#main" class="skip-link">Skip to main content</a>
 
-<nav aria-label="Primary Navigation">
-<ul>
-<li><a href="#institution">Institution</a></li>
-<li><a href="#current">Current Work</a></li>
-<li><a href="#environment">UTS</a></li>
-<li><a href="#concepts">Concepts</a></li>
-<li><a href="#doctrine">Doctrine</a></li>
-<li><a href="#structure">Structure</a></li>
-<li><a href="#corpus">Publications</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
+<!-- ─── NAV ─── -->
+<nav aria-label="Primary navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">ISR</a>
+    <ul class="nav-links" role="list">
+      <li><a href="#environment">Environment</a></li>
+      <li><a href="#doctrine">Doctrine</a></li>
+      <li><a href="#chain">Attribution Chain</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
-<header class="hero" id="institution">
-
-<a href="index.html">
-<img src="images/logo.png" alt="Institute for Signature Reduction emblem">
-</a>
-
-<p>
-The Institute for Signature Reduction (ISR) develops irregular warfare doctrine and ongoing research addressing operational maneuver, attribution pressure, and human judgment under conditions of ubiquitous technical surveillance.
-</p>
-
+<!-- ─── HERO ─── -->
+<header class="hero" id="top">
+  <div class="hero-eyebrow">Institute for Signature Reduction</div>
+  <div class="hero-logo">
+    <img src="images/logo.png" alt="Institute for Signature Reduction emblem">
+  </div>
+  <h1>Your routine behavior is observable.<br><em>This is the operating environment.</em></h1>
+  <p class="hero-sub">Every financial transaction, device connection, platform interaction, and movement through physical space generates a signal. These signals accumulate. They correlate. They attribute.</p>
 </header>
 
-<main id="main-content">
+<!-- ─── SIGNAL ACCUMULATION ─── -->
+<main id="main">
+<section class="signal-section" id="environment" aria-label="Ubiquitous technical surveillance overview">
+  <div class="signal-wrap">
+    <div class="signal-header">
+      <i class="ti ti-activity" style="font-size:14px;color:var(--ink-faint)" aria-hidden="true"></i>
+      <span class="signal-header-label">Ordinary activity — cross-domain signal accumulation</span>
+    </div>
+    <div class="signal-body">
+      <div class="signal-nodes" role="list" aria-label="Sensing domains">
+        <div class="sig-node" role="listitem">
+          <div class="sig-icon"><i class="ti ti-credit-card" aria-hidden="true"></i></div>
+          <span class="sig-label">Financial</span>
+        </div>
+        <div class="sig-connector" aria-hidden="true"></div>
+        <div class="sig-node" role="listitem">
+          <div class="sig-icon"><i class="ti ti-device-mobile" aria-hidden="true"></i></div>
+          <span class="sig-label">Mobile</span>
+        </div>
+        <div class="sig-connector" aria-hidden="true"></div>
+        <div class="sig-node" role="listitem">
+          <div class="sig-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+          <span class="sig-label">Location</span>
+        </div>
+        <div class="sig-connector" aria-hidden="true"></div>
+        <div class="sig-node" role="listitem">
+          <div class="sig-icon"><i class="ti ti-database" aria-hidden="true"></i></div>
+          <span class="sig-label">Administrative</span>
+        </div>
+        <div class="sig-connector" aria-hidden="true"></div>
+        <div class="sig-node" role="listitem">
+          <div class="sig-icon"><i class="ti ti-world" aria-hidden="true"></i></div>
+          <span class="sig-label">Online</span>
+        </div>
+        <div class="sig-connector" aria-hidden="true"></div>
+        <div class="sig-node" role="listitem">
+          <div class="sig-icon"><i class="ti ti-camera" aria-hidden="true"></i></div>
+          <span class="sig-label">Visual</span>
+        </div>
+      </div>
+      <div class="signal-result">
+        <span class="signal-result-label">Aggregated cross-domain profile</span>
+        <div class="signal-tags">
+          <span class="signal-tag">Identity</span>
+          <span class="signal-tag">Relationships</span>
+          <span class="signal-tag">Location</span>
+          <span class="signal-tag">Intent</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section>
+<!-- ─── DOCTRINE JOURNEY ─── -->
+<section class="section-wrap journey" aria-labelledby="doctrine-heading" id="doctrine">
 
-<div class="callout">
-Routine behavior increasingly generates observable signals across financial systems, mobile networks, travel infrastructure, administrative databases, online platforms, and persistent sensing environments. These signals accumulate across domains and may be correlated to reveal identity, relationships, location, and intent.
-</div>
+  <div class="journey-intro">
+    <div class="eyebrow">Doctrinal framework</div>
+    <h2 id="doctrine-heading">ISR doctrine addresses the operational problem that emerges from this environment — and provides a systematic response.</h2>
+  </div>
 
-<p class="intro-text">
-ISR examines these conditions through a coherent doctrinal framework linking the strategic environment of ubiquitous technical surveillance to the operational problems of attribution pressure and observability management.
-</p>
+  <!-- Step 01 -->
+  <article class="doctrine-step">
+    <div class="step-sidebar">
+      <div>
+        <div class="step-num">01 / Environment</div>
+        <div class="step-title">Ubiquitous Technical Surveillance</div>
+        <div class="step-rule" aria-hidden="true"></div>
+        <div class="step-concept">UTS</div>
+      </div>
+    </div>
+    <div class="step-content">
+      <p>We describe the current environment as one of <em>ubiquitous technical surveillance</em> — persistent sensing and data aggregation across digital, financial, administrative, electronic, and physical-visual systems, enabled by networked infrastructure and large-scale data retention.</p>
+      <p>This is not a temporary condition. It is a structural feature of the operational environment that will only deepen as sensing infrastructure, storage capacity, and analytical capability expand.</p>
+      <div class="callout">
+        Ordinary activity generates observable signatures which may be collected, retained, aggregated, correlated, and attributed across systems over time — not as the result of targeted surveillance, but as a byproduct of normal participation in modern infrastructure.
+      </div>
+      <p>ISR treats UTS as the foundational environmental condition rather than a threat to be mitigated away. Doctrine built on this premise is durable; doctrine built on the hope that the environment will change is not.</p>
+    </div>
+  </article>
 
-<p>
-The Institute approaches these developments as enduring structural conditions rather than temporary technological trends. ISR doctrine therefore emphasizes durable operational principles grounded in human judgment, behavioral discipline, environmental awareness, and long-term tradecraft.
-</p>
+  <!-- Step 02 -->
+  <article class="doctrine-step">
+    <div class="step-sidebar">
+      <div>
+        <div class="step-num">02 / Problem</div>
+        <div class="step-title">Attribution Pressure</div>
+        <div class="step-rule" aria-hidden="true"></div>
+        <div class="step-concept">Cross-domain observability</div>
+      </div>
+    </div>
+    <div class="step-content">
+      <p>The operational problem generated by this environment is <em>attribution pressure</em> — the cumulative pressure on identity, relationships, location, and intent that builds through cross-domain observability, behavioral exposure, and correlation systems.</p>
+      <div class="step-sub">Attribution is rarely a single detection event.</div>
+      <p>It emerges progressively: observation, collection, aggregation, correlation, and ultimately attribution to a person, organization, or operation. Each stage builds on the last. Minor behavioral signals — individually unremarkable — combine across systems to constitute a detailed operational picture.</p>
+      <p>This progressive structure is operationally significant. It means that the practitioner is not managing a single point of vulnerability, but a chain of exposures distributed across time, domain, and behavior. It also means the chain can be disrupted — at multiple stages.</p>
+    </div>
+  </article>
+
+  <!-- Step 03 -->
+  <article class="doctrine-step">
+    <div class="step-sidebar">
+      <div>
+        <div class="step-num">03 / Response</div>
+        <div class="step-title">Signature Reduction</div>
+        <div class="step-rule" aria-hidden="true"></div>
+        <div class="step-concept">Observability management</div>
+      </div>
+    </div>
+    <div class="step-content">
+      <p><em>Signature reduction</em> is the doctrinal response. Rather than attempting to achieve invisibility — which the environment makes impossible — the doctrine focuses on disrupting correlation, shaping exposure, managing aggregation, and intervening within the attribution chain.</p>
+      <p>The goal is preserved freedom of maneuver, not disappearance. This distinction is operationally significant: it orients practitioners toward <em>managing and shaping</em> observability rather than eliminating it, which is both more achievable and more durable as a practice.</p>
+      <div class="callout">
+        Human judgment, behavioral discipline, and integrated tradecraft are the primary mechanisms. Technical protocols are enabling tools, not substitutes for operational awareness.
+      </div>
+    </div>
+  </article>
+
+  <!-- Step 04 -->
+  <article class="doctrine-step">
+    <div class="step-sidebar">
+      <div>
+        <div class="step-num">04 / Application</div>
+        <div class="step-title">Digital Force Protection</div>
+        <div class="step-rule" aria-hidden="true"></div>
+        <div class="step-concept">Digital domain doctrine</div>
+      </div>
+    </div>
+    <div class="step-content">
+      <p><em>Digital Force Protection</em> operationalizes signature reduction within digital environments. It encompasses intentional digital infrastructure design, managed observability, attribution disruption, and signature shaping across online, device, and communications domains.</p>
+      <p>DFP is not synonymous with cybersecurity, though it intersects with it. Where cybersecurity addresses unauthorized access, DFP addresses authorized but operationally consequential exposure — the signals generated by normal, legitimate digital activity within a persistent surveillance environment.</p>
+      <div class="step-sub">Behavioral discipline extends into digital behavior.</div>
+      <p>Consistent application of DFP principles reduces the aggregable digital surface area available to attribution systems, preserving operational flexibility across the full range of activity.</p>
+    </div>
+  </article>
 
 </section>
 
-<section id="current" class="current-work">
+<!-- ─── DOCTRINE MAP ─── -->
+<section class="map-section" aria-labelledby="map-heading">
+  <div class="section-wrap">
+    <div class="map-header">
+      <div class="eyebrow">Doctrine structure</div>
+      <h2 id="map-heading">Four interlocking components</h2>
+      <p>Select any component to expand its operational definition.</p>
+    </div>
+    <div class="map-grid" role="list">
 
-<h2>Current Work</h2>
+      <div class="map-card open" role="listitem" tabindex="0" aria-expanded="true" onclick="toggleMap(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleMap(this)">
+        <div class="map-card-id">Environment</div>
+        <div class="map-card-title">Ubiquitous Technical Surveillance</div>
+        <div class="map-card-body">
+          Persistent sensing across digital, electronic, financial, administrative, and physical systems. Ordinary activity generates enduring observable signals that may be retained, aggregated, and correlated across time and jurisdiction. Treated by ISR doctrine as a permanent structural condition, not a temporary technology trend.
+        </div>
+        <div class="map-card-toggle">
+          <i class="ti ti-chevron-down" aria-hidden="true"></i>
+          <span class="toggle-label">Collapse</span>
+        </div>
+      </div>
 
-<p>
-ISR continues to develop doctrine, analytical research, and operational concepts addressing maneuver under conditions of persistent surveillance and cross-domain attribution.
-</p>
+      <div class="map-card" role="listitem" tabindex="0" aria-expanded="false" onclick="toggleMap(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleMap(this)">
+        <div class="map-card-id">Operational problem</div>
+        <div class="map-card-title">Attribution Pressure</div>
+        <div class="map-card-body">
+          Cumulative operational pressure generated through cross-domain observability, behavioral exposure, and correlation systems. Attribution does not require a single compromise event — it emerges through the progressive accumulation of behavioral signals across systems over time, each individually minor but collectively determinative.
+        </div>
+        <div class="map-card-toggle">
+          <i class="ti ti-chevron-down" aria-hidden="true"></i>
+          <span class="toggle-label">Expand</span>
+        </div>
+      </div>
 
-<div class="current-grid">
+      <div class="map-card" role="listitem" tabindex="0" aria-expanded="false" onclick="toggleMap(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleMap(this)">
+        <div class="map-card-id">Operational response</div>
+        <div class="map-card-title">Signature Reduction</div>
+        <div class="map-card-body">
+          The disciplined management of multi-domain observability to preserve operational freedom of maneuver. Focuses on disrupting correlation, shaping exposure, and intervening in the attribution chain. The objective is not invisibility but managed observability — a durable and achievable operational posture under persistent surveillance.
+        </div>
+        <div class="map-card-toggle">
+          <i class="ti ti-chevron-down" aria-hidden="true"></i>
+          <span class="toggle-label">Expand</span>
+        </div>
+      </div>
 
-<div class="current-block">
+      <div class="map-card" role="listitem" tabindex="0" aria-expanded="false" onclick="toggleMap(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleMap(this)">
+        <div class="map-card-id">Application domain</div>
+        <div class="map-card-title">Digital Force Protection</div>
+        <div class="map-card-body">
+          Operational practices reducing unnecessary digital exposure through intentional infrastructure design and behavioral discipline. Addresses authorized but operationally consequential digital exposure — the signals generated by normal activity within a surveillance environment — rather than unauthorized access. The digital component of integrated signature reduction.
+        </div>
+        <div class="map-card-toggle">
+          <i class="ti ti-chevron-down" aria-hidden="true"></i>
+          <span class="toggle-label">Expand</span>
+        </div>
+      </div>
 
-<h3>Current Research Areas</h3>
+    </div>
+  </div>
+</section>
 
-<ul>
-<li>Digital Force Protection</li>
-<li>Cross-domain attribution</li>
-<li>Behavioral observability</li>
-<li>Operational judgment</li>
-<li>Gray zone maneuver</li>
-<li>Signature shaping</li>
-</ul>
+<!-- ─── ATTRIBUTION CHAIN ─── -->
+<section class="section-wrap chain-section" id="chain" aria-labelledby="chain-heading">
 
-</div>
+  <div class="chain-header">
+    <div class="eyebrow">Operational analysis</div>
+    <h2 id="chain-heading">The attribution chain</h2>
+    <p>Attribution emerges progressively across five stages. Each presents distinct intervention opportunities. Select a stage to examine it and its corresponding intervention.</p>
+  </div>
 
-<div class="current-block">
+  <div class="chain-steps" role="tablist" aria-label="Attribution chain stages">
+    <div class="chain-step active" role="tab" tabindex="0" aria-selected="true" aria-controls="chain-detail" onclick="selectChain(this,0)" onkeydown="chainKeyNav(event,0)">
+      <div class="cs-num">01</div>
+      <div class="cs-name">Observation</div>
+      <div class="cs-sub">Signal generation</div>
+    </div>
+    <div class="chain-step" role="tab" tabindex="-1" aria-selected="false" aria-controls="chain-detail" onclick="selectChain(this,1)" onkeydown="chainKeyNav(event,1)">
+      <div class="cs-num">02</div>
+      <div class="cs-name">Collection</div>
+      <div class="cs-sub">Retention</div>
+    </div>
+    <div class="chain-step" role="tab" tabindex="-1" aria-selected="false" aria-controls="chain-detail" onclick="selectChain(this,2)" onkeydown="chainKeyNav(event,2)">
+      <div class="cs-num">03</div>
+      <div class="cs-name">Aggregation</div>
+      <div class="cs-sub">Cross-domain</div>
+    </div>
+    <div class="chain-step" role="tab" tabindex="-1" aria-selected="false" aria-controls="chain-detail" onclick="selectChain(this,3)" onkeydown="chainKeyNav(event,3)">
+      <div class="cs-num">04</div>
+      <div class="cs-name">Correlation</div>
+      <div class="cs-sub">Pattern linkage</div>
+    </div>
+    <div class="chain-step" role="tab" tabindex="-1" aria-selected="false" aria-controls="chain-detail" onclick="selectChain(this,4)" onkeydown="chainKeyNav(event,4)">
+      <div class="cs-num">05</div>
+      <div class="cs-name">Attribution</div>
+      <div class="cs-sub">Identity exposure</div>
+    </div>
+  </div>
 
-<h3>Ongoing Publication Development</h3>
-
-<ul>
-<li>Digital Force Protection doctrine</li>
-<li>Attribution chain intervention models</li>
-<li>Operational signature management</li>
-<li>Human judgment in persistent surveillance environments</li>
-<li>Educational and practitioner frameworks</li>
-</ul>
-
-</div>
-
-</div>
+  <div class="chain-detail" id="chain-detail" role="tabpanel">
+    <span id="chain-text"><strong>Observation:</strong> Initial signal generation through participation in digital, financial, or physical infrastructure. Every ordinary action creates a detectable trace — a transaction record, a device ping, a login event, a location coordinate. This is the entry point of the attribution chain.</span>
+    <br><span class="chain-intervention">Intervention: Reduce unnecessary signal generation. Limit participation to essential systems where operationally feasible.</span>
+  </div>
 
 </section>
 
-<section id="environment">
+<!-- ─── PULL QUOTE ─── -->
+<div class="pull-section" aria-label="Key doctrinal statement">
+  <p class="pull-quote">"Operational exposure increasingly emerges through accumulation and correlation rather than isolated detection events."</p>
+  <p class="pull-cite">ISR Doctrinal Framework</p>
+</div>
 
-<h2>Foundational Environment</h2>
+<!-- ─── PUBLICATIONS ─── -->
+<section class="section-wrap pubs-section" id="publications" aria-labelledby="pubs-heading">
 
-<h3>Ubiquitous Technical Surveillance (UTS)</h3>
+  <div class="pubs-header-row">
+    <h2 class="pubs-title" id="pubs-heading">Publications</h2>
+    <span class="pubs-cat">ISR corpus</span>
+  </div>
 
-<p>
-UTS describes an environment characterized by persistent sensing across digital, electronic, financial, administrative, and physical systems enabled by networked infrastructure and large-scale data aggregation.
-</p>
+  <p style="font-family:var(--sans);font-size:.88rem;color:var(--ink-soft);margin-bottom:32px;font-weight:300;line-height:1.75;">ISR publications constitute an ongoing body of doctrine and analytical research. Individual documents are components within a developing framework, not isolated essays.</p>
 
-<p>
-Under these conditions, ordinary activity generates observable signatures which may be collected, retained, aggregated, correlated, and attributed across systems over time.
-</p>
+  <div class="pubs-cat-label">Foundational doctrine</div>
 
-<figure class="figure uts-figure">
-<img src="images/uts_environment (1).png" alt="Diagram depicting ubiquitous technical surveillance across digital, financial, administrative, and physical systems.">
-<figcaption>
-Persistent sensing environments create enduring conditions of observability and attribution pressure.
-</figcaption>
-</figure>
+  <div class="pub-row">
+    <div class="pub-id">ISR-DOC-001</div>
+    <div>
+      <div class="pub-name">Human Primacy in Irregular Warfare: Signature Reduction and the Preservation of the Acting Person</div>
+      <div class="pub-meta">Doctrinal Foundation &middot; May 2026</div>
+      <span class="pub-badge available">Available</span>
+    </div>
+    <a class="pub-link" href="publications/isr-doc-001.pdf">View <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+  </div>
+
+  <div class="pub-row">
+    <div class="pub-id">ISR-DOC-002</div>
+    <div>
+      <div class="pub-name">Ubiquitous Technical Surveillance and the Renewal of Irregular Warfare</div>
+      <div class="pub-meta">Foundational Doctrine &middot; Small Wars Journal &middot; February 2026</div>
+      <span class="pub-badge available">Available</span>
+    </div>
+    <a class="pub-link" href="https://smallwarsjournal.com/2026/02/13/ubiquitous-technical-surveillance/" target="_blank" rel="noopener noreferrer">View <i class="ti ti-external-link" aria-hidden="true"></i></a>
+  </div>
+
+  <div class="pub-row">
+    <div class="pub-id">ISR-DOC-003</div>
+    <div>
+      <div class="pub-name">Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for Strategic Competition</div>
+      <div class="pub-meta">Foundational Doctrine &middot; Small Wars Journal &middot; December 2025</div>
+      <span class="pub-badge available">Available</span>
+    </div>
+    <a class="pub-link" href="https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/" target="_blank" rel="noopener noreferrer">View <i class="ti ti-external-link" aria-hidden="true"></i></a>
+  </div>
+
+  <div class="pub-row">
+    <div class="pub-id">ISR-DOC-004</div>
+    <div>
+      <div class="pub-name">From Signature Reduction to Digital Force Protection</div>
+      <div class="pub-meta">Doctrinal Development &middot; Joint Special Operations University &middot; Forthcoming</div>
+      <span class="pub-badge forthcoming">Forthcoming</span>
+    </div>
+  </div>
+
+  <div class="pubs-cat-label">Applied operational analysis</div>
+
+  <div class="pub-row">
+    <div class="pub-id">ISR-DOC-005</div>
+    <div>
+      <div class="pub-name">Operating in the Age of Attribution: GRU Lessons for Digital Force Protection</div>
+      <div class="pub-meta">Operational Analysis &middot; Small Wars Journal &middot; April 2026</div>
+      <span class="pub-badge available">Available</span>
+    </div>
+    <a class="pub-link" href="https://smallwarsjournal.com/2026/04/15/gru-lessons-for-digital-force-protection/" target="_blank" rel="noopener noreferrer">View <i class="ti ti-external-link" aria-hidden="true"></i></a>
+  </div>
+
+  <div class="pub-row">
+    <div class="pub-id">ISR-DOC-006</div>
+    <div>
+      <div class="pub-name">Intervening in the Attribution Chain: Signature Reduction Under Cross-Domain Surveillance</div>
+      <div class="pub-meta">Operational Doctrine &middot; Small Wars Journal &middot; Forthcoming</div>
+      <span class="pub-badge forthcoming">Forthcoming</span>
+    </div>
+  </div>
 
 </section>
 
-<section id="concepts">
-
-<h2>Foundational Concepts</h2>
-
-<div class="concepts-grid">
-
-<div class="concept-block">
-
-<h3>Ubiquitous Technical Surveillance</h3>
-
-<p>
-Persistent sensing and data aggregation across online, electronic, financial, travel, and visual-physical systems.
-</p>
-
-</div>
-
-<div class="concept-block">
-
-<h3>Attribution Pressure</h3>
-
-<p>
-The cumulative operational pressure generated through cross-domain observability, behavioral exposure, and correlation systems.
-</p>
-
-</div>
-
-<div class="concept-block">
-
-<h3>Signature Reduction</h3>
-
-<p>
-The disciplined management of physical and digital observability in order to preserve operational maneuver and reduce attribution risk.
-</p>
-
-</div>
-
-<div class="concept-block">
-
-<h3>Digital Force Protection</h3>
-
-<p>
-Operational practices designed to reduce unnecessary exposure within digital environments through intentional infrastructure and behavioral discipline.
-</p>
-
-</div>
-
-</div>
-
+<!-- ─── AFFILIATION ─── -->
+<section class="section-wrap affil-section" aria-labelledby="affil-heading">
+  <h2 id="affil-heading">Institutional continuity</h2>
+  <p>ISR maintains ongoing doctrinal development, publication stewardship, and educational continuity through independent research, practitioner engagement, and long-term operational study.</p>
+  <p>Applied operational instruction derived from ISR doctrine is delivered independently through the <a href="https://www.signaturemanagementunit.com" target="_blank" rel="noopener noreferrer">Signature Management Unit (SMU)</a>, a practitioner-led organization providing facilitated instruction and operational education programs for government partners.</p>
 </section>
 
-<section id="doctrine">
-
-<h2>Operational Doctrine</h2>
-
-<h3>Signature Reduction</h3>
-
-<p>
-Signature Reduction Doctrine provides a systematic approach to preserving operational freedom of maneuver through the disciplined management of multi-domain observability.
-</p>
-
-<p>
-Rather than attempting to eliminate surveillance, the doctrine focuses on disrupting correlation, shaping exposure, managing aggregation, and intervening within the attribution chain.
-</p>
-
-<h3>Core Principles</h3>
-
-<ul>
-<li>
-<strong>Operational Awareness:</strong>
-Recognize how routine activity generates observable signatures across domains.
-</li>
-
-<li>
-<strong>Behavioral Discipline:</strong>
-Manage patterns in movement, communication, technology use, and routine activity.
-</li>
-
-<li>
-<strong>Digital Force Protection:</strong>
-Reduce unnecessary exposure through intentional digital infrastructure and technology practices.
-</li>
-
-<li>
-<strong>Integrated Tradecraft:</strong>
-Apply human judgment alongside technical protocols to preserve maneuver and reduce attribution risk.
-</li>
-</ul>
-
-<figure class="figure">
-<img src="images/signature_reduction.png" alt="Diagram illustrating signature reduction doctrine and observability management across domains.">
-<figcaption>
-Signature reduction preserves maneuver through observability management rather than invisibility.
-</figcaption>
-</figure>
-
-</section>
-
-<section>
-
-<div class="pull-quote">
-“Operational exposure increasingly emerges through accumulation and correlation rather than isolated detection events.”
-<span>ISR doctrinal framework</span>
-</div>
-
-</section>
-
-<section id="structure">
-
-<h2>Doctrine Structure</h2>
-
-<p>
-ISR doctrine is cumulative and internally linked. Individual publications are not intended as isolated essays, but as components within a developing doctrinal framework addressing maneuver under conditions of persistent surveillance.
-</p>
-
-<div class="cross-structure">
-
-<div class="cross-block top-block">
-
-<h3>Operational Problem</h3>
-
-<ul>
-<li>Attribution pressure</li>
-<li>Correlation systems</li>
-<li>Pattern accumulation</li>
-<li>Identity exposure</li>
-</ul>
-
-</div>
-
-<div class="cross-block left-block">
-
-<h3>Environment</h3>
-
-<ul>
-<li>Ubiquitous Technical Surveillance</li>
-<li>Persistent sensing</li>
-<li>Cross-domain observability</li>
-<li>Data aggregation systems</li>
-</ul>
-
-</div>
-
-<div class="cross-center">
-
-<div class="cross-core">
-ISR
-</div>
-
-</div>
-
-<div class="cross-block right-block">
-
-<h3>Operational Response</h3>
-
-<ul>
-<li>Signature Reduction</li>
-<li>Digital Force Protection</li>
-<li>Observability management</li>
-<li>Attribution intervention</li>
-</ul>
-
-</div>
-
-<div class="cross-block bottom-block">
-
-<h3>Human Mechanism</h3>
-
-<ul>
-<li>Human judgment</li>
-<li>Behavioral discipline</li>
-<li>Operational awareness</li>
-<li>Integrated tradecraft</li>
-</ul>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="corpus">
-
-<h2>Publications</h2>
-
-<p>
-ISR publications constitute an ongoing body of doctrine and analytical research addressing maneuver, attribution, and operational survivability under conditions of ubiquitous technical surveillance.
-</p>
-
-<h3 class="pub-category">Foundational Doctrine</h3>
-
-<div class="doctrine-entry">
-
-<div class="doctrine-id">
-ISR-DOC-001
-</div>
-
-<h3>
-I. Human Primacy in Irregular Warfare: Signature Reduction and the Preservation of the Acting Person
-</h3>
-
-<div class="meta">
-Doctrinal Foundation · May 2026
-</div>
-
-<p>
-As technological systems accelerate collection, correlation, and targeting, operational initiative increasingly depends upon disciplined human judgment capable of maneuvering under persistent observation and uncertainty.
-</p>
-
-<div class="links">
-
-<a href="publications/isr-doc-001.pdf">
-View Publication
-</a>
-</div>
-
-</div>
-
-<div class="doctrine-entry">
-
-<div class="doctrine-id">
-ISR-DOC-002
-</div>
-
-<h3>
-II. Ubiquitous Technical Surveillance and the Renewal of Irregular Warfare
-</h3>
-
-<div class="meta">
-Foundational Doctrine · Small Wars Journal · February 2026
-</div>
-
-<p>
-Ubiquitous technical surveillance represents a structural shift in warfare conditions, altering assumptions surrounding concealment, maneuver, and operational exposure while elevating the importance of human judgment in irregular conflict.
-</p>
-
-<div class="links">
-<a href="https://smallwarsjournal.com/2026/02/13/ubiquitous-technical-surveillance/" target="_blank" rel="noopener noreferrer">
-View Publication
-</a>
-
-<a href="publications/isr-doc-002.pdf">
-PDF Edition
-</a>
-</div>
-
-</div>
-
-<div class="doctrine-entry">
-
-<div class="doctrine-id">
-ISR-DOC-003
-</div>
-
-<h3>
-III. Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for Strategic Competition
-</h3>
-
-<div class="meta">
-Foundational Doctrine · Small Wars Journal · December 2025
-</div>
-
-<p>
-Signature Reduction Doctrine preserves operational freedom of maneuver through the disciplined management of attribution pressure, observability, and behavioral exposure across domains.
-</p>
-
-<div class="links">
-<a href="https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/" target="_blank" rel="noopener noreferrer">
-View Publication
-</a>
-
-<a href="publications/isr-doc-003.pdf">
-PDF Edition
-</a>
-</div>
-
-</div>
-
-<div class="doctrine-entry">
-
-<div class="doctrine-id">
-ISR-DOC-004
-</div>
-
-<h3>
-IV. From Signature Reduction to Digital Force Protection
-</h3>
-
-<div class="meta">
-Doctrinal Development · Joint Special Operations University · Forthcoming
-</div>
-
-<p>
-Digital Force Protection operationalizes signature reduction doctrine within digital environments through intentional infrastructure, managed observability, attribution disruption, and signature shaping.
-</p>
-
-</div>
-
-<h3 class="pub-category">Applied Operational Analysis</h3>
-
-<div class="doctrine-entry">
-
-<div class="doctrine-id">
-ISR-DOC-005
-</div>
-
-<h3>
-V. Operating in the Age of Attribution: GRU Lessons for Digital Force Protection
-</h3>
-
-<div class="meta">
-Operational Analysis · Small Wars Journal · April 2026
-</div>
-
-<p>
-Operational exposure increasingly emerges through the accumulation of seemingly minor behaviors across systems, demonstrating the necessity of disciplined digital force protection and behavioral management.
-</p>
-
-<div class="links">
-<a href="https://smallwarsjournal.com/2026/04/15/gru-lessons-for-digital-force-protection/" target="_blank" rel="noopener noreferrer">
-View Publication
-</a>
-
-<a href="publications/isr-doc-005.pdf">
-PDF Edition
-</a>
-</div>
-
-</div>
-
-<div class="doctrine-entry">
-
-<div class="doctrine-id">
-ISR-DOC-006
-</div>
-
-<h3>
-VI. Intervening in the Attribution Chain: Signature Reduction Under Cross-Domain Surveillance
-</h3>
-
-<div class="meta">
-Operational Doctrine · Small Wars Journal · Forthcoming
-</div>
-
-<p>
-Attribution emerges progressively through observation, collection, aggregation, and correlation. Each stage presents opportunities for operational intervention and maneuver preservation.
-</p>
-
-</div>
-
-</section>
-
-<section class="affiliation">
-
-<h2>Institutional Continuity</h2>
-
-<p>
-ISR maintains ongoing doctrinal development, publication stewardship, and educational continuity through independent research, practitioner engagement, and long-term operational study.
-</p>
-
-<p>
-Applied operational instruction derived from ISR doctrine is delivered independently through the 
-<a href="https://www.signaturemanagementunit.com" target="_blank" rel="noopener noreferrer">
-Signature Management Unit (SMU)
-</a>, a practitioner-led organization providing facilitated instruction and operational education programs for government partners.
-</p>
-
-</section>
-
-<section id="contact">
-
-<h2>Contact</h2>
-
-<p>
-<strong>info&#64;isrprivacymatters.org</strong>
-</p>
-
-<p class="subdued">
-The Institute for Signature Reduction maintains a selective engagement posture in support of its mission. Correspondence is reviewed periodically. Not all inquiries will receive a reply.
-</p>
-
-<p class="subdued">
-ISR publications may be cited using ISR document identifiers.
-</p>
-
-<p class="subdued">
-ISR is an independent United States 501(c)(3) nonprofit charitable organization.
-</p>
-
+<!-- ─── CONTACT ─── -->
+<section class="section-wrap contact-section" id="contact" aria-labelledby="contact-heading">
+  <h2 id="contact-heading">Contact</h2>
+  <p class="contact-email">info&#64;isrprivacymatters.org</p>
+  <p class="contact-note">The Institute for Signature Reduction maintains a selective engagement posture in support of its mission. Correspondence is reviewed periodically. Not all inquiries will receive a reply.</p>
+  <p class="contact-note">ISR publications may be cited using ISR document identifiers.</p>
+  <p class="contact-note">ISR is an independent United States 501(c)(3) nonprofit charitable organization.</p>
 </section>
 
 </main>
 
+<!-- ─── FOOTER ─── -->
 <footer>
-
-<p>
-© Institute for Signature Reduction
-</p>
-
-<p class="footer-small">
-<img src="images/us_flag.png" alt="United States flag" class="footer-flag">
-Official ISR Site
-</p>
-
+  <div class="footer-inner">
+    <div class="footer-left">
+      <img src="images/us_flag.png" alt="United States flag">
+      &copy; Institute for Signature Reduction
+    </div>
+    <div class="footer-right">Official ISR Site</div>
+  </div>
 </footer>
+
+<script>
+// ── Doctrine map toggle ──────────────────────────────────────────
+function toggleMap(card) {
+  var isOpen = card.classList.contains('open');
+  card.classList.toggle('open', !isOpen);
+  card.setAttribute('aria-expanded', String(!isOpen));
+  var label = card.querySelector('.toggle-label');
+  if (label) label.textContent = isOpen ? 'Expand' : 'Collapse';
+}
+
+// ── Attribution chain ────────────────────────────────────────────
+var chainData = [
+  {
+    body: '<strong>Observation:</strong> Initial signal generation through participation in digital, financial, or physical infrastructure. Every ordinary action creates a detectable trace — a transaction record, a device ping, a login event, a location coordinate. This is the entry point of the attribution chain.',
+    intervention: 'Intervention: Reduce unnecessary signal generation. Limit participation to essential systems where operationally feasible.'
+  },
+  {
+    body: '<strong>Collection:</strong> Signals are retained by platform operators, service providers, and infrastructure owners — often indefinitely and across multiple jurisdictions. Retention policies, legal frameworks, and technical architecture determine what is kept and for how long.',
+    intervention: 'Intervention: Manage which systems hold your data. Prefer ephemeral over persistent infrastructure. Understand retention landscapes across operating domains.'
+  },
+  {
+    body: '<strong>Aggregation:</strong> Retained signals from multiple systems are combined, building a cross-domain data picture that no single system would reveal alone. The financial record, the device log, and the travel record — individually unremarkable — together constitute a behavioral profile.',
+    intervention: 'Intervention: Prevent cross-domain linkage. Maintain distinct operational identities and behaviors across domains to resist aggregation.'
+  },
+  {
+    body: '<strong>Correlation:</strong> Aggregated data is analyzed for patterns, timing relationships, and behavioral consistencies that link activity across time and identity layers. Correlation is where the picture comes into focus — and where human behavioral consistency most directly enables attribution.',
+    intervention: 'Intervention: Disrupt behavioral patterns. Vary timing, routing, procedural sequences, and communication behaviors to degrade pattern reliability.'
+  },
+  {
+    body: '<strong>Attribution:</strong> Correlated patterns are mapped to a specific identity, organization, or operation — the operational exposure event. This is the output of the attribution chain, and the operational threat that signature reduction is designed to prevent or delay.',
+    intervention: 'Intervention: All prior-stage interventions compound here. No single technique suffices at this stage. Integrated tradecraft across the full chain is required for durable attribution resistance.'
+  }
+];
+
+function selectChain(el, idx) {
+  var steps = document.querySelectorAll('.chain-step');
+  steps.forEach(function(s, i) {
+    s.classList.remove('active');
+    s.setAttribute('aria-selected', 'false');
+    s.setAttribute('tabindex', '-1');
+  });
+  el.classList.add('active');
+  el.setAttribute('aria-selected', 'true');
+  el.setAttribute('tabindex', '0');
+  var d = chainData[idx];
+  document.getElementById('chain-text').innerHTML = d.body;
+  var detail = document.getElementById('chain-detail');
+  var intEl = detail.querySelector('.chain-intervention');
+  if (intEl) intEl.textContent = d.intervention;
+}
+
+function chainKeyNav(e, idx) {
+  var steps = document.querySelectorAll('.chain-step');
+  if (e.key === 'ArrowRight' && idx < steps.length - 1) {
+    steps[idx + 1].focus();
+    selectChain(steps[idx + 1], idx + 1);
+  } else if (e.key === 'ArrowLeft' && idx > 0) {
+    steps[idx - 1].focus();
+    selectChain(steps[idx - 1], idx - 1);
+  } else if (e.key === 'Enter' || e.key === ' ') {
+    selectChain(steps[idx], idx);
+  }
+}
+
+// ── Scroll-reveal (IntersectionObserver) ─────────────────────────
+if ('IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.doctrine-step, .map-card, .pub-row').forEach(function(el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(14px)';
+    el.style.transition = 'opacity .45s ease, transform .45s ease';
+    io.observe(el);
+  });
+}
+</script>
 
 </body>
 </html>

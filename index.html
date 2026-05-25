@@ -134,9 +134,9 @@ nav {
 }
 .hero-logo {
   position: relative;
-  display: flex; justify-content: center; margin-bottom: 44px;
+  display: flex; justify-content: center; margin-bottom: 40px;
 }
-.hero-logo img { width: 100px; opacity: .85; }
+.hero-logo img { width: 200px; opacity: .88; }
 
 /* ─── SIGNAL DIAGRAM ─── */
 .signal-section {
@@ -524,6 +524,21 @@ nav {
 }
 .pub-link:hover { color: var(--accent); }
 .pub-link i { font-size: 13px; }
+.pub-links {
+  display: flex; flex-direction: column;
+  gap: 8px; align-items: flex-end; padding-top: 3px;
+}
+.pub-link-pdf {
+  font-family: var(--sans); font-size: .72rem;
+  color: var(--ink-soft); text-decoration: none;
+  white-space: nowrap;
+  display: flex; align-items: center; gap: 4px;
+  transition: color var(--trans);
+  border: 1px solid var(--border);
+  padding: 3px 9px; border-radius: 20px;
+}
+.pub-link-pdf:hover { color: var(--accent); border-color: var(--accent-light); }
+.pub-link-pdf i { font-size: 12px; }
 
 /* ─── AFFILIATION ─── */
 .affil-section {
@@ -605,7 +620,7 @@ footer {
   .chain-steps { flex-wrap: nowrap; overflow-x: auto; }
   .chain-step { min-width: 110px; }
   .pub-row { grid-template-columns: 72px 1fr; }
-  .pub-link { display: none; }
+  .pub-links { display: none; }
   .nav-links { display: none; }
 }
 
@@ -930,7 +945,10 @@ footer {
       <div class="pub-meta">Doctrinal Foundation &middot; May 2026</div>
       <span class="pub-badge available">Available</span>
     </div>
-    <a class="pub-link" href="publications/isr-doc-001.pdf">View <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+    <div class="pub-links">
+      <a class="pub-link" href="publications/isr-doc-001.pdf" target="_blank" rel="noopener noreferrer">View <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+      <a class="pub-link-pdf" href="publications/isr-doc-001.pdf" download><i class="ti ti-download" aria-hidden="true"></i> PDF</a>
+    </div>
   </div>
 
   <div class="pub-row">
@@ -940,7 +958,10 @@ footer {
       <div class="pub-meta">Foundational Doctrine &middot; Small Wars Journal &middot; February 2026</div>
       <span class="pub-badge available">Available</span>
     </div>
-    <a class="pub-link" href="https://smallwarsjournal.com/2026/02/13/ubiquitous-technical-surveillance/" target="_blank" rel="noopener noreferrer">View <i class="ti ti-external-link" aria-hidden="true"></i></a>
+    <div class="pub-links">
+      <a class="pub-link" href="https://smallwarsjournal.com/2026/02/13/ubiquitous-technical-surveillance/" target="_blank" rel="noopener noreferrer">View <i class="ti ti-external-link" aria-hidden="true"></i></a>
+      <a class="pub-link-pdf" href="publications/isr-doc-002.pdf" download><i class="ti ti-download" aria-hidden="true"></i> PDF</a>
+    </div>
   </div>
 
   <div class="pub-row">
@@ -950,7 +971,10 @@ footer {
       <div class="pub-meta">Foundational Doctrine &middot; Small Wars Journal &middot; December 2025</div>
       <span class="pub-badge available">Available</span>
     </div>
-    <a class="pub-link" href="https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/" target="_blank" rel="noopener noreferrer">View <i class="ti ti-external-link" aria-hidden="true"></i></a>
+    <div class="pub-links">
+      <a class="pub-link" href="https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/" target="_blank" rel="noopener noreferrer">View <i class="ti ti-external-link" aria-hidden="true"></i></a>
+      <a class="pub-link-pdf" href="publications/isr-doc-003.pdf" download><i class="ti ti-download" aria-hidden="true"></i> PDF</a>
+    </div>
   </div>
 
   <div class="pub-row">
@@ -971,7 +995,10 @@ footer {
       <div class="pub-meta">Operational Analysis &middot; Small Wars Journal &middot; April 2026</div>
       <span class="pub-badge available">Available</span>
     </div>
-    <a class="pub-link" href="https://smallwarsjournal.com/2026/04/15/gru-lessons-for-digital-force-protection/" target="_blank" rel="noopener noreferrer">View <i class="ti ti-external-link" aria-hidden="true"></i></a>
+    <div class="pub-links">
+      <a class="pub-link" href="https://smallwarsjournal.com/2026/04/15/gru-lessons-for-digital-force-protection/" target="_blank" rel="noopener noreferrer">View <i class="ti ti-external-link" aria-hidden="true"></i></a>
+      <a class="pub-link-pdf" href="publications/isr-doc-005.pdf" download><i class="ti ti-download" aria-hidden="true"></i> PDF</a>
+    </div>
   </div>
 
   <div class="pub-row">

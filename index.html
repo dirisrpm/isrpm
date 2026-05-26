@@ -86,6 +86,44 @@ nav {
 }
 .nav-links a:hover { color: var(--accent); }
 
+/* ─── MOBILE NAV ─── */
+.nav-hamburger {
+  display: none;
+  background: none; border: none;
+  cursor: pointer; padding: 8px;
+  color: var(--accent); font-size: 22px;
+  line-height: 1;
+}
+.mobile-nav-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 700;
+  background: rgba(255,255,255,.98);
+  backdrop-filter: blur(12px);
+  flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0;
+}
+.mobile-nav-overlay.open { display: flex; }
+.mobile-nav-close {
+  position: absolute; top: 16px; right: 20px;
+  background: none; border: none;
+  font-size: 24px; color: var(--ink-soft);
+  cursor: pointer; padding: 8px;
+}
+.mobile-nav-links {
+  list-style: none; text-align: center;
+}
+.mobile-nav-links li { border-bottom: 1px solid var(--border); }
+.mobile-nav-links li:first-child { border-top: 1px solid var(--border); }
+.mobile-nav-links a {
+  display: block; padding: 22px 48px;
+  font-family: var(--sans); font-size: 1.1rem;
+  font-weight: 400; color: var(--ink);
+  text-decoration: none; letter-spacing: .02em;
+  transition: color var(--trans);
+}
+.mobile-nav-links a:hover { color: var(--accent); }
+
 /* ─── HERO ─── */
 .hero {
   padding: 88px 32px 72px;
@@ -681,11 +719,14 @@ footer {
   .step-sidebar { display: flex; gap: 16px; align-items: flex-start; }
   .step-rule { display: none; }
   .map-grid { grid-template-columns: 1fr; }
-  .chain-steps { overflow-x: auto; }
+  .chain-steps { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .chain-step { min-width: 110px; }
   .pub-row { grid-template-columns: 72px 1fr; }
-  .pub-links { display: none; }
+  .pub-links { display: flex; flex-direction: row; flex-wrap: wrap; gap: 10px; padding-top: 10px; align-items: center; }
+  .pub-link { font-size: .8rem; }
+  .pub-link-pdf { font-size: .76rem; }
   .nav-links { display: none; }
+  .nav-hamburger { display: flex; align-items: center; justify-content: center; }
   .glossary-grid { grid-template-columns: 1fr; }
   .version-bar-inner { flex-direction: column; gap: 10px; align-items: flex-start; }
   .version-divider { display: none; }
@@ -694,15 +735,25 @@ footer {
   .hero { padding: 64px 20px 56px; }
   .hero-logo img { width: 160px; }
   .section-wrap { padding: 0 20px; }
-  .signal-section { padding: 48px 20px 40px; }
+  .signal-section { padding: 40px 20px 36px; }
+  .signal-body { padding: 24px 16px; }
+  .signal-nodes { gap: 4px 0; }
+  .sig-node { padding: 4px 8px; }
+  .sig-icon { width: 38px; height: 38px; font-size: 15px; }
+  .sig-connector { width: 14px; }
+  .sig-label { font-size: .55rem; }
   .pull-section { padding: 56px 20px; }
   .pull-quote { font-size: 1.2rem; }
   footer { padding: 24px 20px; }
-  .sig-node { padding: 4px 8px; }
-  .sig-icon { width: 36px; height: 36px; font-size: 15px; }
-  .sig-connector { width: 16px; }
   .voice-bar { padding: 24px 20px; }
+  .voice-bar-inner { gap: 16px; }
   .version-bar-inner { padding: 0 20px; }
+  .chain-steps { border-radius: var(--radius); }
+  .chain-step { min-width: 90px; padding: 14px 10px; }
+  .cs-name { font-size: .75rem; }
+  .pub-row { grid-template-columns: 1fr; gap: 12px; }
+  .pub-id { display: none; }
+  .pub-links { flex-direction: row; }
 }
 @media print {
   nav { position: static; }
@@ -729,8 +780,25 @@ footer {
       <li><a href="#publications">Publications</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false" onclick="openMobileNav()">
+      <i class="ti ti-menu-2" aria-hidden="true"></i>
+    </button>
   </div>
 </nav>
+
+<!-- ─── MOBILE NAV OVERLAY ─── -->
+<div class="mobile-nav-overlay" id="mobileNav" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <button class="mobile-nav-close" aria-label="Close navigation menu" onclick="closeMobileNav()">
+    <i class="ti ti-x" aria-hidden="true"></i>
+  </button>
+  <ul class="mobile-nav-links" role="list">
+    <li><a href="#doctrine" onclick="closeMobileNav()">Doctrine</a></li>
+    <li><a href="#chain" onclick="closeMobileNav()">Attribution Chain</a></li>
+    <li><a href="#glossary" onclick="closeMobileNav()">Glossary</a></li>
+    <li><a href="#publications" onclick="closeMobileNav()">Publications</a></li>
+    <li><a href="#contact" onclick="closeMobileNav()">Contact</a></li>
+  </ul>
+</div>
 
 <!-- ─── HERO ─── -->
 <header class="hero">
@@ -1181,6 +1249,25 @@ footer {
 </footer>
 
 <script>
+function openMobileNav() {
+  var overlay = document.getElementById('mobileNav');
+  var btn = document.querySelector('.nav-hamburger');
+  overlay.classList.add('open');
+  btn.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+  overlay.querySelector('a').focus();
+}
+function closeMobileNav() {
+  var overlay = document.getElementById('mobileNav');
+  var btn = document.querySelector('.nav-hamburger');
+  overlay.classList.remove('open');
+  btn.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+  btn.focus();
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeMobileNav();
+});
 function toggleMap(card) {
   var isOpen = card.classList.contains('open');
   card.classList.toggle('open', !isOpen);

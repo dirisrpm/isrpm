@@ -762,6 +762,27 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ─── SCROLL TO TOP ─── */
+.scroll-top {
+  position: fixed; bottom: 28px; right: 28px;
+  z-index: 9000;
+  width: 42px; height: 42px;
+  background: var(--accent); color: white;
+  border: none; border-radius: 50%;
+  cursor: pointer; font-size: 18px;
+  display: none;
+  align-items: center; justify-content: center;
+  box-shadow: 0 2px 12px rgba(26,51,82,.3);
+  transition: background var(--trans);
+}
+.scroll-top.visible {
+  display: flex;
+}
+.scroll-top:hover { background: var(--accent-mid); }
+@media (max-width: 540px) {
+  .scroll-top { bottom: 20px; right: 16px; width: 38px; height: 38px; font-size: 16px; }
+}
 </style>
 </head>
 
@@ -1248,7 +1269,23 @@ footer {
   </div>
 </footer>
 
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="ti ti-arrow-up" aria-hidden="true"></i>
+</button>
+
 <script>
+var scrollBtn = document.getElementById('scrollTop');
+function handleScroll() {
+  var scrolled = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+  if (scrolled > 400) {
+    scrollBtn.classList.add('visible');
+  } else {
+    scrollBtn.classList.remove('visible');
+  }
+}
+window.addEventListener('scroll', handleScroll, { passive: true });
+document.addEventListener('scroll', handleScroll, { passive: true });
+
 function openMobileNav() {
   var overlay = document.getElementById('mobileNav');
   var btn = document.querySelector('.nav-hamburger');

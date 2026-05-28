@@ -240,6 +240,13 @@ nav {
   background: var(--accent-light); color: var(--accent);
   border-radius: 20px;
 }
+.signal-note {
+  margin-top: 16px;
+  text-align: center;
+  font-family: var(--sans); font-size: .76rem;
+  color: var(--ink-faint); font-weight: 300;
+  font-style: italic;
+}
 
 /* ─── SHARED SECTION WRAPPER ─── */
 .section-wrap {
@@ -342,15 +349,15 @@ nav {
 .voice-bar-inner {
   max-width: var(--max); margin: 0 auto;
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 28px;
 }
 .voice-statement {
   font-family: var(--serif);
   font-size: .95rem; font-style: italic;
   color: rgba(255,255,255,.85);
   line-height: 1.75;
-  padding-left: 16px;
-  border-left: 1px solid rgba(255,255,255,.2);
+  text-align: center;
+  padding: 0 8px;
 }
 
 /* ─── ATTRIBUTION CHAIN ─── */
@@ -710,7 +717,7 @@ footer {
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 900px) {
-  .voice-bar-inner { grid-template-columns: 1fr; gap: 20px; }
+  .voice-bar-inner { grid-template-columns: 1fr 1fr; gap: 20px; }
   .shift-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 820px) {
@@ -746,7 +753,7 @@ footer {
   .pull-quote { font-size: 1.2rem; }
   footer { padding: 24px 20px; }
   .voice-bar { padding: 24px 20px; }
-  .voice-bar-inner { gap: 16px; }
+  .voice-bar-inner { grid-template-columns: 1fr; gap: 16px; }
   .version-bar-inner { padding: 0 20px; }
   .chain-steps { border-radius: var(--radius); }
   .chain-step { min-width: 90px; padding: 14px 10px; }
@@ -776,9 +783,7 @@ footer {
   box-shadow: 0 2px 12px rgba(26,51,82,.3);
   transition: background var(--trans);
 }
-.scroll-top.visible {
-  display: flex;
-}
+.scroll-top.visible { display: flex; }
 .scroll-top:hover { background: var(--accent-mid); }
 @media (max-width: 540px) {
   .scroll-top { bottom: 20px; right: 16px; width: 38px; height: 38px; font-size: 16px; }
@@ -828,17 +833,17 @@ footer {
     <img src="images/logo.png" alt="Institute for Signature Reduction emblem">
   </div>
   <h1>Your routine behavior is observable.<br><em>This is the operating environment.</em></h1>
-  <p class="hero-sub">Every financial transaction, device connection, platform interaction, and movement through physical space generates a signal. These signals accumulate. They correlate. They attribute.</p>
+  <p class="hero-sub">Every financial transaction, device connection, platform interaction, and movement through physical space generates a signal. These data accumulate, correlate, and attribute. This is the surveillance economy. </p>
 </header>
 
 <main id="main">
 
 <!-- ─── SIGNAL DIAGRAM ─── -->
-<section class="signal-section" aria-label="Cross-domain signal accumulation">
+<section class="signal-section" aria-label="Cross-domain signal aggregation">
   <div class="signal-wrap">
     <div class="signal-header">
       <i class="ti ti-activity" style="font-size:14px;color:var(--ink-faint)" aria-hidden="true"></i>
-      <span class="signal-header-label">Ordinary activity — cross-domain signal accumulation</span>
+      <span class="signal-header-label">Ordinary activity — cross-domain signal aggregation</span>
     </div>
     <div class="signal-body">
       <div class="signal-nodes" role="list" aria-label="Sensing domains">
@@ -873,7 +878,7 @@ footer {
         </div>
       </div>
       <div class="signal-result">
-        <span class="signal-result-label">Aggregated cross-domain profile</span>
+        <span class="signal-result-label">This aggregated data exposes your:</span>
         <div class="signal-tags">
           <span class="signal-tag">Identity</span>
           <span class="signal-tag">Relationships</span>
@@ -890,10 +895,10 @@ footer {
 
   <div class="journey-intro">
     <div class="eyebrow">Doctrinal framework</div>
-    <h2 id="doctrine-heading">ISR doctrine addresses the operational problem that emerges from this environment — and provides a systematic response.</h2>
+    <h2 id="doctrine-heading">ISR doctrine addresses the operational problem that emerges from this environment — and insists on the irreducibility of human judgment as the response.</h2>
   </div>
 
-  <!-- 01 — Environment + Why Now -->
+  <!-- 01 — Environment -->
   <article class="doctrine-step">
     <div class="step-sidebar">
       <div class="step-num">01 / Environment</div>
@@ -903,9 +908,9 @@ footer {
     </div>
     <div class="step-content">
       <p>For most of modern history, operational concealment was achievable through physical discipline alone. Identity was anchored to documents. Movement, communication, and association could be managed through tradecraft that predated the digital age. The environment rewarded patience and physical caution.</p>
-      <p>That environment no longer exists. The past two decades have produced a convergence of networked infrastructure, mass data retention, and analytical capability that has fundamentally altered the relationship between ordinary activity and observable evidence. What was once ephemeral — a conversation, a payment, a location — is now persistent, stored, and searchable.</p>
+      <p>That environment no longer exists. Technological advancements have produced a convergence of networked infrastructure, mass data retention, and analytical capability that has fundamentally altered the relationship between ordinary human activity and observable data. What was once ephemeral — a conversation, a payment, a location — is now persistent, stored, and searchable.</p>
       <div class="callout">The assumption that digital activity is private unless specifically targeted has been replaced by a structural reality: participation in modern infrastructure generates an enduring record, accessible to a widening range of actors, before any targeting decision is made.</div>
-      <p>We describe this as <em>ubiquitous technical surveillance</em> — persistent sensing and data aggregation across digital, financial, administrative, electronic, and physical-visual systems, enabled by networked infrastructure and large-scale retention. It is not a temporary condition. It is the environment, and ISR doctrine is built on that premise.</p>
+      <p>We describe this as <em>ubiquitous technical surveillance</em> — persistent sensing and data aggregation across online, electronic, financial, travel, and physical-visual systems, enabled by networked infrastructure and large-scale retention. It is not a temporary condition, but the very environment. ISR doctrine is built on a clear-eyed recognition of that reality.</p>
       <div class="shift-grid">
         <div class="shift-card">
           <div class="shift-card-label">Old assumption</div>
@@ -915,7 +920,7 @@ footer {
         <div class="shift-card">
           <div class="shift-card-label">Current reality</div>
           <div class="shift-card-text">Digital behavior is the primary exposure surface</div>
-          <div class="shift-card-note">Every device, platform, and transaction generates a persistent, correlatable record.</div>
+          <div class="shift-card-note">Every device, platform, and transaction generates persistent, correlatable data.</div>
         </div>
         <div class="shift-card">
           <div class="shift-card-label">Old assumption</div>
@@ -925,7 +930,7 @@ footer {
         <div class="shift-card">
           <div class="shift-card-label">Current reality</div>
           <div class="shift-card-text">Collection precedes targeting</div>
-          <div class="shift-card-note">Data is retained first. Attribution is applied retrospectively, often years later.</div>
+          <div class="shift-card-note">Data is retained first, then attributed. You are a data profile before you are a target.</div>
         </div>
       </div>
     </div>
@@ -942,8 +947,9 @@ footer {
     <div class="step-content">
       <p>The operational problem generated by this environment is <em>attribution pressure</em> — the cumulative pressure on identity, relationships, location, and intent that builds through cross-domain observability, behavioral exposure, and correlation systems.</p>
       <div class="step-sub">Attribution is not an event. It is a process.</div>
-      <p>It emerges progressively: observation, collection, aggregation, correlation, and ultimately attribution to a person, organization, or operation. Each stage builds on the last. Minor behavioral signals — individually unremarkable — combine across systems to constitute a detailed operational picture.</p>
-      <p>This progressive structure is operationally significant. The practitioner is not managing a single point of vulnerability but a chain of exposures distributed across time, domain, and behavior. It also means the chain can be disrupted — at multiple stages.</p>
+      <p>It emerges progressively: observation, collection, aggregation, correlation, and ultimately attribution to a person, organization, or operation. Each stage builds on the last. Minor behavioral signals — individually unremarkable — combine across systems to constitute a detailed operational picture. The person is translated, stage by stage, into data.</p>
+      <p>This progressive structure is operationally significant. The practitioner is not managing a single point of vulnerability but a chain of exposures distributed across time, domain, and behavior. It also means the chain can be disrupted — at multiple stages, through deliberate human choice.</p>
+      <div class="callout">When a person is reduced to a correlatable profile, decisions about their freedom, access, and safety can be delegated to automated systems that bear no responsibility for the consequences. The threat is not merely data exposure. It is the loss of the person's irreducibility — their capacity to be known as more than a pattern of data.</div>
     </div>
   </article>
 
@@ -956,10 +962,10 @@ footer {
       <div class="step-concept">Observability management</div>
     </div>
     <div class="step-content">
-      <p><em>Signature reduction</em> is the doctrinal response. Rather than attempting to achieve invisibility — which the environment makes impossible — the doctrine focuses on disrupting correlation, shaping exposure, managing aggregation, and intervening within the attribution chain.</p>
-      <p>The goal is preserved freedom of maneuver, not disappearance. This distinction is operationally significant: it orients practitioners toward <em>managing and shaping</em> observability rather than eliminating it, which is both more achievable and more durable as a practice.</p>
-      <div class="callout">Invisibility is not the objective. Maneuver is. The practitioner who cannot be invisible but can remain uncorrelated retains operational initiative.</div>
-      <p>Human judgment, behavioral discipline, and integrated tradecraft are the primary mechanisms. Technical protocols are enabling tools, not substitutes for operational awareness.</p>
+      <p><em>Signature reduction</em> is the doctrinal response. Rather than attempting to achieve anonymity — which the environment makes impossible — the doctrine focuses on disrupting correlation, shaping exposure, managing aggregation, and intervening within the attribution chain.</p>
+      <p>The goal is preserved freedom for action, not disappearance. This distinction is operationally significant: it orients practitioners toward managing and shaping observability rather than eliminating it, which is both more achievable and more durable as a practice.</p>
+      <div class="callout">Signature reduction is, at its core, the safeguarding of personal irreducibility and judgment under pressure.</div>
+      <p>Human judgment, behavioral discipline, and integrated tradecraft are the primary mechanisms. Technical protocols are enabling tools, not substitutes. No automated system can replace the acting human person at the center of operational practice.</p>
     </div>
   </article>
 
@@ -972,10 +978,10 @@ footer {
       <div class="step-concept">Digital domain doctrine</div>
     </div>
     <div class="step-content">
-      <p><em>Digital Force Protection</em> operationalizes signature reduction within digital environments. It encompasses intentional digital infrastructure design, managed observability, attribution disruption, and signature shaping across online, device, and communications domains.</p>
-      <p>DFP is not synonymous with cybersecurity, though it intersects with it. Where cybersecurity addresses unauthorized access, DFP addresses authorized but operationally consequential exposure — the signals generated by normal, legitimate digital activity within a persistent surveillance environment.</p>
-      <div class="step-sub">The question is not whether you are being hacked. It is whether your normal behavior constitutes a record.</div>
-      <p>Consistent application of DFP principles reduces the aggregable digital surface area available to attribution systems, preserving operational flexibility across the full range of activity.</p>
+      <p><em>Digital Force Protection</em> operationalizes signature reduction within digital environments. It encompasses intentional digital infrastructure design, managed observability, attribution disruption, and signature shaping in the digital domain.</p>
+      <p>DFP is not synonymous with cybersecurity, though it intersects with it. Where cybersecurity addresses unauthorized access, DFP addresses normal, routine behavior inherently observable across surveillance ecosystems. The threat is not the adversary who breaks in. It is the infrastructure that, by design, translates ordinary human activity into enduring, correlatable data.</p>
+      <div class="step-sub">The question is not whether you are being hacked. It is how your routine behavior will be exploited.</div>
+      <p>Consistent application of DFP principles reduces the aggregable digital surface area available to attribution systems, preserving operational flexibility across the full range of activity. DFP is primarily a human discipline, not a technical one.</p>
     </div>
   </article>
 
@@ -984,9 +990,9 @@ footer {
 <!-- ─── VOICE BAR ─── -->
 <div class="voice-bar" aria-label="Core doctrinal principles">
   <div class="voice-bar-inner">
-    <p class="voice-statement">"Attribution is not an event. It is a process — and every process has intervention points."</p>
-    <p class="voice-statement">"The practitioner who cannot be invisible but can remain uncorrelated retains operational initiative."</p>
-    <p class="voice-statement">"Doctrine built on the hope that the surveillance environment will change is not doctrine. It is optimism."</p>
+    <p class="voice-statement">"Attribution is not an event. It is a process — and every process has intervention points where human judgment matters."</p>
+    <p class="voice-statement">"The loss of operational initiative lies not only in its immediate impact but also its long-term impression on the operator himself as an acting person."</p>
+     <p class="voice-statement">"The person cannot be reduced to a data profile. Signature reduction is the safeguard of operational judgment."</p>
   </div>
 </div>
 
@@ -995,7 +1001,7 @@ footer {
   <div class="chain-header">
     <div class="eyebrow">Operational analysis</div>
     <h2 id="chain-heading">The attribution chain</h2>
-    <p>Attribution emerges progressively across five stages. Each presents distinct intervention opportunities. Select a stage to examine it and its corresponding intervention.</p>
+    <p>Attribution emerges progressively across five stages. Each presents distinct intervention opportunities where human judgment and behavioral discipline can disrupt the process. Select a stage to examine it and its corresponding intervention.</p>
   </div>
   <div class="chain-steps" role="tablist" aria-label="Attribution chain stages">
     <div class="chain-step active" role="tab" tabindex="0" aria-selected="true" aria-controls="chain-detail" onclick="selectChain(this,0)" onkeydown="chainKeyNav(event,0)">
@@ -1005,24 +1011,21 @@ footer {
       <div class="cs-num">02</div><div class="cs-name">Collection</div><div class="cs-sub">Retention</div>
     </div>
     <div class="chain-step" role="tab" tabindex="-1" aria-selected="false" aria-controls="chain-detail" onclick="selectChain(this,2)" onkeydown="chainKeyNav(event,2)">
-      <div class="cs-num">03</div><div class="cs-name">Aggregation</div><div class="cs-sub">Cross-domain</div>
+      <div class="cs-num">03</div><div class="cs-name">Correlation</div><div class="cs-sub">Pattern linkage</div>
     </div>
     <div class="chain-step" role="tab" tabindex="-1" aria-selected="false" aria-controls="chain-detail" onclick="selectChain(this,3)" onkeydown="chainKeyNav(event,3)">
-      <div class="cs-num">04</div><div class="cs-name">Correlation</div><div class="cs-sub">Pattern linkage</div>
-    </div>
-    <div class="chain-step" role="tab" tabindex="-1" aria-selected="false" aria-controls="chain-detail" onclick="selectChain(this,4)" onkeydown="chainKeyNav(event,4)">
-      <div class="cs-num">05</div><div class="cs-name">Attribution</div><div class="cs-sub">Identity exposure</div>
+      <div class="cs-num">04</div><div class="cs-name">Attribution</div><div class="cs-sub">Identity exposure</div>
     </div>
   </div>
   <div class="chain-detail" id="chain-detail" role="tabpanel">
-    <span id="chain-text"><strong>Observation:</strong> Initial signal generation through participation in digital, financial, or physical infrastructure. Every ordinary action creates a detectable trace — a transaction record, a device ping, a login event, a location coordinate. This is the entry point of the attribution chain.</span>
+    <span id="chain-text"><strong>Observation:</strong> Initial signal generation through participation in digital, financial, or physical infrastructure. Every ordinary action creates a detectable trace — a transaction record, a device ping, a login event, a location coordinate. This is the entry point of the attribution chain: the moment a person's activity first becomes data.</span>
     <br><span class="chain-intervention">Intervention: Reduce unnecessary signal generation. Limit participation to essential systems where operationally feasible.</span>
   </div>
 </section>
 
 <!-- ─── PULL QUOTE ─── -->
 <div class="pull-section" aria-label="Key doctrinal statement">
-  <p class="pull-quote">"Operational exposure increasingly emerges through accumulation and correlation rather than isolated detection events."</p>
+  <p class="pull-quote">"Operational exposure increasingly emerges through attribution rather than isolated detection events. What is being constructed, stage by stage, is a portrait of the person."</p>
   <p class="pull-cite">ISR Doctrinal Framework</p>
 </div>
 
@@ -1039,28 +1042,28 @@ footer {
       <div class="map-card open" role="listitem" tabindex="0" aria-expanded="true" onclick="toggleMap(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleMap(this)">
         <div class="map-card-id">Environment</div>
         <div class="map-card-title">Ubiquitous Technical Surveillance</div>
-        <div class="map-card-body">Persistent sensing across digital, electronic, financial, administrative, and physical systems. Ordinary activity generates enduring observable signals that may be retained, aggregated, and correlated across time and jurisdiction. Treated as a permanent structural condition, not a temporary technology trend.</div>
+        <div class="map-card-body">Persistent sensing across online, electronic, financial, travel, and visual-physical systems. Ordinary activity generates enduring observable signals that may be retained, aggregated, and correlated across time and jurisdiction. This environment is not neutral: it reflects the logic of those who built and operate it, and it exerts systematic pressure on the freedom of persons within it.</div>
         <div class="map-card-toggle"><i class="ti ti-chevron-down" aria-hidden="true"></i><span class="toggle-label">Collapse</span></div>
       </div>
 
       <div class="map-card" role="listitem" tabindex="0" aria-expanded="false" onclick="toggleMap(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleMap(this)">
         <div class="map-card-id">Operational problem</div>
         <div class="map-card-title">Attribution Pressure</div>
-        <div class="map-card-body">Cumulative operational pressure generated through cross-domain observability, behavioral exposure, and correlation systems. Attribution does not require a single compromise event — it emerges through progressive accumulation of behavioral signals across systems, each individually minor but collectively determinative.</div>
+        <div class="map-card-body">Cumulative pressure on identity, relationships, location, and intent generated through cross-domain observability and surveillance ecosystems. Attribution does not require a single compromise — it emerges through the progressive accumulation of behavioral signals that reduce a person to data, each signal minor but collectively determinative of their exposure.</div>
         <div class="map-card-toggle"><i class="ti ti-chevron-down" aria-hidden="true"></i><span class="toggle-label">Expand</span></div>
       </div>
 
       <div class="map-card" role="listitem" tabindex="0" aria-expanded="false" onclick="toggleMap(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleMap(this)">
         <div class="map-card-id">Operational response</div>
         <div class="map-card-title">Signature Reduction</div>
-        <div class="map-card-body">Disciplined management of multi-domain observability to preserve operational freedom of maneuver. Focuses on disrupting correlation, shaping exposure, and intervening in the attribution chain. The objective is not invisibility but managed observability — a durable and achievable operational posture under persistent surveillance.</div>
+        <div class="map-card-body">The disciplined management of multi-domain observability to preserve operational freedom of maneuver. The objective is not invisibility but managed observability — and, more fundamentally, the preservation of the person's capacity to act freely. Human judgment and behavioral discipline are the primary mechanisms; technical protocols are subordinate tools.</div>
         <div class="map-card-toggle"><i class="ti ti-chevron-down" aria-hidden="true"></i><span class="toggle-label">Expand</span></div>
       </div>
 
       <div class="map-card" role="listitem" tabindex="0" aria-expanded="false" onclick="toggleMap(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleMap(this)">
         <div class="map-card-id">Application domain</div>
         <div class="map-card-title">Digital Force Protection</div>
-        <div class="map-card-body">Operational practices reducing unnecessary digital exposure through intentional infrastructure design and behavioral discipline. Addresses authorized but operationally consequential digital exposure — signals generated by normal activity within a surveillance environment — rather than unauthorized access. The digital component of integrated signature reduction.</div>
+        <div class="map-card-body">Operational practices reducing unnecessary digital exposure through intentional infrastructure design and behavioral discipline. DFP addresses the signals generated by normal, legitimate activity — the authorized but operationally consequential traces that the surveillance environment converts into enduring records of the person's movements, associations, and intentions.</div>
         <div class="map-card-toggle"><i class="ti ti-chevron-down" aria-hidden="true"></i><span class="toggle-label">Expand</span></div>
       </div>
 
@@ -1079,42 +1082,42 @@ footer {
 
     <div class="gloss-entry">
       <div class="gloss-term">Ubiquitous Technical Surveillance <span class="gloss-abbr">UTS</span></div>
-      <div class="gloss-def">An environment characterized by persistent, cross-domain sensing and data aggregation enabled by networked infrastructure and large-scale retention systems. Under UTS, ordinary participation in modern infrastructure generates observable, durable, and correlatable signals as a structural byproduct — not as the result of targeted collection.</div>
+      <div class="gloss-def">An environment characterized by persistent, cross-domain sensing and data aggregation enabled by networked infrastructure and large-scale retention systems. Under UTS, ordinary participation in modern infrastructure generates observable, durable, and correlatable digital signals as a structural byproduct — not as the result of targeted collection. This environment is not neutral: it embodies choices about what to measure, retain, and optimize, and those choices bear directly on the freedom of the persons who move through it.</div>
     </div>
 
     <div class="gloss-entry">
       <div class="gloss-term">Attribution Pressure</div>
-      <div class="gloss-def">The cumulative operational pressure on identity, relationships, location, and intent generated through cross-domain observability, behavioral exposure, and correlation systems. Attribution pressure is not a single event but a progressive condition that builds through the accumulation of observable signals across time and domain.</div>
+      <div class="gloss-def">The cumulative operational pressure on identity, relationships, location, and intent generated through cross-domain observability, behavioral exposure, and correlation systems. Attribution pressure is not a single event but a progressive condition — the systematic translation of a person into a data profile, stage by stage, through the accumulation of signals that each seem minor but together become determinative.</div>
     </div>
 
     <div class="gloss-entry">
       <div class="gloss-term">Signature Reduction</div>
-      <div class="gloss-def">The disciplined management of multi-domain observability to preserve operational freedom of maneuver and reduce attribution risk. Signature reduction does not seek invisibility — structurally impossible under UTS — but rather disrupts correlation, shapes exposure, and intervenes in the attribution chain at exploitable stages.</div>
+      <div class="gloss-def">The disciplined management of multi-domain observability to preserve operational freedom of maneuver and reduce attribution risk. Signature reduction does not seek invisibility — structurally impossible under UTS — but rather disrupts correlation, shapes exposure, and intervenes in the attribution chain. At its foundation, it is the operational safeguard of the person's irreducibility to data.</div>
     </div>
 
     <div class="gloss-entry">
       <div class="gloss-term">Digital Force Protection <span class="gloss-abbr">DFP</span></div>
-      <div class="gloss-def">The operational application of signature reduction principles within digital environments. DFP addresses authorized but operationally consequential digital exposure — signals generated by normal, legitimate activity — rather than unauthorized access or cybersecurity threats. It encompasses intentional infrastructure design, behavioral discipline, and managed digital observability.</div>
+      <div class="gloss-def">The operational application of signature reduction principles within digital environments. DFP addresses authorized but operationally consequential digital exposure — signals generated by normal, legitimate activity — rather than unauthorized access. It encompasses intentional infrastructure design, behavioral discipline, and managed digital observability, with the person's freedom of action as the value being safeguarded.</div>
     </div>
 
     <div class="gloss-entry">
       <div class="gloss-term">Observability Management</div>
-      <div class="gloss-def">The active, ongoing practice of shaping which signals are generated, retained, and accessible across operating domains. Distinct from both concealment (elimination of signals) and passive exposure (unmanaged signal generation), observability management describes the deliberate middle ground that signature reduction doctrine occupies.</div>
+      <div class="gloss-def">The active, ongoing practice of shaping which signals are generated, retained, and accessible across operating domains. Distinct from both concealment (elimination of signals) and passive exposure (unmanaged signal generation), observability management describes the deliberate, person-centered posture that signature reduction doctrine occupies — neither hiding nor surrendering, but exercising judgment about what to reveal and what to protect.</div>
     </div>
 
     <div class="gloss-entry">
       <div class="gloss-term">Attribution Chain</div>
-      <div class="gloss-def">The sequential process through which raw signals are converted into operational attribution: Observation → Collection → Aggregation → Correlation → Attribution. Each stage represents both a step in the adversary's analytical process and a potential intervention point for the practitioner applying signature reduction doctrine.</div>
+      <div class="gloss-def">The process through which raw signals are converted into operational attribution: Observation &rarr; Collection &rarr; Correlation &rarr; Attribution. Each stage represents both a step in the adversary's analytical process and a potential intervention point. The chain is, in essence, the process by which a person is progressively translated into a data object — and signature reduction is the practice of resisting that translation at each stage.</div>
     </div>
 
     <div class="gloss-entry">
       <div class="gloss-term">Behavioral Discipline</div>
-      <div class="gloss-def">The consistent, deliberate management of patterns in movement, communication, technology use, and routine activity to reduce the predictability and correlatability of behavioral signals across domains. Behavioral discipline is the human mechanism at the center of signature reduction — the means by which doctrine is translated into practice.</div>
+      <div class="gloss-def">The consistent, deliberate management of patterns in movement, communication, technology use, and routine activity to reduce the predictability and correlatability of behavioral signals across domains. Behavioral discipline is the human mechanism at the center of signature reduction — the means by which doctrine is translated into practice, and by which the person exercises agency within a constrained environment rather than surrendering to it.</div>
     </div>
 
     <div class="gloss-entry">
       <div class="gloss-term">Integrated Tradecraft</div>
-      <div class="gloss-def">The combination of human judgment, behavioral discipline, and technical protocols into a coherent operational practice. Integrated tradecraft resists reduction to either pure behavioral practice or pure technical implementation — it holds both in productive tension, with human judgment as the primary and enduring mechanism.</div>
+      <div class="gloss-def">The combination of human judgment, behavioral discipline, and technical protocols into a coherent operational practice. Integrated tradecraft resists reduction to either pure behavioral practice or pure technical implementation — it holds both in productive tension, with human judgment as the primary and enduring mechanism. No automated system can substitute for the discernment of the acting person; integrated tradecraft keeps that person at the center.</div>
     </div>
 
   </div>
@@ -1140,7 +1143,7 @@ footer {
     <div>
       <div class="pub-name">Human Primacy in Irregular Warfare: Signature Reduction and the Preservation of the Acting Person</div>
       <div class="pub-meta">Doctrinal Foundation &middot; May 2026</div>
-      <div class="pub-abstract">Establishes the philosophical and operational foundation for ISR doctrine: the primacy of human judgment over technical systems as the irreducible mechanism of operational effectiveness under persistent surveillance.</div>
+      <div class="pub-abstract">Establishes the philosophical and operational foundation for ISR doctrine: the primacy of human judgment over technical systems as the irreducible mechanism of operational effectiveness — and the preservation of the acting person as the ultimate end of the doctrine.</div>
       <span class="pub-badge available">Available</span>
     </div>
     <div class="pub-links">
@@ -1194,7 +1197,7 @@ footer {
     <div>
       <div class="pub-name">Operating in the Age of Attribution: GRU Lessons for Digital Force Protection</div>
       <div class="pub-meta">Operational Analysis &middot; Small Wars Journal &middot; April 2026</div>
-      <div class="pub-abstract">Analyzes documented GRU operational failures as case studies in progressive digital exposure. Derives applied lessons for digital force protection and behavioral discipline from adversary operational history.</div>
+      <div class="pub-abstract">Analyzes documented GRU operational failures as case studies in the progressive accumulation of digital exposure. Derives applied lessons for digital force protection and behavioral discipline from adversary operational history.</div>
       <span class="pub-badge available">Available</span>
     </div>
     <div class="pub-links">
@@ -1277,11 +1280,8 @@ footer {
 var scrollBtn = document.getElementById('scrollTop');
 function handleScroll() {
   var scrolled = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
-  if (scrolled > 400) {
-    scrollBtn.classList.add('visible');
-  } else {
-    scrollBtn.classList.remove('visible');
-  }
+  if (scrolled > 400) { scrollBtn.classList.add('visible'); }
+  else { scrollBtn.classList.remove('visible'); }
 }
 window.addEventListener('scroll', handleScroll, { passive: true });
 document.addEventListener('scroll', handleScroll, { passive: true });
@@ -1302,9 +1302,8 @@ function closeMobileNav() {
   document.body.style.overflow = '';
   btn.focus();
 }
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeMobileNav();
-});
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMobileNav(); });
+
 function toggleMap(card) {
   var isOpen = card.classList.contains('open');
   card.classList.toggle('open', !isOpen);
@@ -1314,11 +1313,10 @@ function toggleMap(card) {
 }
 
 var chainData = [
-  { body: '<strong>Observation:</strong> Initial signal generation through participation in digital, financial, or physical infrastructure. Every ordinary action creates a detectable trace — a transaction record, a device ping, a login event, a location coordinate. This is the entry point of the attribution chain.', intervention: 'Intervention: Reduce unnecessary signal generation. Limit participation to essential systems where operationally feasible.' },
-  { body: '<strong>Collection:</strong> Signals are retained by platform operators, service providers, and infrastructure owners — often indefinitely and across multiple jurisdictions. Retention policies, legal frameworks, and technical architecture determine what is kept and for how long.', intervention: 'Intervention: Manage which systems hold your data. Prefer ephemeral over persistent infrastructure. Understand retention landscapes across operating domains.' },
-  { body: '<strong>Aggregation:</strong> Retained signals from multiple systems are combined, building a cross-domain data picture that no single system would reveal alone. The financial record, the device log, and the travel record — individually unremarkable — together constitute a behavioral profile.', intervention: 'Intervention: Prevent cross-domain linkage. Maintain distinct operational identities and behaviors across domains to resist aggregation.' },
-  { body: '<strong>Correlation:</strong> Aggregated data is analyzed for patterns, timing relationships, and behavioral consistencies that link activity across time and identity layers. Correlation is where the picture comes into focus — and where human behavioral consistency most directly enables attribution.', intervention: 'Intervention: Disrupt behavioral patterns. Vary timing, routing, procedural sequences, and communication behaviors to degrade pattern reliability.' },
-  { body: '<strong>Attribution:</strong> Correlated patterns are mapped to a specific identity, organization, or operation — the operational exposure event. This is the output of the attribution chain, and the operational threat that signature reduction is designed to prevent or delay.', intervention: 'Intervention: All prior-stage interventions compound here. No single technique suffices at this stage. Integrated tradecraft across the full chain is required for durable attribution resistance.' }
+  { body: '<strong>Observation:</strong> Initial signal generation through participation in digital, financial, or physical infrastructure. Every ordinary action creates a detectable trace — a transaction record, a device ping, a login event, a location coordinate. This is the entry point of the attribution chain: the moment a person\'s activity first becomes data.', intervention: 'Intervention: Reduce unnecessary signal generation. Limit participation to essential systems where operationally feasible.' },
+  { body: '<strong>Collection:</strong> Signals are retained by platform operators, service providers, and infrastructure owners — often indefinitely and across multiple jurisdictions. Retention policies, legal frameworks, and technical architecture determine what is kept and for how long. The person has limited visibility into this accumulation.', intervention: 'Intervention: Manage which systems hold your data. Prefer ephemeral over persistent infrastructure. Understand retention landscapes across operating domains.' },
+  { body: '<strong>Correlation:</strong> Aggregated data is analyzed for patterns, timing relationships, and behavioral consistencies that link activity across time and identity layers. Correlation is where the portrait sharpens — and where human behavioral consistency most directly enables attribution. The person\'s habits become their vulnerability.', intervention: 'Intervention: Disrupt behavioral patterns. Vary timing, routing, procedural sequences, and communication behaviors to degrade pattern reliability.' },
+  { body: '<strong>Attribution:</strong> Correlated patterns are mapped to a specific identity, organization, or operation — the operational exposure event. The person has been fully translated into a data object: identifiable, locatable, and predictable. This is the outcome that signature reduction exists to prevent or delay.', intervention: 'Intervention: All prior-stage interventions compound here. No single technique suffices. Integrated tradecraft — the judgment of the acting person — across the full chain is required for durable attribution resistance.' }
 ];
 
 function selectChain(el, idx) {

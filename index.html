@@ -11,727 +11,320 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 
 <style>
 :root {
-  --accent: #1a3352;
-  --accent-mid: #2a5280;
-  --accent-light: #dde8f3;
-  --accent-pale: #f0f5fb;
-  --ink: #1c2530;
-  --ink-mid: #3d4e5e;
-  --ink-soft: #6b7a8a;
-  --ink-faint: #9aa5b0;
-  --border: rgba(30,51,82,.12);
-  --surface: #f8fafc;
-  --surface-mid: #f0f4f8;
-  --white: #ffffff;
+  /* slate operations-room ground — institutional, legible */
+  --bg: #1b2331;
+  --bg-raised: #212b3b;
+  --bg-card: #283346;
+  --bg-card-hover: #2f3b50;
+
+  --blue: #5b9bd5;
+  --blue-bright: #82b6e6;
+  --blue-dim: #3a5d85;
+  --blue-ghost: rgba(91,155,213,.14);
+  --blue-line: rgba(91,155,213,.3);
+
+  --gold: #e6b15e;
+  --gold-bright: #f4c87e;
+  --gold-ghost: rgba(230,177,94,.14);
+  --gold-line: rgba(230,177,94,.45);
+
+  --red: #e07a6e;
+  --red-ghost: rgba(224,122,110,.14);
+  --red-line: rgba(224,122,110,.45);
+
+  --text: #eef2f7;
+  --text-mid: #c2cbd8;
+  --text-soft: #8b97a8;
+  --text-faint: #5e6b7d;
+
+  --border: rgba(140,160,190,.18);
+  --border-bright: rgba(140,160,190,.34);
+
   --max: 1080px;
   --serif: 'EB Garamond', Georgia, serif;
   --sans: 'DM Sans', system-ui, sans-serif;
   --mono: 'JetBrains Mono', monospace;
   --radius: 6px;
   --radius-lg: 10px;
-  --trans: .18s ease;
+  --trans: .2s cubic-bezier(.4,0,.2,1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
-  background: var(--white);
-  color: var(--ink);
-  font-family: var(--serif);
-  line-height: 1.75;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg); color: var(--text);
+  font-family: var(--serif); line-height: 1.75;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
-::selection { background: var(--accent-light); color: var(--accent); }
-a { color: var(--accent); transition: color var(--trans); }
-a:hover { color: var(--accent-mid); }
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 64px 64px; opacity: .4;
+  mask-image: radial-gradient(ellipse 110% 70% at 50% 0%, #000 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 110% 70% at 50% 0%, #000 0%, transparent 70%);
+}
+body > * { position: relative; z-index: 1; }
+::selection { background: var(--gold-ghost); color: var(--gold-bright); }
+a { color: var(--blue-bright); transition: color var(--trans); }
+a:hover { color: var(--gold-bright); }
 img { max-width: 100%; height: auto; display: block; }
 
-.skip-link {
-  position: absolute; left: -9999px;
-  background: white; padding: 12px 18px;
-  border: 1px solid var(--border); z-index: 9999;
-}
+.skip-link { position: absolute; left: -9999px; background: var(--bg-card); color: var(--text); padding: 12px 18px; border: 1px solid var(--border-bright); z-index: 9999; }
 .skip-link:focus { left: 16px; top: 16px; }
 
 /* ─── NAV ─── */
-nav {
-  position: sticky; top: 0; z-index: 800;
-  background: rgba(255,255,255,.96);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-inner {
-  max-width: var(--max); margin: 0 auto;
-  padding: 0 32px;
-  display: flex; align-items: center; justify-content: space-between;
-  height: 56px;
-}
-.nav-logo {
-  font-family: var(--mono);
-  font-size: .72rem; letter-spacing: .14em;
-  color: var(--accent); text-decoration: none;
-}
+nav { position: sticky; top: 0; z-index: 800; background: rgba(27,35,49,.85); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+.nav-inner { max-width: var(--max); margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 58px; }
+.nav-logo { font-family: var(--mono); font-weight: 500; font-size: .72rem; letter-spacing: .2em; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 9px; }
+.nav-logo::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 8px var(--gold); animation: navpulse 3s ease-in-out infinite; }
+@keyframes navpulse { 0%,100%{opacity:1} 50%{opacity:.4} }
 .nav-links { display: flex; gap: 28px; list-style: none; }
-.nav-links a {
-  font-family: var(--sans); font-size: .78rem;
-  font-weight: 400; letter-spacing: .04em;
-  color: var(--ink-soft); text-decoration: none;
-  transition: color var(--trans);
-}
-.nav-links a:hover { color: var(--accent); }
-
-/* ─── MOBILE NAV ─── */
-.nav-hamburger {
-  display: none;
-  background: none; border: none;
-  cursor: pointer; padding: 8px;
-  color: var(--accent); font-size: 22px;
-  line-height: 1;
-}
-.mobile-nav-overlay {
-  display: none;
-  position: fixed; inset: 0; z-index: 700;
-  background: rgba(255,255,255,.98);
-  backdrop-filter: blur(12px);
-  flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 0;
-}
+.nav-links a { font-family: var(--sans); font-size: .76rem; font-weight: 400; letter-spacing: .04em; color: var(--text-soft); text-decoration: none; transition: color var(--trans); }
+.nav-links a:hover { color: var(--text); }
+.nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--text); font-size: 22px; line-height: 1; }
+.mobile-nav-overlay { display: none; position: fixed; inset: 0; z-index: 700; background: rgba(27,35,49,.98); backdrop-filter: blur(16px); flex-direction: column; align-items: center; justify-content: center; }
 .mobile-nav-overlay.open { display: flex; }
-.mobile-nav-close {
-  position: absolute; top: 16px; right: 20px;
-  background: none; border: none;
-  font-size: 24px; color: var(--ink-soft);
-  cursor: pointer; padding: 8px;
-}
-.mobile-nav-links {
-  list-style: none; text-align: center;
-}
+.mobile-nav-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 24px; color: var(--text-soft); cursor: pointer; padding: 8px; }
+.mobile-nav-links { list-style: none; text-align: center; }
 .mobile-nav-links li { border-bottom: 1px solid var(--border); }
 .mobile-nav-links li:first-child { border-top: 1px solid var(--border); }
-.mobile-nav-links a {
-  display: block; padding: 22px 48px;
-  font-family: var(--sans); font-size: 1.1rem;
-  font-weight: 400; color: var(--ink);
-  text-decoration: none; letter-spacing: .02em;
-  transition: color var(--trans);
-}
-.mobile-nav-links a:hover { color: var(--accent); }
+.mobile-nav-links a { display: block; padding: 22px 48px; font-family: var(--sans); font-size: 1.1rem; font-weight: 400; color: var(--text); text-decoration: none; letter-spacing: .02em; }
+.mobile-nav-links a:hover { color: var(--gold-bright); }
 
 /* ─── HERO ─── */
-.hero {
-  padding: 88px 32px 72px;
-  text-align: center;
-  border-bottom: 1px solid var(--border);
-  position: relative; overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 70% 60% at 50% 0%, var(--accent-pale) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-eyebrow {
-  font-family: var(--mono);
-  font-size: .68rem; letter-spacing: .18em;
-  color: var(--ink-faint); margin-bottom: 28px;
-  text-transform: uppercase; position: relative;
-}
-.hero-logo {
-  position: relative;
-  display: flex; justify-content: center; margin-bottom: 40px;
-}
-.hero-logo img { width: 300px; opacity: .88; }
-.hero h1 {
-  font-family: var(--serif);
-  font-size: 2.5rem; font-weight: 400;
-  color: var(--ink); line-height: 1.35;
-  max-width: 720px; margin: 0 auto 24px;
-  position: relative;
-}
-.hero h1 em { font-style: italic; color: var(--accent-mid); }
-.hero-sub {
-  font-family: var(--sans); font-size: .95rem;
-  color: var(--ink-mid); max-width: 600px;
-  margin: 0 auto; line-height: 1.8;
-  font-weight: 300; position: relative;
-}
+.hero { padding: 96px 32px 80px; text-align: center; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 60% 50% at 50% -5%, var(--blue-ghost) 0%, transparent 70%); }
+.hero-eyebrow { font-family: var(--mono); font-size: .66rem; letter-spacing: .2em; color: var(--text-soft); margin-bottom: 30px; text-transform: uppercase; position: relative; }
+.hero-logo { position: relative; display: flex; justify-content: center; margin-bottom: 40px; }
+.hero-logo img { width: 290px; opacity: .95; filter: drop-shadow(0 0 24px rgba(91,155,213,.3)); }
+.hero h1 { font-family: var(--serif); font-size: 2.6rem; font-weight: 400; color: var(--text); line-height: 1.32; max-width: 740px; margin: 0 auto 24px; position: relative; }
+.hero h1 em { font-style: italic; color: var(--blue-bright); }
+.hero-sub { font-family: var(--sans); font-size: .95rem; color: var(--text-mid); max-width: 580px; margin: 0 auto; line-height: 1.8; font-weight: 300; position: relative; }
 
-/* ─── SIGNAL DIAGRAM ─── */
-.signal-section {
-  max-width: var(--max); margin: 0 auto;
-  padding: 64px 32px 56px;
-  border-bottom: 1px solid var(--border);
-}
-.signal-wrap {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-.signal-header {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 14px 24px;
-  display: flex; align-items: center; gap: 10px;
-}
-.signal-header-label {
-  font-family: var(--mono);
-  font-size: .65rem; letter-spacing: .12em;
-  color: var(--ink-faint); text-transform: uppercase;
-}
-.signal-body { padding: 32px 24px; }
-.signal-nodes {
-  display: flex; align-items: center;
-  justify-content: center; flex-wrap: wrap;
-  gap: 0; margin-bottom: 24px;
-}
-.sig-node {
-  display: flex; flex-direction: column;
-  align-items: center; gap: 8px;
-  padding: 4px 14px;
-}
-.sig-icon {
-  width: 44px; height: 44px; border-radius: 50%;
-  border: 1px solid var(--accent-light);
-  background: var(--accent-pale);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; color: var(--accent-mid);
-  transition: all var(--trans);
-}
-.sig-icon:hover { background: var(--accent-light); transform: translateY(-2px); }
-.sig-label {
-  font-family: var(--mono); font-size: .62rem;
-  letter-spacing: .06em; color: var(--ink-soft);
-}
-.sig-connector {
-  width: 28px; height: 1px;
-  background: var(--accent-light);
-  position: relative; align-self: center; margin-bottom: 22px;
-  flex-shrink: 0;
-}
-.sig-connector::after {
-  content: '';
-  position: absolute; right: -4px; top: -3px;
-  width: 0; height: 0;
-  border-left: 5px solid var(--accent-light);
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
-}
-.signal-result {
-  border-top: 1px solid var(--border);
-  padding-top: 20px;
-  display: flex; align-items: center;
-  justify-content: center; gap: 12px; flex-wrap: wrap;
-}
-.signal-result-label {
-  font-family: var(--sans); font-size: .8rem;
-  color: var(--ink-soft); font-weight: 300;
-}
-.signal-tags { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-.signal-tag {
-  font-family: var(--mono); font-size: .65rem;
-  letter-spacing: .06em; padding: 4px 12px;
-  background: var(--accent-light); color: var(--accent);
-  border-radius: 20px;
-}
-.signal-note {
-  margin-top: 16px;
-  text-align: center;
-  font-family: var(--sans); font-size: .76rem;
-  color: var(--ink-faint); font-weight: 300;
-  font-style: italic;
-}
+/* ─── SHARED ─── */
+.section-wrap { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+.eyebrow { font-family: var(--mono); font-size: .64rem; letter-spacing: .18em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+.section-head h2 { font-family: var(--serif); font-size: 1.55rem; font-weight: 400; color: var(--text); }
+.section-head p { font-family: var(--sans); font-size: .85rem; color: var(--text-soft); margin-top: 8px; font-weight: 300; max-width: 600px; line-height: 1.7; }
 
-/* ─── SHARED SECTION WRAPPER ─── */
-.section-wrap {
-  max-width: var(--max); margin: 0 auto;
-  padding: 0 32px;
-}
+/* ─── SIGNAL LAB ─── */
+.lab-section { padding: 64px 0 72px; border-bottom: 1px solid var(--border); }
+.lab { border: 1px solid var(--border-bright); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-raised); box-shadow: 0 24px 60px -34px rgba(0,0,0,.7); }
+.lab-header { background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 14px 22px; display: flex; align-items: center; gap: 10px; }
+.lab-header-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 8px var(--gold); }
+.lab-header-label { font-family: var(--mono); font-size: .64rem; letter-spacing: .14em; color: var(--text-soft); text-transform: uppercase; }
+.lab-header-hint { margin-left: auto; font-family: var(--mono); font-size: .6rem; letter-spacing: .08em; color: var(--text-faint); text-transform: uppercase; }
 
-/* ─── DOCTRINE JOURNEY ─── */
+.lab-body { display: grid; grid-template-columns: 1.25fr 1fr; }
+.lab-viz { position: relative; border-right: 1px solid var(--border); background:
+  radial-gradient(circle at 50% 42%, rgba(91,155,213,.05), transparent 60%); }
+.lab-viz svg { display: block; width: 100%; height: auto; }
+.lab-panel { padding: 26px 26px 24px; display: flex; flex-direction: column; }
+
+/* svg element styling */
+.viz-domain-hit { cursor: pointer; }
+.viz-ring { fill: none; stroke: var(--blue-line); stroke-width: 1; }
+.viz-node-circle { fill: var(--bg-card); stroke: var(--blue-line); stroke-width: 1.5; transition: all .25s ease; }
+.viz-domain.on .viz-node-circle { fill: var(--gold); stroke: var(--gold-bright); }
+.viz-node-ico { fill: none; stroke: var(--blue); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: stroke .25s ease; }
+.viz-domain.on .viz-node-ico { stroke: var(--bg); }
+.viz-node-label { font-family: var(--mono); font-size: 9px; letter-spacing: .04em; fill: var(--text-soft); text-transform: uppercase; transition: fill .25s ease; }
+.viz-domain.on .viz-node-label { fill: var(--text); }
+.viz-beam { stroke: var(--gold); stroke-width: 1.4; opacity: 0; transition: opacity .4s ease; stroke-dasharray: 3 4; }
+.viz-domain.on .viz-beam { opacity: .7; animation: beamdash 1.2s linear infinite; }
+@keyframes beamdash { to { stroke-dashoffset: -14; } }
+.viz-core-diffuse { fill: none; stroke: var(--text-faint); stroke-width: 1; opacity: .5; transition: all .4s ease; }
+.viz-core-lock { fill: none; stroke: var(--red); stroke-width: 1.5; opacity: 0; transform-origin: center; transition: opacity .4s ease; }
+.viz-core-dot { fill: var(--text-faint); transition: all .4s ease; }
+.lab.resolved .viz-core-dot { fill: var(--red); }
+.lab.resolved .viz-core-lock { opacity: 1; }
+.viz-core-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: .12em; fill: var(--text-faint); text-transform: uppercase; transition: fill .4s ease; }
+.lab.resolved .viz-core-label { fill: var(--red); }
+.viz-crosshair { stroke: var(--red); stroke-width: 1; opacity: 0; transition: opacity .4s ease; }
+.lab.resolved .viz-crosshair { opacity: .55; }
+
+/* panel readout */
+.lab-status { font-family: var(--mono); font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 8px; display:flex; justify-content: space-between; }
+.lab-status b { color: var(--blue-bright); font-weight: 500; }
+.lab-status.high b { color: var(--red); }
+.lab-confidence { font-family: var(--serif); font-size: 2.4rem; line-height: 1; color: var(--blue-bright); margin-bottom: 6px; transition: color .3s; }
+.lab.resolved .lab-confidence { color: var(--red); }
+.lab-conf-sub { font-family: var(--mono); font-size: .62rem; letter-spacing: .06em; color: var(--text-faint); text-transform: uppercase; margin-bottom: 20px; }
+.lab-note { font-family: var(--sans); font-size: .8rem; color: var(--text-soft); font-weight: 300; line-height: 1.6; min-height: 58px; padding-top: 18px; border-top: 1px solid var(--border); }
+.lab-exposes-label { font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; color: var(--text-faint); text-transform: uppercase; margin: 20px 0 10px; }
+.lab-tags { display: flex; gap: 7px; flex-wrap: wrap; }
+.lab-tag { font-family: var(--mono); font-size: .62rem; letter-spacing: .04em; padding: 4px 11px; border-radius: 20px; background: var(--bg-card); color: var(--text-faint); border: 1px solid var(--border); transition: all var(--trans); }
+.lab-tag.lit { background: var(--red-ghost); color: var(--red); border-color: var(--red-line); }
+.lab-reset { margin-top: 22px; align-self: flex-start; font-family: var(--mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text-soft); background: none; border: 1px solid var(--border-bright); padding: 7px 16px; border-radius: 20px; cursor: pointer; transition: all var(--trans); }
+.lab-reset:hover { color: var(--text); border-color: var(--text-soft); }
+
+/* ─── DOCTRINE ─── */
 .journey { padding-bottom: 20px; }
-.journey-intro {
-  padding: 72px 0 48px;
-  border-bottom: 1px solid var(--border);
-}
-.eyebrow {
-  font-family: var(--mono); font-size: .65rem;
-  letter-spacing: .16em; color: var(--ink-faint);
-  text-transform: uppercase; margin-bottom: 16px;
-}
-.journey-intro h2 {
-  font-family: var(--serif); font-size: 1.6rem;
-  font-weight: 400; color: var(--ink);
-  max-width: 560px; line-height: 1.4;
-}
-
-.doctrine-step {
-  display: grid; grid-template-columns: 220px 1fr;
-  gap: 56px; padding: 64px 0;
-  border-bottom: 1px solid var(--border);
-  align-items: start;
-}
+.journey-intro { padding: 76px 0 48px; border-bottom: 1px solid var(--border); }
+.journey-intro h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; color: var(--text); max-width: 600px; line-height: 1.4; }
+.journey-intro .lead { font-family: var(--sans); font-size: .9rem; color: var(--text-soft); font-weight: 300; max-width: 540px; line-height: 1.8; margin-top: 18px; }
+.doctrine-step { display: grid; grid-template-columns: 220px 1fr; gap: 56px; padding: 56px 0; border-bottom: 1px solid var(--border); align-items: start; }
 .doctrine-step:last-child { border-bottom: none; }
-
-.step-num {
-  font-family: var(--mono); font-size: .65rem;
-  letter-spacing: .14em; color: var(--ink-faint);
-  margin-bottom: 10px;
-}
-.step-title {
-  font-family: var(--sans); font-size: 1.05rem;
-  font-weight: 500; color: var(--ink);
-  line-height: 1.35; margin-bottom: 14px;
-}
-.step-rule { width: 28px; height: 2px; background: var(--accent); margin-bottom: 18px; }
-.step-concept {
-  font-family: var(--mono); font-size: .62rem;
-  letter-spacing: .1em; color: var(--accent-mid);
-  text-transform: uppercase;
-}
-
-.step-content p {
-  font-size: 1.05rem; color: var(--ink-mid);
-  line-height: 1.9; margin-bottom: 18px;
-}
+.step-num { font-family: var(--mono); font-size: .64rem; letter-spacing: .14em; color: var(--gold); margin-bottom: 10px; }
+.step-title { font-family: var(--sans); font-size: 1.05rem; font-weight: 500; color: var(--text); line-height: 1.35; margin-bottom: 14px; }
+.step-rule { width: 28px; height: 2px; background: var(--gold); margin-bottom: 18px; }
+.step-concept { font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; color: var(--text-soft); text-transform: uppercase; }
+.step-content p { font-size: 1.05rem; color: var(--text-mid); line-height: 1.9; margin-bottom: 16px; }
 .step-content p:last-child { margin-bottom: 0; }
+.step-content em { color: var(--blue-bright); font-style: italic; }
+.callout { border-left: 2px solid var(--gold); padding: 4px 0 4px 20px; margin: 24px 0; font-size: 1rem; color: var(--text); line-height: 1.8; }
+.step-sub { font-family: var(--sans); font-size: .88rem; font-weight: 500; color: var(--text); margin: 20px 0 6px; }
+.shift-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
+.shift-card { padding: 16px 18px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-card); }
+.shift-card-label { font-family: var(--mono); font-size: .56rem; letter-spacing: .1em; color: var(--text-faint); text-transform: uppercase; margin-bottom: 7px; }
+.shift-card-text { font-family: var(--sans); font-size: .82rem; font-weight: 500; color: var(--text); margin-bottom: 5px; line-height: 1.4; }
+.shift-card-note { font-family: var(--sans); font-size: .76rem; color: var(--text-soft); line-height: 1.55; font-weight: 300; }
 
-.callout {
-  border-left: 2px solid var(--accent);
-  padding: 4px 0 4px 20px;
-  margin: 28px 0;
-  font-size: 1rem; color: var(--ink);
-  line-height: 1.85;
-}
-.step-sub {
-  font-family: var(--sans); font-size: .88rem;
-  font-weight: 500; color: var(--ink);
-  margin: 24px 0 8px;
-}
-
-/* ─── SHIFT CARDS (inside Step 01) ─── */
-.shift-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 12px; margin-top: 28px;
-}
-.shift-card {
-  padding: 16px 18px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-}
-.shift-card-label {
-  font-family: var(--mono); font-size: .58rem;
-  letter-spacing: .1em; color: var(--ink-faint);
-  text-transform: uppercase; margin-bottom: 7px;
-}
-.shift-card-text {
-  font-family: var(--sans); font-size: .82rem;
-  font-weight: 500; color: var(--ink);
-  margin-bottom: 5px; line-height: 1.4;
-}
-.shift-card-note {
-  font-family: var(--sans); font-size: .76rem;
-  color: var(--ink-soft); line-height: 1.55; font-weight: 300;
-}
-
-/* ─── DOCTRINAL VOICE BAR ─── */
-.voice-bar {
-  background: var(--accent);
-  padding: 32px;
-}
-.voice-bar-inner {
-  max-width: var(--max); margin: 0 auto;
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-}
-.voice-statement {
-  font-family: var(--serif);
-  font-size: .95rem; font-style: italic;
-  color: rgba(255,255,255,.85);
-  line-height: 1.75;
-  text-align: center;
-  padding: 0 8px;
-}
-
-/* ─── ATTRIBUTION CHAIN ─── */
-.chain-section { padding: 72px 0; }
-.chain-header { margin-bottom: 36px; }
-.chain-header h2 {
-  font-family: var(--serif); font-size: 1.5rem;
-  font-weight: 400; color: var(--ink);
-}
-.chain-header p {
-  font-family: var(--sans); font-size: .85rem;
-  color: var(--ink-soft); margin-top: 8px; font-weight: 300;
-}
-.chain-steps {
-  display: flex; border: 1px solid var(--border);
-  border-radius: var(--radius-lg); overflow: hidden;
-  margin-bottom: 16px;
-}
-.chain-step {
-  flex: 1; padding: 18px 16px;
-  border-right: 1px solid var(--border);
-  cursor: pointer; transition: background var(--trans);
-  position: relative;
-}
-.chain-step:last-child { border-right: none; }
-.chain-step:hover { background: var(--surface); }
-.chain-step.active { background: var(--accent-pale); }
-.chain-step.active::after {
-  content: '';
-  position: absolute; bottom: -1px; left: 50%;
-  transform: translateX(-50%);
-  width: 0; height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid var(--accent-light);
-}
-.cs-num {
-  font-family: var(--mono); font-size: .58rem;
-  letter-spacing: .1em; color: var(--ink-faint); margin-bottom: 6px;
-}
-.cs-name {
-  font-family: var(--sans); font-size: .82rem;
-  font-weight: 500; color: var(--ink); margin-bottom: 3px;
-}
-.cs-sub {
-  font-family: var(--mono); font-size: .6rem;
-  color: var(--ink-faint); letter-spacing: .04em;
-}
-.chain-step.active .cs-sub { color: var(--accent-mid); }
-.chain-detail {
-  background: var(--accent-pale);
-  border: 1px solid var(--accent-light);
-  border-radius: var(--radius-lg);
-  padding: 20px 24px;
-  font-family: var(--sans); font-size: .85rem;
-  color: var(--ink-mid); line-height: 1.75;
-  min-height: 80px;
-}
-.chain-detail strong { color: var(--ink); font-weight: 500; }
-.chain-intervention {
-  display: inline-block; margin-top: 8px;
-  font-family: var(--mono); font-size: .65rem;
-  letter-spacing: .06em; padding: 3px 10px;
-  background: var(--accent-light); color: var(--accent);
-  border-radius: 20px;
-}
+/* ─── CHAIN ─── */
+.chain-section { background: var(--bg-raised); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 76px 0; }
+.chain-header { margin-bottom: 40px; }
+.chain-pipe { display: flex; align-items: stretch; margin-bottom: 18px; border: 1px solid var(--border-bright); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-card); position: relative; }
+.chain-step { flex: 1; padding: 20px 16px; cursor: pointer; position: relative; transition: background var(--trans); border: none; background: none; text-align: left; color: inherit; font: inherit; }
+.chain-step:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 1px; background: var(--border); z-index: 2; }
+.chain-flow { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--border); overflow: hidden; }
+.chain-flow::before { content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 100%; background: linear-gradient(90deg, transparent, var(--gold), transparent); transform: translateX(-100%); animation: flow 3.2s linear infinite; }
+@keyframes flow { to { transform: translateX(100%); } }
+.chain-step:hover { background: var(--bg-card-hover); }
+.chain-step.active { background: var(--blue-ghost); }
+.chain-step.active::before { content: ''; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 8px solid var(--blue); z-index: 3; }
+.cs-num { font-family: var(--mono); font-size: .58rem; letter-spacing: .1em; color: var(--text-faint); margin-bottom: 6px; }
+.chain-step.active .cs-num { color: var(--gold); }
+.cs-name { font-family: var(--sans); font-size: .82rem; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.cs-sub { font-family: var(--mono); font-size: .58rem; color: var(--text-faint); letter-spacing: .04em; }
+.chain-step.active .cs-sub { color: var(--blue-bright); }
+.chain-detail { background: var(--bg-card); border: 1px solid var(--blue-line); border-radius: var(--radius-lg); padding: 22px 24px; font-family: var(--sans); font-size: .85rem; color: var(--text-mid); line-height: 1.75; min-height: 92px; }
+.chain-detail strong { color: var(--text); font-weight: 500; }
+.chain-intervention { display: inline-block; margin-top: 10px; font-family: var(--mono); font-size: .64rem; letter-spacing: .05em; padding: 4px 11px; background: var(--gold-ghost); color: var(--gold-bright); border-radius: 20px; border: 1px solid var(--gold-line); }
 
 /* ─── PULL QUOTE ─── */
-.pull-section {
-  padding: 80px 32px;
-  text-align: center;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-}
-.pull-quote {
-  font-family: var(--serif);
-  font-size: 1.5rem; font-style: italic;
-  color: var(--ink); line-height: 1.85;
-  max-width: 680px; margin: 0 auto 18px;
-}
-.pull-cite {
-  font-family: var(--mono); font-size: .65rem;
-  letter-spacing: .14em; color: var(--ink-faint);
-  text-transform: uppercase;
-}
+.pull-section { padding: 88px 32px; text-align: center; position: relative; }
+.pull-section::before { content: '“'; position: absolute; top: 24px; left: 50%; transform: translateX(-50%); font-family: var(--serif); font-size: 6rem; color: var(--blue-line); line-height: 1; pointer-events: none; }
+.pull-quote { font-family: var(--serif); font-size: 1.55rem; font-style: italic; color: var(--text); line-height: 1.85; max-width: 700px; margin: 0 auto 18px; position: relative; }
+.pull-cite { font-family: var(--mono); font-size: .64rem; letter-spacing: .14em; color: var(--text-soft); text-transform: uppercase; }
 
-/* ─── DOCTRINE MAP ─── */
-.map-section {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 64px 0;
-}
-.map-header { margin-bottom: 36px; }
-.map-header h2 {
-  font-family: var(--serif); font-size: 1.5rem;
-  font-weight: 400; color: var(--ink);
-}
-.map-header p {
-  font-family: var(--sans); font-size: .85rem;
-  color: var(--ink-soft); margin-top: 8px; font-weight: 300;
-}
-.map-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.map-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 22px 24px;
-  cursor: pointer;
-  transition: border-color var(--trans), box-shadow var(--trans);
-  user-select: none;
-}
-.map-card:hover { border-color: var(--accent-mid); }
-.map-card.open {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-pale);
-}
-.map-card-id {
-  font-family: var(--mono); font-size: .6rem;
-  letter-spacing: .1em; color: var(--ink-faint);
-  margin-bottom: 8px; text-transform: uppercase;
-}
-.map-card-title {
-  font-family: var(--sans); font-size: .92rem;
-  font-weight: 500; color: var(--ink);
-}
-.map-card-body {
-  font-family: var(--sans); font-size: .82rem;
-  color: var(--ink-soft); line-height: 1.65;
-  margin-top: 12px; padding-top: 12px;
-  border-top: 1px solid var(--border);
-  display: none;
-}
-.map-card.open .map-card-body { display: block; }
-.map-card-toggle {
-  display: flex; align-items: center; gap: 4px;
-  margin-top: 12px; font-family: var(--sans);
-  font-size: .75rem; color: var(--ink-faint);
-}
-.map-card.open .map-card-toggle { color: var(--accent-mid); }
-.map-card-toggle i { font-size: 14px; transition: transform .2s; }
-.map-card.open .map-card-toggle i { transform: rotate(180deg); }
+/* ─── EXPOSURE ESTIMATE ─── */
+.assess-section { padding: 76px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.assess { margin-top: 36px; border: 1px solid var(--border-bright); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-raised); }
+.assess-grid { display: grid; grid-template-columns: 1.3fr 1fr; }
+.assess-left { padding: 28px 28px 30px; border-right: 1px solid var(--border); }
+.assess-instruction { font-family: var(--mono); font-size: .62rem; letter-spacing: .1em; color: var(--text-soft); text-transform: uppercase; margin-bottom: 20px; }
+.assess-row { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--border); cursor: pointer; transition: all var(--trans); }
+.assess-row:last-child { border-bottom: none; }
+.assess-check { width: 20px; height: 20px; border-radius: 5px; border: 1px solid var(--border-bright); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--bg); transition: all var(--trans); }
+.assess-row.on .assess-check { background: var(--gold); border-color: var(--gold); }
+.assess-check i { opacity: 0; transition: opacity var(--trans); }
+.assess-row.on .assess-check i { opacity: 1; }
+.assess-text { font-family: var(--sans); font-size: .85rem; color: var(--text-mid); transition: color var(--trans); }
+.assess-row.on .assess-text { color: var(--text); }
+.assess-weight { margin-left: auto; font-family: var(--mono); font-size: .58rem; letter-spacing: .06em; color: var(--text-faint); text-transform: uppercase; flex-shrink: 0; }
+.assess-right { padding: 28px; display: flex; flex-direction: column; justify-content: center; background: var(--bg-card); position: relative; overflow: hidden; }
+.assess-right::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 70% 20%, var(--blue-ghost), transparent 60%); }
+.assess-level-label { font-family: var(--mono); font-size: .62rem; letter-spacing: .12em; color: var(--text-soft); text-transform: uppercase; margin-bottom: 14px; position: relative; }
+.assess-level { font-family: var(--serif); font-size: 2rem; font-weight: 400; color: var(--gold); line-height: 1.1; margin-bottom: 6px; position: relative; transition: color var(--trans); }
+.assess-level.minimal { color: var(--blue-bright); }
+.assess-level.elevated { color: var(--gold); }
+.assess-level.high, .assess-level.severe { color: var(--red); }
+.assess-score { font-family: var(--mono); font-size: .68rem; letter-spacing: .06em; color: var(--text-faint); margin-bottom: 18px; position: relative; }
+.assess-bars { display: flex; gap: 4px; margin-bottom: 18px; position: relative; }
+.assess-bar { flex: 1; height: 28px; border-radius: 3px; background: var(--bg-raised); border: 1px solid var(--border); transition: all .3s; }
+.assess-bar.fill-blue { background: var(--blue); border-color: var(--blue); }
+.assess-bar.fill-gold { background: var(--gold); border-color: var(--gold); }
+.assess-bar.fill-red  { background: var(--red);  border-color: var(--red); }
+.assess-readout-note { font-family: var(--sans); font-size: .76rem; color: var(--text-soft); font-weight: 300; line-height: 1.6; position: relative; min-height: 60px; }
+.assess-foot { padding: 16px 28px; border-top: 1px solid var(--border); font-family: var(--sans); font-size: .72rem; color: var(--text-faint); font-weight: 300; line-height: 1.6; background: var(--bg-raised); }
 
 /* ─── GLOSSARY ─── */
 .glossary-section { padding: 72px 0; border-bottom: 1px solid var(--border); }
-.glossary-header { margin-bottom: 40px; }
-.glossary-header h2 {
-  font-family: var(--serif); font-size: 1.5rem;
-  font-weight: 400; color: var(--ink);
-}
-.glossary-header p {
-  font-family: var(--sans); font-size: .85rem;
-  color: var(--ink-soft); margin-top: 8px; font-weight: 300;
-  max-width: 560px; line-height: 1.7;
-}
-.glossary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-.gloss-entry {
-  padding: 22px 24px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-}
-.gloss-term {
-  font-family: var(--sans); font-size: .88rem;
-  font-weight: 500; color: var(--ink);
-  margin-bottom: 7px;
-  display: flex; align-items: center; gap: 10px;
-}
-.gloss-abbr {
-  font-family: var(--mono); font-size: .58rem;
-  letter-spacing: .1em; color: var(--accent);
-  background: var(--accent-light);
-  padding: 2px 8px; border-radius: 20px;
-  text-transform: uppercase; flex-shrink: 0;
-}
-.gloss-def {
-  font-family: var(--sans); font-size: .82rem;
-  color: var(--ink-soft); line-height: 1.7; font-weight: 300;
-}
+.glossary-header { margin-bottom: 36px; }
+.glossary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.gloss-entry { padding: 24px 26px; background: var(--bg-raised); transition: background var(--trans); }
+.gloss-entry:hover { background: var(--bg-card); }
+.gloss-term { font-family: var(--sans); font-size: .9rem; font-weight: 500; color: var(--text); margin-bottom: 9px; }
+.gloss-def { font-family: var(--sans); font-size: .82rem; color: var(--text-soft); line-height: 1.7; font-weight: 300; }
 
 /* ─── PUBLICATIONS ─── */
 .pubs-section { padding: 72px 0; }
-.pubs-header-row {
-  display: flex; align-items: baseline;
-  justify-content: space-between;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 10px;
-}
-.pubs-title {
-  font-family: var(--serif); font-size: 1.5rem;
-  font-weight: 400; color: var(--ink);
-}
-.pubs-cat {
-  font-family: var(--mono); font-size: .62rem;
-  letter-spacing: .12em; color: var(--ink-faint);
-  text-transform: uppercase;
-}
-.pubs-intro {
-  font-family: var(--sans); font-size: .85rem;
-  color: var(--ink-soft); font-weight: 300;
-  line-height: 1.75; max-width: 680px; margin-bottom: 8px;
-}
-.pubs-archive-note {
-  font-family: var(--mono); font-size: .62rem;
-  letter-spacing: .06em; color: var(--ink-faint);
-  margin-bottom: 36px;
-  display: flex; align-items: center; gap: 8px;
-}
-.pubs-archive-note i { font-size: 13px; }
-.pubs-cat-label {
-  font-family: var(--mono); font-size: .62rem;
-  letter-spacing: .12em; color: var(--ink-faint);
-  text-transform: uppercase;
-  padding: 28px 0 12px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 4px;
-}
-.pub-row {
-  display: grid; grid-template-columns: 96px 1fr auto;
-  gap: 24px; align-items: start;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--border);
-}
+.pubs-header-row { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 16px; border-bottom: 1px solid var(--border); margin-bottom: 10px; }
+.pubs-title { font-family: var(--serif); font-size: 1.55rem; font-weight: 400; color: var(--text); }
+.pubs-cat { font-family: var(--mono); font-size: .62rem; letter-spacing: .12em; color: var(--text-soft); text-transform: uppercase; }
+.pubs-intro { font-family: var(--sans); font-size: .85rem; color: var(--text-soft); font-weight: 300; line-height: 1.75; max-width: 680px; margin-bottom: 8px; }
+.pubs-archive-note { font-family: var(--mono); font-size: .62rem; letter-spacing: .06em; color: var(--text-faint); margin-bottom: 30px; display: flex; align-items: center; gap: 8px; }
+.pubs-archive-note i { font-size: 13px; color: var(--gold); }
+.pubs-cat-label { font-family: var(--mono); font-size: .64rem; letter-spacing: .12em; color: var(--gold); text-transform: uppercase; padding: 30px 0 14px; border-bottom: 1px solid var(--border); margin-bottom: 4px; }
+.pub-row { display: grid; grid-template-columns: 96px 1fr auto; gap: 24px; align-items: start; padding: 22px 0; border-bottom: 1px solid var(--border); }
 .pub-row:last-child { border-bottom: none; }
-.pub-id {
-  font-family: var(--mono); font-size: .62rem;
-  letter-spacing: .07em; color: var(--ink-faint);
-  padding-top: 3px;
-}
-.pub-name {
-  font-family: var(--sans); font-size: .9rem;
-  font-weight: 500; color: var(--ink);
-  margin-bottom: 5px; line-height: 1.4;
-}
-.pub-meta {
-  font-family: var(--sans); font-size: .76rem;
-  color: var(--ink-faint); margin-bottom: 8px;
-}
-.pub-abstract {
-  font-family: var(--sans); font-size: .8rem;
-  color: var(--ink-soft); line-height: 1.65;
-  font-weight: 300; margin-bottom: 8px; max-width: 560px;
-}
-.pub-badge {
-  display: inline-block;
-  font-family: var(--mono); font-size: .58rem;
-  letter-spacing: .06em; padding: 3px 9px;
-  border-radius: 20px; text-transform: uppercase;
-}
-.pub-badge.available { background: var(--accent-light); color: var(--accent); }
-.pub-badge.forthcoming { background: var(--surface-mid); color: var(--ink-faint); }
-.pub-links {
-  display: flex; flex-direction: column;
-  gap: 8px; align-items: flex-end; padding-top: 3px;
-}
-.pub-link {
-  font-family: var(--sans); font-size: .78rem;
-  color: var(--accent-mid); text-decoration: none;
-  white-space: nowrap;
-  display: flex; align-items: center; gap: 4px;
-  transition: color var(--trans);
-}
-.pub-link:hover { color: var(--accent); }
-.pub-link i { font-size: 13px; }
-.pub-link-pdf {
-  font-family: var(--sans); font-size: .72rem;
-  color: var(--ink-soft); text-decoration: none;
-  white-space: nowrap;
-  display: flex; align-items: center; gap: 4px;
-  transition: color var(--trans);
-  border: 1px solid var(--border);
-  padding: 3px 9px; border-radius: 20px;
-}
-.pub-link-pdf:hover { color: var(--accent); border-color: var(--accent-light); }
-.pub-link-pdf i { font-size: 12px; }
+.pub-id { font-family: var(--mono); font-size: .62rem; letter-spacing: .07em; color: var(--text-faint); padding-top: 3px; }
+.pub-name { font-family: var(--sans); font-size: .9rem; font-weight: 500; color: var(--text); margin-bottom: 5px; line-height: 1.4; }
+.pub-meta { font-family: var(--sans); font-size: .76rem; color: var(--text-faint); margin-bottom: 8px; }
+.pub-abstract { font-family: var(--sans); font-size: .8rem; color: var(--text-soft); line-height: 1.65; font-weight: 300; margin-bottom: 8px; max-width: 560px; }
+.pub-badge { display: inline-block; font-family: var(--mono); font-size: .56rem; letter-spacing: .06em; padding: 3px 9px; border-radius: 20px; text-transform: uppercase; }
+.pub-badge.available { background: var(--blue-ghost); color: var(--blue-bright); border: 1px solid var(--blue-line); }
+.pub-badge.forthcoming { background: var(--bg-card); color: var(--text-faint); border: 1px solid var(--border); }
+.pub-links { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; padding-top: 3px; }
+.pub-link { font-family: var(--sans); font-size: .76rem; color: var(--blue-bright); text-decoration: none; white-space: nowrap; display: flex; align-items: center; gap: 5px; transition: all var(--trans); border: 1px solid var(--blue-line); padding: 5px 12px; border-radius: 20px; }
+.pub-link:hover { color: var(--bg); background: var(--gold); border-color: var(--gold); }
+.pub-link i { font-size: 12px; }
+.pub-link-mirror { font-family: var(--sans); font-size: .72rem; color: var(--text-soft); text-decoration: none; white-space: nowrap; display: flex; align-items: center; gap: 4px; transition: color var(--trans); }
+.pub-link-mirror:hover { color: var(--blue-bright); }
+.pub-link-mirror i { font-size: 12px; }
+.pub-link-pending { font-family: var(--mono); font-size: .68rem; letter-spacing: .04em; color: var(--text-faint); white-space: nowrap; display: flex; align-items: center; gap: 5px; }
+.pub-link-pending i { font-size: 12px; }
 
-/* ─── VERSION BAR ─── */
-.version-bar {
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 20px 0;
-}
-.version-bar-inner {
-  max-width: var(--max); margin: 0 auto;
-  padding: 0 32px;
-  display: flex; align-items: center;
-  justify-content: space-between; flex-wrap: wrap; gap: 16px;
-}
+/* ─── VERSION / AFFIL / CONTACT / FOOTER ─── */
+.version-bar { background: var(--bg-raised); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 20px 0; }
+.version-bar-inner { max-width: var(--max); margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
 .version-item { display: flex; align-items: center; gap: 10px; }
-.version-label {
-  font-family: var(--mono); font-size: .6rem;
-  letter-spacing: .12em; color: var(--ink-faint);
-  text-transform: uppercase;
-}
-.version-value {
-  font-family: var(--mono); font-size: .68rem;
-  letter-spacing: .04em; color: var(--ink-mid);
-}
+.version-label { font-family: var(--mono); font-size: .58rem; letter-spacing: .12em; color: var(--text-faint); text-transform: uppercase; }
+.version-value { font-family: var(--mono); font-size: .66rem; letter-spacing: .04em; color: var(--text-mid); }
 .version-divider { width: 1px; height: 20px; background: var(--border); }
-
-/* ─── AFFILIATION + CONTACT ─── */
 .affil-section { padding: 60px 0; border-top: 1px solid var(--border); }
-.affil-section h2 {
-  font-family: var(--serif); font-size: 1.3rem;
-  font-weight: 400; margin-bottom: 18px; color: var(--ink);
-}
-.affil-section p {
-  font-size: 1rem; color: var(--ink-mid);
-  line-height: 1.9; max-width: 680px; margin-bottom: 14px;
-}
+.affil-section h2 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 18px; color: var(--text); }
+.affil-section p { font-size: 1rem; color: var(--text-mid); line-height: 1.9; max-width: 680px; margin-bottom: 14px; }
 .contact-section { padding: 60px 0 80px; border-top: 1px solid var(--border); }
-.contact-section h2 {
-  font-family: var(--serif); font-size: 1.3rem;
-  font-weight: 400; margin-bottom: 20px; color: var(--ink);
-}
-.contact-email {
-  font-family: var(--mono); font-size: .85rem;
-  letter-spacing: .04em; color: var(--accent); margin-bottom: 20px;
-}
-.contact-note {
-  font-family: var(--sans); font-size: .82rem;
-  color: var(--ink-soft); line-height: 1.75;
-  max-width: 560px; margin-bottom: 10px; font-weight: 300;
-}
+.contact-section h2 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 20px; color: var(--text); }
+.contact-email { font-family: var(--mono); font-size: .85rem; letter-spacing: .04em; color: var(--blue-bright); margin-bottom: 20px; }
+.contact-note { font-family: var(--sans); font-size: .82rem; color: var(--text-soft); line-height: 1.75; max-width: 560px; margin-bottom: 10px; font-weight: 300; }
+footer { border-top: 1px solid var(--border); background: var(--bg-raised); padding: 32px; }
+.footer-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.footer-left { font-family: var(--sans); font-size: .76rem; color: var(--text-soft); font-weight: 300; display: flex; align-items: center; gap: 10px; }
+.footer-left img { width: 16px; opacity: .55; }
+.footer-right { font-family: var(--mono); font-size: .64rem; letter-spacing: .08em; color: var(--text-faint); }
 
-/* ─── FOOTER ─── */
-footer {
-  border-top: 1px solid var(--border);
-  background: var(--surface); padding: 32px;
-}
-.footer-inner {
-  max-width: var(--max); margin: 0 auto;
-  display: flex; align-items: center;
-  justify-content: space-between; flex-wrap: wrap; gap: 12px;
-}
-.footer-left {
-  font-family: var(--sans); font-size: .76rem;
-  color: var(--ink-soft); font-weight: 300;
-  display: flex; align-items: center; gap: 10px;
-}
-.footer-left img { width: 16px; opacity: .5; }
-.footer-right {
-  font-family: var(--mono); font-size: .65rem;
-  letter-spacing: .08em; color: var(--ink-faint);
-}
-
-/* ─── ANIMATIONS ─── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+/* ─── ANIM ─── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 .hero-eyebrow { animation: fadeUp .5s ease both; }
-.hero-logo    { animation: fadeUp .5s ease .1s both; }
-.hero h1      { animation: fadeUp .5s ease .2s both; }
-.hero-sub     { animation: fadeUp .5s ease .3s both; }
+.hero-logo { animation: fadeUp .5s ease .1s both; }
+.hero h1 { animation: fadeUp .5s ease .2s both; }
+.hero-sub { animation: fadeUp .5s ease .3s both; }
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 900px) {
-  .voice-bar-inner { grid-template-columns: 1fr 1fr; gap: 20px; }
-  .shift-grid { grid-template-columns: 1fr; }
-}
 @media (max-width: 820px) {
-  .hero h1 { font-size: 1.9rem; }
-  .doctrine-step { grid-template-columns: 1fr; gap: 28px; padding: 48px 0; }
-  .step-sidebar { display: flex; gap: 16px; align-items: flex-start; }
+  .hero h1 { font-size: 1.95rem; }
+  .lab-body { grid-template-columns: 1fr; }
+  .lab-viz { border-right: none; border-bottom: 1px solid var(--border); }
+  .doctrine-step { grid-template-columns: 1fr; gap: 24px; padding: 44px 0; }
+  .step-sidebar { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
   .step-rule { display: none; }
-  .map-grid { grid-template-columns: 1fr; }
-  .chain-steps { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .chain-step { min-width: 110px; }
+  .shift-grid { grid-template-columns: 1fr; }
+  .assess-grid { grid-template-columns: 1fr; }
+  .assess-left { border-right: none; border-bottom: 1px solid var(--border); }
+  .chain-pipe { overflow-x: auto; }
+  .chain-step { min-width: 120px; }
   .pub-row { grid-template-columns: 72px 1fr; }
-  .pub-links { display: flex; flex-direction: row; flex-wrap: wrap; gap: 10px; padding-top: 10px; align-items: center; }
-  .pub-link { font-size: .8rem; }
-  .pub-link-pdf { font-size: .76rem; }
+  .pub-links { flex-direction: row; flex-wrap: wrap; gap: 10px; padding-top: 10px; align-items: center; }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; align-items: center; justify-content: center; }
   .glossary-grid { grid-template-columns: 1fr; }
@@ -739,55 +332,28 @@ footer {
   .version-divider { display: none; }
 }
 @media (max-width: 540px) {
-  .hero { padding: 64px 20px 56px; }
-  .hero-logo img { width: 220px; }
+  .hero { padding: 70px 20px 60px; }
+  .hero-logo img { width: 210px; }
   .section-wrap { padding: 0 20px; }
-  .signal-section { padding: 40px 20px 36px; }
-  .signal-body { padding: 24px 16px; }
-  .signal-nodes { gap: 4px 0; }
-  .sig-node { padding: 4px 8px; }
-  .sig-icon { width: 38px; height: 38px; font-size: 15px; }
-  .sig-connector { width: 14px; }
-  .sig-label { font-size: .55rem; }
-  .pull-section { padding: 56px 20px; }
-  .pull-quote { font-size: 1.2rem; }
+  .lab-section { padding: 44px 0 52px; }
+  .lab-panel { padding: 22px 18px; }
+  .pull-section { padding: 60px 20px; }
+  .pull-quote { font-size: 1.25rem; }
   footer { padding: 24px 20px; }
-  .voice-bar { padding: 24px 20px; }
-  .voice-bar-inner { grid-template-columns: 1fr; gap: 16px; }
   .version-bar-inner { padding: 0 20px; }
-  .chain-steps { border-radius: var(--radius); }
-  .chain-step { min-width: 90px; padding: 14px 10px; }
-  .cs-name { font-size: .75rem; }
+  .chain-step { min-width: 100px; padding: 16px 12px; }
   .pub-row { grid-template-columns: 1fr; gap: 12px; }
   .pub-id { display: none; }
-  .pub-links { flex-direction: row; }
+  .pub-links { flex-direction: row; align-items: center; }
 }
-@media print {
-  nav { position: static; }
-  .map-card-body { display: block !important; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-}
+@media print { nav { position: static; } body::before { display: none; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .chain-flow::before, .viz-beam { animation: none !important; } }
 
-/* ─── SCROLL TO TOP ─── */
-.scroll-top {
-  position: fixed; bottom: 28px; right: 28px;
-  z-index: 9000;
-  width: 42px; height: 42px;
-  background: var(--accent); color: white;
-  border: none; border-radius: 50%;
-  cursor: pointer; font-size: 18px;
-  display: none;
-  align-items: center; justify-content: center;
-  box-shadow: 0 2px 12px rgba(26,51,82,.3);
-  transition: background var(--trans);
-}
+/* ─── SCROLL TOP ─── */
+.scroll-top { position: fixed; bottom: 28px; right: 28px; z-index: 9000; width: 42px; height: 42px; background: var(--blue); color: var(--bg); border: none; border-radius: 50%; cursor: pointer; font-size: 18px; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 18px rgba(0,0,0,.45); transition: all var(--trans); }
 .scroll-top.visible { display: flex; }
-.scroll-top:hover { background: var(--accent-mid); }
-@media (max-width: 540px) {
-  .scroll-top { bottom: 20px; right: 16px; width: 38px; height: 38px; font-size: 16px; }
-}
+.scroll-top:hover { background: var(--gold); }
+@media (max-width: 540px) { .scroll-top { bottom: 20px; right: 16px; width: 38px; height: 38px; font-size: 16px; } }
 </style>
 </head>
 
@@ -795,110 +361,136 @@ footer {
 
 <a href="#main" class="skip-link">Skip to main content</a>
 
-<!-- ─── NAV ─── -->
 <nav aria-label="Primary navigation">
   <div class="nav-inner">
     <a href="#" class="nav-logo">ISR</a>
     <ul class="nav-links" role="list">
+      <li><a href="#signal">Signal Lab</a></li>
       <li><a href="#doctrine">Doctrine</a></li>
       <li><a href="#chain">Attribution Chain</a></li>
-      <li><a href="#glossary">Glossary</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false" onclick="openMobileNav()">
-      <i class="ti ti-menu-2" aria-hidden="true"></i>
-    </button>
+    <button class="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false" onclick="openMobileNav()"><i class="ti ti-menu-2" aria-hidden="true"></i></button>
   </div>
 </nav>
 
-<!-- ─── MOBILE NAV OVERLAY ─── -->
 <div class="mobile-nav-overlay" id="mobileNav" role="dialog" aria-modal="true" aria-label="Navigation menu">
-  <button class="mobile-nav-close" aria-label="Close navigation menu" onclick="closeMobileNav()">
-    <i class="ti ti-x" aria-hidden="true"></i>
-  </button>
+  <button class="mobile-nav-close" aria-label="Close navigation menu" onclick="closeMobileNav()"><i class="ti ti-x" aria-hidden="true"></i></button>
   <ul class="mobile-nav-links" role="list">
+    <li><a href="#signal" onclick="closeMobileNav()">Signal Lab</a></li>
     <li><a href="#doctrine" onclick="closeMobileNav()">Doctrine</a></li>
     <li><a href="#chain" onclick="closeMobileNav()">Attribution Chain</a></li>
-    <li><a href="#glossary" onclick="closeMobileNav()">Glossary</a></li>
     <li><a href="#publications" onclick="closeMobileNav()">Publications</a></li>
     <li><a href="#contact" onclick="closeMobileNav()">Contact</a></li>
   </ul>
 </div>
 
-<!-- ─── HERO ─── -->
 <header class="hero">
   <div class="hero-eyebrow">Institute for Signature Reduction</div>
-  <div class="hero-logo">
-    <img src="images/logo.png" alt="Institute for Signature Reduction emblem">
-  </div>
-  <h1>Your routine behavior is observable.<br><em>This is the operating environment.</em></h1>
-  <p class="hero-sub">Every financial transaction, device connection, platform interaction, and movement through physical space generates a signal. These data accumulate, correlate, and attribute. This is the surveillance economy. </p>
+  <div class="hero-logo"><img src="images/logo.png" alt="Institute for Signature Reduction emblem"></div>
+  <h1>Your digital life is observable.<br><em>This is the operating environment.</em></h1>
+  <p class="hero-sub">Irregular warfare doctrine for operators under ubiquitous technical surveillance — where every transaction, device, and movement attributes.</p>
 </header>
 
 <main id="main">
 
-<!-- ─── SIGNAL DIAGRAM ─── -->
-<section class="signal-section" aria-label="Cross-domain signal aggregation">
-  <div class="signal-wrap">
-    <div class="signal-header">
-      <i class="ti ti-activity" style="font-size:14px;color:var(--ink-faint)" aria-hidden="true"></i>
-      <span class="signal-header-label">Ordinary activity — cross-domain signal aggregation</span>
+<!-- ─── SIGNAL LAB ─── -->
+<section class="section-wrap lab-section" id="signal" aria-labelledby="signal-heading">
+  <div class="section-head" style="margin-bottom:28px">
+    <div class="eyebrow">Demonstration</div>
+    <h2 id="signal-heading">Watch a signature resolve</h2>
+    <p>Ubiquitous technical surveillance senses across five domains. No single one identifies an operator — but as they corroborate, attribution converges on a single resolved identity. Activate the domains to see it.</p>
+  </div>
+
+  <div class="lab" id="lab" role="group" aria-label="Signal triangulation demonstration">
+    <div class="lab-header">
+      <span class="lab-header-dot" aria-hidden="true"></span>
+      <span class="lab-header-label">Cross-domain signatures</span>
+      <span class="lab-header-hint">Activate a domain</span>
     </div>
-    <div class="signal-body">
-      <div class="signal-nodes" role="list" aria-label="Sensing domains">
-        <div class="sig-node" role="listitem">
-          <div class="sig-icon"><i class="ti ti-credit-card" aria-hidden="true"></i></div>
-          <span class="sig-label">Financial</span>
-        </div>
-        <div class="sig-connector" aria-hidden="true"></div>
-        <div class="sig-node" role="listitem">
-          <div class="sig-icon"><i class="ti ti-device-mobile" aria-hidden="true"></i></div>
-          <span class="sig-label">Mobile</span>
-        </div>
-        <div class="sig-connector" aria-hidden="true"></div>
-        <div class="sig-node" role="listitem">
-          <div class="sig-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
-          <span class="sig-label">Location</span>
-        </div>
-        <div class="sig-connector" aria-hidden="true"></div>
-        <div class="sig-node" role="listitem">
-          <div class="sig-icon"><i class="ti ti-database" aria-hidden="true"></i></div>
-          <span class="sig-label">Administrative</span>
-        </div>
-        <div class="sig-connector" aria-hidden="true"></div>
-        <div class="sig-node" role="listitem">
-          <div class="sig-icon"><i class="ti ti-world" aria-hidden="true"></i></div>
-          <span class="sig-label">Online</span>
-        </div>
-        <div class="sig-connector" aria-hidden="true"></div>
-        <div class="sig-node" role="listitem">
-          <div class="sig-icon"><i class="ti ti-camera" aria-hidden="true"></i></div>
-          <span class="sig-label">Visual</span>
-        </div>
+    <div class="lab-body">
+      <div class="lab-viz">
+        <svg viewBox="0 0 600 430" role="img" aria-label="Five sensing domains converging on a central identity node">
+          <!-- guide ring -->
+          <circle class="viz-ring" cx="300" cy="215" r="165"></circle>
+          <circle class="viz-ring" cx="300" cy="215" r="110" style="opacity:.4"></circle>
+
+          <!-- beams (domain -> center). Drawn first so nodes sit on top -->
+          <line class="viz-beam" data-beam="0" x1="145" y1="271" x2="300" y2="215"></line>
+          <line class="viz-beam" data-beam="1" x1="165" y1="120" x2="300" y2="215"></line>
+          <line class="viz-beam" data-beam="2" x1="300" y1="50"  x2="300" y2="215"></line>
+          <line class="viz-beam" data-beam="3" x1="435" y1="120" x2="300" y2="215"></line>
+          <line class="viz-beam" data-beam="4" x1="455" y1="271" x2="300" y2="215"></line>
+
+          <!-- core -->
+          <circle class="viz-core-diffuse" id="coreDiffuse" cx="300" cy="215" r="34"></circle>
+          <circle class="viz-core-lock" cx="300" cy="215" r="22"></circle>
+          <line class="viz-crosshair" x1="300" y1="181" x2="300" y2="249"></line>
+          <line class="viz-crosshair" x1="266" y1="215" x2="334" y2="215"></line>
+          <circle class="viz-core-dot" cx="300" cy="215" r="5"></circle>
+          <text class="viz-core-label" x="300" y="270" text-anchor="middle" id="coreLabel">Unresolved</text>
+
+          <!-- domain nodes -->
+          <g class="viz-domain" data-i="0">
+            <circle class="viz-node-circle" cx="145" cy="271" r="26"></circle>
+            <g class="viz-node-ico" transform="translate(145,271)"><circle cx="0" cy="0" r="9"></circle><path d="M-9 0 H9 M0 -9 V9 M-6.4 -4.6 C-2 -1.5 2 -1.5 6.4 -4.6 M-6.4 4.6 C-2 1.5 2 1.5 6.4 4.6"></path></g>
+            <text class="viz-node-label" x="145" y="312" text-anchor="middle">Online</text>
+            <circle class="viz-domain-hit" cx="145" cy="271" r="34" fill="transparent" tabindex="0" role="button" aria-label="Toggle Online domain"></circle>
+          </g>
+          <g class="viz-domain" data-i="1">
+            <circle class="viz-node-circle" cx="165" cy="120" r="26"></circle>
+            <g class="viz-node-ico" transform="translate(165,120)"><rect x="-5" y="-9" width="10" height="18" rx="2"></rect><line x1="-2" y1="6" x2="2" y2="6"></line></g>
+            <text class="viz-node-label" x="165" y="161" text-anchor="middle">Electronic</text>
+            <circle class="viz-domain-hit" cx="165" cy="120" r="34" fill="transparent" tabindex="0" role="button" aria-label="Toggle Electronic domain"></circle>
+          </g>
+          <g class="viz-domain" data-i="2">
+            <circle class="viz-node-circle" cx="300" cy="50" r="26"></circle>
+            <g class="viz-node-ico" transform="translate(300,50)"><rect x="-10" y="-7" width="20" height="14" rx="2"></rect><line x1="-10" y1="-2" x2="10" y2="-2"></line></g>
+            <text class="viz-node-label" x="300" y="91" text-anchor="middle">Financial</text>
+            <circle class="viz-domain-hit" cx="300" cy="50" r="34" fill="transparent" tabindex="0" role="button" aria-label="Toggle Financial domain"></circle>
+          </g>
+          <g class="viz-domain" data-i="3">
+            <circle class="viz-node-circle" cx="435" cy="120" r="26"></circle>
+            <g class="viz-node-ico" transform="translate(435,120)"><path d="M0 9 C0 9 7 1 7 -3 A7 7 0 1 0 -7 -3 C-7 1 0 9 0 9 Z"></path><circle cx="0" cy="-3" r="2.4"></circle></g>
+            <text class="viz-node-label" x="435" y="161" text-anchor="middle">Travel</text>
+            <circle class="viz-domain-hit" cx="435" cy="120" r="34" fill="transparent" tabindex="0" role="button" aria-label="Toggle Travel domain"></circle>
+          </g>
+          <g class="viz-domain" data-i="4">
+            <circle class="viz-node-circle" cx="455" cy="271" r="26"></circle>
+            <g class="viz-node-ico" transform="translate(455,271)"><path d="M-10 0 C-6 -6 6 -6 10 0 C6 6 -6 6 -10 0 Z"></path><circle cx="0" cy="0" r="3"></circle></g>
+            <text class="viz-node-label" x="455" y="312" text-anchor="middle">Physical-Visual</text>
+            <circle class="viz-domain-hit" cx="455" cy="271" r="34" fill="transparent" tabindex="0" role="button" aria-label="Toggle Physical-Visual domain"></circle>
+          </g>
+        </svg>
       </div>
-      <div class="signal-result">
-        <span class="signal-result-label">These aggregated data expose your:</span>
-        <div class="signal-tags">
-          <span class="signal-tag">Identity</span>
-          <span class="signal-tag">Relationships</span>
-          <span class="signal-tag">Location</span>
-          <span class="signal-tag">Intent</span>
+
+      <div class="lab-panel">
+        <div class="lab-status" id="labStatus"><span>Attribution</span><b id="labStatusVal">Unresolved</b></div>
+        <div class="lab-confidence" id="labConf">0%</div>
+        <div class="lab-conf-sub">Attribution confidence</div>
+        <div class="lab-exposes-label">Now exposed</div>
+        <div class="lab-tags">
+          <span class="lab-tag" data-exp="identity">Identity</span>
+          <span class="lab-tag" data-exp="relationships">Relationships</span>
+          <span class="lab-tag" data-exp="location">Location</span>
+          <span class="lab-tag" data-exp="intent">Intent</span>
         </div>
+        <div class="lab-note" id="labNote">No domains active. The operator is unobserved across these systems.</div>
+        <button class="lab-reset" onclick="resetLab()">Reset</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── DOCTRINE JOURNEY ─── -->
+<!-- ─── DOCTRINE ─── -->
 <section class="section-wrap journey" id="doctrine" aria-labelledby="doctrine-heading">
-
   <div class="journey-intro">
     <div class="eyebrow">Doctrinal framework</div>
-    <h2 id="doctrine-heading">ISR doctrine addresses the operational problem that emerges for operators from ubiquitous technical surveillance.</h2>
+    <h2 id="doctrine-heading">We champion operator judgment in the surveillance economy.</h2>
+    <p class="lead">ISR doctrine addresses the operational problem ubiquitous technical surveillance creates for operators — and holds operator judgment as the irreducible response.</p>
   </div>
 
-  <!-- 01 — Environment -->
   <article class="doctrine-step">
     <div class="step-sidebar">
       <div class="step-num">01 / Environment</div>
@@ -907,36 +499,19 @@ footer {
       <div class="step-concept">UTS</div>
     </div>
     <div class="step-content">
-      <p>For most of modern history, operational concealment was achievable through primarily physical disciplines. Identity was mostly anchored to easily obtained or forged documents. Movement, communication, and association could be managed through tradecraft that predated the digital age. The environment rewarded patience and intentional physical movement.</p>
-      <p>That environment no longer exists. Technological advancements have produced a convergence of networked infrastructure, mass data retention, and machine-speed analytical capability that has fundamentally altered the relationship between ordinary human activity and observable data. What was once ephemeral — a conversation, a payment, a location — is now persistent, stored, and searchable.</p>
-      <div class="callout">The assumption that digital activity is private unless specifically targeted has been replaced by a structural reality: participation in modern technology infrastructure generates an enduring record, accessible to a widening range of commercial or governmental actors, before any targeting decision is made.</div>
-      <p>We describe this as <em>ubiquitous technical surveillance</em> — persistent sensing and data aggregation across online, electronic, financial, travel, and physical-visual systems, enabled by digital infrastructure and mass data retention. It is not a temporary condition, but the very environment. ISR doctrine is built on a clear-eyed recognition of that reality.</p>
+      <p>Operational concealment once rested on physical discipline alone. Identity was primarily anchored to documents that could be obtained or forged. Movement and association were managed through tradecraft that predated the digital age.</p>
+      <p>That environment is gone. Networked infrastructure, mass data retention, and machine-speed analysis have made the ephemeral — a conversation, a payment, a location — persistent, stored, and searchable.</p>
+      <div class="callout">Participation in modern digital infrastructure generates an enduring record, accessible to a widening range of commercial and governmental actors, before any targeting decision is made.</div>
+      <p>This is <em>ubiquitous technical surveillance</em>: persistent sensing across online, electronic, financial, travel, and physical-visual systems. This is not a temporary condition but the environment itself.</p>
       <div class="shift-grid">
-        <div class="shift-card">
-          <div class="shift-card-label">Old assumption</div>
-          <div class="shift-card-text">Concealment through physical discipline</div>
-          <div class="shift-card-note">Physical tradecraft was sufficient. Digital activity was secondary.</div>
-        </div>
-        <div class="shift-card">
-          <div class="shift-card-label">Current reality</div>
-          <div class="shift-card-text">Digital behavior is the primary exposure surface</div>
-          <div class="shift-card-note">Every device, platform, and transaction generates persistent, correlatable data.</div>
-        </div>
-        <div class="shift-card">
-          <div class="shift-card-label">Old assumption</div>
-          <div class="shift-card-text">Attribution requires active, targeted collection</div>
-          <div class="shift-card-note">Surveillance was expensive. Targeting preceded collection.</div>
-        </div>
-        <div class="shift-card">
-          <div class="shift-card-label">Current reality</div>
-          <div class="shift-card-text">Collection precedes targeting</div>
-          <div class="shift-card-note">Data is retained first, then attributed. You are a data profile before you are a target.</div>
-        </div>
+        <div class="shift-card"><div class="shift-card-label">Old assumption</div><div class="shift-card-text">Concealment through physical discipline</div><div class="shift-card-note">Physical tradecraft was sufficient; digital activity secondary.</div></div>
+        <div class="shift-card"><div class="shift-card-label">Current reality</div><div class="shift-card-text">Digital behavior is the primary exposure surface</div><div class="shift-card-note">Every device, platform, and transaction generates correlatable data.</div></div>
+        <div class="shift-card"><div class="shift-card-label">Old assumption</div><div class="shift-card-text">Attribution requires targeted collection</div><div class="shift-card-note">Surveillance was expensive; targeting preceded collection.</div></div>
+        <div class="shift-card"><div class="shift-card-label">Current reality</div><div class="shift-card-text">Collection precedes targeting</div><div class="shift-card-note">Data is retained first, attributed later. You are a profile before you are a target.</div></div>
       </div>
     </div>
   </article>
 
-  <!-- 02 — Attribution Pressure -->
   <article class="doctrine-step">
     <div class="step-sidebar">
       <div class="step-num">02 / Problem</div>
@@ -945,15 +520,13 @@ footer {
       <div class="step-concept">Cross-domain observability</div>
     </div>
     <div class="step-content">
-      <p>The operational problem generated by this environment is <em>attribution pressure</em> — the cumulative pressure on an operator's identity, relationships, location, and intent that builds through cross-domain observability, behavioral exposure, and correlation systems.</p>
-      <div class="step-sub">Attribution is not an event. It is a systemic process.</div>
-      <p>It emerges progressively: observation, collection, correlation, and ultimately attribution to an operator, organization, or operation. Each stage builds on the last. Minor behavioral signals — individually unremarkable — combine across systems to constitute a detailed operational signature. The operator is translated, stage by stage, into data.</p>
-      <p>This progressive structure is operationally significant. The practitioner is not managing a single point of vulnerability but a chain of exposures distributed across time, domain, and systems. It also means the chain can be disrupted at multiple stages, through deliberate operator intervention.</p>
-      <div class="callout">When an operator is reduced to a correlatable profile, decisions about their freedom for maneuver, access, and force protection can be delegated to automated systems that bear no responsibility for operational consequences. The threat is not merely operational exposure but the loss of the operator's freedom for action.</div>
+      <p>The problem this environment creates is <em>attribution pressure</em> — the cumulative pressure on an operator's identity, relationships, location, and intent, built through cross-domain observability and correlation.</p>
+      <div class="step-sub">Attribution is not an event. It is a process.</div>
+      <p>It builds in stages: observation, collection, correlation, attribution. Minor signals — each unremarkable — combine across systems into a detailed operational signature. The operator is exposed, signal by signal, through his data.</p>
+      <div class="callout">Because attribution is a chain of exposures rather than a single point, it can be disrupted at multiple stages, through deliberate operator intervention. The threat is not merely exposure, but the loss of the operator's freedom for action.</div>
     </div>
   </article>
 
-  <!-- 03 — Signature Reduction -->
   <article class="doctrine-step">
     <div class="step-sidebar">
       <div class="step-num">03 / Response</div>
@@ -962,14 +535,12 @@ footer {
       <div class="step-concept">Observability management</div>
     </div>
     <div class="step-content">
-      <p><em>Signature reduction</em> is the doctrinal response. Rather than attempting to achieve anonymity — which the environment makes impossible — the doctrine focuses on disrupting correlation, shaping exposure, and intervening within the attribution chain.</p>
-      <p>The goal is preserved operator freedom for action, not invisibility. This distinction is operationally significant: it orients practitioners toward managing and shaping observable signatures rather than eliminating them, which is both more achievable and more durable as a practice.</p>
-      <div class="callout">Signature reduction is, at its core, the safeguarding of personal operational judgment under attribution pressure.</div>
-      <p>Operator judgment, behavioral discipline, and integrated tradecraft are the primary mechanisms. Technical protocols are enabling tools, not substitutes. No automated system can replace the acting human operator at the center of operational practice.</p>
+      <p><em>Signature reduction</em> is the response. Anonymity is impossible under UTS; the discipline instead disrupts correlation, shapes exposure, and intervenes in the attribution chain.</p>
+      <p>The goal is preserved freedom for action and operational maneuver, not invisibility. Signature reduction manages observable signatures rather than eliminating them, which is both achievable and durable.</p>
+      <div class="callout">Operator judgment, behavioral discipline, and integrated tradecraft are the primary mechanisms. Technical protocols enable; they do not substitute. No automated system can replace the acting operator at the center of operational reality.</div>
     </div>
   </article>
 
-  <!-- 04 — Digital Force Protection -->
   <article class="doctrine-step">
     <div class="step-sidebar">
       <div class="step-num">04 / Application</div>
@@ -978,191 +549,145 @@ footer {
       <div class="step-concept">Digital domain doctrine</div>
     </div>
     <div class="step-content">
-      <p><em>Digital Force Protection</em> operationalizes signature reduction within digital environments. It encompasses intentional digital infrastructure design, managed observability, attribution disruption, and signature shaping in the digital domain.</p>
-      <p>DFP is not synonymous with cybersecurity, though it intersects with it. Where cybersecurity addresses unauthorized access, DFP addresses normal, routine behavior inherently observable across surveillance ecosystems. The threat is not the adversary who breaks in, but the infrastructure that, by design, translates ordinary operator technology use into enduring, correlatable data.</p>
-      <div class="step-sub">The question is not whether you are being hacked, but rather how your routine behavior is being exploited.</div>
-      <p>Consistent application of DFP principles reduces the attributable digital surface area available to surveillance ecosystems, preserving operational maneuverability across the full spectrum of operational activity. DFP is primarily a human discipline, not a technical one.</p>
+      <p><em>Digital Force Protection</em> applies signature reduction in the digital domain: intentional infrastructure design, managed signatures, and attribution disruption.</p>
+      <p>DFP intersects cybersecurity and OPSEC but is not the same. Cybersecurity addresses unauthorized access; OPSEC protects information. DFP addresses operator digital behavior that surveillance ecosystems otherwise expose.</p>
+      <div class="step-sub">The question is not whether you are being hacked, but how your digital behavior is being exploited.</div>
+      <p>Applied consistently, DFP minimizes the attributable surface available to surveillance systems, preserving operational maneuver across the full spectrum of operations. It is primarily a human discipline, not a technical one.</p>
     </div>
   </article>
-
 </section>
 
-<!-- ─── VOICE BAR ─── -->
-<div class="voice-bar" aria-label="Core doctrinal principles">
-  <div class="voice-bar-inner">
-    <p class="voice-statement">"Attribution is not an event. It is a process — and every process has intervention points for human judgment."</p>
-    <p class="voice-statement">"The loss of operational initiative lies not only in its immediate impact but also its long-term impression on the operator himself as an acting person."</p>
-     <p class="voice-statement">"The operator cannot be reduced to a data profile. Signature reduction is the safeguard of operational judgment."</p>
-  </div>
-</div>
-
-<!-- ─── ATTRIBUTION CHAIN ─── -->
-<section class="section-wrap chain-section" id="chain" aria-labelledby="chain-heading">
-  <div class="chain-header">
-    <div class="eyebrow">Operational analysis</div>
-    <h2 id="chain-heading">The attribution chain</h2>
-    <p>Attribution emerges progressively across four stages. Each presents distinct intervention opportunities where human judgment and behavioral discipline can disrupt the process. Select a stage to examine it and its corresponding intervention.</p>
-  </div>
-  <div class="chain-steps" role="tablist" aria-label="Attribution chain stages">
-    <div class="chain-step active" role="tab" tabindex="0" aria-selected="true" aria-controls="chain-detail" onclick="selectChain(this,0)" onkeydown="chainKeyNav(event,0)">
-      <div class="cs-num">01</div><div class="cs-name">Observation</div><div class="cs-sub">Signal generation</div>
+<!-- ─── CHAIN ─── -->
+<section class="chain-section" id="chain" aria-labelledby="chain-heading">
+  <div class="section-wrap">
+    <div class="chain-header section-head">
+      <div class="eyebrow">Operational analysis</div>
+      <h2 id="chain-heading">The attribution chain</h2>
+      <p>Attribution flows through four stages — left to right, each building on the last. Select a stage to examine it and the operator's intervention point.</p>
     </div>
-    <div class="chain-step" role="tab" tabindex="-1" aria-selected="false" aria-controls="chain-detail" onclick="selectChain(this,1)" onkeydown="chainKeyNav(event,1)">
-      <div class="cs-num">02</div><div class="cs-name">Collection</div><div class="cs-sub">Retention</div>
+    <div class="chain-pipe" role="tablist" aria-label="Attribution chain stages">
+      <button class="chain-step active" role="tab" tabindex="0" aria-selected="true" aria-controls="chain-detail" onclick="selectChain(this,0)" onkeydown="chainKeyNav(event,0)"><div class="cs-num">01</div><div class="cs-name">Observation</div><div class="cs-sub">Signal generation</div></button>
+      <button class="chain-step" role="tab" tabindex="-1" aria-selected="false" aria-controls="chain-detail" onclick="selectChain(this,1)" onkeydown="chainKeyNav(event,1)"><div class="cs-num">02</div><div class="cs-name">Collection</div><div class="cs-sub">Retention</div></button>
+      <button class="chain-step" role="tab" tabindex="-1" aria-selected="false" aria-controls="chain-detail" onclick="selectChain(this,2)" onkeydown="chainKeyNav(event,2)"><div class="cs-num">03</div><div class="cs-name">Correlation</div><div class="cs-sub">Pattern linkage</div></button>
+      <button class="chain-step" role="tab" tabindex="-1" aria-selected="false" aria-controls="chain-detail" onclick="selectChain(this,3)" onkeydown="chainKeyNav(event,3)"><div class="cs-num">04</div><div class="cs-name">Attribution</div><div class="cs-sub">Identity exposure</div></button>
+      <div class="chain-flow" aria-hidden="true"></div>
     </div>
-    <div class="chain-step" role="tab" tabindex="-1" aria-selected="false" aria-controls="chain-detail" onclick="selectChain(this,2)" onkeydown="chainKeyNav(event,2)">
-      <div class="cs-num">03</div><div class="cs-name">Correlation</div><div class="cs-sub">Pattern linkage</div>
+    <div class="chain-detail" id="chain-detail" role="tabpanel">
+      <span id="chain-text"><strong>Observation:</strong> Signal generation through participation in digital, financial, or physical infrastructure. Every ordinary action leaves a signature — a transaction, a device ping, a login, a coordinate. The moment an operator's activity first becomes data.</span>
+      <br><span class="chain-intervention">Intervention: Reduce unnecessary signal generation. Limit participation to essential systems.</span>
     </div>
-    <div class="chain-step" role="tab" tabindex="-1" aria-selected="false" aria-controls="chain-detail" onclick="selectChain(this,3)" onkeydown="chainKeyNav(event,3)">
-      <div class="cs-num">04</div><div class="cs-name">Attribution</div><div class="cs-sub">Identity exposure</div>
-    </div>
-  </div>
-  <div class="chain-detail" id="chain-detail" role="tabpanel">
-    <span id="chain-text"><strong>Observation:</strong> Initial signal generation through participation in digital, financial, or physical infrastructure. Every ordinary action creates a detectable trace — a transaction record, a device ping, a login event, a location coordinate. This is the entry point of the attribution chain: the moment a person's activity first becomes data.</span>
-    <br><span class="chain-intervention">Intervention: Reduce unnecessary signal generation. Limit participation to essential systems where operationally feasible.</span>
   </div>
 </section>
 
 <!-- ─── PULL QUOTE ─── -->
 <div class="pull-section" aria-label="Key doctrinal statement">
-  <p class="pull-quote">"The real danger of the surveillance economy is not only operational exposure, but digital colonization which deforms the operator's freedom to act."</p>
+  <p class="pull-quote">The real danger of the surveillance economy is not only operational exposure, but digital colonization which deforms the operator's freedom for action.</p>
   <p class="pull-cite">ISR Doctrinal Framework</p>
 </div>
 
-<!-- ─── DOCTRINE MAP ─── -->
-<section class="map-section" aria-labelledby="map-heading">
-  <div class="section-wrap">
-    <div class="map-header">
-      <div class="eyebrow">Doctrine structure</div>
-      <h2 id="map-heading">Four interlocking components</h2>
-      <p>Select any component to expand its operational definition.</p>
+<!-- ─── EXPOSURE ESTIMATE ─── -->
+<section class="section-wrap assess-section" id="assess" aria-labelledby="assess-heading">
+  <div class="section-head">
+    <div class="eyebrow">Applied estimate</div>
+    <h2 id="assess-heading">Operational exposure estimate</h2>
+    <p>A doctrinal illustration, not a diagnostic. Mark the practices that describe an operator's behavior; observe how the attributable surface compounds across domains.</p>
+  </div>
+
+  <div class="assess" role="group" aria-label="Operational exposure estimate">
+    <div class="assess-grid">
+      <div class="assess-left" id="assessList">
+        <div class="assess-instruction">Select all that apply</div>
+        <div class="assess-row" data-w="2" onclick="toggleAssess(this)" role="checkbox" aria-checked="false" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAssess(this);}">
+          <span class="assess-check"><i class="ti ti-check"></i></span>
+          <span class="assess-text">Personal devices carried on operations</span>
+          <span class="assess-weight">High</span>
+        </div>
+        <div class="assess-row" data-w="2" onclick="toggleAssess(this)" role="checkbox" aria-checked="false" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAssess(this);}">
+          <span class="assess-check"><i class="ti ti-check"></i></span>
+          <span class="assess-text">Reused identifiers across online accounts</span>
+          <span class="assess-weight">High</span>
+        </div>
+        <div class="assess-row" data-w="2" onclick="toggleAssess(this)" role="checkbox" aria-checked="false" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAssess(this);}">
+          <span class="assess-check"><i class="ti ti-check"></i></span>
+          <span class="assess-text">Communications sent without end-to-end encryption</span>
+          <span class="assess-weight">High</span>
+        </div>
+        <div class="assess-row" data-w="2" onclick="toggleAssess(this)" role="checkbox" aria-checked="false" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAssess(this);}">
+          <span class="assess-check"><i class="ti ti-check"></i></span>
+          <span class="assess-text">Local internet or Wi-Fi accessed without a VPN or travel router</span>
+          <span class="assess-weight">High</span>
+        </div>
+        <div class="assess-row" data-w="1" onclick="toggleAssess(this)" role="checkbox" aria-checked="false" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAssess(this);}">
+          <span class="assess-check"><i class="ti ti-check"></i></span>
+          <span class="assess-text">Predictable movement and timing patterns</span>
+          <span class="assess-weight">Med</span>
+        </div>
+      </div>
+      <div class="assess-right">
+        <div class="assess-level-label">Estimated attributable surface</div>
+        <div class="assess-level minimal" id="assessLevel">Minimal</div>
+        <div class="assess-score" id="assessScore">0 / 9 exposure weight</div>
+        <div class="assess-bars" id="assessBars" aria-hidden="true"></div>
+        <div class="assess-readout-note" id="assessNote">No practices selected. Across these domains, the operator presents no correlatable surface.</div>
+      </div>
     </div>
-    <div class="map-grid" role="list">
-
-      <div class="map-card open" role="listitem" tabindex="0" aria-expanded="true" onclick="toggleMap(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleMap(this)">
-        <div class="map-card-id">Environment</div>
-        <div class="map-card-title">Ubiquitous Technical Surveillance</div>
-        <div class="map-card-body">Persistent sensing across online, electronic, financial, travel, and visual-physical systems. Ordinary activity generates enduring observable signals that may be retained, aggregated, and correlated across time and jurisdiction. This environment is not neutral: it reflects the logic of those who built and operate it, and it exerts systematic pressure on the freedom of persons within it.</div>
-        <div class="map-card-toggle"><i class="ti ti-chevron-down" aria-hidden="true"></i><span class="toggle-label">Collapse</span></div>
-      </div>
-
-      <div class="map-card" role="listitem" tabindex="0" aria-expanded="false" onclick="toggleMap(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleMap(this)">
-        <div class="map-card-id">Operational problem</div>
-        <div class="map-card-title">Attribution Pressure</div>
-        <div class="map-card-body">Cumulative pressure on identity, relationships, location, and intent generated through cross-domain observability and surveillance ecosystems. Attribution does not require a single compromise — it emerges through the progressive accumulation of behavioral signals that reduce a person to data, each signal minor but collectively determinative of their exposure.</div>
-        <div class="map-card-toggle"><i class="ti ti-chevron-down" aria-hidden="true"></i><span class="toggle-label">Expand</span></div>
-      </div>
-
-      <div class="map-card" role="listitem" tabindex="0" aria-expanded="false" onclick="toggleMap(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleMap(this)">
-        <div class="map-card-id">Operational response</div>
-        <div class="map-card-title">Signature Reduction</div>
-        <div class="map-card-body">The disciplined management of multi-domain observability to preserve operational freedom of maneuver. The objective is not invisibility but managed observability — and, more fundamentally, the preservation of the person's capacity to act freely. Human judgment and behavioral discipline are the primary mechanisms; technical protocols are subordinate tools.</div>
-        <div class="map-card-toggle"><i class="ti ti-chevron-down" aria-hidden="true"></i><span class="toggle-label">Expand</span></div>
-      </div>
-
-      <div class="map-card" role="listitem" tabindex="0" aria-expanded="false" onclick="toggleMap(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleMap(this)">
-        <div class="map-card-id">Application domain</div>
-        <div class="map-card-title">Digital Force Protection</div>
-        <div class="map-card-body">Operational practices reducing unnecessary digital exposure through intentional infrastructure design and behavioral discipline. DFP addresses the signals generated by normal, legitimate activity — the authorized but operationally consequential traces that the surveillance environment converts into enduring records of the person's movements, associations, and intentions.</div>
-        <div class="map-card-toggle"><i class="ti ti-chevron-down" aria-hidden="true"></i><span class="toggle-label">Expand</span></div>
-      </div>
-
+    <div class="assess-foot">
+      Weighting is illustrative of doctrinal principle, not a measurement of any individual. The lesson is structural: exposures compound across domains faster than any single practice suggests — and each is an intervention point.
     </div>
   </div>
 </section>
 
 <!-- ─── GLOSSARY ─── -->
 <section class="section-wrap glossary-section" id="glossary" aria-labelledby="glossary-heading">
-  <div class="glossary-header">
+  <div class="glossary-header section-head">
     <div class="eyebrow">Terminology</div>
-    <h2 id="glossary-heading">Doctrinal glossary</h2>
-    <p>ISR doctrine depends on precise definitions. These terms carry specific operational meanings within the ISR framework and should be understood as defined here rather than in their general usage.</p>
+    <h2 id="glossary-heading">Additional terms</h2>
+    <p>Supporting concepts that recur across the doctrine. The four core components are defined in the framework above.</p>
   </div>
   <div class="glossary-grid">
-
-    <div class="gloss-entry">
-      <div class="gloss-term">Ubiquitous Technical Surveillance <span class="gloss-abbr">UTS</span></div>
-      <div class="gloss-def">An environment characterized by persistent, cross-domain sensing and data aggregation enabled by networked infrastructure and large-scale retention systems. Under UTS, ordinary participation in modern infrastructure generates observable, durable, and correlatable digital signals as a structural byproduct — not as the result of targeted collection. This environment is not neutral: it embodies choices about what to measure, retain, and optimize, and those choices bear directly on the freedom of the persons who move through it.</div>
-    </div>
-
-    <div class="gloss-entry">
-      <div class="gloss-term">Attribution Pressure</div>
-      <div class="gloss-def">The cumulative operational pressure on identity, relationships, location, and intent generated through cross-domain observability, behavioral exposure, and correlation systems. Attribution pressure is not a single event but a progressive condition — the systematic translation of a person into a data profile, stage by stage, through the accumulation of signals that each seem minor but together become determinative.</div>
-    </div>
-
-    <div class="gloss-entry">
-      <div class="gloss-term">Signature Reduction</div>
-      <div class="gloss-def">The disciplined management of multi-domain observability to preserve operational freedom of maneuver and reduce attribution risk. Signature reduction does not seek invisibility — structurally impossible under UTS — but rather disrupts correlation, shapes exposure, and intervenes in the attribution chain. At its foundation, it is the operational safeguard of the person's irreducibility to data.</div>
-    </div>
-
-    <div class="gloss-entry">
-      <div class="gloss-term">Digital Force Protection <span class="gloss-abbr">DFP</span></div>
-      <div class="gloss-def">The operational application of signature reduction principles within digital environments. DFP addresses authorized but operationally consequential digital exposure — signals generated by normal, legitimate activity — rather than unauthorized access. It encompasses intentional infrastructure design, behavioral discipline, and managed digital observability, with the person's freedom of action as the value being safeguarded.</div>
-    </div>
-
-    <div class="gloss-entry">
-      <div class="gloss-term">Observability Management</div>
-      <div class="gloss-def">The active, ongoing practice of shaping which signals are generated, retained, and accessible across operating domains. Distinct from both concealment (elimination of signals) and passive exposure (unmanaged signal generation), observability management describes the deliberate, person-centered posture that signature reduction doctrine occupies — neither hiding nor surrendering, but exercising judgment about what to reveal and what to protect.</div>
-    </div>
-
-    <div class="gloss-entry">
-      <div class="gloss-term">Attribution Chain</div>
-      <div class="gloss-def">The process through which raw signals are converted into operational attribution: Observation &rarr; Collection &rarr; Correlation &rarr; Attribution. Each stage represents both a step in the adversary's analytical process and a potential intervention point. The chain is, in essence, the process by which a person is progressively translated into a data object — and signature reduction is the practice of resisting that translation at each stage.</div>
-    </div>
-
-    <div class="gloss-entry">
-      <div class="gloss-term">Behavioral Discipline</div>
-      <div class="gloss-def">The consistent, deliberate management of patterns in movement, communication, technology use, and routine activity to reduce the predictability and correlatability of behavioral signals across domains. Behavioral discipline is the human mechanism at the center of signature reduction — the means by which doctrine is translated into practice, and by which the person exercises agency within a constrained environment rather than surrendering to it.</div>
-    </div>
-
-    <div class="gloss-entry">
-      <div class="gloss-term">Integrated Tradecraft</div>
-      <div class="gloss-def">The combination of human judgment, behavioral discipline, and technical protocols into a coherent operational practice. Integrated tradecraft resists reduction to either pure behavioral practice or pure technical implementation — it holds both in productive tension, with human judgment as the primary and enduring mechanism. No automated system can substitute for the discernment of the acting person; integrated tradecraft keeps that person at the center.</div>
-    </div>
-
+    <div class="gloss-entry"><div class="gloss-term">Attribution Chain</div><div class="gloss-def">The process converting raw signals into a signature for attribution: observation, collection, correlation, attribution. Each stage is both a step in the adversary's analysis and an intervention point — the sequence by which an operator is progressively translated into a data object, and which signature reduction exists to disrupt.</div></div>
+    <div class="gloss-entry"><div class="gloss-term">Signature Management</div><div class="gloss-def">The ongoing practice of shaping which signals are generated, retained, and accessible across domains. Distinct from concealment (eliminating signals) and passive exposure (unmanaged signal generation): a deliberate, operator-centered discipline — neither hiding nor surrendering, but exercising judgment over what to reveal and what to protect.</div></div>
+    <div class="gloss-entry"><div class="gloss-term">Behavioral Discipline</div><div class="gloss-def">Consistent, deliberate management of patterns in movement, communication, and technology use to reduce the predictability and correlatability of signals. The human mechanism at the center of signature reduction — how doctrine becomes practice, and how the operator exercises agency within a constrained environment.</div></div>
+    <div class="gloss-entry"><div class="gloss-term">Integrated Tradecraft</div><div class="gloss-def">Operator judgment, behavioral discipline, and technical protocols combined into one practice, held in tension with human judgment as the primary and enduring mechanism. No automated system can substitute for the discernment of the acting operator; integrated tradecraft keeps that operator at the center.</div></div>
   </div>
 </section>
 
 <!-- ─── PUBLICATIONS ─── -->
 <section class="section-wrap pubs-section" id="publications" aria-labelledby="pubs-heading">
-
   <div class="pubs-header-row">
     <h2 class="pubs-title" id="pubs-heading">Publications</h2>
     <span class="pubs-cat">ISR corpus</span>
   </div>
-  <p class="pubs-intro">ISR publications constitute an ongoing body of doctrine and analytical research. Individual documents are components within a developing doctrinal framework and should be read in sequence where possible.</p>
+  <p class="pubs-intro">Foundational doctrine defines the framework; applied studies extend it to specific operational cases. Read in sequence where possible.</p>
   <p class="pubs-archive-note">
     <i class="ti ti-lock" aria-hidden="true"></i>
-    ISR maintains canonical PDF copies of all publications independent of any journal host. All documents remain accessible via the PDF editions below regardless of external hosting availability.
+    Archive PDF is the primary, durable source of record; journal links are secondary mirrors and may change.
   </p>
 
-  <div class="pubs-cat-label">Foundational doctrine</div>
+  <div class="pubs-cat-label">Foundational Doctrine</div>
 
   <div class="pub-row">
     <div class="pub-id">ISR-DOC-001</div>
     <div>
       <div class="pub-name">Human Primacy in Irregular Warfare: Signature Reduction and the Preservation of the Acting Person</div>
-      <div class="pub-meta">Doctrinal Foundation &middot; May 2026</div>
-      <div class="pub-abstract">Establishes the philosophical and operational foundation for ISR doctrine: the primacy of human judgment over technical systems as the irreducible mechanism of operational effectiveness — and the preservation of the acting person as the ultimate end of the doctrine.</div>
+      <div class="pub-meta">Doctrinal Foundation</div>
+      <div class="pub-abstract">The primacy of human judgment over technical systems as the irreducible mechanism of operational effectiveness — and the preservation of the acting person as the doctrine's ultimate end.</div>
       <span class="pub-badge available">Available</span>
     </div>
-    <div class="pub-links">
-      <a class="pub-link" href="publications/isr-doc-001.pdf" target="_blank" rel="noopener noreferrer">View <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
-      <a class="pub-link-pdf" href="publications/isr-doc-001.pdf" download><i class="ti ti-download" aria-hidden="true"></i> PDF</a>
-    </div>
+    <div class="pub-links"><a class="pub-link" href="publications/isr-doc-001.pdf" download><i class="ti ti-file-text" aria-hidden="true"></i> ISR Archive PDF</a></div>
   </div>
 
   <div class="pub-row">
     <div class="pub-id">ISR-DOC-002</div>
     <div>
       <div class="pub-name">Ubiquitous Technical Surveillance and the Renewal of Irregular Warfare</div>
-      <div class="pub-meta">Foundational Doctrine &middot; Small Wars Journal &middot; February 2026</div>
-      <div class="pub-abstract">Defines UTS as a structural shift in the conditions of warfare. Examines how it alters assumptions surrounding concealment, maneuver, and operational exposure, and argues for the renewal of irregular warfare doctrine on this basis.</div>
+      <div class="pub-meta">Doctrinal Foundation</div>
+      <div class="pub-abstract">Defines UTS as a structural shift in the conditions of warfare, and argues for the renewal of irregular warfare doctrine on that basis.</div>
       <span class="pub-badge available">Available</span>
     </div>
     <div class="pub-links">
-      <a class="pub-link" href="https://smallwarsjournal.com/2026/02/13/ubiquitous-technical-surveillance/" target="_blank" rel="noopener noreferrer">View <i class="ti ti-external-link" aria-hidden="true"></i></a>
-      <a class="pub-link-pdf" href="publications/isr-doc-002.pdf" download><i class="ti ti-download" aria-hidden="true"></i> PDF</a>
+      <a class="pub-link" href="publications/isr-doc-002.pdf" download><i class="ti ti-file-text" aria-hidden="true"></i> ISR Archive PDF</a>
+      <a class="pub-link-mirror" href="https://smallwarsjournal.com/2026/02/13/ubiquitous-technical-surveillance/" target="_blank" rel="noopener noreferrer">Journal mirror <i class="ti ti-external-link" aria-hidden="true"></i></a>
     </div>
   </div>
 
@@ -1170,13 +695,13 @@ footer {
     <div class="pub-id">ISR-DOC-003</div>
     <div>
       <div class="pub-name">Counteroffensive Irregular Warfare: A Doctrine of Signature Reduction for Strategic Competition</div>
-      <div class="pub-meta">Foundational Doctrine &middot; Small Wars Journal &middot; December 2025</div>
-      <div class="pub-abstract">Presents signature reduction as a counteroffensive posture that preserves freedom of maneuver through the disciplined management of attribution pressure, observability, and behavioral exposure across domains.</div>
+      <div class="pub-meta">Doctrinal Foundation</div>
+      <div class="pub-abstract">Signature reduction as a counteroffensive posture preserving freedom of maneuver through disciplined management of attribution pressure across domains.</div>
       <span class="pub-badge available">Available</span>
     </div>
     <div class="pub-links">
-      <a class="pub-link" href="https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/" target="_blank" rel="noopener noreferrer">View <i class="ti ti-external-link" aria-hidden="true"></i></a>
-      <a class="pub-link-pdf" href="publications/isr-doc-003.pdf" download><i class="ti ti-download" aria-hidden="true"></i> PDF</a>
+      <a class="pub-link" href="publications/isr-doc-003.pdf" download><i class="ti ti-file-text" aria-hidden="true"></i> ISR Archive PDF</a>
+      <a class="pub-link-mirror" href="https://smallwarsjournal.com/2025/12/22/counteroffensive-irregular-warfare/" target="_blank" rel="noopener noreferrer">Journal mirror <i class="ti ti-external-link" aria-hidden="true"></i></a>
     </div>
   </div>
 
@@ -1184,25 +709,26 @@ footer {
     <div class="pub-id">ISR-DOC-004</div>
     <div>
       <div class="pub-name">From Signature Reduction to Digital Force Protection</div>
-      <div class="pub-meta">Doctrinal Development &middot; Joint Special Operations University &middot; Forthcoming</div>
-      <div class="pub-abstract">Operationalizes signature reduction within digital environments through intentional infrastructure design, managed observability, and attribution disruption. Defines Digital Force Protection as distinct doctrine addressing authorized exposure rather than unauthorized access.</div>
+      <div class="pub-meta">Doctrinal Development &middot; Joint Special Operations University</div>
+      <div class="pub-abstract">Operationalizes signature reduction in digital environments and defines Digital Force Protection as distinct doctrine addressing authorized exposure rather than unauthorized access.</div>
       <span class="pub-badge forthcoming">Forthcoming</span>
     </div>
+    <div class="pub-links"><span class="pub-link-pending"><i class="ti ti-clock" aria-hidden="true"></i> In preparation</span></div>
   </div>
 
-  <div class="pubs-cat-label">Applied operational analysis</div>
+  <div class="pubs-cat-label">Applied Operational Studies</div>
 
   <div class="pub-row">
     <div class="pub-id">ISR-DOC-005</div>
     <div>
       <div class="pub-name">Operating in the Age of Attribution: GRU Lessons for Digital Force Protection</div>
-      <div class="pub-meta">Operational Analysis &middot; Small Wars Journal &middot; April 2026</div>
-      <div class="pub-abstract">Analyzes documented GRU operational failures as case studies in the progressive accumulation of digital exposure. Derives applied lessons for digital force protection and behavioral discipline from adversary operational history.</div>
+      <div class="pub-meta">Operational Analysis &middot; April 2026</div>
+      <div class="pub-abstract">Documented GRU operational failures as case studies in the progressive accumulation of digital exposure, with applied lessons drawn from adversary history.</div>
       <span class="pub-badge available">Available</span>
     </div>
     <div class="pub-links">
-      <a class="pub-link" href="https://smallwarsjournal.com/2026/04/15/gru-lessons-for-digital-force-protection/" target="_blank" rel="noopener noreferrer">View <i class="ti ti-external-link" aria-hidden="true"></i></a>
-      <a class="pub-link-pdf" href="publications/isr-doc-005.pdf" download><i class="ti ti-download" aria-hidden="true"></i> PDF</a>
+      <a class="pub-link" href="publications/isr-doc-005.pdf" download><i class="ti ti-file-text" aria-hidden="true"></i> ISR Archive PDF</a>
+      <a class="pub-link-mirror" href="https://smallwarsjournal.com/2026/04/15/gru-lessons-for-digital-force-protection/" target="_blank" rel="noopener noreferrer">Journal mirror <i class="ti ti-external-link" aria-hidden="true"></i></a>
     </div>
   </div>
 
@@ -1210,156 +736,172 @@ footer {
     <div class="pub-id">ISR-DOC-006</div>
     <div>
       <div class="pub-name">Intervening in the Attribution Chain: Signature Reduction Under Cross-Domain Surveillance</div>
-      <div class="pub-meta">Operational Doctrine &middot; Small Wars Journal &middot; May 2026</div>
-      <div class="pub-abstract">Develops the attribution chain model as an operational framework for intervention — identifying techniques at each stage from observation through attribution and integrating them into coherent doctrine for practitioners operating under cross-domain surveillance.</div>
+      <div class="pub-meta">Operational Doctrine &middot; May 2026</div>
+      <div class="pub-abstract">Develops the attribution chain as an operational framework for intervention — techniques at each stage, integrated into coherent doctrine for practitioners under cross-domain surveillance.</div>
       <span class="pub-badge available">Available</span>
     </div>
     <div class="pub-links">
-        <a class="pub-link" href="https://smallwarsjournal.com/2026/05/29/intervening-in-the-attribution-chain/"
-        target="_blank" rel="noopener noreferrer">View <i class="ti ti-external-link" aria-hidden="true"></i></a>
-        <a class="pub-link-pdf" href="publications/isr-doc-006.pdf"
-        download><i class="ti ti-download" aria-hidden="true"></i> PDF</a> 
+      <a class="pub-link" href="publications/isr-doc-006.pdf" download><i class="ti ti-file-text" aria-hidden="true"></i> ISR Archive PDF</a>
+      <a class="pub-link-mirror" href="https://smallwarsjournal.com/2026/05/29/intervening-in-the-attribution-chain/" target="_blank" rel="noopener noreferrer">Journal mirror <i class="ti ti-external-link" aria-hidden="true"></i></a>
     </div>
   </div>
-
 </section>
 
-<!-- ─── VERSION BAR ─── -->
+<!-- ─── VERSION ─── -->
 <div class="version-bar" aria-label="Doctrine version information">
   <div class="version-bar-inner">
-    <div class="version-item">
-      <span class="version-label">Doctrine version</span>
-      <span class="version-value">1.2</span>
-    </div>
+    <div class="version-item"><span class="version-label">Doctrine version</span><span class="version-value">1.2</span></div>
     <div class="version-divider" aria-hidden="true"></div>
-    <div class="version-item">
-      <span class="version-label">Last updated</span>
-      <span class="version-value">May 2026</span>
-    </div>
+    <div class="version-item"><span class="version-label">Last updated</span><span class="version-value">June 2026</span></div>
     <div class="version-divider" aria-hidden="true"></div>
-    <div class="version-item">
-      <span class="version-label">Corpus</span>
-      <span class="version-value">6 documents (5 available, 1 forthcoming)</span>
-    </div>
+    <div class="version-item"><span class="version-label">Corpus</span><span class="version-value">6 documents (5 available, 1 forthcoming)</span></div>
     <div class="version-divider" aria-hidden="true"></div>
-    <div class="version-item">
-      <span class="version-label">Cite as</span>
-      <span class="version-value">ISR-DOC-[number], Institute for Signature Reduction</span>
-    </div>
+    <div class="version-item"><span class="version-label">Cite as</span><span class="version-value">ISR-DOC-[number], Institute for Signature Reduction</span></div>
   </div>
 </div>
 
-<!-- ─── AFFILIATION ─── -->
 <section class="section-wrap affil-section" aria-labelledby="affil-heading">
   <h2 id="affil-heading">Institutional continuity</h2>
   <p>ISR maintains ongoing doctrinal development, publication stewardship, and educational continuity through independent research, practitioner engagement, and long-term operational study.</p>
   <p>Applied operational instruction derived from ISR doctrine is delivered independently through the <a href="https://www.signaturemanagementunit.com" target="_blank" rel="noopener noreferrer">Signature Management Unit (SMU)</a>, a practitioner-led organization providing facilitated instruction and operational education programs for government partners.</p>
 </section>
 
-<!-- ─── CONTACT ─── -->
 <section class="section-wrap contact-section" id="contact" aria-labelledby="contact-heading">
   <h2 id="contact-heading">Contact</h2>
   <p class="contact-email">info&#64;isrprivacymatters.org</p>
-  <p class="contact-note">The Institute for Signature Reduction maintains a selective engagement posture in support of its mission. Correspondence is reviewed periodically. Not all inquiries will receive a reply.</p>
-  <p class="contact-note">ISR publications may be cited using ISR document identifiers (e.g., ISR-DOC-001, Institute for Signature Reduction, 2026).</p>
+  <p class="contact-note">ISR maintains a selective engagement posture in support of its mission. Correspondence is reviewed periodically; not all inquiries will receive a reply.</p>
+  <p class="contact-note">Publications may be cited using ISR document identifiers (e.g., ISR-DOC-001, Institute for Signature Reduction, 2026).</p>
   <p class="contact-note">ISR is an independent United States 501(c)(3) nonprofit charitable organization.</p>
 </section>
 
 </main>
 
-<!-- ─── FOOTER ─── -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-left">
-      <img src="images/us_flag.png" alt="United States flag">
-      &copy; Institute for Signature Reduction
-    </div>
+    <div class="footer-left"><img src="images/us_flag.png" alt="United States flag">&copy; Institute for Signature Reduction</div>
     <div class="footer-right">Official ISR Site &middot; isrprivacymatters.org</div>
   </div>
 </footer>
 
-<button class="scroll-top" id="scrollTop" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <i class="ti ti-arrow-up" aria-hidden="true"></i>
-</button>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up" aria-hidden="true"></i></button>
 
 <script>
 var scrollBtn = document.getElementById('scrollTop');
-function handleScroll() {
-  var scrolled = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
-  if (scrolled > 400) { scrollBtn.classList.add('visible'); }
-  else { scrollBtn.classList.remove('visible'); }
-}
-window.addEventListener('scroll', handleScroll, { passive: true });
-document.addEventListener('scroll', handleScroll, { passive: true });
+function handleScroll(){ var s=window.scrollY||window.pageYOffset||0; if(s>400){scrollBtn.classList.add('visible');}else{scrollBtn.classList.remove('visible');} }
+window.addEventListener('scroll', handleScroll, {passive:true});
+function openMobileNav(){ var o=document.getElementById('mobileNav'),b=document.querySelector('.nav-hamburger'); o.classList.add('open'); b.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; o.querySelector('a').focus(); }
+function closeMobileNav(){ var o=document.getElementById('mobileNav'),b=document.querySelector('.nav-hamburger'); o.classList.remove('open'); b.setAttribute('aria-expanded','false'); document.body.style.overflow=''; b.focus(); }
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMobileNav(); });
 
-function openMobileNav() {
-  var overlay = document.getElementById('mobileNav');
-  var btn = document.querySelector('.nav-hamburger');
-  overlay.classList.add('open');
-  btn.setAttribute('aria-expanded', 'true');
-  document.body.style.overflow = 'hidden';
-  overlay.querySelector('a').focus();
-}
-function closeMobileNav() {
-  var overlay = document.getElementById('mobileNav');
-  var btn = document.querySelector('.nav-hamburger');
-  overlay.classList.remove('open');
-  btn.setAttribute('aria-expanded', 'false');
-  document.body.style.overflow = '';
-  btn.focus();
-}
-document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMobileNav(); });
-
-function toggleMap(card) {
-  var isOpen = card.classList.contains('open');
-  card.classList.toggle('open', !isOpen);
-  card.setAttribute('aria-expanded', String(!isOpen));
-  var label = card.querySelector('.toggle-label');
-  if (label) label.textContent = isOpen ? 'Expand' : 'Collapse';
-}
-
-var chainData = [
-  { body: '<strong>Observation:</strong> Initial signal generation through participation in digital, financial, or physical infrastructure. Every ordinary action creates a detectable trace — a transaction record, a device ping, a login event, a location coordinate. This is the entry point of the attribution chain: the moment a person\'s activity first becomes data.', intervention: 'Intervention: Reduce unnecessary signal generation. Limit participation to essential systems where operationally feasible.' },
-  { body: '<strong>Collection:</strong> Signals are retained by platform operators, service providers, and infrastructure owners — often indefinitely and across multiple jurisdictions. Retention policies, legal frameworks, and technical architecture determine what is kept and for how long. The person has limited visibility into this accumulation.', intervention: 'Intervention: Manage which systems hold your data. Prefer ephemeral over persistent infrastructure. Understand retention landscapes across operating domains.' },
-  { body: '<strong>Correlation:</strong> Aggregated data is analyzed for patterns, timing relationships, and behavioral consistencies that link activity across time and identity layers. Correlation is where the portrait sharpens — and where human behavioral consistency most directly enables attribution. The person\'s habits become their vulnerability.', intervention: 'Intervention: Disrupt behavioral patterns. Vary timing, routing, procedural sequences, and communication behaviors to degrade pattern reliability.' },
-  { body: '<strong>Attribution:</strong> Correlated patterns are mapped to a specific identity, organization, or operation — the operational exposure event. The person has been fully translated into a data object: identifiable, locatable, and predictable. This is the outcome that signature reduction exists to prevent or delay.', intervention: 'Intervention: All prior-stage interventions compound here. No single technique suffices. Integrated tradecraft — the judgment of the acting person — across the full chain is required for durable attribution resistance.' }
+/* ── SIGNAL LAB: five doctrinal domains ── */
+var DOMAINS = [
+  { w: 18, exp: ['relationships','intent'] },          // Online
+  { w: 20, exp: ['identity','relationships','location'] }, // Electronic
+  { w: 20, exp: ['identity','location','intent'] },     // Financial
+  { w: 22, exp: ['location','identity'] },              // Travel
+  { w: 20, exp: ['identity','location'] }               // Physical-Visual
 ];
-
-function selectChain(el, idx) {
-  document.querySelectorAll('.chain-step').forEach(function(s) {
-    s.classList.remove('active');
-    s.setAttribute('aria-selected', 'false');
-    s.setAttribute('tabindex', '-1');
+var active = [false,false,false,false,false];
+var NOTES = [
+  'No domains active. The operator is unobserved across these systems.',
+  'A single domain. Individually trivial — but the entry point of the chain.',
+  'Two domains corroborate. Patterns begin to link across systems.',
+  'Three domains. The portrait sharpens; behavior becomes predictable.',
+  'Four domains. Identity, presence, and intent are now inferable.',
+  'All five domains. Attribution resolves on a single operator — a profile before a target.'
+];
+function recompute(){
+  var count=0, sum=0, exp={identity:false,relationships:false,location:false,intent:false};
+  for(var i=0;i<5;i++){ if(active[i]){ count++; sum+=DOMAINS[i].w; DOMAINS[i].exp.forEach(function(e){exp[e]=true;}); } }
+  if(sum>100) sum=100;
+  document.getElementById('labConf').textContent=sum+'%';
+  document.getElementById('labNote').textContent=NOTES[count];
+  var resolved = count>=4;
+  var lab=document.getElementById('lab');
+  lab.classList.toggle('resolved', resolved);
+  var statusVal=document.getElementById('labStatusVal'), status=document.getElementById('labStatus');
+  statusVal.textContent = count===0 ? 'Unresolved' : resolved ? 'Resolved' : 'Converging';
+  status.classList.toggle('high', resolved);
+  document.getElementById('coreLabel').textContent = resolved ? 'Resolved' : (count===0 ? 'Unresolved' : 'Converging');
+  // shrink the diffuse core as more domains corroborate
+  var r = 34 - count*5; if(r<14) r=14;
+  document.getElementById('coreDiffuse').setAttribute('r', r);
+  ['identity','relationships','location','intent'].forEach(function(k){
+    document.querySelector('.lab-tag[data-exp="'+k+'"]').classList.toggle('lit', exp[k]);
   });
-  el.classList.add('active');
-  el.setAttribute('aria-selected', 'true');
-  el.setAttribute('tabindex', '0');
-  document.getElementById('chain-text').innerHTML = chainData[idx].body;
-  document.getElementById('chain-detail').querySelector('.chain-intervention').textContent = chainData[idx].intervention;
+}
+/* beams are separate SVG elements from the domain group, so toggle them directly */
+function setBeam(i){
+  var beam=document.querySelector('.viz-beam[data-beam="'+i+'"]');
+  if(active[i]) beam.style.opacity='.7'; else beam.style.opacity='0';
+  if(active[i]) beam.style.animation='beamdash 1.2s linear infinite'; else beam.style.animation='none';
+}
+function resetLab(){
+  active=[false,false,false,false,false];
+  document.querySelectorAll('.viz-domain').forEach(function(d){ d.classList.remove('on'); });
+  for(var i=0;i<5;i++) setBeam(i);
+  recompute();
+}
+/* wire up clicks on hit targets */
+document.querySelectorAll('.viz-domain-hit').forEach(function(hit){
+  var g=hit.closest('.viz-domain'); var i=parseInt(g.getAttribute('data-i'),10);
+  function fire(){ active[i]=!active[i]; g.classList.toggle('on', active[i]); g.setAttribute('aria-pressed',String(active[i])); setBeam(i); recompute(); }
+  hit.addEventListener('click', fire);
+  hit.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); fire(); } });
+});
+
+/* ── CHAIN ── */
+var chainData = [
+  { body: '<strong>Observation:</strong> Signal generation through participation in digital, financial, or physical infrastructure. Every ordinary action leaves a trace — a transaction, a device ping, a login, a coordinate. The moment an operator\'s activity first becomes data.', intervention: 'Intervention: Reduce unnecessary signal generation. Limit participation to essential systems.' },
+  { body: '<strong>Collection:</strong> Signals are retained by platform operators, service providers, and infrastructure owners — often indefinitely, across jurisdictions. Retention policy and architecture determine what is kept. The operator has limited visibility into this accumulation.', intervention: 'Intervention: Manage which systems hold operational data. Prefer ephemeral over persistent infrastructure.' },
+  { body: '<strong>Correlation:</strong> Retained data is analyzed for patterns, timing, and behavioral consistencies that link activity across time and identity. Correlation is where the portrait sharpens — and where behavioral consistency most directly enables attribution. The operator\'s habits become the vulnerability.', intervention: 'Intervention: Disrupt behavioral patterns. Vary timing, routing, and procedural sequences to degrade pattern reliability.' },
+  { body: '<strong>Attribution:</strong> Correlated patterns are mapped to a specific identity, organization, or operation — the exposure event. The operator is fully translated into a data object: identifiable, locatable, predictable. The outcome signature reduction exists to prevent or delay.', intervention: 'Intervention: Prior-stage interventions compound here. No single technique suffices — integrated tradecraft across the full chain is required for durable resistance.' }
+];
+function selectChain(el, idx){
+  document.querySelectorAll('.chain-step').forEach(function(s){ s.classList.remove('active'); s.setAttribute('aria-selected','false'); s.setAttribute('tabindex','-1'); });
+  el.classList.add('active'); el.setAttribute('aria-selected','true'); el.setAttribute('tabindex','0');
+  document.getElementById('chain-text').innerHTML=chainData[idx].body;
+  document.getElementById('chain-detail').querySelector('.chain-intervention').textContent=chainData[idx].intervention;
+}
+function chainKeyNav(e, idx){
+  var steps=document.querySelectorAll('.chain-step');
+  if(e.key==='ArrowRight'&&idx<steps.length-1){ steps[idx+1].focus(); selectChain(steps[idx+1],idx+1); }
+  else if(e.key==='ArrowLeft'&&idx>0){ steps[idx-1].focus(); selectChain(steps[idx-1],idx-1); }
+  else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); selectChain(steps[idx],idx); }
 }
 
-function chainKeyNav(e, idx) {
-  var steps = document.querySelectorAll('.chain-step');
-  if (e.key === 'ArrowRight' && idx < steps.length - 1) { steps[idx+1].focus(); selectChain(steps[idx+1], idx+1); }
-  else if (e.key === 'ArrowLeft' && idx > 0) { steps[idx-1].focus(); selectChain(steps[idx-1], idx-1); }
-  else if (e.key === 'Enter' || e.key === ' ') { selectChain(steps[idx], idx); }
+/* ── EXPOSURE ESTIMATE ── */
+var MAXW = 9; // 4 high(2)=8 + 1 med(1) = 9
+function toggleAssess(row){
+  var on=row.classList.toggle('on');
+  row.setAttribute('aria-checked', String(on));
+  var total=0;
+  document.querySelectorAll('.assess-row.on').forEach(function(r){ total+=parseInt(r.getAttribute('data-w'),10); });
+  document.getElementById('assessScore').textContent=total+' / '+MAXW+' exposure weight';
+  var levelEl=document.getElementById('assessLevel'), noteEl=document.getElementById('assessNote');
+  var level, cls, note;
+  if(total===0){ level='Minimal'; cls='minimal'; note='No practices selected. Across these domains, the operator presents no correlatable surface.'; }
+  else if(total<=2){ level='Limited'; cls='minimal'; note='A narrow surface. Individual exposures remain difficult to correlate into a stable signature.'; }
+  else if(total<=4){ level='Elevated'; cls='elevated'; note='Multiple domains in play. Correlation across them begins to produce a recognizable pattern of life.'; }
+  else if(total<=6){ level='High'; cls='high'; note='Domains reinforce one another. A durable signature is forming that resists casual disruption.'; }
+  else { level='Severe'; cls='severe'; note='Saturated participation. Attribution is near-certain — the operator is a profile awaiting a targeting decision.'; }
+  levelEl.textContent=level; levelEl.className='assess-level '+cls; noteEl.textContent=note;
+  var bars=document.getElementById('assessBars'); bars.innerHTML='';
+  for(var i=0;i<MAXW;i++){
+    var b=document.createElement('div'); b.className='assess-bar';
+    if(i<total){ b.className+=(total<=2?' fill-blue':total<=4?' fill-gold':' fill-red'); }
+    bars.appendChild(b);
+  }
 }
+(function(){ var bars=document.getElementById('assessBars'); for(var i=0;i<MAXW;i++){ var b=document.createElement('div'); b.className='assess-bar'; bars.appendChild(b);} })();
 
-if ('IntersectionObserver' in window) {
-  var io = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.06 });
-  document.querySelectorAll('.doctrine-step, .map-card, .pub-row, .gloss-entry, .shift-card').forEach(function(el) {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(14px)';
-    el.style.transition = 'opacity .45s ease, transform .45s ease';
-    io.observe(el);
+/* reveal on scroll */
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.style.opacity='1'; en.target.style.transform='translateY(0)'; io.unobserve(en.target); } });
+  }, {threshold:.06});
+  document.querySelectorAll('.doctrine-step, .pub-row, .gloss-entry, .shift-card').forEach(function(el){
+    el.style.opacity='0'; el.style.transform='translateY(14px)'; el.style.transition='opacity .45s ease, transform .45s ease'; io.observe(el);
   });
 }
 </script>

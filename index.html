@@ -166,6 +166,62 @@ nav { position: sticky; top: 0; z-index: 800; background: rgba(27,35,49,.85); ba
 .lab-reset { margin-top: 22px; align-self: flex-start; font-family: var(--mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text-soft); background: none; border: 1px solid var(--border-bright); padding: 7px 16px; border-radius: 20px; cursor: pointer; transition: all var(--trans); }
 .lab-reset:hover { color: var(--text); border-color: var(--text-soft); }
 
+/* indicator / tripwire log */
+.lab-indicators { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border); }
+.lab-ind-head { font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; color: var(--text-faint); text-transform: uppercase; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: baseline; }
+.lab-ind-count { color: var(--gold); }
+.lab-ind-empty { font-family: var(--sans); font-size: .78rem; color: var(--text-faint); font-weight: 300; line-height: 1.6; font-style: italic; }
+.lab-ind-group { margin-bottom: 14px; animation: indIn .3s ease both; }
+.lab-ind-group:last-child { margin-bottom: 0; }
+@keyframes indIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.lab-ind-domain { font-family: var(--mono); font-size: .58rem; letter-spacing: .1em; color: var(--gold-bright); text-transform: uppercase; margin-bottom: 7px; display: flex; align-items: center; gap: 7px; }
+.lab-ind-domain::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 6px var(--gold); flex-shrink: 0; }
+.lab-ind-item { display: grid; grid-template-columns: 1fr auto; gap: 8px 12px; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--border); }
+.lab-ind-item:last-child { border-bottom: none; }
+.lab-ind-sig { font-family: var(--sans); font-size: .78rem; color: var(--text-mid); line-height: 1.45; font-weight: 300; }
+.lab-ind-resolves { display: flex; gap: 4px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+.lab-ind-chip { font-family: var(--mono); font-size: .5rem; letter-spacing: .06em; text-transform: uppercase; padding: 2px 6px; border-radius: 10px; border: 1px solid var(--border-bright); color: var(--text-soft); white-space: nowrap; }
+.lab-ind-chip.identity { color: var(--blue-bright); border-color: var(--blue-line); }
+.lab-ind-chip.location { color: var(--gold-bright); border-color: var(--gold-line); }
+.lab-ind-chip.relationships { color: var(--text-mid); }
+.lab-ind-chip.intent { color: var(--red); border-color: var(--red-line); }
+
+/* HUD instrument layer */
+.viz-hud-tick { stroke: var(--text-faint); stroke-width: 1; opacity: .4; }
+.viz-grid-line { stroke: var(--border); stroke-width: 1; opacity: .5; }
+.viz-sweep-line { stroke: url(#sweepGrad); stroke-width: 2; transform-origin: 300px 215px; opacity: 0; }
+.lab.active-any .viz-sweep-line { opacity: 1; animation: vizSweep 6s linear infinite; }
+@keyframes vizSweep { to { transform: rotate(360deg); } }
+.viz-radar-pulse { fill: none; stroke: var(--blue); stroke-width: 1; transform-origin: 300px 215px; opacity: 0; }
+.lab.active-any .viz-radar-pulse { animation: radarPulse 3.2s ease-out infinite; }
+@keyframes radarPulse { 0% { transform: scale(.25); opacity: .45; } 100% { transform: scale(1.05); opacity: 0; } }
+.lab.resolved .viz-radar-pulse { stroke: var(--red); }
+.viz-pulse-dot { fill: var(--gold-bright); opacity: 0; }
+.viz-domain.on .viz-pulse-dot { opacity: 1; animation: pulseTravel 1.6s linear infinite; }
+.lab.resolved .viz-domain.on .viz-pulse-dot { fill: var(--red); }
+@keyframes pulseTravel { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+.viz-corner { stroke: var(--blue-line); stroke-width: 1.4; fill: none; opacity: .6; }
+
+/* resolution matrix */
+.lab-matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin: 18px 0 2px; }
+.lab-mx { border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); padding: 9px 11px; transition: all var(--trans); }
+.lab-mx-label { font-family: var(--mono); font-size: .54rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+.lab-mx-count { font-family: var(--mono); font-size: .56rem; color: var(--text-faint); }
+.lab-mx-meter { height: 4px; border-radius: 3px; background: var(--bg-raised); overflow: hidden; }
+.lab-mx-fill { height: 100%; width: 0; border-radius: 3px; transition: width .45s cubic-bezier(.4,0,.2,1); background: var(--text-faint); }
+.lab-mx.lit { border-color: var(--border-bright); }
+.lab-mx[data-mx="identity"].lit { border-color: var(--blue-line); }
+.lab-mx[data-mx="identity"].lit .lab-mx-label { color: var(--blue-bright); }
+.lab-mx[data-mx="identity"] .lab-mx-fill { background: var(--blue); }
+.lab-mx[data-mx="location"].lit { border-color: var(--gold-line); }
+.lab-mx[data-mx="location"].lit .lab-mx-label { color: var(--gold-bright); }
+.lab-mx[data-mx="location"] .lab-mx-fill { background: var(--gold); }
+.lab-mx[data-mx="relationships"].lit .lab-mx-label { color: var(--text-mid); }
+.lab-mx[data-mx="relationships"] .lab-mx-fill { background: var(--text-soft); }
+.lab-mx[data-mx="intent"].lit { border-color: var(--red-line); }
+.lab-mx[data-mx="intent"].lit .lab-mx-label { color: var(--red); }
+.lab-mx[data-mx="intent"] .lab-mx-fill { background: var(--red); }
+
 /* ─── DOCTRINE ─── */
 .journey { padding-bottom: 20px; }
 .journey-intro { padding: 76px 0 48px; border-bottom: 1px solid var(--border); }
@@ -347,7 +403,7 @@ footer { border-top: 1px solid var(--border); background: var(--bg-raised); padd
   .pub-links { flex-direction: row; align-items: center; }
 }
 @media print { nav { position: static; } body::before { display: none; } }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .chain-flow::before, .viz-beam { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .chain-flow::before, .viz-beam { animation: none !important; } .viz-sweep-line, .viz-radar-pulse, .viz-pulse-dot { animation: none !important; opacity: 0 !important; } }
 
 /* ─── SCROLL TOP ─── */
 .scroll-top { position: fixed; bottom: 28px; right: 28px; z-index: 9000; width: 42px; height: 42px; background: var(--blue); color: var(--bg); border: none; border-radius: 50%; cursor: pointer; font-size: 18px; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 18px rgba(0,0,0,.45); transition: all var(--trans); }
@@ -399,7 +455,7 @@ footer { border-top: 1px solid var(--border); background: var(--bg-raised); padd
 <section class="section-wrap lab-section" id="signal" aria-labelledby="signal-heading">
   <div class="section-head" style="margin-bottom:28px">
     <div class="eyebrow">Demonstration</div>
-    <h2 id="signal-heading">Watch a signature resolve</h2>
+    <h2 id="signal-heading">Watch your signature resolve</h2>
     <p>Ubiquitous technical surveillance senses across five domains. No single one identifies an operator — but as they corroborate, attribution converges on a single resolved identity. Activate the domains to see it.</p>
   </div>
 
@@ -412,9 +468,43 @@ footer { border-top: 1px solid var(--border); background: var(--bg-raised); padd
     <div class="lab-body">
       <div class="lab-viz">
         <svg viewBox="0 0 600 430" role="img" aria-label="Five sensing domains converging on a central identity node">
+          <defs>
+            <linearGradient id="sweepGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="var(--blue)" stop-opacity="0"></stop>
+              <stop offset="100%" stop-color="var(--blue-bright)" stop-opacity=".7"></stop>
+            </linearGradient>
+          </defs>
+
+          <!-- coordinate grid -->
+          <g class="viz-grid-line">
+            <line x1="0" y1="107" x2="600" y2="107"></line>
+            <line x1="0" y1="215" x2="600" y2="215"></line>
+            <line x1="0" y1="323" x2="600" y2="323"></line>
+            <line x1="150" y1="0" x2="150" y2="430"></line>
+            <line x1="300" y1="0" x2="300" y2="430"></line>
+            <line x1="450" y1="0" x2="450" y2="430"></line>
+          </g>
+          <!-- corner brackets -->
+          <path class="viz-corner" d="M14 30 V14 H30"></path>
+          <path class="viz-corner" d="M570 14 H586 V30"></path>
+          <path class="viz-corner" d="M14 400 V416 H30"></path>
+          <path class="viz-corner" d="M586 400 V416 H570"></path>
+          <!-- axis ticks at center -->
+          <g class="viz-hud-tick">
+            <line x1="300" y1="40" x2="300" y2="46"></line>
+            <line x1="300" y1="384" x2="300" y2="390"></line>
+            <line x1="125" y1="215" x2="131" y2="215"></line>
+            <line x1="469" y1="215" x2="475" y2="215"></line>
+          </g>
+
           <!-- guide ring -->
           <circle class="viz-ring" cx="300" cy="215" r="165"></circle>
           <circle class="viz-ring" cx="300" cy="215" r="110" style="opacity:.4"></circle>
+
+          <!-- radar pulses + sweep -->
+          <circle class="viz-radar-pulse" cx="300" cy="215" r="165"></circle>
+          <circle class="viz-radar-pulse" cx="300" cy="215" r="165" style="animation-delay:1.6s"></circle>
+          <line class="viz-sweep-line" x1="300" y1="215" x2="300" y2="50"></line>
 
           <!-- beams (domain -> center). Drawn first so nodes sit on top -->
           <line class="viz-beam" data-beam="0" x1="145" y1="271" x2="300" y2="215"></line>
@@ -433,34 +523,39 @@ footer { border-top: 1px solid var(--border); background: var(--bg-raised); padd
 
           <!-- domain nodes -->
           <g class="viz-domain" data-i="0">
+            <circle class="viz-pulse-dot" r="2.5" style="offset-path: path('M145 271 L300 215')"></circle>
             <circle class="viz-node-circle" cx="145" cy="271" r="26"></circle>
             <g class="viz-node-ico" transform="translate(145,271)"><circle cx="0" cy="0" r="9"></circle><path d="M-9 0 H9 M0 -9 V9 M-6.4 -4.6 C-2 -1.5 2 -1.5 6.4 -4.6 M-6.4 4.6 C-2 1.5 2 1.5 6.4 4.6"></path></g>
             <text class="viz-node-label" x="145" y="312" text-anchor="middle">Online</text>
             <circle class="viz-domain-hit" cx="145" cy="271" r="34" fill="transparent" tabindex="0" role="button" aria-label="Toggle Online domain"></circle>
           </g>
           <g class="viz-domain" data-i="1">
+            <circle class="viz-pulse-dot" r="2.5" style="offset-path: path('M165 120 L300 215')"></circle>
             <circle class="viz-node-circle" cx="165" cy="120" r="26"></circle>
             <g class="viz-node-ico" transform="translate(165,120)"><rect x="-5" y="-9" width="10" height="18" rx="2"></rect><line x1="-2" y1="6" x2="2" y2="6"></line></g>
             <text class="viz-node-label" x="165" y="161" text-anchor="middle">Electronic</text>
             <circle class="viz-domain-hit" cx="165" cy="120" r="34" fill="transparent" tabindex="0" role="button" aria-label="Toggle Electronic domain"></circle>
           </g>
           <g class="viz-domain" data-i="2">
+            <circle class="viz-pulse-dot" r="2.5" style="offset-path: path('M300 50 L300 215')"></circle>
             <circle class="viz-node-circle" cx="300" cy="50" r="26"></circle>
             <g class="viz-node-ico" transform="translate(300,50)"><rect x="-10" y="-7" width="20" height="14" rx="2"></rect><line x1="-10" y1="-2" x2="10" y2="-2"></line></g>
             <text class="viz-node-label" x="300" y="91" text-anchor="middle">Financial</text>
             <circle class="viz-domain-hit" cx="300" cy="50" r="34" fill="transparent" tabindex="0" role="button" aria-label="Toggle Financial domain"></circle>
           </g>
           <g class="viz-domain" data-i="3">
+            <circle class="viz-pulse-dot" r="2.5" style="offset-path: path('M435 120 L300 215')"></circle>
             <circle class="viz-node-circle" cx="435" cy="120" r="26"></circle>
             <g class="viz-node-ico" transform="translate(435,120)"><path d="M0 9 C0 9 7 1 7 -3 A7 7 0 1 0 -7 -3 C-7 1 0 9 0 9 Z"></path><circle cx="0" cy="-3" r="2.4"></circle></g>
             <text class="viz-node-label" x="435" y="161" text-anchor="middle">Travel</text>
             <circle class="viz-domain-hit" cx="435" cy="120" r="34" fill="transparent" tabindex="0" role="button" aria-label="Toggle Travel domain"></circle>
           </g>
           <g class="viz-domain" data-i="4">
+            <circle class="viz-pulse-dot" r="2.5" style="offset-path: path('M455 271 L300 215')"></circle>
             <circle class="viz-node-circle" cx="455" cy="271" r="26"></circle>
             <g class="viz-node-ico" transform="translate(455,271)"><path d="M-10 0 C-6 -6 6 -6 10 0 C6 6 -6 6 -10 0 Z"></path><circle cx="0" cy="0" r="3"></circle></g>
-            <text class="viz-node-label" x="455" y="312" text-anchor="middle">Physical-Visual</text>
-            <circle class="viz-domain-hit" cx="455" cy="271" r="34" fill="transparent" tabindex="0" role="button" aria-label="Toggle Physical-Visual domain"></circle>
+            <text class="viz-node-label" x="455" y="312" text-anchor="middle">Visual-Physical</text>
+            <circle class="viz-domain-hit" cx="455" cy="271" r="34" fill="transparent" tabindex="0" role="button" aria-label="Toggle Visual-Physical domain"></circle>
           </g>
         </svg>
       </div>
@@ -476,7 +571,17 @@ footer { border-top: 1px solid var(--border); background: var(--bg-raised); padd
           <span class="lab-tag" data-exp="location">Location</span>
           <span class="lab-tag" data-exp="intent">Intent</span>
         </div>
+        <div class="lab-matrix" id="labMatrix" aria-hidden="true">
+          <div class="lab-mx" data-mx="identity"><div class="lab-mx-label"><span>Identity</span><span class="lab-mx-count" data-mxc="identity">0</span></div><div class="lab-mx-meter"><div class="lab-mx-fill"></div></div></div>
+          <div class="lab-mx" data-mx="location"><div class="lab-mx-label"><span>Location</span><span class="lab-mx-count" data-mxc="location">0</span></div><div class="lab-mx-meter"><div class="lab-mx-fill"></div></div></div>
+          <div class="lab-mx" data-mx="relationships"><div class="lab-mx-label"><span>Relationships</span><span class="lab-mx-count" data-mxc="relationships">0</span></div><div class="lab-mx-meter"><div class="lab-mx-fill"></div></div></div>
+          <div class="lab-mx" data-mx="intent"><div class="lab-mx-label"><span>Intent</span><span class="lab-mx-count" data-mxc="intent">0</span></div><div class="lab-mx-meter"><div class="lab-mx-fill"></div></div></div>
+        </div>
         <div class="lab-note" id="labNote">No domains active. The operator is unobserved across these systems.</div>
+        <div class="lab-indicators" id="labIndicators">
+          <div class="lab-ind-head"><span>Indicators collected</span><span class="lab-ind-count" id="labIndCount">0</span></div>
+          <div id="labIndBody"><p class="lab-ind-empty">Activate a domain to log the specific real-world signals it emits — and what each resolves about the operator.</p></div>
+        </div>
         <button class="lab-reset" onclick="resetLab()">Reset</button>
       </div>
     </div>
@@ -502,7 +607,7 @@ footer { border-top: 1px solid var(--border); background: var(--bg-raised); padd
       <p>Operational concealment once rested on physical discipline alone. Identity was primarily anchored to documents that could be obtained or forged. Movement and association were managed through tradecraft that predated the digital age.</p>
       <p>That environment is gone. Networked infrastructure, mass data retention, and machine-speed analysis have made the ephemeral — a conversation, a payment, a location — persistent, stored, and searchable.</p>
       <div class="callout">Participation in modern digital infrastructure generates an enduring record, accessible to a widening range of commercial and governmental actors, before any targeting decision is made.</div>
-      <p>This is <em>ubiquitous technical surveillance</em>: persistent sensing across online, electronic, financial, travel, and physical-visual systems. This is not a temporary condition but the environment itself.</p>
+      <p>This is <em>ubiquitous technical surveillance</em>: persistent sensing across online, electronic, financial, travel, and visual-physical systems. This is not a temporary condition but the environment itself.</p>
       <div class="shift-grid">
         <div class="shift-card"><div class="shift-card-label">Old assumption</div><div class="shift-card-text">Concealment through physical discipline</div><div class="shift-card-note">Physical tradecraft was sufficient; digital activity secondary.</div></div>
         <div class="shift-card"><div class="shift-card-label">Current reality</div><div class="shift-card-text">Digital behavior is the primary exposure surface</div><div class="shift-card-note">Every device, platform, and transaction generates correlatable data.</div></div>
@@ -793,15 +898,46 @@ function openMobileNav(){ var o=document.getElementById('mobileNav'),b=document.
 function closeMobileNav(){ var o=document.getElementById('mobileNav'),b=document.querySelector('.nav-hamburger'); o.classList.remove('open'); b.setAttribute('aria-expanded','false'); document.body.style.overflow=''; b.focus(); }
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMobileNav(); });
 
-/* ── SIGNAL LAB: five doctrinal domains ── */
+/* ── SIGNAL LAB: five doctrinal domains ──
+   Each domain carries real-world indicators ("tripwires") and what each resolves:
+   identity / location / relationships / intent. */
 var DOMAINS = [
-  { w: 18, exp: ['relationships','intent'] },          // Online
-  { w: 20, exp: ['identity','relationships','location'] }, // Electronic
-  { w: 20, exp: ['identity','location','intent'] },     // Financial
-  { w: 22, exp: ['location','identity'] },              // Travel
-  { w: 20, exp: ['identity','location'] }               // Physical-Visual
+  { name: 'Online', w: 18, exp: ['relationships','intent'], ind: [
+    { sig: 'Reused handles, emails, or avatars linking one account to another', res: ['identity'] },
+    { sig: 'Post and login times exposing time zone, sleep cycle, and daily routine', res: ['location','intent'] },
+    { sig: 'Metadata in uploaded photos and documents (GPS, device, author)', res: ['location','identity'] },
+    { sig: 'Follows, likes, and contact graphs mapping the operator to associates', res: ['relationships'] }
+  ]},
+  { name: 'Electronic', w: 20, exp: ['identity','relationships','location'], ind: [
+    { sig: 'Persistent device IDs (IMEI, MAC, advertising ID) tying hardware to one user', res: ['identity'] },
+    { sig: 'SIM-to-handset pairing and cell-tower registration logging presence', res: ['identity','location'] },
+    { sig: 'App background telemetry', res: ['location','intent'] },
+    { sig: 'Bluetooth and Wi-Fi probe requests broadcasting prior networks joined', res: ['location','relationships'] }
+  ]},
+  { name: 'Financial', w: 20, exp: ['identity','location','intent'], ind: [
+    { sig: 'Card-present transactions fixing the operator in space and time', res: ['location'] },
+    { sig: 'Recurring merchants and subscriptions establishing pattern-of-life', res: ['intent'] },
+    { sig: 'Accounts, cards, and loyalty programs held in true name', res: ['identity'] },
+    { sig: 'ATM withdrawals and transfers chaining funding to associates', res: ['relationships'] },
+    { sig: 'Credit bureaus (Equifax, Experian, TransUnion) aggregating accounts, addresses, and history into one financial profile', res: ['identity','location'] }
+  ]},
+  { name: 'Travel', w: 22, exp: ['location','identity'], ind: [
+    { sig: 'Passport scans and border crossings creating an authoritative movement record', res: ['identity','location'] },
+    { sig: 'Airline PNR and booking data exposing route, timing, and co-travelers', res: ['location','relationships'] },
+    { sig: 'Toll tags, transit cards, and license-plate readers tracing ground movement', res: ['location'] },
+    { sig: 'Hotel registration and Wi-Fi captive portals logging each overnight', res: ['location','identity'] }
+  ]},
+  { name: 'Visual-Physical', w: 20, exp: ['identity','location'], ind: [
+    { sig: 'CCTV with facial recognition matching the operator against watchlists', res: ['identity','location'] },
+    { sig: 'Gait and vehicle recognition re-identifying across cameras', res: ['identity'] },
+    { sig: 'License-plate capture fixing a vehicle to time and place', res: ['location'] },
+    { sig: 'Repeated co-presence on camera with known associates', res: ['relationships'] }
+  ]}
 ];
 var active = [false,false,false,false,false];
+/* total indicators resolving each facet across all domains — matrix denominators */
+var FACET_TOTAL = {identity:0,location:0,relationships:0,intent:0};
+DOMAINS.forEach(function(d){ d.ind.forEach(function(it){ it.res.forEach(function(r){ FACET_TOTAL[r]++; }); }); });
 var NOTES = [
   'No domains active. The operator is unobserved across these systems.',
   'A single domain. Individually trivial — but the entry point of the chain.',
@@ -819,6 +955,7 @@ function recompute(){
   var resolved = count>=4;
   var lab=document.getElementById('lab');
   lab.classList.toggle('resolved', resolved);
+  lab.classList.toggle('active-any', count>0);
   var statusVal=document.getElementById('labStatusVal'), status=document.getElementById('labStatus');
   statusVal.textContent = count===0 ? 'Unresolved' : resolved ? 'Resolved' : 'Converging';
   status.classList.toggle('high', resolved);
@@ -828,6 +965,41 @@ function recompute(){
   document.getElementById('coreDiffuse').setAttribute('r', r);
   ['identity','relationships','location','intent'].forEach(function(k){
     document.querySelector('.lab-tag[data-exp="'+k+'"]').classList.toggle('lit', exp[k]);
+  });
+  renderIndicators();
+}
+function renderIndicators(){
+  var body=document.getElementById('labIndBody');
+  var countEl=document.getElementById('labIndCount');
+  var groups='', total=0;
+  var facet={identity:0,location:0,relationships:0,intent:0};
+  for(var i=0;i<5;i++){
+    if(!active[i]) continue;
+    var d=DOMAINS[i];
+    var items='';
+    d.ind.forEach(function(it){
+      total++;
+      it.res.forEach(function(r){ facet[r]++; });
+      var chips=it.res.map(function(r){ return '<span class="lab-ind-chip '+r+'">'+r+'</span>'; }).join('');
+      items+='<div class="lab-ind-item"><span class="lab-ind-sig">'+it.sig+'</span><span class="lab-ind-resolves">'+chips+'</span></div>';
+    });
+    groups+='<div class="lab-ind-group"><div class="lab-ind-domain">'+d.name+'</div>'+items+'</div>';
+  }
+  if(total===0){
+    body.innerHTML='<p class="lab-ind-empty">Activate a domain to log the specific real-world signals it emits — and what each resolves about the operator.</p>';
+    countEl.textContent='0';
+  } else {
+    body.innerHTML=groups;
+    countEl.textContent=total;
+  }
+  ['identity','location','relationships','intent'].forEach(function(k){
+    var cell=document.querySelector('.lab-mx[data-mx="'+k+'"]');
+    var fill=cell.querySelector('.lab-mx-fill');
+    var cnt=document.querySelector('.lab-mx-count[data-mxc="'+k+'"]');
+    var pct = FACET_TOTAL[k] ? Math.round(facet[k]/FACET_TOTAL[k]*100) : 0;
+    fill.style.width = pct+'%';
+    cnt.textContent = facet[k]+'/'+FACET_TOTAL[k];
+    cell.classList.toggle('lit', facet[k]>0);
   });
 }
 /* beams are separate SVG elements from the domain group, so toggle them directly */

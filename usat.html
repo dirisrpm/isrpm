@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UTS Signature Self-Assessment · Digital Force Protection</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
 
   :root{
+    --font-display:'Space Grotesk','Segoe UI',system-ui,-apple-system,sans-serif;
+    --font-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+    --font-body:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
     --void:#0C1016;
     --panel:#131A24;
     --panel-2:#0F151E;
@@ -28,21 +30,23 @@
   html,body{margin:0;padding:0;}
   body{
     background:var(--void);color:var(--ink);
-    font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.55;
+    font-family:var(--font-body);font-size:14px;line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
-  .mono{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;}
+  .mono{font-family:var(--font-mono);}
   .wrap{max-width:1160px;margin:0 auto;padding:26px 22px 80px;}
 
   /* header */
   .masthead{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:24px;}
-  .kicker{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.34em;text-transform:uppercase;color:var(--ink-faint);}
-  .title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:25px;letter-spacing:0.01em;margin:7px 0 0;}
+  .kicker{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.34em;text-transform:uppercase;color:var(--ink-faint);}
+  .title{font-family:var(--font-display);font-weight:700;font-size:25px;letter-spacing:0.01em;margin:7px 0 0;}
   .title b{color:var(--accent);}
   .subtitle{color:var(--ink-dim);font-size:13px;margin-top:8px;max-width:680px;}
+  .mast-row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;}
+  .isr-link{flex-shrink:0;text-decoration:none;align-self:center;}
 
   .btn{
-    font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;
+    font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;
     background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:7px;
     padding:10px 18px;cursor:pointer;transition:border-color .15s,background .15s;
   }
@@ -62,7 +66,7 @@
   .privacy-note strong{color:var(--ok);}
   .vectors-key{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:22px 0;}
   .vk{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px;}
-  .vk .vn{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;}
+  .vk .vn{font-family:var(--font-display);font-weight:600;font-size:13px;}
   .vk .vd{font-size:11px;color:var(--ink-faint);margin-top:3px;line-height:1.4;}
 
   /* assessment layout */
@@ -71,21 +75,21 @@
 
   .domain{margin-bottom:30px;scroll-margin-top:16px;}
   .domain-head{display:flex;align-items:baseline;gap:12px;margin-bottom:4px;}
-  .domain-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-faint);}
-  .domain-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;}
+  .domain-num{font-family:var(--font-mono);font-size:12px;color:var(--ink-faint);}
+  .domain-name{font-family:var(--font-display);font-weight:600;font-size:17px;}
   .domain-blurb{color:var(--ink-faint);font-size:12px;margin:0 0 14px;}
-  .domain-vectors{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;}
+  .domain-vectors{font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;}
 
   .q{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:9px;padding:14px 16px;margin-bottom:11px;}
   .q.answered{border-color:#2a3a4d;}
   .q-top{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;}
-  .q-tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-faint);padding-top:2px;flex-shrink:0;}
+  .q-tag{font-family:var(--font-mono);font-size:10px;color:var(--ink-faint);padding-top:2px;flex-shrink:0;}
   .q-text{font-size:13.5px;font-weight:500;color:var(--ink);}
   .q-help{font-size:11.5px;color:var(--ink-faint);margin-top:4px;line-height:1.45;}
 
   .seg{display:flex;gap:6px;flex-wrap:wrap;}
   .seg button{
-    font-family:'Inter',sans-serif;font-size:12px;color:var(--ink-dim);
+    font-family:var(--font-body);font-size:12px;color:var(--ink-dim);
     background:var(--panel-2);border:1px solid var(--line);border-radius:6px;
     padding:7px 13px;cursor:pointer;transition:all .12s;flex:0 0 auto;
   }
@@ -103,8 +107,8 @@
   .rail{position:sticky;top:16px;}
   .rail .card{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:10px;padding:16px;}
   .rail .card + .card{margin-top:14px;}
-  .rail-h{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px;}
-  .progress-num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px;line-height:1;}
+  .rail-h{font-family:var(--font-mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px;}
+  .progress-num{font-family:var(--font-display);font-weight:700;font-size:30px;line-height:1;}
   .progress-num small{font-size:14px;color:var(--ink-faint);font-weight:500;}
   .progbar{height:5px;background:var(--line);border-radius:3px;margin:10px 0 4px;overflow:hidden;}
   .progbar i{display:block;height:100%;background:var(--accent);border-radius:3px;transition:width .25s;}
@@ -112,13 +116,13 @@
   .domnav a{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;font-size:12px;color:var(--ink-dim);text-decoration:none;border-bottom:1px solid var(--line-soft);cursor:pointer;}
   .domnav a:last-child{border-bottom:none;}
   .domnav a:hover{color:var(--ink);}
-  .domnav .dc{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-faint);}
+  .domnav .dc{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-faint);}
   .domnav .dot{width:7px;height:7px;border-radius:50%;background:var(--line);flex-shrink:0;}
   .domnav .dot.done{background:var(--ok);}
   .domnav .dot.part{background:var(--warn);}
 
   .prov{margin-top:4px;}
-  .prov-tier{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;}
+  .prov-tier{font-family:var(--font-display);font-weight:700;font-size:18px;}
   .prov-hint{font-size:10.5px;color:var(--ink-faint);margin-top:2px;}
 
   /* results */
@@ -126,54 +130,58 @@
   .res-overall{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px;display:flex;gap:26px;align-items:center;flex-wrap:wrap;}
   .res-dial{width:130px;height:130px;flex-shrink:0;position:relative;}
   .res-dial .lbl{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-  .res-dial .pct{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px;line-height:1;}
+  .res-dial .pct{font-family:var(--font-display);font-weight:700;font-size:30px;line-height:1;}
   .res-dial .of{font-size:10px;color:var(--ink-faint);letter-spacing:0.15em;text-transform:uppercase;margin-top:3px;}
   .res-overall .verdict{flex:1;min-width:240px;}
-  .res-overall .vtier{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:24px;}
+  .res-overall .vtier{font-family:var(--font-display);font-weight:700;font-size:24px;}
   .res-overall .vtext{color:var(--ink-dim);font-size:13px;margin-top:6px;}
-  .res-overall .vassessed{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-faint);margin-top:10px;}
+  .res-overall .vassessed{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);margin-top:10px;}
 
-  .sec-h{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;margin:26px 0 12px;padding-bottom:7px;border-bottom:1px solid var(--line);}
-  .vector-row{display:grid;grid-template-columns:140px 1fr 64px;gap:14px;align-items:center;margin-bottom:13px;}
-  @media(max-width:560px){.vector-row{grid-template-columns:110px 1fr 54px;gap:9px;}}
-  .vector-row .vrn{font-size:13px;font-weight:500;}
-  .vector-row .vrn small{display:block;color:var(--ink-faint);font-size:10px;font-weight:400;}
-  .vbar{height:9px;background:var(--line);border-radius:5px;overflow:hidden;}
-  .vbar i{display:block;height:100%;border-radius:5px;transition:width .3s;}
-  .vector-row .vrt{text-align:right;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;}
+  .sec-h{font-family:var(--font-display);font-weight:600;font-size:15px;margin:26px 0 12px;padding-bottom:7px;border-bottom:1px solid var(--line);}
+  .vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;}
+  .vcard{background:var(--panel-2);border:1px solid var(--line);border-top:3px solid var(--line);border-radius:9px;padding:12px 13px;}
+  .vcard .vn{font-size:12.5px;font-weight:500;color:var(--ink);}
+  .vcard .vmeta{display:flex;justify-content:space-between;align-items:center;margin-top:9px;}
+  .vcard .vnum{font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1;}
+  .vcard .vchip{font-family:var(--font-mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:2px 7px;border-radius:5px;}
+  .vcard .vbar2{height:4px;border-radius:3px;background:var(--line);margin-top:10px;overflow:hidden;}
+  .vcard .vbar2 i{display:block;height:100%;border-radius:3px;transition:width .3s;}
 
   .callout{border-radius:9px;padding:14px 16px;margin-bottom:12px;font-size:12.5px;line-height:1.5;display:flex;gap:11px;align-items:flex-start;}
   .callout.corr{background:var(--bad-bg);border:1px solid rgba(226,92,104,0.35);}
   .callout.corr2{background:var(--warn-bg);border:1px solid rgba(224,163,60,0.32);}
-  .callout .ci{font-family:'JetBrains Mono',monospace;font-weight:700;flex-shrink:0;color:var(--bad);}
+  .callout .ci{font-family:var(--font-mono);font-weight:700;flex-shrink:0;color:var(--bad);}
   .callout.corr2 .ci{color:var(--warn);}
   .callout b{color:var(--ink);}
 
-  .prio{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:10px;padding:6px 16px;margin-bottom:18px;}
-  .prio-item{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line-soft);}
-  .prio-item:last-child{border-bottom:none;}
-  .prio-rank{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:#08111c;background:var(--bad);border-radius:5px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .prio{margin-bottom:18px;}
+  .prio-card{display:flex;gap:13px;align-items:flex-start;background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-left:3px solid var(--bad);border-radius:9px;padding:13px 15px;margin-bottom:10px;}
+  .prio-card.mid{border-left-color:var(--warn);}
+  .prio-rank{font-family:var(--font-display);font-weight:700;font-size:13px;color:#08111c;background:var(--bad);border-radius:6px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
   .prio-rank.mid{background:var(--warn);}
-  .prio-body .pa{font-size:13px;color:var(--ink);}
-  .prio-body .pm{font-size:11px;color:var(--ink-faint);font-family:'JetBrains Mono',monospace;margin-top:3px;}
+  .prio-body .pa{font-size:13px;font-weight:600;color:var(--ink);}
+  .prio-body .pm{font-size:11px;color:var(--ink-faint);font-family:var(--font-mono);margin-top:4px;}
 
-  .domgroup{margin-bottom:8px;}
-  .domgroup summary{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13.5px;padding:10px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line-soft);}
+  .domgroup{margin-bottom:9px;}
+  .domgroup summary{cursor:pointer;font-family:var(--font-display);font-weight:600;font-size:13.5px;padding:11px 2px;list-style:none;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);}
   .domgroup summary::-webkit-details-marker{display:none;}
-  .domgroup summary .tag{font-family:'JetBrains Mono',monospace;font-size:11px;}
-  .domgroup ul{margin:8px 0 16px;padding-left:18px;}
-  .domgroup li{font-size:12.5px;color:var(--ink-dim);margin-bottom:7px;}
-  .domgroup li b{color:var(--ink);font-weight:500;}
-  .domgroup li .how{font-size:11.5px;color:var(--ink-dim);margin-top:3px;line-height:1.45;}
-  .domgroup li .links{margin-top:5px;display:flex;flex-direction:column;gap:3px;}
-  .domgroup li .links a{font-size:11.5px;color:var(--accent);text-decoration:none;}
-  .domgroup li .links a:hover{text-decoration:underline;}
-  .domgroup li .links a .u{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--ink-faint);margin-left:7px;}
+  .domgroup summary:hover{color:var(--ink);}
+  .domgroup summary .tag{font-family:var(--font-mono);font-size:11px;}
+  .rec-wrap{padding:12px 0 6px;display:flex;flex-direction:column;gap:9px;}
+  .rec{background:var(--panel-2);border:1px solid var(--line-soft);border-left:2px solid var(--line);border-radius:8px;padding:12px 14px;}
+  .rec-action{font-size:13px;font-weight:600;color:var(--ink);}
+  .rec-detail{font-size:12px;color:var(--ink-dim);margin-top:6px;line-height:1.55;}
+  .rec-how{font-size:11.5px;color:var(--ink-faint);margin-top:8px;line-height:1.5;border-left:2px solid var(--line);padding-left:10px;}
+  .rec-links{margin-top:8px;display:flex;flex-direction:column;gap:3px;}
+  .rec-links a{font-size:11.5px;color:var(--accent);text-decoration:none;}
+  .rec-links a:hover{text-decoration:underline;}
+  .rec-links a .u{font-family:var(--font-mono);font-size:9.5px;color:var(--ink-faint);margin-left:7px;}
+  .na-tag{font-family:var(--font-mono);font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--warn);border:1px solid var(--warn);border-radius:4px;padding:1px 5px;margin-left:5px;white-space:nowrap;}
   .genres{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:18px;display:flex;flex-wrap:wrap;gap:10px 22px;}
   .genres a{font-size:12px;color:var(--accent);text-decoration:none;}
   .genres a:hover{text-decoration:underline;}
-  .genres a .u{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--ink-faint);margin-left:6px;}
-  .clean{color:var(--ok);font-size:12.5px;padding:8px 0;}
+  .genres a .u{font-family:var(--font-mono);font-size:9.5px;color:var(--ink-faint);margin-left:6px;}
+  .clean{color:var(--ok);font-size:12.5px;padding:6px 0;}
 
   .res-actions{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 8px;}
 
@@ -195,19 +203,22 @@
     .res-overall .vtext,.res-overall .vassessed{color:#3a4a5a;}
     .res-dial .of{color:#5a6a7a;}
     .sec-h{color:#15202b;border-color:#c8d2dc;}
-    .vector-row .vrn small{color:#5a6a7a;}
-    .vbar{background:#e4e9ee;}
-    .prio,.domgroup{background:#fff;border-color:#c8d2dc;}
-    .prio-item,.domgroup summary,.domgroup li{border-color:#e0e6eb;color:#2a3a4a;}
+    .vcard{background:#fff;border-color:#c8d2dc;page-break-inside:avoid;}
+    .vcard .vn{color:#15202b;}
+    .vcard .vbar2{background:#e4e9ee;}
+    .prio-card{background:#fff;border-color:#c8d2dc;page-break-inside:avoid;}
+    .prio-body .pa{color:#15202b;}
     .prio-body .pm,.domgroup summary .tag{color:#5a6a7a;}
-    .prio-body .pa,.domgroup li b{color:#15202b;}
+    .domgroup summary{border-color:#c8d2dc;color:#15202b;}
+    .rec{background:#fbfcfd;border-color:#dce3ea;border-left-color:#c8d2dc;page-break-inside:avoid;}
+    .rec-action{color:#15202b;}
+    .rec-detail{color:#2a3a4a;}
+    .rec-how{color:#3a4a5a;border-left-color:#dce3ea;}
+    .rec-links a{color:#1a4a7a;}
+    .rec-links a .u,.genres a .u{color:#5a6a7a;}
     .callout{border:1px solid #c8d2dc !important;background:#f6f8fa !important;color:#2a3a4a;page-break-inside:avoid;}
     .callout b{color:#15202b;}
-    .domgroup[open] ul{display:block;}
-    .domgroup ul{display:block;}
-    .domgroup li .how{color:#3a4a5a;}
-    .domgroup li .links a{color:#1a4a7a;}
-    .domgroup li .links a .u, .genres a .u{color:#5a6a7a;}
+    .na-tag{color:#9a6a10;border-color:#d9b36a;}
     .genres{background:#fff;border-color:#c8d2dc;}
     .genres a{color:#1a4a7a;}
     details{page-break-inside:avoid;}
@@ -215,26 +226,31 @@
     a{color:inherit;text-decoration:none;}
   }
   .print-header{display:none;}
-  .print-header h1{font-family:'Space Grotesk',sans-serif;font-size:18pt;margin:0 0 4px;}
+  .print-header h1{font-family:var(--font-display);font-size:18pt;margin:0 0 4px;}
   .print-header .ph-sub{font-size:10pt;color:#3a4a5a;}
-  .print-header .ph-meta{font-family:'JetBrains Mono',monospace;font-size:8.5pt;color:#5a6a7a;margin-top:8px;border-top:1px solid #c8d2dc;border-bottom:1px solid #c8d2dc;padding:6px 0;margin-bottom:16px;}
+  .print-header .ph-meta{font-family:var(--font-mono);font-size:8.5pt;color:#5a6a7a;margin-top:8px;border-top:1px solid #c8d2dc;border-bottom:1px solid #c8d2dc;padding:6px 0;margin-bottom:16px;}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <div class="masthead">
-    <div class="kicker">Institute for Signature Reduction · Digital Force Protection</div>
-    <h1 class="title">UTS Signature <b>Self-Assessment</b></h1>
+    <div class="mast-row">
+      <div>
+        <div class="kicker">Institute for Signature Reduction · USAT</div>
+        <h1 class="title">UTS Signature <b>Assessment Tool</b></h1>
+      </div>
+      <a class="btn ghost isr-link" href="https://www.isrprivacymatters.org/" target="_blank" rel="noopener">ISR site ↗</a>
+    </div>
     <p class="subtitle">A structured self-assessment against ubiquitous technical surveillance. Work through each practice; your end-user-device signature is scored across the UTS collection vectors, with prioritized actions to reduce it.</p>
   </div>
 
   <!-- LANDING -->
   <div id="landing" class="landing">
-    <p>This assessment turns disciplined cyber-hygiene practices into a read on your personal digital signature — how observable, identifiable, and correlatable you are to an adversary leveraging ubiquitous technical surveillance (UTS). You'll answer 48 questions across seven practical areas. There are no right answers to perform for; an honest self-check is the only thing that produces a useful result.</p>
+    <p>This assessment turns disciplined cyber-hygiene practices into a read on your personal digital signature — how observable, identifiable, and correlatable you are to an adversary running ubiquitous technical surveillance (UTS). You'll answer 48 questions across seven practical areas. There are no right answers to perform for; an honest self-check is the only thing that produces a useful result. The practices here are compiled from publicly available sources; treat your completed assessment as potentially sensitive in the aggregate.</p>
 
     <div class="privacy-note">
-      <strong>Nothing here is saved or sent.</strong> This tool runs entirely in your browser. Your answers are held only in memory for this session, are never transmitted to or stored on any server, and disappear when you close the tab. The only output is the report you choose to generate.
+      <strong>Nothing here is saved, sent, or tracked.</strong> This tool runs entirely in your browser — no cookies, no local storage, and no third-party calls. Your answers live only in memory for this session, are never transmitted to or stored on any server, and disappear when you close the tab. The only output is the report you choose to generate.
     </div>
 
     <div class="rail-h" style="margin-bottom:10px;">The five UTS collection vectors your answers map to</div>
@@ -300,6 +316,7 @@
     <div class="res-actions">
       <button class="btn primary" id="printBtn">⎙ Save / print report (PDF)</button>
       <button class="btn ghost" id="backBtn">← Back to assessment</button>
+      <a class="btn ghost" href="https://www.isrprivacymatters.org/" target="_blank" rel="noopener">ISR site ↗</a>
     </div>
 
     <div class="disclaimer" id="reportDisclaimer"></div>
@@ -445,6 +462,58 @@ const RES = {
   48:{how:'Pre-stage satellite or mesh comms for denied environments; weigh emissions and equipment visibility.',links:[{l:'Meshtastic',u:'https://meshtastic.org'}]},
 };
 
+/* ============ DETAIL (actionable expansion, paraphrased from the EUD manual) ============ */
+const DETAIL = {
+  1:'Even when idle, Wi-Fi and Bluetooth broadcast probe requests and Bluetooth Low Energy beacons that can be detected and correlated. MAC randomization isn\u2019t absolute, and a network you join uses a persistent MAC. Fully disabling both radios in Settings when you don\u2019t need them removes this passive tracking surface.',
+  2:'iOS and Android assign an advertising identifier that apps, ad networks, and data brokers use to profile you across applications. Turning it off and denying app tracking limits cross-app profiling and the commercial data flows feeding broker databases.',
+  3:'Apps frequently request precise GPS and Wi-Fi/Bluetooth scanning far beyond what they need to function. Deny precise location, grant access only \u201cWhile Using,\u201d disable location scanning, and pre-cache offline maps so you aren\u2019t constantly emitting location queries.',
+  4:'Apps and their embedded third-party SDKs quietly transmit analytics, identifiers, and network metadata in the background. Restricting Background App Refresh and background data to apps you explicitly trust cuts this silent leakage.',
+  5:'Device encryption only protects a device while it\u2019s locked. A strong 8+ digit or alphanumeric passcode sharply increases brute-force cost and hides the passcode length from anyone watching your screen. Biometrics can be compelled or bypassed more easily, so disable them for borders and sensitive settings.',
+  6:'Mobile-forensic tools extract data through the USB port even on newer phones. Keeping USB Restricted Mode (iOS) or USB data-blocking (Android) enabled, and the device powered off at borders, blocks wired extraction while it\u2019s locked.',
+  7:'Cellular encryption varies by carrier and country. A reputable no-logs VPN encrypts your traffic, hides activity from local observers, and masks your IP. Prioritize independently audited no-logs providers using WireGuard/OpenVPN with RAM-only servers, especially on public or foreign networks.',
+  8:'Signal is open-source, independently audited, and end-to-end encrypted, and stores nothing on its servers. Use it for sensitive messaging; a username lets others reach you without your number, and unlike iMessage or SMS it isn\u2019t backed up to iCloud.',
+  9:'Your carrier number is tied to your identity and spreads through brokers and breaches, becoming a persistent tracking tag. Use a VOIP or alias number for hotels, rideshare, and online accounts, and reserve your carrier number for trusted contacts only.',
+  10:'Any accessory that physically connects to your device is a risk, and public USB ports can deliver malware or pull data over the same connector used for charging. Use your own charger or battery, or a charge-only data blocker, and avoid unknown cables.',
+  11:'Every installed app and its SDKs can collect location, contacts, identifiers, and credentials, often sharing with undisclosed third parties. Remove apps you don\u2019t actively use, tighten the permissions of those you keep, and consider outbound filtering to block tracking beacons.',
+  12:'Always-listening assistants capture ambient audio that vendors and contractors have been documented reviewing, and that stored audio becomes a target for adversaries. Disabling Siri, Alexa, and Google Assistant stops passive microphone activation.',
+  13:'In some cases a camera can be activated without its indicator light, enabling covert recording used for harassment or coercion. A simple cover, sliding tab, or opaque sticker reliably eliminates unwanted visual capture.',
+  14:'Devices continually probe for remembered networks, and descriptive saved names (like a specific hotel) reveal where you\u2019ve been and let an attacker impersonate a known network to force a connection. Forgetting saved networks you no longer need shrinks this broadcast trail.',
+  15:'Mainstream browsers leak behavioral data; hardened browsers with tracker-blocking extensions cut cross-site tracking and malicious scripts. Use Firefox/Brave or Safari with DuckDuckGo plus uBlock Origin and container isolation. Tor is an option where appropriate, with awareness that using it can itself draw attention.',
+  16:'Open profiles are a primary targeting and correlation source. Sanitize accounts so they don\u2019t carry your full name, birthday, or anniversaries, set privacy controls to maximum, avoid disclosing location or routine, and extend the same discipline to family members\u2019 accounts.',
+  17:'Mainstream email providers scan content for advertising and are high-value breach targets. Using a privacy-focused provider for sensitive correspondence limits content scanning and unnecessary metadata exposure.',
+  18:'Default device, hotspot, and router names often reveal your name, location, or hardware model, and they are broadcast over Wi-Fi and Bluetooth whenever those radios are on. Renaming them to neutral labels prevents easy attribution of your equipment.',
+  19:'Data brokers buy and sell your address, phone numbers, relatives, and date of birth. Search yourself and submit opt-out requests, ideally with a structured workbook, to remove public listings, then re-check periodically since data reappears.',
+  20:'Full-disk encryption (FileVault or BitLocker) prevents access to your data when a computer is locked or powered off. Enable it, and keep devices powered off across borders for the strongest protection.',
+  21:'Most malware needs to communicate outbound to function. A firewall blocks unauthorized inbound and outbound connections; enable the built-in firewall (with stealth mode on macOS) or an outbound-aware tool that lets you approve connections.',
+  22:'Two-factor authentication blunts credential theft from breaches and phishing. Enable it on as many accounts as possible, and prefer an authenticator app or a hardware security key, which resist phishing and SIM-based attacks far better than SMS codes.',
+  23:'Reused passwords turn a single breach into many compromised accounts. A password manager generates and stores a unique strong password for every account while you remember only one master secret; choose an offline manager or a syncing one depending on your needs.',
+  24:'Even highly advanced spyware usually begins with a single click on a link, file, or message. Treat unsolicited texts, emails, social messages, and missed-call prompts as suspicious, and verify anything unexpected through a separate trusted channel before interacting.',
+  25:'Photos embed EXIF metadata that can reveal the exact location and time an image was taken. Disable camera location tagging, or strip EXIF data before sharing photos online.',
+  26:'Card networks analyze and sell transaction data that profiles your habits, locations, and associations. Submit the processors\u2019 analytics opt-outs, and use single-use masked card numbers for online purchases so your real card details aren\u2019t exposed to each merchant.',
+  27:'Connecting directly to hotel, café, or airport Wi-Fi exposes you to networks that may be monitored or manipulated. Routing through your own travel router or cellular hotspot lets you enforce WPA3, client isolation, and a hardened VPN profile, and keeps you off a shared broadcast domain.',
+  28:'Devices left in hotel rooms or otherwise unattended can be physically accessed even when encrypted. Keep them on your person; if a device is left unattended, assume it may be compromised and handle sensitive use accordingly afterward.',
+  29:'A Faraday enclosure blocks Wi-Fi, Bluetooth, cellular, GPS, and NFC, rendering a device invisible to technical surveillance while it\u2019s inside — valuable for sensitive movement. Use it deliberately, though: a device that suddenly or constantly drops off the RF landscape can itself become an anomaly.',
+  30:'A clean, travel-only device limits what an adversary can extract if it\u2019s lost, seized, or inspected. Pre-configure it before departure and don\u2019t link it to your personal accounts or identifiers — but be aware that a device with no usage history can itself appear suspicious in some regions.',
+  31:'Without a firmware or BIOS/UEFI password, someone with physical access can boot alternate media and run password-reset or extraction tools. Setting one ensures only your designated startup disk can be used, closing off that entry path.',
+  32:'A credit freeze is free, reversible, and legally limits the bureaus from releasing your data, which blocks new-account fraud and curbs data sale. Freeze your credit at all the major bureaus as a baseline privacy measure.',
+  33:'Privacy-hardened operating systems such as GrapheneOS and LineageOS strip much of the stock telemetry and have proven harder for forensic tools to extract from. Consider one where it fits your needs for a meaningfully smaller device signature.',
+  34:'Cloud sync creates a single point of failure: compromise of one account or device can expose your entire ecosystem, and some jurisdictions have weakened cloud-side encryption. Limit what you auto-sync to mainstream clouds and use zero-knowledge, end-to-end encrypted storage for sensitive data.',
+  35:'Even trusted privacy tools ship vulnerabilities — a Signal link-preview tracking flaw is one documented example. Keep your operating system and apps patched promptly, and disable optional features that can leak data as those issues come to light.',
+  36:'The 2G standard uses weak security, and IMSI-catchers force nearby phones to downgrade to it to intercept traffic and identifiers. Disabling 2G (Android exposes the toggle) makes your device far less susceptible to these downgrade attacks.',
+  37:'Automatic MMS retrieval exposes a device to zero-click attacks, where malformed media triggers exploitation as soon as it\u2019s downloaded. Disabling auto-retrieval ensures nothing is parsed before you intentionally choose to open it.',
+  38:'Cell networks log which towers a device associates with, and even intelligence personnel have exposed themselves by powering on \u201cclean\u201d devices near home, work, or sensitive sites. Be deliberate about when and where a device first connects and which towers it uses near locations tied to you.',
+  39:'Short-range radios like Ultra-Wideband and NFC add to your device\u2019s overall signature and provide proximity metadata to anyone able to detect them. Turning them off when not actively needed reduces unnecessary emissions and fine-grained proximity exposure.',
+  40:'Open-source apps can be independently audited, and privacy repositories don\u2019t tie downloads to a personal account, reducing hidden trackers and cross-platform profiling. Prefer vetted FOSS through F-Droid or Aurora where it meets the need.',
+  41:'A work profile or sandbox isolates selected apps from your primary contacts, messages, files, and identifiers, and allows rapid teardown of a compartment. Place high-risk, untrusted, or mission-specific apps inside an isolated profile to contain what they can access.',
+  42:'An amnesic operating system such as TAILS runs entirely from a USB drive, leaves no forensic trace on the host, and routes traffic through Tor by default — useful on untrusted hardware or in emergencies. Keep one prepared, and stay mindful of host-nation legal restrictions on anonymity tools.',
+  43:'Because eSIMs are embedded in the device, they can\u2019t be physically removed or cloned without the unlocked phone, reducing SIM-swap and cloning risk. Using eSIM, including short-term travel eSIMs, helps isolate your primary number and spin up clean profiles quickly.',
+  44:'Knowing your device\u2019s normal cellular behavior — signal type, typical carrier patterns — helps you notice anomalies like sudden 2G/EDGE, repeated dropped LTE, or failed calls that can be soft indicators of interception. Learn your baseline so deviations stand out, and respond cautiously when they appear.',
+  45:'Running structured OSINT on yourself shows what an adversary could compile from open sources — breach databases, people-search sites, cached pages, and archives. Do it periodically to find and suppress exposed personal information, and include your family\u2019s footprint.',
+  46:'Granular control tools such as Warden reveal the trackers, telemetry packages, and background services embedded inside apps, and let you freeze unnecessary components. Use them to cut what even trusted apps quietly transmit, paired with restrictive permissions and sandboxing.',
+  47:'Wearables continuously collect biometric, behavioral, and location data — heart rate, sleep, movement, routines — that can reveal operational tempo and is often synced to commercial clouds. Minimize their use forward, disable unnecessary telemetry, block cloud sync, and treat them as persistent beacons.',
+  48:'In denied, monitored, or hostile environments, satellite or mesh systems such as Starlink, Meshtastic, or goTenna reduce dependence on local telecommunications and associated surveillance. Treat them as complementary tools staged in advance, weighing power needs, equipment visibility, and emissions profile.',
+};
+
 /* ============ STATE ============ */
 const state = { answers:{} };  // qid -> {exp, na?:true}
 
@@ -453,6 +522,7 @@ const $ = s => document.querySelector(s);
 function tierOf(v){ return v<34?'Low':(v<=66?'Moderate':'High'); }
 function tierClass(v){ return v<34?'lo':(v<=66?'mid':'hi'); }
 function tierColor(v){ return v<34?'var(--ok)':(v<=66?'var(--warn)':'var(--bad)'); }
+function tierBg(v){ return v<34?'var(--ok-bg)':(v<=66?'var(--warn-bg)':'var(--bad-bg)'); }
 function domOf(id){ return DOMAINS.find(d=>d.id===id); }
 function qsInDom(id){ return Q.filter(q=>q.dom===id); }
 
@@ -492,7 +562,7 @@ function renderQuestion(q){
     q.opts.forEach(o=> buttons += segBtn(q, o.exp, o.label, o.note||''));
   }
   return `<div class="q" id="q-${q.n}">
-    <div class="q-top"><span class="q-tag">#${q.n}</span>
+    <div class="q-top">
       <div><div class="q-text">${q.text}</div><div class="q-help">${q.help}</div></div>
     </div>
     <div class="seg" role="group">${buttons}</div>
@@ -524,22 +594,28 @@ function compute(){
     if(!a || a.na) return {q, answered:!!a, na:a&&a.na, exp:null};
     return {q, answered:true, na:false, exp:a.exp};
   });
-  const answered = scored.filter(s=>s.answered && !s.na);
+  // Effective-exposure model: unanswered but applicable items count as full gaps (exp = 1).
+  // Only items explicitly marked N/A are excluded. This makes the score a true "current
+  // signature" read — doing nothing reads as high exposure, and it falls as practices are confirmed.
+  const naCount = scored.filter(s=>s.na).length;
+  const respondedCount = scored.filter(s=>s.answered).length; // includes N/A responses
+  const applicable = scored.filter(s=>!s.na);
+  applicable.forEach(s=> s.eff = s.answered ? s.exp : 1);
   // overall
   let ws=0, es=0;
-  answered.forEach(s=>{ ws+=s.q.w; es+=s.q.w*s.exp; });
+  applicable.forEach(s=>{ ws+=s.q.w; es+=s.q.w*s.eff; });
   let overall = ws? (es/ws)*100 : 0;
   // per vector
   const vec = {};
   Object.keys(VECTORS).forEach(k=> vec[k]={w:0,e:0});
-  answered.forEach(s=> s.q.uts.forEach(v=>{ vec[v].w+=s.q.w; vec[v].e+=s.q.w*s.exp; }));
+  applicable.forEach(s=> s.q.uts.forEach(v=>{ vec[v].w+=s.q.w; vec[v].e+=s.q.w*s.eff; }));
   const vectorScores = {};
   Object.keys(vec).forEach(k=> vectorScores[k] = vec[k].w ? (vec[k].e/vec[k].w)*100 : null);
   // per domain
   const dom = {};
   DOMAINS.forEach(d=> dom[d.id]={w:0,e:0,total:qsInDom(d.id).length,answered:0});
   scored.forEach(s=>{ if(s.answered) dom[s.q.dom].answered++; });
-  answered.forEach(s=>{ dom[s.q.dom].w+=s.q.w; dom[s.q.dom].e+=s.q.w*s.exp; });
+  applicable.forEach(s=>{ dom[s.q.dom].w+=s.q.w; dom[s.q.dom].e+=s.q.w*s.eff; });
   const domainScores = {};
   DOMAINS.forEach(d=> domainScores[d.id] = dom[d.id].w ? (dom[d.id].e/dom[d.id].w)*100 : null);
 
@@ -555,7 +631,7 @@ function compute(){
     overall = Math.min(100, overall+5);
   }
 
-  return {scored, answered:answered.length, total:Q.length, overall, vectorScores, domainScores, dom, correlations};
+  return {scored, answered:respondedCount, naCount, applicable:applicable.length, total:Q.length, overall, vectorScores, domainScores, dom, correlations};
 }
 
 /* ============ RAIL ============ */
@@ -571,12 +647,13 @@ function updateRail(){
   }).join('');
   $('#domNav').querySelectorAll('a').forEach(a=> a.onclick=()=>{ const t=$('#'+a.dataset.target); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); });
   // provisional read
-  if(r.answered>=8){
+  if(r.answered>=1){
     $('#provBlock').style.display='block';
     const t = tierOf(r.overall);
     $('#provTier').textContent = t+' exposure';
     $('#provTier').style.color = tierColor(r.overall);
-    $('#provHint').textContent = r.answered<r.total ? `Provisional — based on ${r.answered} of ${r.total} answered.` : 'All questions answered.';
+    const togo = r.total - r.answered;
+    $('#provHint').textContent = togo>0 ? `Unaddressed items count as gaps — ${togo} to go.` : 'All practices addressed.';
   }
 }
 
@@ -600,18 +677,25 @@ function showResults(){
     'Moderate':'A solid baseline with exploitable gaps. The priority actions below will most efficiently shrink your signature.',
     'High':'Your current posture leaves substantial observable, identifiable, and correlatable signal. Work the priority actions below first — they cut the most exposure for the least effort.'
   };
-  $('#resText').textContent = verdicts[t];
-  $('#resAssessed').textContent = `${r.answered} of ${r.total} practices assessed` + (r.answered<r.total?` · ${r.total-r.answered} not assessed (excluded from scoring)`:'');
+  const unaddressed = r.total - r.answered;
+  $('#resText').textContent = verdicts[t] + (unaddressed>0 ? ` ${unaddressed} item(s) you haven't addressed are counted as gaps — complete them for an accurate read.` : '');
+  $('#resAssessed').textContent = `${r.answered} of ${r.total} practices addressed`
+    + (unaddressed>0?` · ${unaddressed} not yet addressed (counted as gaps)`:'')
+    + (r.naCount>0?` · ${r.naCount} N/A`:'');
 
-  // vector breakdown
-  $('#vectorBreakdown').innerHTML = Object.keys(VECTORS).map(k=>{
+  // vector breakdown — meter cards
+  $('#vectorBreakdown').innerHTML = `<div class="vgrid">` + Object.keys(VECTORS).map(k=>{
     const v = r.vectorScores[k];
-    if(v==null) return `<div class="vector-row"><div class="vrn">${VECTORS[k].name}<small>not assessed</small></div><div class="vbar"></div><div class="vrt" style="color:var(--ink-faint)">—</div></div>`;
-    return `<div class="vector-row">
-      <div class="vrn">${VECTORS[k].name}<small>${tierOf(v)}</small></div>
-      <div class="vbar"><i style="width:${v}%;background:${tierColor(v)}"></i></div>
-      <div class="vrt" style="color:${tierColor(v)}">${Math.round(v)}</div></div>`;
-  }).join('');
+    if(v==null) return `<div class="vcard" style="border-top-color:var(--line)">
+      <div class="vn">${VECTORS[k].name}</div>
+      <div class="vmeta"><span class="vnum" style="color:var(--ink-faint)">—</span><span class="vchip" style="color:var(--ink-faint);background:var(--panel)">n/a</span></div>
+      <div class="vbar2"></div></div>`;
+    const col=tierColor(v), tn=tierOf(v);
+    return `<div class="vcard" style="border-top-color:${col}">
+      <div class="vn">${VECTORS[k].name}</div>
+      <div class="vmeta"><span class="vnum" style="color:${col}">${Math.round(v)}</span><span class="vchip" style="color:${col};background:${tierBg(v)}">${tn}</span></div>
+      <div class="vbar2"><i style="width:${v}%;background:${col}"></i></div></div>`;
+  }).join('') + `</div>`;
 
   // correlations
   $('#correlationSection').innerHTML = r.correlations.length
@@ -619,16 +703,17 @@ function showResults(){
         `<div class="callout ${c.type}"><span class="ci">⚠</span><span>${c.text}</span></div>`).join('')
     : '';
 
-  // priorities
-  const exposed = r.scored.filter(s=>s.answered && !s.na && s.exp>=0.5)
-    .map(s=>({...s, priority:s.exp*s.q.w}))
+  // priorities (effective exposure: answered-and-high OR not-yet-addressed)
+  const exposed = r.scored.filter(s=>!s.na && s.eff>=0.5)
+    .map(s=>({...s, priority:s.eff*s.q.w}))
     .sort((a,b)=>b.priority-a.priority);
   const top = exposed.slice(0,6);
   $('#prioList').innerHTML = top.length ? top.map((s,i)=>{
       const rr = RES[s.q.n] || {};
-      const how = rr.how ? `<div class="pm" style="color:var(--ink-dim);font-family:'Inter',sans-serif;">${rr.how}</div>` : '';
-      return `<div class="prio-item"><span class="prio-rank ${s.exp<=0.66?'mid':''}">${i+1}</span>
-      <div class="prio-body"><div class="pa">${s.q.mit}</div>${how}<div class="pm">Technique #${s.q.n} · ${domOf(s.q.dom).name} · full links below</div></div></div>`;
+      const how = rr.how ? `<div class="pm" style="color:var(--ink-dim);font-family:var(--font-body);">${rr.how}</div>` : '';
+      const tag = s.answered ? '' : ` <span class="na-tag">not yet addressed</span>`;
+      return `<div class="prio-card ${s.eff<=0.66?'mid':''}"><span class="prio-rank ${s.eff<=0.66?'mid':''}">${i+1}</span>
+      <div class="prio-body"><div class="pa">${s.q.mit}${tag}</div>${how}<div class="pm">${domOf(s.q.dom).name} · full steps below</div></div></div>`;
     }).join('')
     : `<div class="clean" style="padding:14px 0;">No high-priority gaps among assessed items. Review the per-area list below to maintain your posture.</div>`;
 
@@ -638,15 +723,17 @@ function showResults(){
     const ds = r.domainScores[d.id];
     const dtag = ds==null?'<span class="tag" style="color:var(--ink-faint)">not assessed</span>':`<span class="tag" style="color:${tierColor(ds)}">${tierOf(ds)} · ${Math.round(ds)}</span>`;
     const body = items.length
-      ? `<ul>${items.map(s=>{
+      ? `<div class="rec-wrap">${items.map(s=>{
           const rr = RES[s.q.n] || {};
-          const how = rr.how ? `<div class="how">${rr.how}</div>` : '';
+          const detail = DETAIL[s.q.n] ? `<div class="rec-detail">${DETAIL[s.q.n]}</div>` : '';
+          const how = rr.how ? `<div class="rec-how">${rr.how}</div>` : '';
           const links = (rr.links&&rr.links.length)
-            ? `<div class="links">${rr.links.map(L=>`<a href="${L.u}" target="_blank" rel="noopener">${L.l}<span class="u">${L.u}</span></a>`).join('')}</div>`
+            ? `<div class="rec-links">${rr.links.map(L=>`<a href="${L.u}" target="_blank" rel="noopener">${L.l}<span class="u">${L.u}</span></a>`).join('')}</div>`
             : '';
-          return `<li><b>#${s.q.n}.</b> ${s.q.mit}${how}${links}</li>`;
-        }).join('')}</ul>`
-      : `<ul><li class="clean" style="list-style:none;margin-left:-18px;">No significant gaps in this area among assessed items.</li></ul>`;
+          const tag = s.answered ? '' : ` <span class="na-tag">not yet addressed</span>`;
+          return `<div class="rec"><div class="rec-action">${s.q.mit}${tag}</div>${detail}${how}${links}</div>`;
+        }).join('')}</div>`
+      : `<div class="rec-wrap"><div class="clean">No significant gaps in this area among assessed items.</div></div>`;
     return `<details class="domgroup" ${items.length?'open':''}><summary>${d.name} ${dtag}</summary>${body}</details>`;
   }).join('');
 
@@ -655,6 +742,8 @@ function showResults(){
     {l:'EFF Surveillance Self-Defense',u:'https://ssd.eff.org'},
     {l:'PrivacyTools',u:'https://www.privacytools.io'},
     {l:'IntelTechniques',u:'https://inteltechniques.com'},
+    {l:'FBI Digital Exhaust Guide (PDF)',u:'fbi-digital-exhaust.pdf'},
+    {l:'USSOCOM Social Media Smartcards (PDF)',u:'ussoccom-sm-smartcards.pdf'},
   ];
   $('#genResources').innerHTML = GEN.map(g=>`<a href="${g.u}" target="_blank" rel="noopener">${g.l}<span class="u">${g.u}</span></a>`).join('');
 
@@ -662,9 +751,10 @@ function showResults(){
   const now = new Date();
   $('#printMeta').textContent = `Generated ${now.toLocaleDateString()} ${now.toLocaleTimeString()} · ${r.answered}/${r.total} assessed · Overall: ${t} (${pct}) · Session report — not retained`;
   $('#reportDisclaimer').innerHTML =
-    `This report was generated entirely in your browser; no responses were stored or transmitted. `+
+    `This report was generated entirely in your browser — no cookies, no storage, and no responses transmitted or retained. `+
     `Based on the End-User Device Digital Force Protection Manual. Compilation and organization © Signature Management Unit, LLC / Institute for Signature Reduction — for internal U.S. military use; not for redistribution or commercial/competitive use. `+
-    `Techniques are unclassified and drawn from publicly available sources. Educational only; this is not legal, operational, or official policy guidance and does not replace unit SOPs or command directives. Verify all measures against current mission requirements.`;
+    `The individual techniques are unclassified and drawn from publicly available sources; their compilation and your completed assessment may nonetheless be sensitive in the aggregate, and should be handled and shared accordingly. `+
+    `Educational only; this is not legal, operational, or official policy guidance and does not replace unit SOPs or command directives. Verify all measures against current mission requirements.`;
 
   $('#assessment').style.display='none';
   $('#landing').style.display='none';

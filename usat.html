@@ -253,7 +253,7 @@
       <strong>Nothing here is saved, sent, or tracked.</strong> This tool runs entirely in your browser — no cookies, no local storage, and no third-party calls. Your answers live only in memory for this session, are never transmitted to or stored on any server, and disappear when you close the tab. The only output is the report you choose to generate.
     </div>
 
-    <div class="rail-h" style="margin-bottom:10px;">The five UTS collection vectors your answers map to</div>
+    <div class="rail-h" style="margin-bottom:10px;">Five UTS collection areas your answers map to</div>
     <div class="vectors-key" id="vectorsKey"></div>
 
     <button class="btn primary" id="beginBtn">Begin assessment →</button>
@@ -742,8 +742,8 @@ function showResults(){
     {l:'EFF Surveillance Self-Defense',u:'https://ssd.eff.org'},
     {l:'PrivacyTools',u:'https://www.privacytools.io'},
     {l:'IntelTechniques',u:'https://inteltechniques.com'},
-    {l:'FBI Digital Exhaust Guide (PDF)',u:'resources/fbi-digital-exhaust.pdf'},
-    {l:'USSOCOM Social Media Smartcards (PDF)',u:'/resources/ussoccom-sm-smartcards.pdf'},
+    {l:'FBI Digital Exhaust Guide (PDF)',u:'https://www.isrprivacymatters.org/resources/fbi-digital-exhaust.pdf'},
+    {l:'USSOCOM Social Media Smartcards (PDF)',u:'https://www.isrprivacymatters.org/resources/ussoccom-sm-smartcards.pdf'},
   ];
   $('#genResources').innerHTML = GEN.map(g=>`<a href="${g.u}" target="_blank" rel="noopener">${g.l}<span class="u">${g.u}</span></a>`).join('');
 
@@ -752,7 +752,7 @@ function showResults(){
   $('#printMeta').textContent = `Generated ${now.toLocaleDateString()} ${now.toLocaleTimeString()} · ${r.answered}/${r.total} assessed · Overall: ${t} (${pct}) · Session report — not retained`;
   $('#reportDisclaimer').innerHTML =
     `This report was generated entirely in your browser — no cookies, no storage, and no responses transmitted or retained. `+
-    `Based on the End-User Device Digital Force Protection Manual. Compilation and organization © SMU, LLC / Institute for Signature Reduction Inc — for internal use only; not for redistribution or commercial/competitive use. `+
+    `Based on the End-User Device Digital Force Protection Manual. Results not exhaustive. Compilation and organization © SMU, LLC / Institute for Signature Reduction Inc — for internal use only; not for redistribution or commercial/competitive use. `+
     `The individual techniques are unclassified and derived from publicly available sources; their compilation and your completed assessment may nonetheless be sensitive in the aggregate, and should be handled and shared accordingly. `+
     `Educational only; this is not legal, operational, or official policy guidance and does not replace unit SOPs or command directives. Verify all measures against current mission requirements.`;
 

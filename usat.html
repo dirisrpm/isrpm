@@ -704,7 +704,7 @@ function showResults(){
     : '';
 
   // priorities (effective exposure: answered-and-high OR not-yet-addressed)
-  const exposed = r.scored.filter(s=>!s.na && s.eff>=0.5)
+  const exposed = r.scored.filter(s=>!s.na && s.eff>0)
     .map(s=>({...s, priority:s.eff*s.q.w}))
     .sort((a,b)=>b.priority-a.priority);
   const top = exposed.slice(0,6);

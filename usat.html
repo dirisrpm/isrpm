@@ -102,6 +102,7 @@
   .seg button.sel.mid{background:var(--warn);border-color:var(--warn);}
   .seg button.sel.hi{background:var(--bad);border-color:var(--bad);}
   .seg button.sel.na{background:var(--ink-faint);border-color:var(--ink-faint);color:#0c0c0c;}
+  .seg button.sel.unsure{background:#39414f;border-color:#4a5666;color:#e6edf5;}
   .note-inline{font-size:11px;color:var(--warn);margin-top:8px;display:none;}
   .note-inline.show{display:block;}
 
@@ -179,6 +180,7 @@
   .rec-links a:hover{text-decoration:underline;}
   .rec-links a .u{font-family:var(--font-mono);font-size:9.5px;color:var(--ink-faint);margin-left:7px;}
   .na-tag{font-family:var(--font-mono);font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--warn);border:1px solid var(--warn);border-radius:4px;padding:1px 5px;margin-left:5px;white-space:nowrap;}
+  .na-tag.verify{color:var(--accent);border-color:var(--accent);}
   .genres{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:18px;display:flex;flex-wrap:wrap;gap:10px 22px;}
   .genres a{font-size:12px;color:var(--accent);text-decoration:none;}
   .genres a:hover{text-decoration:underline;}
@@ -188,6 +190,49 @@
   .res-actions{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 8px;}
 
   .disclaimer{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);font-size:10.5px;color:var(--ink-faint);line-height:1.6;}
+
+  /* landing lead-in (clinical framing) */
+  .lead-label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.26em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  .lead{font-size:15.5px;line-height:1.55;color:var(--ink);}
+
+  /* one-question-at-a-time stage */
+  .assess-stage{max-width:660px;margin:0 auto;}
+  .stage-top{margin-bottom:20px;}
+  .stage-kicker{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px;}
+  .stage-progress{display:flex;align-items:center;gap:14px;}
+  .stage-progress .progbar{flex:1;margin:0;height:6px;}
+  .stage-count{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);white-space:nowrap;}
+  .stage-card{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:12px;padding:28px 28px 26px;min-height:170px;}
+  .stage-card .q-text{font-size:18px;font-weight:600;line-height:1.42;color:var(--ink);}
+  .stage-card .q-help{font-size:13px;color:var(--ink-faint);margin-top:11px;line-height:1.55;}
+  .stage-card .seg{display:flex;flex-direction:column;gap:9px;margin-top:22px;}
+  .stage-card .seg button{width:100%;text-align:left;font-family:var(--font-body);font-size:14px;color:var(--ink-dim);background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:14px 16px;cursor:pointer;transition:border-color .12s,background .12s,color .12s;}
+  .stage-card .seg button:hover{border-color:#30445a;color:var(--ink);}
+  .stage-card .seg button:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+  .stage-card .seg button.sel{background:var(--accent);color:#08111c;border-color:var(--accent);font-weight:600;}
+  .stage-card .seg button.sel.na{background:var(--ink-faint);border-color:var(--ink-faint);color:#0c0c0c;}
+  .stage-card .seg button.sel.unsure{background:#39414f;border-color:#4a5666;color:#e6edf5;}
+  .stage-nav{display:flex;justify-content:space-between;margin-top:18px;}
+  .stage-nav .btn:disabled{opacity:0.35;cursor:default;}
+  .stage-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;min-height:22px;}
+  .foot-count{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);}
+  .stage-foot .btn{padding:7px 14px;}
+  .finish-inner{text-align:center;padding:14px 6px;}
+  .finish-h{font-family:var(--font-display);font-weight:700;font-size:21px;color:var(--ink);}
+  .finish-p{font-size:13px;color:var(--ink-dim);line-height:1.6;margin:12px auto 20px;max-width:470px;}
+
+  /* research opt-in survey (appears after report download) */
+  .survey-overlay{position:fixed;inset:0;background:rgba(6,9,13,0.72);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:80;padding:20px;}
+  .survey-overlay.show{display:flex;}
+  .survey-card{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:14px;max-width:440px;width:100%;padding:24px 24px 20px;box-shadow:0 20px 60px rgba(0,0,0,0.55);}
+  .survey-h{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--ink);}
+  .survey-p{font-size:12.5px;color:var(--ink-dim);line-height:1.6;margin:10px 0 0;}
+  .survey-p b{color:var(--ink);}
+  .survey-q{font-size:12.5px;color:var(--ink);margin:16px 0 10px;font-weight:600;}
+  .survey-actions{display:flex;flex-direction:column;gap:8px;}
+  .survey-actions .btn{width:100%;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:13px;padding:12px 14px;}
+  .survey-foot{font-size:10.5px;color:var(--ink-faint);margin:12px 0 0;text-align:center;}
+  @media print{ .survey-overlay{display:none !important;} }
 
   .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--panel);border:1px solid var(--accent);border-radius:8px;padding:11px 18px;font-size:12.5px;color:var(--ink);box-shadow:0 8px 28px rgba(0,0,0,0.4);display:none;z-index:50;}
 
@@ -233,6 +278,7 @@
     .callout{border:1px solid #c8d2dc !important;background:#f6f8fa !important;color:#2a3a4a;page-break-inside:avoid;}
     .callout b{color:#15202b;}
     .na-tag{color:#9a6a10;border-color:#d9b36a;}
+    .na-tag.verify{color:#2b5d86;border-color:#9bb4d6;}
     .genres{background:#fff;border-color:#c8d2dc;}
     .genres a{color:#1a4a7a;}
     details{page-break-inside:avoid;}
@@ -265,34 +311,38 @@
 
   <!-- LANDING -->
   <div id="landing" class="landing">
-    <p>This assessment turns disciplined cyber-hygiene practices into a read on your personal digital signature — how observable, identifiable, and correlatable you are to an adversary running ubiquitous technical surveillance (UTS). You'll answer 48 questions across seven practical areas. There are no right answers to perform for; an honest self-check is the only thing that produces a useful result. The practices here are compiled from publicly available sources; treat your completed assessment as potentially sensitive in the aggregate.</p>
+    <div class="lead-label">Self-Assessment Instrument</div>
+    <p class="lead">The UTS Signature Assessment is a structured, self-administered instrument that estimates an individual&rsquo;s <b>digital signature</b> — the degree to which their devices, accounts, and routines render them observable, identifiable, and correlatable to an adversary conducting ubiquitous technical surveillance (UTS).</p>
+
+    <p>It comprises 48 items, organized across seven practice areas and mapped to five UTS collection vectors. Each item records a single protective practice; your responses are combined into a weighted exposure index from 0 to 100, accompanied by a vector-level profile and prioritized, individualized recommendations.</p>
+
+    <p>It is intended as a screening and educational instrument — a structured way to locate where your observable signature is greatest and identify what most efficiently reduces it. It is not a vulnerability scan or an audit, it cannot observe your actual device configuration, and it is not exhaustive. Validity depends on candid self-report: there are no desirable answers, items you are unsure of may be marked as such rather than guessed, and although the underlying practices are drawn from public sources, your completed results may be sensitive in aggregate and should be handled accordingly.</p>
 
     <div class="privacy-note">
-      <strong>Nothing here is saved, sent, or tracked.</strong> This tool runs entirely in your browser — no cookies, no local storage, and no third-party calls. Your answers live only in memory for this session, are never transmitted to or stored on any server, and disappear when you close the tab. The only output is the report you choose to generate.
+      <strong>Administered entirely on your device.</strong> The assessment runs locally in your browser — no cookies and no tracking — and your responses are held only in memory for this session. Nothing is transmitted or stored unless, after generating your report, you voluntarily choose to contribute your de-identified results to ISR research. You can complete and use the assessment without contributing anything.
     </div>
 
-    <div class="rail-h" style="margin-bottom:10px;">Five UTS collection areas your answers map to</div>
+    <div class="rail-h" style="margin-bottom:10px;">The five UTS collection vectors</div>
     <div class="vectors-key" id="vectorsKey"></div>
 
     <button class="btn primary" id="beginBtn">Begin assessment →</button>
   </div>
 
-  <!-- ASSESSMENT -->
-  <div id="assessment" class="assess" style="display:none;">
-    <div id="domains"></div>
-    <aside class="rail">
-      <div class="card">
-        <div class="rail-h">Progress</div>
-        <div class="progress-num"><span id="answeredCount">0</span><small> / 48</small></div>
+  <!-- ASSESSMENT (one item at a time) -->
+  <div id="assessment" class="assess-stage" style="display:none;">
+    <div class="stage-top">
+      <div class="stage-kicker" id="stageArea">—</div>
+      <div class="stage-progress">
         <div class="progbar"><i id="progFill" style="width:0%"></i></div>
+        <div class="stage-count"><span id="qNum">1</span> / <span id="qTotal">48</span></div>
       </div>
-      <div class="card">
-        <div class="rail-h">Sections</div>
-        <div class="domnav" id="domNav"></div>
-      </div>
-      <button class="btn primary" id="genBtn" style="width:100%;margin-top:14px;">Generate report</button>
-      <div style="font-size:10.5px;color:var(--ink-faint);text-align:center;margin-top:8px;">You can generate at any point; unanswered items are noted as not assessed.</div>
-    </aside>
+    </div>
+    <div class="stage-card" id="stageCard"></div>
+    <div class="stage-nav" id="stageNav">
+      <button class="btn ghost" id="backBtnQ">← Back</button>
+      <button class="btn ghost" id="nextBtnQ">Skip →</button>
+    </div>
+    <div class="stage-foot" id="stageFoot"></div>
   </div>
 
   <!-- RESULTS -->
@@ -336,10 +386,35 @@
   </div>
 
 </div>
+
+<!-- RESEARCH OPT-IN (appears once, after the report is saved/printed) -->
+<div class="survey-overlay" id="survey" aria-hidden="true">
+  <div class="survey-card" role="dialog" aria-modal="true" aria-labelledby="surveyH">
+    <div id="surveyBody">
+      <div class="survey-h" id="surveyH">Contribute to ISR research?</div>
+      <p class="survey-p">The Institute for Signature Reduction studies how individuals can reduce their observable digital signature. With your consent, the <b>de-identified</b> results from this session — your exposure scores only, never your name, contact details, or device identifiers — may be contributed to that research to strengthen future guidance. Participation is voluntary and does not change your report.</p>
+      <p class="survey-q">If you&rsquo;d like to contribute, choose the description that fits you:</p>
+      <div class="survey-actions">
+        <button class="btn primary" id="svMil">Share results — Military / Gov-affiliated</button>
+        <button class="btn primary" id="svCiv">Share results — Civilian / other</button>
+        <button class="btn ghost" id="svNo">No thanks</button>
+      </div>
+      <p class="survey-foot">Choosing &ldquo;No thanks&rdquo; sends nothing; your results stay only on your device.</p>
+    </div>
+    <div id="surveyThanks" style="display:none;">
+      <div class="survey-h">Thank you.</div>
+      <p class="survey-p">Your contribution supports ISR research. You can close this window.</p>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 <button id="toTop" class="to-top" aria-label="Back to top" title="Back to top">↑</button>
 
 <script>
+/* ============ CONTENT CURRENCY (editable: set when an SME last reviewed the content) ============ */
+const REVIEW_DATE = 'June 2026';
+
 /* ============ UTS VECTORS (editable: relabel to your unit's taxonomy here) ============ */
 const VECTORS = {
   ELEC: {name:'Electronic', desc:'RF and emissions — Wi-Fi, Bluetooth, cellular, NFC/UWB, and the technical attack surface of the device itself.'},
@@ -386,9 +461,9 @@ const Q = [
   {n:35,dom:'hard',uts:['ELEC','DIGI'],w:0.9,type:'scale',opts:SCALE4(),text:'Do you keep your OS and apps updated promptly and disable risky optional features (e.g. link previews)?',help:'Even trusted privacy tools ship vulnerabilities; patches and feature hygiene matter.',mit:'Patch promptly and disable leaky optional features as they\u2019re disclosed.'},
   // D3 App & data
   {n:2,dom:'app',uts:['DIGI','BIOG'],w:0.8,type:'binary',good:'yes',text:'Have you disabled the advertising identifier and app tracking (and personalized ads)?',help:'Ad IDs let networks and brokers profile you across apps.',mit:'Disable the advertising ID and "Allow Apps to Request to Track."'},
-  {n:3,dom:'app',uts:['DIGI','BEHV'],w:1.1,type:'scale',opts:SCALE4(),text:'How tightly do you control app location access (deny precise, "While Using" only, no background, scanning off)?',help:'Many apps request precise GPS and Wi-Fi/BT scanning they don\u2019t need.',mit:'Deny precise location and background access except where essential; disable location scanning.'},
+  {n:3,dom:'app',uts:['DIGI','BEHV'],w:1.1,type:'scale',opts:SCALE4(),text:'Have you tightened app location permissions \u2014 denied precise location and limited apps to "While Using" or never?',help:'Many apps request precise, always-on location they don\u2019t need.',mit:'Deny precise location and background access except where essential; disable location scanning.'},
   {n:4,dom:'app',uts:['DIGI'],w:0.7,type:'scale',opts:SCALE4(),text:'Do you limit Background App Refresh / background data to trusted apps only?',help:'Embedded SDKs transmit identifiers and metadata in the background.',mit:'Restrict background refresh/data to apps you explicitly trust.'},
-  {n:11,dom:'app',uts:['DIGI'],w:1.0,type:'scale',opts:SCALE4(),text:'How regularly do you audit installed apps and remove or restrict the ones you don\u2019t need?',help:'Fewer apps with tighter permissions means less to leak.',mit:'Minimize app count and permissions; consider outbound filtering (Little Snitch / LuLu / Lockdown).'},
+  {n:11,dom:'app',uts:['DIGI'],w:1.0,type:'scale',opts:[{label:'Within 3 months',exp:0},{label:'3\u201312 months ago',exp:0.4},{label:'Over a year ago',exp:0.7},{label:'Never',exp:1}],text:'When did you last review your installed apps and remove or restrict the ones you don\u2019t need?',help:'Fewer apps with tighter permissions means less to leak.',mit:'Minimize app count and permissions; consider outbound filtering.'},
   {n:12,dom:'app',uts:['DIGI'],w:0.7,type:'binary',good:'yes',text:'Are voice assistants (Siri / Alexa / Google Assistant) disabled?',help:'Always-listening assistants capture ambient audio.',mit:'Disable voice assistants to stop passive microphone activation.'},
   {n:40,dom:'app',uts:['DIGI'],w:0.5,type:'context',opts:[{label:'Mostly',exp:0.1},{label:'Sometimes',exp:0.45},{label:'Rarely',exp:0.7},{label:'Never',exp:1}],text:'Do you prefer vetted open-source apps / privacy repositories (F-Droid, Aurora) over standard app stores where feasible?',help:'FOSS allows auditing and avoids account-tied profiling.',mit:'Prefer auditable FOSS via F-Droid/Aurora where it meets the need.'},
   {n:41,dom:'app',uts:['DIGI'],w:0.6,type:'binary',good:'yes',text:'Do you isolate high-risk apps in a sandbox or work profile (e.g. Shelter)?',help:'Sandboxing blocks cross-app access to contacts, files, and identifiers.',mit:'Sandbox risky apps in a work profile to contain their access.'},
@@ -400,14 +475,14 @@ const Q = [
   {n:27,dom:'net',uts:['ELEC'],w:0.5,type:'context',opts:[{label:'Usually',exp:0.1},{label:'Sometimes',exp:0.5},{label:'Never',exp:0.8}],text:'On untrusted networks, do you route through your own travel router or cellular hotspot?',help:'Avoids sharing a broadcast domain with unknown users.',mit:'Use a travel router/hotspot to enforce your own secure network layer.'},
   // D5 Identity & footprint
   {n:9,dom:'id',uts:['BIOG'],w:0.9,type:'binary',good:'yes',text:'Do you use a VOIP / alias number for public-facing contact, reserving your carrier number for trusted contacts?',help:'Your carrier number is a persistent identity tag tied to your PII.',mit:'Use a VOIP/alias number (Google Voice / MySudo) for low-trust interactions.'},
-  {n:16,dom:'id',uts:['BIOG','BEHV'],w:1.1,type:'scale',opts:SCALE4(),text:'How disciplined is your (and your family\u2019s) social media — sanitized, no real names/dates, max privacy, no location leakage?',help:'Open profiles are a primary targeting and correlation source.',mit:'Sanitize profiles (no real name/DOB), lock privacy settings, avoid location/pattern disclosure; include family.'},
+  {n:16,dom:'id',uts:['BIOG','BEHV'],w:1.1,type:'scale',opts:[{label:'Yes \u2014 fully locked down',exp:0},{label:'Mostly',exp:0.4},{label:'Partially',exp:0.7},{label:'No / public',exp:1}],text:'Are your (and your family\u2019s) social media profiles locked down \u2014 set to private, with identifying personal details kept off public view?',help:'Open profiles are a primary targeting and correlation source; family accounts count too.',mit:'Sanitize profiles (no real name/DOB), lock privacy settings, avoid location/pattern disclosure; include family.'},
   {n:18,dom:'id',uts:['ELEC','BIOG'],w:0.6,type:'binary',good:'yes',text:'Are your device, hotspot, and router names neutral (no name, location, or model)?',help:'These names broadcast over Wi-Fi/BT and enable attribution.',mit:'Rename devices and router to non-identifying labels.'},
   {n:19,dom:'id',uts:['BIOG','DIGI'],w:1.0,type:'scale',opts:[{label:'Done & maintained',exp:0},{label:'Partially',exp:0.45},{label:'Just started',exp:0.7},{label:'Not yet',exp:1}],text:'Have you searched yourself and opted out of data-broker databases (Spokeo, Whitepages, etc.)?',help:'Brokers expose address, phone, relatives, and DOB for profit.',mit:'Run the IntelTechniques opt-out workbook; remove broker listings and maintain it.'},
   {n:25,dom:'id',uts:['DIGI','BEHV'],w:0.6,type:'binary',good:'yes',text:'Do you prevent location EXIF on photos, or strip it before sharing?',help:'EXIF can reveal exact location and time a photo was taken.',mit:'Disable camera location tags or strip EXIF before uploading.'},
-  {n:26,dom:'id',uts:['FIN'],w:0.7,type:'scale',opts:[{label:'Opted out + masked cards',exp:0},{label:'Some measures',exp:0.45},{label:'Aware, not yet',exp:0.7},{label:'No',exp:1}],text:'Have you reduced financial-data sharing (Visa/Mastercard opt-outs, masked cards for online buys)?',help:'Processors sell transaction analytics; card trails profile habits and locations.',mit:'Submit Visa/Mastercard analytics opt-outs; use masked cards (Privacy.com / MySudo) online.'},
-  {n:32,dom:'id',uts:['FIN','BIOG'],w:0.8,type:'binary',good:'yes',text:'Is your credit frozen at the major bureaus?',help:'Free and reversible; blocks new-account fraud and limits data sale.',mit:'Freeze credit at all bureaus (free, reversible).'},
+  {n:26,dom:'id',uts:['FIN'],w:0.7,na:true,type:'scale',opts:[{label:'Opted out + masked cards',exp:0},{label:'Some measures',exp:0.45},{label:'Aware, not yet',exp:0.7},{label:'No',exp:1}],text:'Have you reduced financial-data sharing (Visa/Mastercard opt-outs, masked cards for online buys)?',help:'Processors sell transaction analytics; card trails profile habits and locations.',mit:'Submit Visa/Mastercard analytics opt-outs; use masked cards (Privacy.com / MySudo) online.'},
+  {n:32,dom:'id',uts:['FIN','BIOG'],w:0.8,na:true,type:'binary',good:'yes',text:'Is your credit frozen at the major bureaus?',help:'Free and reversible; blocks new-account fraud and limits data sale.',mit:'Freeze credit at all bureaus (free, reversible).'},
   {n:45,dom:'id',uts:['BIOG','DIGI'],w:0.8,type:'scale',opts:SCALE4(),text:'How regularly do you run OSINT on yourself (HaveIBeenPwned, people-search, Wayback) to find exposure?',help:'Self-assessment shows what an adversary could compile.',mit:'Periodically self-assess (HIBP, IntelTechniques, Bellingcat) and suppress exposed data.'},
-  {n:47,dom:'id',uts:['BEHV','DIGI'],w:0.8,type:'context',opts:[{label:'Minimized, no cloud sync forward',exp:0.1},{label:'Some limits',exp:0.5},{label:'Worn & syncing',exp:0.9}],text:'Do you limit or eliminate wearables (smartwatch / fitness / ring) in operational settings and block their cloud sync?',help:'Wearables reveal tempo, routine, recovery cycles, and deviations from baseline.',mit:'Treat wearables as beacons: minimize forward use, disable telemetry, block cloud sync.'},
+  {n:47,dom:'id',uts:['BEHV','DIGI'],w:0.8,na:true,type:'context',opts:[{label:'Minimized, no cloud sync forward',exp:0.1},{label:'Some limits',exp:0.5},{label:'Worn & syncing',exp:0.9}],text:'Do you limit or eliminate wearables (smartwatch / fitness / ring) in operational settings and block their cloud sync?',help:'Wearables reveal tempo, routine, recovery cycles, and deviations from baseline.',mit:'Treat wearables as beacons: minimize forward use, disable telemetry, block cloud sync.'},
   // D6 Comms security
   {n:8,dom:'comm',uts:['DIGI'],w:0.9,type:'binary',good:'yes',text:'Do you use Signal (or an equivalent end-to-end, zero-knowledge app) for sensitive messaging?',help:'E2E and no server-side storage; pair with a VPN.',mit:'Use Signal for sensitive comms; avoid cloud-backed SMS/iMessage for sensitive content.'},
   {n:17,dom:'comm',uts:['DIGI','BIOG'],w:0.6,type:'binary',good:'yes',text:'Do you use a privacy-focused email provider (e.g. Proton) for sensitive correspondence?',help:'Mainstream providers scan content and are high-value breach targets.',mit:'Use a privacy email (Proton) for sensitive mail.'},
@@ -426,54 +501,54 @@ const Q = [
 
 /* ============ RESOURCES (how-to + links, drawn from the EUD manual) ============ */
 const RES = {
-  1:{how:'Settings > Wi-Fi and Settings > Bluetooth (or Android equivalents) — disable in Settings, not Control Center.'},
-  2:{how:'iOS: Privacy & Security > Tracking, then > Apple Advertising > Personalized Ads (off). Android: Privacy > Ads > Delete advertising ID.'},
-  3:{how:'Location Services: deny Precise Location, set "While Using," disable location scanning; pre-cache offline maps (e.g. OsmAnd).'},
-  4:{how:'iOS: General > Background App Refresh. Android: Apps > [app] > Mobile Data & Wi-Fi > Background Data.'},
-  5:{how:'Use an 8+ digit or alphanumeric passcode; disable biometrics for borders/sensitive contexts.'},
-  6:{how:'Enable USB Restricted Mode (iOS) or disable USB data transfer/debugging (Android); Airplane Mode or powered off at borders.'},
-  7:{how:'Pick an audited no-logs provider with WireGuard/OpenVPN and RAM-only servers.',links:[{l:'Mullvad',u:'https://mullvad.net'},{l:'ProtonVPN',u:'https://protonvpn.com'}]},
-  8:{how:'Install Signal (mobile or desktop); use username search to avoid sharing your number.',links:[{l:'Signal',u:'https://signal.org'}]},
-  9:{how:'Use a VOIP/alias number for public contact (Google Voice, MySudo, Abine Blur); register with the Do Not Call list.',links:[{l:'National Do Not Call Registry',u:'https://www.donotcall.gov'}]},
-  10:{how:'Use your own AC charger or battery pack, or a charge-only data blocker; never use unknown USB ports or cables.'},
-  11:{how:'Remove unused apps; tighten permissions; add outbound traffic filtering.',links:[{l:'Lockdown Privacy',u:'https://lockdownprivacy.com'},{l:'Objective-See LuLu',u:'https://objective-see.org/products/lulu.html'}]},
-  12:{how:'Disable Siri / Google Assistant / Alexa in each platform\u2019s settings.'},
-  13:{how:'Apply a camera cover or opaque tab; some Purism Librem devices include hardware kill switches.'},
-  14:{how:'Forget saved networks — macOS: Network > Wi-Fi > Known Networks; Windows: Manage Known Networks; iOS: Wi-Fi > (i) > Forget; Android: Saved Networks > Forget.'},
-  15:{how:'Use Firefox/Brave or Safari+DuckDuckGo with uBlock Origin, Multi-Account Containers, KeePassXC; Tor where appropriate.',links:[{l:'uBlock Origin',u:'https://ublockorigin.com'},{l:'privacytools.io',u:'https://www.privacytools.io'}]},
-  16:{how:'Sanitize profiles: no full name/DOB, maximum privacy settings, no location or pattern disclosure; include family accounts.'},
-  17:{how:'Use a privacy-focused provider for sensitive correspondence.',links:[{l:'Proton Mail',u:'https://proton.me/mail'}]},
-  18:{how:'Rename to neutral labels — Apple: General > About > Name; Android: About phone > Device name; Windows: System > About > Rename this PC.'},
-  19:{how:'Search yourself and submit broker opt-outs (Spokeo, Whitepages, MyLife, and others).',links:[{l:'IntelTechniques opt-out workbook',u:'https://inteltechniques.com/data/workbook.pdf'}]},
-  20:{how:'Enable FileVault (macOS: Security & Privacy > FileVault) or BitLocker (Windows); keep devices powered off at borders.'},
-  21:{how:'Enable a firewall (macOS: Security & Privacy > Firewall + stealth mode); use an outbound-aware tool.',links:[{l:'Objective-See firewall tools',u:'https://objective-see.org'}]},
-  22:{how:'Enable 2FA everywhere; prefer an authenticator app or hardware key over SMS.',links:[{l:'Aegis Authenticator',u:'https://getaegis.app'},{l:'YubiKey',u:'https://www.yubico.com'}]},
-  23:{how:'Use a password manager with unique passwords — KeePassXC (offline) or Proton Pass/Dashlane (sync).',links:[{l:'KeePassXC',u:'https://keepassxc.org'},{l:'Proton Pass',u:'https://proton.me/pass'}]},
-  24:{how:'Treat unsolicited links, files, and calls as suspicious; verify through a known-good channel before interacting.'},
-  25:{how:'Disable location tags — iOS: Location Services > Camera > Never; Android: Camera > Settings > Location tags > Off; or strip EXIF before upload.'},
-  26:{how:'Submit processor analytics opt-outs; use masked cards (Privacy.com, MySudo) for online purchases.',links:[{l:'Mastercard opt-out',u:'https://www.mastercard.com/us/en/data-analytics-opt-out.html'},{l:'Visa privacy notice',u:'https://usa.visa.com/legal/global-privacy-notice.html'}]},
-  27:{how:'Route through your own travel router or hotspot; enforce WPA3, client isolation, and a hardened VPN profile.'},
-  28:{how:'Keep devices on your person; treat any unattended device as compromised.',links:[{l:'EFF resources',u:'https://www.eff.org'}]},
-  29:{how:'Use a quality Faraday enclosure deliberately and situationally — not as a default posture.',links:[{l:'SLNT',u:'https://slnt.com'}]},
-  30:{how:'Pre-configure a travel-only device before departure; do not link it to personal accounts.'},
-  31:{how:'Set a firmware password (Mac) or BIOS/UEFI supervisor password (Windows/Linux) via your OS support docs.'},
-  32:{how:'Freeze credit at all three bureaus (free and reversible).',links:[{l:'IntelTechniques credit-freeze guide',u:'https://inteltechniques.com/freeze.html'}]},
-  33:{how:'Consider a privacy-hardened OS where appropriate — LineageOS or GrapheneOS.',links:[{l:'GrapheneOS',u:'https://grapheneos.org'},{l:'LineageOS',u:'https://lineageos.org'}]},
-  34:{how:'Limit mainstream cloud sync; use zero-knowledge, end-to-end encrypted storage for sensitive data.'},
-  35:{how:'Patch OS and apps promptly; disable leaky features (e.g. Signal: Chats > Generate Link Previews, off).'},
-  36:{how:'Android: Network & Internet > SIMs > Allow 2G (off). iOS exposes no 2G toggle.'},
-  37:{how:'Android: disable auto-retrieval in Google/Samsung Messages. iOS: no toggle — disabling MMS prevents auto-parsing.'},
-  38:{how:'Avoid first-connecting "clean" devices near home, work, or sensitive sites; mind which towers you associate with.',links:[{l:'GRU Unit 26165 case (OPCW)',u:'https://www.gov.uk/government/speeches/minister-for-europe-statement-attempted-hacking-of-the-opcw-by-russian-military-intelligence'}]},
-  39:{how:'Android: Connected Devices > disable NFC/UWB. iOS (UWB): Privacy & Security > Location Services > System Services > Networking & Wireless > Off.'},
-  40:{how:'Prefer vetted FOSS through privacy repositories where it meets the need.',links:[{l:'F-Droid',u:'https://f-droid.org'},{l:'Aurora Store',u:'https://auroraoss.com'}]},
-  41:{how:'Isolate risky apps in a work profile or sandbox (e.g. Shelter on Android).'},
-  42:{how:'Keep a TAILS USB for untrusted hardware or emergencies; mind host-nation legal restrictions.',links:[{l:'TAILS',u:'https://tails.net/install/index.en.html'}]},
-  43:{how:'Use eSIM and travel eSIMs (e.g. Airalo) to resist SIM swap/clone and isolate your primary number.',links:[{l:'Airalo',u:'https://www.airalo.com'}]},
-  44:{how:'Learn your baseline (LTE/5G/VoLTE) so downgrades and anomalies stand out as soft indicators.'},
-  45:{how:'Periodically self-assess with people-search, breach, and archive tools.',links:[{l:'IntelTechniques tools',u:'https://inteltechniques.com/tools/index.html'},{l:'Bellingcat toolkit',u:'https://bellingcat.gitbook.io/toolkit'},{l:'Have I Been Pwned',u:'https://haveibeenpwned.com'}]},
-  46:{how:'Identify and freeze in-app trackers with granular control tooling.',links:[{l:'Warden',u:'https://github.com/whyorean/Warden'}]},
-  47:{how:'Minimize forward wearable use, disable telemetry, and block cloud sync while forward.'},
-  48:{how:'Pre-stage satellite or mesh comms for denied environments; weigh emissions and equipment visibility.',links:[{l:'Meshtastic',u:'https://meshtastic.org'}]},
+  1:{how:'Turn Wi-Fi and Bluetooth fully off from your main Settings app, not just the quick-access control panel (which often leaves the radios on), whenever you are not using them.'},
+  2:{how:'In your privacy settings, turn off the advertising identifier, deny apps permission to track you, and opt out of personalized ads.'},
+  3:{how:'In your location settings, deny precise location, set apps to "while using" or never, and turn off location-based Wi-Fi and Bluetooth scanning; cache maps for offline use when you can.'},
+  4:{how:'In your app, battery, or data settings, turn off background refresh and background data for anything that does not need to update while closed.'},
+  5:{how:'Set a long passcode (eight or more digits, or better, an alphanumeric one) in your security settings, and turn biometric unlock off before borders or other high-risk situations.'},
+  6:{how:'Turn on the setting that blocks data over the charging port while the device is locked, and power devices off at border crossings.'},
+  7:{how:'Choose a reputable, independently audited no-logs provider and keep the VPN on whenever you use a network you do not control.',links:[{l:'Mullvad',u:'https://mullvad.net'},{l:'ProtonVPN',u:'https://protonvpn.com'}]},
+  8:{how:'Install Signal on your phone or desktop and use it for sensitive conversations; set a username so people can reach you without your phone number.',links:[{l:'Signal',u:'https://signal.org'}]},
+  9:{how:'Use a VOIP or forwarding number for public-facing contact and keep your real carrier number for trusted people; add your number to the national Do Not Call list.',links:[{l:'National Do Not Call Registry',u:'https://www.donotcall.gov'}]},
+  10:{how:'Carry your own wall charger or battery pack, or a charge-only data blocker, and avoid plugging into unknown ports or cables.'},
+  11:{how:'Periodically review your installed apps, remove anything you do not use, and tighten the permissions on the rest; an outbound traffic filter can show you what your apps are contacting.',links:[{l:'Lockdown Privacy',u:'https://lockdownprivacy.com'},{l:'Objective-See LuLu',u:'https://objective-see.org/products/lulu.html'}]},
+  12:{how:'Turn off the voice assistant in your settings so the microphone is not always listening.'},
+  13:{how:'Put a sliding cover or opaque tab over your device cameras when they are not in use.'},
+  14:{how:'In your Wi-Fi settings, forget saved networks you no longer need so your device stops broadcasting that it is looking for them.'},
+  15:{how:'Use a privacy-respecting browser with a content blocker such as uBlock Origin, keep separate accounts isolated, and use Tor where appropriate.',links:[{l:'uBlock Origin',u:'https://ublockorigin.com'},{l:'privacytools.io',u:'https://www.privacytools.io'}]},
+  16:{how:'In each platform privacy settings, set profiles to private and remove identifying details such as full name, birthdate, and location; do the same for family accounts.'},
+  17:{how:'Use a privacy-focused email provider for sensitive correspondence.',links:[{l:'Proton Mail',u:'https://proton.me/mail'}]},
+  18:{how:'Rename your devices, hotspot, and router to neutral labels in their settings so they do not broadcast your name, location, or model.'},
+  19:{how:'Search the major data-broker and people-search sites for yourself and submit their opt-out or removal requests, then repeat periodically; a structured workbook makes this manageable.',links:[{l:'IntelTechniques opt-out workbook',u:'https://inteltechniques.com/data/workbook.pdf'}]},
+  20:{how:'Turn on full-disk encryption (FileVault on macOS, BitLocker on Windows; modern phones are encrypted by default) and keep devices powered off at borders.'},
+  21:{how:'Turn on the built-in firewall on your computer, and consider an outbound-aware tool that lets you approve which apps may connect out.',links:[{l:'Objective-See firewall tools',u:'https://objective-see.org'}]},
+  22:{how:'Turn on two-factor authentication for important accounts, choosing an authenticator app or hardware key rather than text-message codes.',links:[{l:'Aegis Authenticator',u:'https://getaegis.app'},{l:'YubiKey',u:'https://www.yubico.com'}]},
+  23:{how:'Use a password manager to generate and store a unique password for every account.',links:[{l:'KeePassXC',u:'https://keepassxc.org'},{l:'Proton Pass',u:'https://proton.me/pass'}]},
+  24:{how:'Treat unexpected links, attachments, and contact as suspect, and confirm through a separate trusted channel before you act on them.'},
+  25:{how:'Turn off location tagging in your camera settings, or strip location data from photos before you share them.'},
+  26:{how:'Opt out of the card networks data-analytics programs and use single-use masked card numbers for online purchases.',links:[{l:'Mastercard opt-out',u:'https://www.mastercard.com/us/en/data-analytics-opt-out.html'},{l:'Visa privacy notice',u:'https://usa.visa.com/legal/global-privacy-notice.html'}]},
+  27:{how:'On networks you do not control, connect through your own travel router or phone hotspot rather than joining the venue Wi-Fi directly.'},
+  28:{how:'Keep devices on your person and treat anything left unattended as potentially tampered with.',links:[{l:'EFF resources',u:'https://www.eff.org'}]},
+  29:{how:'Keep a quality Faraday pouch and use it deliberately for sensitive movement, rather than as an always-on habit.',links:[{l:'SLNT',u:'https://slnt.com'}]},
+  30:{how:'Set up a clean, travel-only device before a high-risk trip and keep it unlinked from your personal accounts.'},
+  31:{how:'Set a firmware or startup password on your computer so it cannot be booted from other media without it; your operating system support pages show how.'},
+  32:{how:'Place a security freeze on your credit with each major bureau; it is free and reversible.',links:[{l:'IntelTechniques credit-freeze guide',u:'https://inteltechniques.com/freeze.html'}]},
+  33:{how:'Where it fits your needs and device, consider a privacy-hardened mobile OS that strips manufacturer telemetry.',links:[{l:'GrapheneOS',u:'https://grapheneos.org'},{l:'LineageOS',u:'https://lineageos.org'}]},
+  34:{how:'Limit what automatically syncs to mainstream cloud accounts, and keep sensitive data in zero-knowledge, end-to-end encrypted storage.'},
+  35:{how:'Keep your operating system and apps up to date, and turn off optional features that are known to leak data as those issues come to light.'},
+  36:{how:'Where your device allows it, turn off 2G so the phone cannot be pushed onto that insecure standard.'},
+  37:{how:'Turn off automatic downloading of multimedia (MMS) messages so nothing is processed before you choose to open it.'},
+  38:{how:'Be deliberate about where and when a clean device first connects, avoiding powering it on near your home, work, or other places tied to you.',links:[{l:'GRU Unit 26165 case (OPCW)',u:'https://www.gov.uk/government/speeches/minister-for-europe-statement-attempted-hacking-of-the-opcw-by-russian-military-intelligence'}]},
+  39:{how:'Turn off NFC and ultra-wideband in your settings when you are not actively using them.'},
+  40:{how:'Where a vetted open-source app meets the need, install it from a privacy-respecting app repository.',links:[{l:'F-Droid',u:'https://f-droid.org'},{l:'Aurora Store',u:'https://auroraoss.com'}]},
+  41:{how:'Use a separate work profile or sandbox to isolate higher-risk apps from your main contacts and files.'},
+  42:{how:'Keep a TAILS USB drive for untrusted computers or emergencies, and be aware of local laws on anonymity tools.',links:[{l:'TAILS',u:'https://tails.net/install/index.en.html'}]},
+  43:{how:'Use an eSIM, including short-term travel eSIMs, to resist SIM swapping and cloning and to keep your primary number separate.',links:[{l:'Airalo',u:'https://www.airalo.com'}]},
+  44:{how:'Learn what your normal signal looks like so that unusual drops or downgrades stand out, and respond cautiously when they do.'},
+  45:{how:'Periodically search for yourself across breach-check, people-search, and archive tools to find and remove exposed information; include family members.',links:[{l:'IntelTechniques tools',u:'https://inteltechniques.com/tools/index.html'},{l:'Bellingcat toolkit',u:'https://bellingcat.gitbook.io/toolkit'},{l:'Have I Been Pwned',u:'https://haveibeenpwned.com'}]},
+  46:{how:'Use a tracker-control tool to see and block the trackers and background services bundled inside your apps.',links:[{l:'Warden',u:'https://github.com/whyorean/Warden'}]},
+  47:{how:'Minimize wearables in sensitive settings, turn off unnecessary telemetry, and block their cloud sync; treat them as beacons.'},
+  48:{how:'Pre-stage satellite or mesh communications for denied or monitored areas, weighing power draw, equipment visibility, and emissions.',links:[{l:'Meshtastic',u:'https://meshtastic.org'}]},
 };
 
 /* ============ DETAIL (actionable expansion, paraphrased from the EUD manual) ============ */
@@ -606,75 +681,155 @@ function renderVectorKey(){
 }
 
 /* ============ RENDER: assessment ============ */
-function renderDomains(){
+/* ============ ASSESSMENT: one item at a time ============ */
+let idx = 0, atFinish = false, advTimer = null;
+
+function startAssessment(){ idx = 0; atFinish = false; renderStage(); }
+
+function renderStage(){
   glossReset();
-  const host = $('#domains');
-  host.innerHTML = DOMAINS.map((d,di)=>{
-    const qs = qsInDom(d.id);
-    const vecs = [...new Set(qs.flatMap(q=>q.uts))].map(v=>VECTORS[v].name).join(' · ');
-    const qhtml = qs.map(q=>renderQuestion(q)).join('');
-    return `<section class="domain" id="dom-${d.id}">
-      <div class="domain-head"><span class="domain-num">${String(di+1).padStart(2,'0')}</span><span class="domain-name">${d.name}</span></div>
-      <p class="domain-blurb">${glossify(d.blurb)} <span class="domain-vectors">· feeds: ${vecs}</span></p>
-      ${qhtml}
-    </section>`;
-  }).join('');
-  // bind
-  host.querySelectorAll('.seg button').forEach(b=>{
-    b.onclick = ()=>answer(b, b.dataset.exp==='na'?{na:true}:{exp:parseFloat(b.dataset.exp)}, b.dataset.note||'');
+  if(atFinish){ renderFinish(); return; }
+  const q = Q[idx];
+  const areaIdx = DOMAINS.findIndex(d=>d.id===q.dom)+1;
+  $('#stageArea').textContent = `Area ${areaIdx} of ${DOMAINS.length} · ${domOf(q.dom).name}`;
+  $('#qNum').textContent = idx+1;
+  $('#qTotal').textContent = Q.length;
+  $('#progFill').style.width = ((idx+1)/Q.length*100)+'%';
+  $('#stageCard').innerHTML =
+    `<div class="q-text">${glossify(q.text)}</div>
+     <div class="q-help">${glossify(q.help)}</div>
+     <div class="seg" role="group" id="stageSeg">${optionButtons(q)}</div>
+     <div class="note-inline" id="noteInline"></div>`;
+  $('#stageSeg').querySelectorAll('button').forEach(b=>{
+    b.onclick = ()=>{
+      const v = b.dataset.exp;
+      const val = v==='na' ? {na:true} : v==='unsure' ? {unsure:true} : {exp:parseFloat(v)};
+      pick(b, q, val, b.dataset.note||'');
+    };
+  });
+  markSelected(q);
+  $('#stageNav').style.display='flex';
+  $('#backBtnQ').disabled = idx===0;
+  $('#nextBtnQ').style.display='';
+  $('#nextBtnQ').textContent = (idx===Q.length-1) ? 'Finish →' : (state.answers[q.n] ? 'Next →' : 'Skip →');
+  renderFoot();
+}
+
+function optionButtons(q){
+  let b='';
+  if(q.type==='binary'){
+    const goodYes = q.good==='yes';
+    b += segBtn(goodYes?0:1,'Yes');
+    b += segBtn(goodYes?1:0,'No');
+  } else {
+    q.opts.forEach(o=> b += segBtn(o.exp,o.label,o.note||''));
+  }
+  if(q.na) b += segBtn('na','Not applicable');
+  if(q.type==='binary' || q.type==='scale') b += segBtn('unsure','Not sure');
+  return b;
+}
+function segBtn(exp,label,note){
+  return `<button data-exp="${exp}" ${note?`data-note="${String(note).replace(/"/g,'&quot;')}"`:''}>${label}</button>`;
+}
+
+function markSelected(q){
+  const a = state.answers[q.n]; if(!a) return;
+  const seg = $('#stageSeg'); if(!seg) return;
+  const target = a.na?'na':a.unsure?'unsure':String(a.exp);
+  seg.querySelectorAll('button').forEach(b=>{
+    if(b.dataset.exp===target){
+      b.classList.add('sel');
+      if(a.na) b.classList.add('na');
+      if(a.unsure) b.classList.add('unsure');
+      const note=b.dataset.note, ni=$('#noteInline');
+      if(note && ni){ ni.textContent=note; ni.classList.add('show'); }
+    }
   });
 }
 
-function renderQuestion(q){
-  let buttons='';
-  if(q.type==='binary'){
-    const goodYes = q.good==='yes';
-    buttons += segBtn(q, goodYes?0:1, 'Yes');
-    buttons += segBtn(q, goodYes?1:0, 'No');
-    if(q.na) buttons += segBtn(q, 'na', 'N/A');
-  } else {
-    q.opts.forEach(o=> buttons += segBtn(q, o.exp, o.label, o.note||''));
-  }
-  return `<div class="q" id="q-${q.n}">
-    <div class="q-top">
-      <div><div class="q-text">${glossify(q.text)}</div><div class="q-help">${glossify(q.help)}</div></div>
-    </div>
-    <div class="seg" role="group">${buttons}</div>
-    <div class="note-inline" id="note-${q.n}"></div>
-  </div>`;
-}
-function segBtn(q, exp, label, note){
-  const cls = exp==='na' ? 'na' : (exp<=0.34?'lo':(exp<=0.66?'mid':'hi'));
-  return `<button data-q="${q.n}" data-exp="${exp}" data-cls="${cls}" ${note?`data-note="${note.replace(/"/g,'&quot;')}"`:''}>${label}</button>`;
+function pick(btn, q, val, note){
+  state.answers[q.n] = val;
+  $('#stageSeg').querySelectorAll('button').forEach(b=>b.classList.remove('sel','na','unsure'));
+  btn.classList.add('sel');
+  if(val.na) btn.classList.add('na');
+  if(val.unsure) btn.classList.add('unsure');
+  const ni=$('#noteInline');
+  if(note){ ni.textContent=note; ni.classList.add('show'); } else { ni.textContent=''; ni.classList.remove('show'); }
+  $('#nextBtnQ').textContent = (idx===Q.length-1) ? 'Finish →' : 'Next →';
+  renderFoot();
+  clearTimeout(advTimer);
+  if(!note){ advTimer = setTimeout(advance, prefersReduced ? 0 : 260); }  // pause on items carrying a caution note so it can be read
 }
 
-function answer(btn, val, note){
-  const n = btn.dataset.q;
-  const qEl = $(`#q-${n}`);
-  qEl.querySelectorAll('.seg button').forEach(b=>{ b.classList.remove('sel','lo','mid','hi','na'); });
-  btn.classList.add('sel', btn.dataset.cls);
-  qEl.classList.add('answered');
-  state.answers[n] = val;
-  const noteEl = $(`#note-${n}`);
-  if(note){ noteEl.textContent = note; noteEl.classList.add('show'); }
-  else { noteEl.textContent=''; noteEl.classList.remove('show'); }
-  updateRail();
+function advance(){
+  if(idx < Q.length-1){ idx++; } else { atFinish = true; }
+  renderStage(); scrollStage();
+}
+function back(){
+  clearTimeout(advTimer);
+  if(atFinish){ atFinish=false; renderStage(); scrollStage(); return; }
+  if(idx>0){ idx--; renderStage(); scrollStage(); }
+}
+function nextStep(){ clearTimeout(advTimer); advance(); }
+function scrollStage(){ window.scrollTo({top:0, behavior: prefersReduced ? 'auto':'smooth'}); }
+
+function renderFoot(){
+  const r = compute();
+  const foot = $('#stageFoot');
+  if(r.answered>0){
+    foot.innerHTML = `<span class="foot-count">${r.answered} of ${r.total} answered</span><button class="btn ghost" id="genEarly">Generate report</button>`;
+    $('#genEarly').onclick = doGenerate;
+  } else {
+    foot.innerHTML = `<span class="foot-count">Select an option, or skip items that don&rsquo;t apply.</span>`;
+  }
+}
+
+function renderFinish(){
+  $('#stageArea').textContent = 'Assessment complete';
+  $('#qNum').textContent = Q.length;
+  $('#progFill').style.width = '100%';
+  const r = compute();
+  const parts = [];
+  if(r.unsureCount) parts.push(`${r.unsureCount} marked unsure`);
+  if((r.total-r.answered)>0) parts.push(`${r.total-r.answered} not yet answered`);
+  if(r.naCount) parts.push(`${r.naCount} not applicable`);
+  const tail = parts.length ? ` (${parts.join(', ')})` : '';
+  $('#stageCard').innerHTML = `<div class="finish-inner">
+    <div class="finish-h">You&rsquo;ve reached the end of the assessment.</div>
+    <p class="finish-p">${r.confirmed} of ${r.total} practices confirmed${tail}. Anything not confirmed is counted as a gap — you can step back to revise, or generate your report now.</p>
+    <button class="btn primary" id="genFinish">Generate report →</button>
+  </div>`;
+  $('#genFinish').onclick = doGenerate;
+  $('#stageNav').style.display='flex';
+  $('#backBtnQ').disabled = false;
+  $('#nextBtnQ').style.display='none';
+  $('#stageFoot').innerHTML='';
+}
+
+function doGenerate(){
+  const r = compute();
+  if(r.answered < 1){ toast('Answer at least one item to generate a report.'); return; }
+  showResults();
 }
 
 /* ============ SCORING ============ */
 function compute(){
   const scored = Q.map(q=>{
     const a = state.answers[q.n];
-    if(!a || a.na) return {q, answered:!!a, na:a&&a.na, exp:null};
-    return {q, answered:true, na:false, exp:a.exp};
+    const na = !!(a && a.na);
+    const unsure = !!(a && a.unsure);
+    return {q, answered:!!a, na, unsure, exp:(a && !na && !unsure) ? a.exp : null};
   });
-  // Effective-exposure model: unanswered but applicable items count as full gaps (exp = 1).
-  // Only items explicitly marked N/A are excluded. This makes the score a true "current
-  // signature" read — doing nothing reads as high exposure, and it falls as practices are confirmed.
+  // Effective-exposure model: anything not positively confirmed counts as a full gap (eff = 1) —
+  // unanswered items AND "not sure" answers both score as exposure. Only items marked N/A are
+  // excluded. This keeps the score an honest "current signature" read: you can't bank protection
+  // you can't confirm, and the number falls only as you verify real practices.
   const naCount = scored.filter(s=>s.na).length;
-  const respondedCount = scored.filter(s=>s.answered).length; // includes N/A responses
-  const applicable = scored.filter(s=>!s.na);
-  applicable.forEach(s=> s.eff = s.answered ? s.exp : 1);
+  const unsureCount = scored.filter(s=>s.unsure).length;
+  const confirmedCount = scored.filter(s=>s.answered && !s.na && !s.unsure).length;
+  const respondedCount = scored.filter(s=>s.answered).length; // any response (incl. N/A and unsure)
+  const applicable = scored.filter(s=>!s.na);                 // unsure stays in — it's a gap
+  applicable.forEach(s=> s.eff = (s.answered && !s.unsure) ? s.exp : 1);
   // overall
   let ws=0, es=0;
   applicable.forEach(s=>{ ws+=s.q.w; es+=s.q.w*s.eff; });
@@ -705,21 +860,7 @@ function compute(){
     overall = Math.min(100, overall+5);
   }
 
-  return {scored, answered:respondedCount, naCount, applicable:applicable.length, total:Q.length, overall, vectorScores, domainScores, dom, correlations};
-}
-
-/* ============ RAIL ============ */
-function updateRail(){
-  const r = compute();
-  $('#answeredCount').textContent = r.answered;
-  $('#progFill').style.width = (r.answered/r.total*100)+'%';
-  // domnav
-  $('#domNav').innerHTML = DOMAINS.map((d,i)=>{
-    const dd = r.dom[d.id];
-    const cls = dd.answered===dd.total?'done':(dd.answered>0?'part':'');
-    return `<a data-target="dom-${d.id}"><span style="display:flex;align-items:center;gap:8px;"><span class="dot ${cls}"></span>${d.name}</span><span class="dc">${dd.answered}/${dd.total}</span></a>`;
-  }).join('');
-  $('#domNav').querySelectorAll('a').forEach(a=> a.onclick=()=>{ const t=$('#'+a.dataset.target); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); });
+  return {scored, answered:respondedCount, confirmed:confirmedCount, unsureCount, naCount, applicable:applicable.length, total:Q.length, overall, vectorScores, domainScores, dom, correlations};
 }
 
 /* ============ RESULTS ============ */
@@ -743,10 +884,12 @@ function showResults(){
     'Moderate':'A solid baseline with exploitable gaps. The priority actions below will most efficiently shrink your signature.',
     'High':'Your current posture leaves substantial observable, identifiable, and correlatable signal. Work the priority actions below first — they cut the most exposure for the least effort.'
   };
-  const unaddressed = r.total - r.answered;
-  $('#resText').textContent = verdicts[t] + (unaddressed>0 ? ` ${unaddressed} item(s) you haven't addressed are counted as gaps — complete them for an accurate read.` : '');
-  $('#resAssessed').textContent = `${r.answered} of ${r.total} practices addressed`
-    + (unaddressed>0?` · ${unaddressed} not yet addressed (counted as gaps)`:'')
+  const unaddressed = r.total - r.answered;            // no response at all
+  const gaps = unaddressed + r.unsureCount;            // unanswered + unsure both score as gaps
+  $('#resText').textContent = verdicts[t] + (gaps>0 ? ` ${gaps} item(s) you haven't confirmed are counted as gaps — address or verify them for an accurate read.` : '');
+  $('#resAssessed').textContent = `${r.confirmed} of ${r.total} confirmed`
+    + (r.unsureCount>0?` · ${r.unsureCount} unsure (verify)`:'')
+    + (unaddressed>0?` · ${unaddressed} not yet addressed`:'')
     + (r.naCount>0?` · ${r.naCount} N/A`:'');
 
   // vector breakdown — meter cards
@@ -777,7 +920,7 @@ function showResults(){
   $('#prioList').innerHTML = top.length ? top.map((s,i)=>{
       const rr = RES[s.q.n] || {};
       const how = rr.how ? `<div class="pm" style="color:var(--ink-dim);font-family:var(--font-body);">${glossify(rr.how)}</div>` : '';
-      const tag = s.answered ? '' : ` <span class="na-tag">not yet addressed</span>`;
+      const tag = s.unsure ? ` <span class="na-tag verify">unverified \u2014 confirm</span>` : s.answered ? '' : ` <span class="na-tag">not yet addressed</span>`;
       return `<div class="prio-card ${s.eff<=0.66?'mid':''}"><span class="prio-rank ${s.eff<=0.66?'mid':''}">${i+1}</span>
       <div class="prio-body"><div class="pa">${glossify(s.q.mit)}${tag}</div>${how}<div class="pm">${domOf(s.q.dom).name} · full steps below</div></div></div>`;
     }).join('')
@@ -796,7 +939,7 @@ function showResults(){
           const links = (rr.links&&rr.links.length)
             ? `<div class="rec-links">${rr.links.map(L=>`<a href="${L.u}" target="_blank" rel="noopener">${L.l}<span class="u">${L.u}</span></a>`).join('')}</div>`
             : '';
-          const tag = s.answered ? '' : ` <span class="na-tag">not yet addressed</span>`;
+          const tag = s.unsure ? ` <span class="na-tag verify">unverified \u2014 confirm</span>` : s.answered ? '' : ` <span class="na-tag">not yet addressed</span>`;
           return `<div class="rec"><div class="rec-action">${glossify(s.q.mit)}${tag}</div>${detail}${how}${links}</div>`;
         }).join('')}</div>`
       : `<div class="rec-wrap"><div class="clean">No significant gaps in this area among assessed items.</div></div>`;
@@ -815,12 +958,13 @@ function showResults(){
 
   // print header + disclaimer
   const now = new Date();
-  $('#printMeta').textContent = `Generated ${now.toLocaleDateString()} ${now.toLocaleTimeString()} · ${r.answered}/${r.total} assessed · Overall: ${t} (${pct}) · Session report — not retained`;
+  $('#printMeta').textContent = `Generated ${now.toLocaleDateString()} ${now.toLocaleTimeString()} · ${r.confirmed}/${r.total} confirmed · Overall: ${t} (${pct}) · Session report — not retained`;
   $('#reportDisclaimer').innerHTML =
-    `This report was generated entirely in your browser — no cookies, no storage, and no responses transmitted or retained. `+
-    `Based on the End-User Device Digital Force Protection Manual. Results not exhaustive. Compilation and organization ©  Institute for Signature Reduction Inc — for official use only; not for redistribution or commercial/competitive use. `+
+    `This report was generated entirely in your browser — no cookies and no storage, and no responses transmitted or retained except any de-identified results you chose to contribute to ISR research. `+
+    `Based on the End-User Device Digital Force Protection Manual. Results not exhaustive. Compilation and organization © Institute for Signature Reduction Inc — for official use only; not for redistribution or commercial/competitive use. `+
     `The individual techniques are unclassified and derived from publicly available sources; their compilation and your completed assessment may nonetheless be sensitive in the aggregate, and should be handled and shared accordingly. `+
-    `Educational only; this is not legal, operational, or official policy guidance and does not replace unit SOPs or command directives. Verify all measures against current mission requirements.`;
+    `Educational only; this is not legal, operational, or official policy guidance and does not replace unit SOPs or command directives. Verify all measures against current mission requirements. `+
+    `Content last reviewed: ${REVIEW_DATE}.`;
 
   $('#assessment').style.display='none';
   $('#landing').style.display='none';
@@ -832,20 +976,17 @@ function showResults(){
 function toast(msg){ const t=$('#toast'); t.textContent=msg; t.style.display='block'; setTimeout(()=>t.style.display='none',2600); }
 
 /* ============ WIRING ============ */
-renderVectorKey();
-renderDomains();
-$('#beginBtn').onclick = ()=>{ $('#landing').style.display='none'; $('#assessment').style.display='grid'; updateRail(); };
-$('#genBtn').onclick = ()=>{
-  const r = compute();
-  if(r.answered < 1){ toast('Answer at least one question to generate a report.'); return; }
-  showResults();
-};
-$('#backBtn').onclick = ()=>{ $('#results').style.display='none'; $('#assessment').style.display='grid'; };
-$('#printBtn').onclick = ()=>{ window.print(); };
-
-// navigation niceties
 const prefersReduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 function scrollToTop(){ window.scrollTo({top:0, behavior: prefersReduced ? 'auto' : 'smooth'}); }
+
+renderVectorKey();
+
+$('#beginBtn').onclick = ()=>{ $('#landing').style.display='none'; $('#assessment').style.display='block'; startAssessment(); scrollToTop(); };
+$('#backBtnQ').onclick = back;
+$('#nextBtnQ').onclick = nextStep;
+$('#backBtn').onclick = ()=>{ $('#results').style.display='none'; $('#assessment').style.display='block'; renderStage(); scrollToTop(); };
+$('#printBtn').onclick = ()=>{ printRequested = true; window.print(); };
+
 function goHome(){
   $('#results').style.display='none';
   $('#assessment').style.display='none';
@@ -859,15 +1000,53 @@ const toTop = $('#toTop');
 window.addEventListener('scroll', ()=>{ toTop.classList.toggle('show', window.scrollY>400); }, {passive:true});
 toTop.onclick = scrollToTop;
 
-// expand all per-area sections for printing/PDF, then restore the on-screen (collapsed) state
+/* ---- Research opt-in (post-download). Nothing leaves the device unless the user taps a "Share" button. ---- */
+const RESEARCH_ENDPOINT = '';   // ISR: set to your HTTPS collection endpoint to enable opt-in research submission
+let printRequested = false, surveyShown = false;
+
+function showSurvey(){
+  surveyShown = true; printRequested = false;
+  const ov = $('#survey'); if(!ov) return;
+  $('#surveyBody').style.display='';
+  $('#surveyThanks').style.display='none';
+  ov.classList.add('show');
+  ov.setAttribute('aria-hidden','false');
+}
+function closeSurvey(){ const ov=$('#survey'); if(ov){ ov.classList.remove('show'); ov.setAttribute('aria-hidden','true'); } }
+function contribute(audience){
+  submitResearch(audience);
+  $('#surveyBody').style.display='none';
+  $('#surveyThanks').style.display='';
+  setTimeout(closeSurvey, 1900);
+}
+function submitResearch(audience){
+  try{
+    const r = compute();
+    const payload = {
+      instrument:'USAT', ts:new Date().toISOString(), audience,
+      overall:Math.round(r.overall), tier:tierOf(r.overall),
+      vectors:r.vectorScores, domains:r.domainScores,
+      confirmed:r.confirmed, unsure:r.unsureCount, na:r.naCount, total:r.total,
+      responses:r.scored.map(s=>({ n:s.q.n, eff: s.na ? null : (s.answered && !s.unsure ? s.exp : 1), na: !!s.na, unsure: !!s.unsure }))
+    };
+    if(!RESEARCH_ENDPOINT) return;   // no endpoint configured — choice recorded, nothing transmitted
+    fetch(RESEARCH_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload), keepalive:true }).catch(()=>{});
+  }catch(e){ /* never block the user */ }
+}
+$('#svMil').onclick = ()=>contribute('military');
+$('#svCiv').onclick = ()=>contribute('civilian');
+$('#svNo').onclick  = closeSurvey;
+$('#survey').addEventListener('click', e=>{ if(e.target.id==='survey') closeSurvey(); });
+window.addEventListener('keydown', e=>{ if(e.key==='Escape') closeSurvey(); });
+
+// expand all per-area sections for printing/PDF, then restore on-screen state; offer the research opt-in once afterward
 window.addEventListener('beforeprint', ()=>{
   document.querySelectorAll('details.domgroup').forEach(d=>{ d.dataset.prevOpen = d.open ? '1' : '0'; d.open = true; });
 });
 window.addEventListener('afterprint', ()=>{
   document.querySelectorAll('details.domgroup').forEach(d=>{ d.open = d.dataset.prevOpen === '1'; });
+  if(printRequested && !surveyShown){ showSurvey(); }
 });
-
-updateRail();
 </script>
 </body>
 </html>

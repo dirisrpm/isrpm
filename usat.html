@@ -123,18 +123,6 @@
   .domnav .dot.done{background:var(--ok);}
   .domnav .dot.part{background:var(--warn);}
 
-  .prov{margin-top:4px;}
-  .prov-row{display:flex;align-items:baseline;gap:9px;}
-  .prov-num{font-family:var(--font-display);font-weight:700;font-size:32px;line-height:1;display:inline-block;transform-origin:left center;}
-  .prov-num.bump{animation:numbump .4s ease-out;}
-  @keyframes numbump{0%{transform:scale(1);}28%{transform:scale(1.16);}100%{transform:scale(1);}}
-  .prov-delta{font-family:var(--font-mono);font-size:11px;font-weight:700;opacity:0;transition:opacity .2s;white-space:nowrap;}
-  .prov-delta.show{opacity:1;}
-  .prov-tier{font-family:var(--font-display);font-weight:600;font-size:13px;margin-left:auto;}
-  .prov-bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin:10px 0 5px;}
-  .prov-bar i{display:block;height:100%;border-radius:4px;transition:width .4s cubic-bezier(.22,1,.36,1),background .3s;}
-  .prov-hint{font-size:10.5px;color:var(--ink-faint);margin-top:2px;}
-
   /* results */
   .results{display:none;}
   .res-overall{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px;display:flex;gap:26px;align-items:center;flex-wrap:wrap;}
@@ -177,6 +165,10 @@
   .domgroup summary::-webkit-details-marker{display:none;}
   .domgroup summary:hover{color:var(--ink);}
   .domgroup summary .tag{font-family:var(--font-mono);font-size:11px;}
+  .dg-left{display:flex;align-items:center;gap:9px;}
+  .caret{width:0;height:0;border-left:5px solid var(--ink-dim);border-top:4px solid transparent;border-bottom:4px solid transparent;transition:transform .2s;transform-origin:center;flex-shrink:0;}
+  .domgroup[open] .caret{transform:rotate(90deg);}
+  .domgroup summary:hover .caret{border-left-color:var(--ink);}
   .rec-wrap{padding:12px 0 6px;display:flex;flex-direction:column;gap:9px;}
   .rec{background:var(--panel-2);border:1px solid var(--line-soft);border-left:2px solid var(--line);border-radius:8px;padding:12px 14px;}
   .rec-action{font-size:13px;font-weight:600;color:var(--ink);}
@@ -244,6 +236,8 @@
     .genres{background:#fff;border-color:#c8d2dc;}
     .genres a{color:#1a4a7a;}
     details{page-break-inside:avoid;}
+    .caret{display:none !important;}
+    .domgroup>.rec-wrap{display:flex !important;}
     .disclaimer{color:#5a6a7a;border-color:#c8d2dc;page-break-inside:avoid;}
     a{color:inherit;text-decoration:none;}
     .term{border-bottom:none;}
@@ -291,12 +285,6 @@
         <div class="rail-h">Progress</div>
         <div class="progress-num"><span id="answeredCount">0</span><small> / 48</small></div>
         <div class="progbar"><i id="progFill" style="width:0%"></i></div>
-        <div class="prov" id="provBlock">
-          <div class="rail-h" style="margin:16px 0 8px;">Live exposure</div>
-          <div class="prov-row"><span class="prov-num" id="provNum">—</span><span class="prov-delta" id="provDelta"></span><span class="prov-tier" id="provTier">—</span></div>
-          <div class="prov-bar"><i id="provBar"></i></div>
-          <div class="prov-hint" id="provHint">Drops as you confirm protective practices.</div>
-        </div>
       </div>
       <div class="card">
         <div class="rail-h">Sections</div>
@@ -542,7 +530,6 @@ const DETAIL = {
 
 /* ============ STATE ============ */
 const state = { answers:{} };  // qid -> {exp, na?:true}
-let lastOverall = null, deltaTimer = null;
 
 /* ============ HELPERS ============ */
 const $ = s => document.querySelector(s);
@@ -733,31 +720,6 @@ function updateRail(){
     return `<a data-target="dom-${d.id}"><span style="display:flex;align-items:center;gap:8px;"><span class="dot ${cls}"></span>${d.name}</span><span class="dc">${dd.answered}/${dd.total}</span></a>`;
   }).join('');
   $('#domNav').querySelectorAll('a').forEach(a=> a.onclick=()=>{ const t=$('#'+a.dataset.target); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); });
-  // live exposure read — updates on every selection
-  const t = tierOf(r.overall), col = tierColor(r.overall);
-  const cur = Math.round(r.overall);
-  const numEl = $('#provNum'), deltaEl = $('#provDelta');
-  numEl.textContent = cur;
-  numEl.style.color = col;
-  $('#provTier').textContent = t+' exposure';
-  $('#provTier').style.color = col;
-  $('#provBar').style.width = r.overall+'%';
-  $('#provBar').style.background = col;
-  const togo = r.total - r.answered;
-  $('#provHint').textContent = togo>0 ? `${togo} of ${r.total} not yet addressed (counted as gaps).` : 'All practices addressed.';
-  // dynamic change cue: pulse the number, flash a signed delta (down = improving)
-  if(lastOverall!==null && cur!==lastOverall){
-    const d = cur - lastOverall;
-    deltaEl.textContent = (d<0?'▼ ':'▲ ') + Math.abs(d);
-    deltaEl.style.color = d<0 ? 'var(--ok)' : 'var(--bad)';
-    deltaEl.classList.add('show');
-    clearTimeout(deltaTimer);
-    deltaTimer = setTimeout(()=>deltaEl.classList.remove('show'), 1300);
-    if(!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)){
-      numEl.classList.remove('bump'); void numEl.offsetWidth; numEl.classList.add('bump');
-    }
-  }
-  lastOverall = cur;
 }
 
 /* ============ RESULTS ============ */
@@ -838,7 +800,7 @@ function showResults(){
           return `<div class="rec"><div class="rec-action">${glossify(s.q.mit)}${tag}</div>${detail}${how}${links}</div>`;
         }).join('')}</div>`
       : `<div class="rec-wrap"><div class="clean">No significant gaps in this area among assessed items.</div></div>`;
-    return `<details class="domgroup" ${items.length?'open':''}><summary>${d.name} ${dtag}</summary>${body}</details>`;
+    return `<details class="domgroup"><summary><span class="dg-left"><span class="caret"></span><span>${d.name}</span></span>${dtag}</summary>${body}</details>`;
   }).join('');
 
   // general resources (from the manual's "Additional Resources")
@@ -856,7 +818,7 @@ function showResults(){
   $('#printMeta').textContent = `Generated ${now.toLocaleDateString()} ${now.toLocaleTimeString()} · ${r.answered}/${r.total} assessed · Overall: ${t} (${pct}) · Session report — not retained`;
   $('#reportDisclaimer').innerHTML =
     `This report was generated entirely in your browser — no cookies, no storage, and no responses transmitted or retained. `+
-    `Based on the End-User Device Digital Force Protection Manual. Results not exhaustive. Compilation and organization © SMU, LLC / Institute for Signature Reduction Inc — for internal use only; not for redistribution or commercial/competitive use. `+
+    `Based on the End-User Device Digital Force Protection Manual. Results not exhaustive. Compilation and organization ©  Institute for Signature Reduction Inc — for official use only; not for redistribution or commercial/competitive use. `+
     `The individual techniques are unclassified and derived from publicly available sources; their compilation and your completed assessment may nonetheless be sensitive in the aggregate, and should be handled and shared accordingly. `+
     `Educational only; this is not legal, operational, or official policy guidance and does not replace unit SOPs or command directives. Verify all measures against current mission requirements.`;
 
@@ -896,6 +858,14 @@ homeTitle.onkeydown = (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(
 const toTop = $('#toTop');
 window.addEventListener('scroll', ()=>{ toTop.classList.toggle('show', window.scrollY>400); }, {passive:true});
 toTop.onclick = scrollToTop;
+
+// expand all per-area sections for printing/PDF, then restore the on-screen (collapsed) state
+window.addEventListener('beforeprint', ()=>{
+  document.querySelectorAll('details.domgroup').forEach(d=>{ d.dataset.prevOpen = d.open ? '1' : '0'; d.open = true; });
+});
+window.addEventListener('afterprint', ()=>{
+  document.querySelectorAll('details.domgroup').forEach(d=>{ d.open = d.dataset.prevOpen === '1'; });
+});
 
 updateRail();
 </script>

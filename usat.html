@@ -124,7 +124,15 @@
   .domnav .dot.part{background:var(--warn);}
 
   .prov{margin-top:4px;}
-  .prov-tier{font-family:var(--font-display);font-weight:700;font-size:18px;}
+  .prov-row{display:flex;align-items:baseline;gap:9px;}
+  .prov-num{font-family:var(--font-display);font-weight:700;font-size:32px;line-height:1;display:inline-block;transform-origin:left center;}
+  .prov-num.bump{animation:numbump .4s ease-out;}
+  @keyframes numbump{0%{transform:scale(1);}28%{transform:scale(1.16);}100%{transform:scale(1);}}
+  .prov-delta{font-family:var(--font-mono);font-size:11px;font-weight:700;opacity:0;transition:opacity .2s;white-space:nowrap;}
+  .prov-delta.show{opacity:1;}
+  .prov-tier{font-family:var(--font-display);font-weight:600;font-size:13px;margin-left:auto;}
+  .prov-bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin:10px 0 5px;}
+  .prov-bar i{display:block;height:100%;border-radius:4px;transition:width .4s cubic-bezier(.22,1,.36,1),background .3s;}
   .prov-hint{font-size:10.5px;color:var(--ink-faint);margin-top:2px;}
 
   /* results */
@@ -196,7 +204,14 @@
   .to-top:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
   .to-top.show{display:flex;}
 
-  @media (prefers-reduced-motion: reduce){ *{transition:none !important;} }
+  .term{border-bottom:1px dotted var(--ink-faint);cursor:help;position:relative;}
+  .term::after{content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 9px);width:max-content;max-width:min(280px,75vw);background:#0A0F16;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-family:var(--font-body);font-size:11.5px;font-weight:400;line-height:1.45;letter-spacing:0;text-transform:none;color:var(--ink);box-shadow:0 10px 28px rgba(0,0,0,0.5);white-space:normal;opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .15s,transform .15s;z-index:60;pointer-events:none;}
+  .term::before{content:'';position:absolute;left:13px;bottom:calc(100% + 4px);border:5px solid transparent;border-top-color:var(--line);opacity:0;visibility:hidden;transition:opacity .15s;z-index:61;}
+  .term:hover::after,.term:focus::after,.term:focus-visible::after{opacity:1;visibility:visible;transform:translateY(0);}
+  .term:hover::before,.term:focus::before,.term:focus-visible::before{opacity:1;visibility:visible;}
+  .term:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px;}
+
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important;animation:none !important;} }
 
   /* ---------- PRINT / PDF REPORT ---------- */
   @media print{
@@ -231,6 +246,8 @@
     details{page-break-inside:avoid;}
     .disclaimer{color:#5a6a7a;border-color:#c8d2dc;page-break-inside:avoid;}
     a{color:inherit;text-decoration:none;}
+    .term{border-bottom:none;}
+    .term::after,.term::before{display:none !important;}
   }
   .print-header{display:none;}
   .print-header h1{font-family:var(--font-display);font-size:18pt;margin:0 0 4px;}
@@ -274,10 +291,11 @@
         <div class="rail-h">Progress</div>
         <div class="progress-num"><span id="answeredCount">0</span><small> / 48</small></div>
         <div class="progbar"><i id="progFill" style="width:0%"></i></div>
-        <div class="prov" id="provBlock" style="display:none;">
-          <div class="rail-h" style="margin:16px 0 8px;">Provisional read</div>
-          <div class="prov-tier" id="provTier">—</div>
-          <div class="prov-hint" id="provHint">Answer more to sharpen this.</div>
+        <div class="prov" id="provBlock">
+          <div class="rail-h" style="margin:16px 0 8px;">Live exposure</div>
+          <div class="prov-row"><span class="prov-num" id="provNum">—</span><span class="prov-delta" id="provDelta"></span><span class="prov-tier" id="provTier">—</span></div>
+          <div class="prov-bar"><i id="provBar"></i></div>
+          <div class="prov-hint" id="provHint">Drops as you confirm protective practices.</div>
         </div>
       </div>
       <div class="card">
@@ -524,6 +542,7 @@ const DETAIL = {
 
 /* ============ STATE ============ */
 const state = { answers:{} };  // qid -> {exp, na?:true}
+let lastOverall = null, deltaTimer = null;
 
 /* ============ HELPERS ============ */
 const $ = s => document.querySelector(s);
@@ -534,14 +553,74 @@ function tierBg(v){ return v<34?'var(--ok-bg)':(v<=66?'var(--warn-bg)':'var(--ba
 function domOf(id){ return DOMAINS.find(d=>d.id===id); }
 function qsInDom(id){ return Q.filter(q=>q.dom===id); }
 
+/* ============ GLOSSARY (hover definitions; not links) ============ */
+const GLOSSARY = {
+  'UTS':'Ubiquitous Technical Surveillance — pervasive collection of the data your devices and activity emit.',
+  'RF':'Radio frequency — the wireless energy devices emit, which can be detected and located.',
+  'BLE':'Bluetooth Low Energy — a low-power mode that broadcasts periodic, trackable beacons.',
+  'MAC':'Media Access Control address — a hardware network ID that can be used to track a device.',
+  'SSID':'The broadcast name of a Wi-Fi network.',
+  'VPN':'Virtual Private Network — encrypts your traffic and masks your IP address.',
+  'VOIP':'Voice over IP — phone numbers carried over the internet instead of a carrier SIM.',
+  'EXIF':'Metadata embedded in photos, often including GPS location and a timestamp.',
+  'IMSI':'A unique subscriber ID tied to your SIM that interception tools target.',
+  'NFC':'Near-Field Communication — very short-range radio for tap-to-pay and pairing.',
+  'UWB':'Ultra-Wideband — short-range radio for precise ranging and location on some devices.',
+  'UEFI':'Modern firmware that boots a computer before the operating system loads.',
+  'BIOS':'Low-level firmware that boots a computer before the operating system loads.',
+  'USB':'The common wired port for charging and data — also a route for forensic extraction.',
+  '2G':'An outdated cellular standard with weak encryption that attackers force devices onto.',
+  '5G':'The current-generation cellular standard.',
+  'LTE':'A widely used 4G cellular standard.',
+  'VoLTE':'Voice calls carried over the LTE data network.',
+  'MMS':'Multimedia messaging (picture/video texts), which can carry zero-click exploit payloads.',
+  'OSINT':'Open-Source Intelligence — gathering information from publicly available sources.',
+  'FOSS':'Free and Open-Source Software — code that can be independently audited.',
+  'eSIM':'A SIM embedded in the device that cannot be physically removed or cloned.',
+  'PII':'Personally Identifiable Information — data that identifies a specific person.',
+  'DOB':'Date of birth.',
+  'GPS':'Satellite positioning used to determine your location.',
+  'GNSS':'Satellite navigation systems, including GPS, used for positioning.',
+  'SDKs':'Software Development Kits — third-party code bundled into apps, often carrying trackers.',
+  'SDK':'Software Development Kit — third-party code bundled into apps, often carrying trackers.',
+  'WPA3':'The current Wi-Fi encryption standard.',
+  '2FA':'Two-Factor Authentication — a second verification step beyond your password.',
+  'Tor':'A network that routes traffic through multiple relays to reduce tracking.',
+  'TAILS':'A portable, amnesic operating system that leaves no trace on the host computer.',
+  'Faraday':'A shielded enclosure that blocks all of a device\u2019s wireless signals.',
+  'Stingray':'A cell-site simulator that intercepts phones and can force insecure downgrades.',
+  'GrapheneOS':'A privacy- and security-hardened Android-based operating system.',
+  'LineageOS':'A privacy-focused, de-Googled Android-based operating system.',
+  'IP':'Internet Protocol address — a network address that can reveal your location or identity.',
+  'pattern-of-life':'The routine of movements, timing, and habits an observer can infer over time.',
+};
+const GLOSSARY_RE = new RegExp('\\b(' + Object.keys(GLOSSARY)
+  .sort((a,b)=>b.length-a.length)
+  .map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'))
+  .join('|') + ')\\b','g');
+let glossSeen = new Set();
+function glossReset(){ glossSeen = new Set(); }
+function glossify(text){
+  if(text==null) return text;
+  return String(text).replace(GLOSSARY_RE, m=>{
+    const def = GLOSSARY[m];
+    if(!def) return m;
+    if(glossSeen.has(m)) return m;          // already marked once in this pass — leave plain
+    glossSeen.add(m);
+    return `<span class="term" tabindex="0" data-def="${def.replace(/"/g,'&quot;')}">${m}</span>`;
+  });
+}
+
 /* ============ RENDER: vector key ============ */
 function renderVectorKey(){
+  glossReset();
   $('#vectorsKey').innerHTML = Object.values(VECTORS).map(v=>
-    `<div class="vk"><div class="vn">${v.name}</div><div class="vd">${v.desc}</div></div>`).join('');
+    `<div class="vk"><div class="vn">${v.name}</div><div class="vd">${glossify(v.desc)}</div></div>`).join('');
 }
 
 /* ============ RENDER: assessment ============ */
 function renderDomains(){
+  glossReset();
   const host = $('#domains');
   host.innerHTML = DOMAINS.map((d,di)=>{
     const qs = qsInDom(d.id);
@@ -549,7 +628,7 @@ function renderDomains(){
     const qhtml = qs.map(q=>renderQuestion(q)).join('');
     return `<section class="domain" id="dom-${d.id}">
       <div class="domain-head"><span class="domain-num">${String(di+1).padStart(2,'0')}</span><span class="domain-name">${d.name}</span></div>
-      <p class="domain-blurb">${d.blurb} <span class="domain-vectors">· feeds: ${vecs}</span></p>
+      <p class="domain-blurb">${glossify(d.blurb)} <span class="domain-vectors">· feeds: ${vecs}</span></p>
       ${qhtml}
     </section>`;
   }).join('');
@@ -571,7 +650,7 @@ function renderQuestion(q){
   }
   return `<div class="q" id="q-${q.n}">
     <div class="q-top">
-      <div><div class="q-text">${q.text}</div><div class="q-help">${q.help}</div></div>
+      <div><div class="q-text">${glossify(q.text)}</div><div class="q-help">${glossify(q.help)}</div></div>
     </div>
     <div class="seg" role="group">${buttons}</div>
     <div class="note-inline" id="note-${q.n}"></div>
@@ -654,20 +733,37 @@ function updateRail(){
     return `<a data-target="dom-${d.id}"><span style="display:flex;align-items:center;gap:8px;"><span class="dot ${cls}"></span>${d.name}</span><span class="dc">${dd.answered}/${dd.total}</span></a>`;
   }).join('');
   $('#domNav').querySelectorAll('a').forEach(a=> a.onclick=()=>{ const t=$('#'+a.dataset.target); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); });
-  // provisional read
-  if(r.answered>=1){
-    $('#provBlock').style.display='block';
-    const t = tierOf(r.overall);
-    $('#provTier').textContent = t+' exposure';
-    $('#provTier').style.color = tierColor(r.overall);
-    const togo = r.total - r.answered;
-    $('#provHint').textContent = togo>0 ? `Unaddressed items count as gaps — ${togo} to go.` : 'All practices addressed.';
+  // live exposure read — updates on every selection
+  const t = tierOf(r.overall), col = tierColor(r.overall);
+  const cur = Math.round(r.overall);
+  const numEl = $('#provNum'), deltaEl = $('#provDelta');
+  numEl.textContent = cur;
+  numEl.style.color = col;
+  $('#provTier').textContent = t+' exposure';
+  $('#provTier').style.color = col;
+  $('#provBar').style.width = r.overall+'%';
+  $('#provBar').style.background = col;
+  const togo = r.total - r.answered;
+  $('#provHint').textContent = togo>0 ? `${togo} of ${r.total} not yet addressed (counted as gaps).` : 'All practices addressed.';
+  // dynamic change cue: pulse the number, flash a signed delta (down = improving)
+  if(lastOverall!==null && cur!==lastOverall){
+    const d = cur - lastOverall;
+    deltaEl.textContent = (d<0?'▼ ':'▲ ') + Math.abs(d);
+    deltaEl.style.color = d<0 ? 'var(--ok)' : 'var(--bad)';
+    deltaEl.classList.add('show');
+    clearTimeout(deltaTimer);
+    deltaTimer = setTimeout(()=>deltaEl.classList.remove('show'), 1300);
+    if(!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)){
+      numEl.classList.remove('bump'); void numEl.offsetWidth; numEl.classList.add('bump');
+    }
   }
+  lastOverall = cur;
 }
 
 /* ============ RESULTS ============ */
 function showResults(){
   const r = compute();
+  glossReset();
   // dial
   const t = tierOf(r.overall), col = tierColor(r.overall);
   const pct = Math.round(r.overall);
@@ -718,10 +814,10 @@ function showResults(){
   const top = exposed.slice(0,6);
   $('#prioList').innerHTML = top.length ? top.map((s,i)=>{
       const rr = RES[s.q.n] || {};
-      const how = rr.how ? `<div class="pm" style="color:var(--ink-dim);font-family:var(--font-body);">${rr.how}</div>` : '';
+      const how = rr.how ? `<div class="pm" style="color:var(--ink-dim);font-family:var(--font-body);">${glossify(rr.how)}</div>` : '';
       const tag = s.answered ? '' : ` <span class="na-tag">not yet addressed</span>`;
       return `<div class="prio-card ${s.eff<=0.66?'mid':''}"><span class="prio-rank ${s.eff<=0.66?'mid':''}">${i+1}</span>
-      <div class="prio-body"><div class="pa">${s.q.mit}${tag}</div>${how}<div class="pm">${domOf(s.q.dom).name} · full steps below</div></div></div>`;
+      <div class="prio-body"><div class="pa">${glossify(s.q.mit)}${tag}</div>${how}<div class="pm">${domOf(s.q.dom).name} · full steps below</div></div></div>`;
     }).join('')
     : `<div class="clean" style="padding:14px 0;">No high-priority gaps among assessed items. Review the per-area list below to maintain your posture.</div>`;
 
@@ -733,13 +829,13 @@ function showResults(){
     const body = items.length
       ? `<div class="rec-wrap">${items.map(s=>{
           const rr = RES[s.q.n] || {};
-          const detail = DETAIL[s.q.n] ? `<div class="rec-detail">${DETAIL[s.q.n]}</div>` : '';
-          const how = rr.how ? `<div class="rec-how">${rr.how}</div>` : '';
+          const detail = DETAIL[s.q.n] ? `<div class="rec-detail">${glossify(DETAIL[s.q.n])}</div>` : '';
+          const how = rr.how ? `<div class="rec-how">${glossify(rr.how)}</div>` : '';
           const links = (rr.links&&rr.links.length)
             ? `<div class="rec-links">${rr.links.map(L=>`<a href="${L.u}" target="_blank" rel="noopener">${L.l}<span class="u">${L.u}</span></a>`).join('')}</div>`
             : '';
           const tag = s.answered ? '' : ` <span class="na-tag">not yet addressed</span>`;
-          return `<div class="rec"><div class="rec-action">${s.q.mit}${tag}</div>${detail}${how}${links}</div>`;
+          return `<div class="rec"><div class="rec-action">${glossify(s.q.mit)}${tag}</div>${detail}${how}${links}</div>`;
         }).join('')}</div>`
       : `<div class="rec-wrap"><div class="clean">No significant gaps in this area among assessed items.</div></div>`;
     return `<details class="domgroup" ${items.length?'open':''}><summary>${d.name} ${dtag}</summary>${body}</details>`;

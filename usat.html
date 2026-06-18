@@ -1001,7 +1001,7 @@ window.addEventListener('scroll', ()=>{ toTop.classList.toggle('show', window.sc
 toTop.onclick = scrollToTop;
 
 /* ---- Research opt-in (post-download). Nothing leaves the device unless the user taps a "Share" button. ---- */
-const RESEARCH_ENDPOINT = '';   // ISR: set to your HTTPS collection endpoint to enable opt-in research submission
+const RESEARCH_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzz4CnibBz7ykz99xv8NxdDyRwnhtCXdFGvx6tiaWAKy30Inp4hVSHDpJa64wsBlN3Ulw/exec';   // ISR: set to your HTTPS collection endpoint to enable opt-in research submission
 let printRequested = false, surveyShown = false;
 
 function showSurvey(){

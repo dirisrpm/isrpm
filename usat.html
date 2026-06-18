@@ -319,7 +319,7 @@
     <p>It is intended as a screening and educational instrument — a structured way to locate where your observable signature is greatest and identify what most efficiently reduces it. It is not a vulnerability scan or an audit, it cannot observe your actual device configuration, and it is not exhaustive. Validity depends on candid self-report: there are no desirable answers, items you are unsure of may be marked as such rather than guessed, and although the underlying practices are drawn from public sources, your completed results may be sensitive in aggregate and should be handled accordingly.</p>
 
     <div class="privacy-note">
-      <strong>Administered entirely on your device.</strong> The assessment runs locally in your browser — no cookies and no tracking — and your responses are held only in memory for this session. Nothing is transmitted or stored unless, after generating your report, you voluntarily choose to contribute your de-identified results to ISR research. You can complete and use the assessment without contributing anything.
+      <strong>Administered entirely on your device.</strong> The instrument runs locally in your browser — no cookies and no tracking — and your responses are held only in memory for this session. Nothing is transmitted or stored unless, after generating your report, you voluntarily choose to contribute your de-identified results to ISR research. You can complete and use the assessment without contributing anything.
     </div>
 
     <div class="rail-h" style="margin-bottom:10px;">The five UTS collection vectors</div>
@@ -1001,7 +1001,7 @@ window.addEventListener('scroll', ()=>{ toTop.classList.toggle('show', window.sc
 toTop.onclick = scrollToTop;
 
 /* ---- Research opt-in (post-download). Nothing leaves the device unless the user taps a "Share" button. ---- */
-const RESEARCH_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzz4CnibBz7ykz99xv8NxdDyRwnhtCXdFGvx6tiaWAKy30Inp4hVSHDpJa64wsBlN3Ulw/exec';   // ISR: set to your HTTPS collection endpoint to enable opt-in research submission
+const RESEARCH_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzz4CnibBz7ykz99xv8NxdDyRwnhtCXdFGvx6tiaWAKy30Inp4hVSHDpJa64wsBlN3Ulw/exec';   // ISR Google Apps Script collection endpoint
 let printRequested = false, surveyShown = false;
 
 function showSurvey(){
@@ -1019,6 +1019,16 @@ function contribute(audience){
   $('#surveyThanks').style.display='';
   setTimeout(closeSurvey, 1900);
 }
+function answerLabel(q){
+  const a = state.answers[q.n];
+  if(!a) return '';                 // skipped / not answered
+  if(a.na) return 'N/A';
+  if(a.unsure) return 'Not sure';
+  if(q.type==='binary'){ const yes = (q.good==='yes')?0:1; return (a.exp===yes)?'Yes':'No'; }
+  const opt = (q.opts||[]).find(o=>o.exp===a.exp);
+  return opt ? opt.label : String(a.exp);
+}
+
 function submitResearch(audience){
   try{
     const r = compute();
@@ -1027,10 +1037,15 @@ function submitResearch(audience){
       overall:Math.round(r.overall), tier:tierOf(r.overall),
       vectors:r.vectorScores, domains:r.domainScores,
       confirmed:r.confirmed, unsure:r.unsureCount, na:r.naCount, total:r.total,
-      responses:r.scored.map(s=>({ n:s.q.n, eff: s.na ? null : (s.answered && !s.unsure ? s.exp : 1), na: !!s.na, unsure: !!s.unsure }))
+      items: r.scored.slice().sort((x,y)=>x.q.n-y.q.n).map(s=>({
+        n:s.q.n, q:s.q.text, label:answerLabel(s.q),
+        exp:s.exp, eff:(s.na?null:s.eff),
+        answered:s.answered, na:s.na, unsure:s.unsure,
+        w:s.q.w, uts:s.q.uts
+      }))
     };
     if(!RESEARCH_ENDPOINT) return;   // no endpoint configured — choice recorded, nothing transmitted
-    fetch(RESEARCH_ENDPOINT, { method:'POST', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(payload), keepalive:true }).catch(()=>{});
+    fetch(RESEARCH_ENDPOINT, { method:'POST', headers:{'Content-Type':'text/plain;charset=UTF-8'}, body:JSON.stringify(payload), keepalive:true }).catch(()=>{});
   }catch(e){ /* never block the user */ }
 }
 $('#svMil').onclick = ()=>contribute('military');

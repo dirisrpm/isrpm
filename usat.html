@@ -1030,7 +1030,7 @@ function submitResearch(audience){
       responses:r.scored.map(s=>({ n:s.q.n, eff: s.na ? null : (s.answered && !s.unsure ? s.exp : 1), na: !!s.na, unsure: !!s.unsure }))
     };
     if(!RESEARCH_ENDPOINT) return;   // no endpoint configured — choice recorded, nothing transmitted
-    fetch(RESEARCH_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload), keepalive:true }).catch(()=>{});
+    fetch(RESEARCH_ENDPOINT, { method:'POST', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(payload), keepalive:true }).catch(()=>{});
   }catch(e){ /* never block the user */ }
 }
 $('#svMil').onclick = ()=>contribute('military');

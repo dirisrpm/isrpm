@@ -79,6 +79,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .skip-link { position: absolute; left: -9999px; background: var(--bg-card); color: var(--text); padding: 12px 18px; border: 1px solid var(--border-bright); z-index: 9999; }
 .skip-link:focus { left: 16px; top: 16px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
 /* ─── NAV ─── */
 nav { position: sticky; top: 0; z-index: 800; background: rgba(27,35,49,.85); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
@@ -108,6 +109,8 @@ nav { position: sticky; top: 0; z-index: 800; background: rgba(27,35,49,.85); ba
 .hero h1 { font-family: var(--serif); font-size: 2.6rem; font-weight: 400; color: var(--text); line-height: 1.32; max-width: 740px; margin: 0 auto 24px; position: relative; }
 .hero h1 em { font-style: italic; color: var(--blue-bright); }
 .hero-sub { font-family: var(--sans); font-size: .95rem; color: var(--text-mid); max-width: 580px; margin: 0 auto; line-height: 1.8; font-weight: 300; position: relative; }
+.hero-orient { font-family: var(--sans); font-size: .8rem; color: var(--text-soft); max-width: 520px; margin: 22px auto 0; line-height: 1.7; font-weight: 300; position: relative; padding-top: 22px; }
+.hero-orient::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 34px; height: 1px; background: var(--gold-line); }
 
 /* ─── SHARED ─── */
 .section-wrap { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
@@ -325,6 +328,7 @@ nav { position: sticky; top: 0; z-index: 800; background: rgba(27,35,49,.85); ba
 .pub-id { font-family: var(--mono); font-size: .62rem; letter-spacing: .07em; color: var(--text-faint); padding-top: 3px; }
 .pub-name { font-family: var(--sans); font-size: .9rem; font-weight: 500; color: var(--text); margin-bottom: 5px; line-height: 1.4; }
 .pub-meta { font-family: var(--sans); font-size: .76rem; color: var(--text-faint); margin-bottom: 8px; }
+.pub-capstone { font-family: var(--mono); font-size: .62rem; letter-spacing: .1em; color: var(--gold); text-transform: uppercase; }
 .pub-abstract { font-family: var(--sans); font-size: .8rem; color: var(--text-soft); line-height: 1.65; font-weight: 300; margin-bottom: 8px; max-width: 560px; }
 .pub-badge { display: inline-block; font-family: var(--mono); font-size: .56rem; letter-spacing: .06em; padding: 3px 9px; border-radius: 20px; text-transform: uppercase; }
 .pub-badge.available { background: var(--blue-ghost); color: var(--blue-bright); border: 1px solid var(--blue-line); }
@@ -365,6 +369,7 @@ footer { border-top: 1px solid var(--border); background: var(--bg-raised); padd
 .hero-logo { animation: fadeUp .5s ease .1s both; }
 .hero h1 { animation: fadeUp .5s ease .2s both; }
 .hero-sub { animation: fadeUp .5s ease .3s both; }
+.hero-orient { animation: fadeUp .5s ease .4s both; }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 820px) {
@@ -445,8 +450,11 @@ footer { border-top: 1px solid var(--border); background: var(--bg-raised); padd
 <header class="hero">
   <div class="hero-eyebrow">Institute for Signature Reduction</div>
 
+  <div class="hero-logo"><img src="images/logo.png" alt="Institute for Signature Reduction emblem"></div>
+
   <h1>UTS is the environment.<br>Not a condition.</h1>
   <p class="hero-sub">Irregular Warfare doctrine for operators in a post-digital world.</p>
+  <p class="hero-orient">An independent research institute developing human-centered doctrine for operational maneuver under ubiquitous technical surveillance.</p>
 </header>
 
 <main id="main">
@@ -577,7 +585,8 @@ footer { border-top: 1px solid var(--border); background: var(--bg-raised); padd
           <div class="lab-mx" data-mx="relationships"><div class="lab-mx-label"><span>Relationships</span><span class="lab-mx-count" data-mxc="relationships">0</span></div><div class="lab-mx-meter"><div class="lab-mx-fill"></div></div></div>
           <div class="lab-mx" data-mx="intent"><div class="lab-mx-label"><span>Intent</span><span class="lab-mx-count" data-mxc="intent">0</span></div><div class="lab-mx-meter"><div class="lab-mx-fill"></div></div></div>
         </div>
-        <div class="lab-note" id="labNote">No domains active. The operator is unobserved across these systems.</div>
+        <div class="lab-note" id="labNote" aria-live="polite">No domains active. The operator is unobserved across these systems.</div>
+        <p class="sr-only" id="labSrSummary" aria-live="polite">No domains active. No facets resolved.</p>
         <div class="lab-indicators" id="labIndicators">
           <div class="lab-ind-head"><span>Indicators collected</span><span class="lab-ind-count" id="labIndCount">0</span></div>
           <div id="labIndBody"><p class="lab-ind-empty">Activate a domain to log the specific real-world signals it emits — and what each resolves about the operator.</p></div>
@@ -687,7 +696,7 @@ footer { border-top: 1px solid var(--border); background: var(--bg-raised); padd
 <!-- ─── PULL QUOTE ─── -->
 <div class="pull-section" aria-label="Key doctrinal statement">
   <p class="pull-quote">The real danger of the surveillance economy is not only operational exposure, but digital colonization which deforms the operator's freedom for action.</p>
-  <p class="pull-cite">ISR Doctrinal Framework</p>
+  <p class="pull-cite">ISR-DOC-001 &middot; Human Primacy in Irregular Warfare</p>
 </div>
 
 <!-- ─── EXPOSURE ESTIMATE ─── -->
@@ -763,7 +772,7 @@ footer { border-top: 1px solid var(--border); background: var(--bg-raised); padd
     <h2 class="pubs-title" id="pubs-heading">Publications</h2>
     <span class="pubs-cat">ISR corpus</span>
   </div>
-  <p class="pubs-intro">Foundational doctrine defines the framework; applied studies extend it to specific operational cases. Read in sequence where possible.</p>
+  <p class="pubs-intro">The corpus is anchored by a philosophical capstone establishing human primacy; foundational doctrine builds the operational framework on that ground, and applied studies extend it to specific cases. Read in sequence where possible.</p>
   <p class="pubs-archive-note">
     <i class="ti ti-lock" aria-hidden="true"></i>
     Archive PDF is the primary, durable source of record; journal links are secondary mirrors and may change.
@@ -775,8 +784,8 @@ footer { border-top: 1px solid var(--border); background: var(--bg-raised); padd
     <div class="pub-id">ISR-DOC-001</div>
     <div>
       <div class="pub-name">Human Primacy in Irregular Warfare: Signature Reduction and the Preservation of the Acting Person</div>
-      <div class="pub-meta">Doctrinal Foundation</div>
-      <div class="pub-abstract">The primacy of human judgment over technical systems as the irreducible mechanism of operational effectiveness — and the preservation of the acting person as the doctrine's ultimate end.</div>
+      <div class="pub-meta">Doctrinal Foundation &middot; <span class="pub-capstone">Capstone</span></div>
+      <div class="pub-abstract">The philosophical anchor of the corpus: the primacy of human judgment over technical systems as the irreducible mechanism of operational effectiveness — and the preservation of the acting person as the doctrine's ultimate end.</div>
       <span class="pub-badge available">Available</span>
     </div>
     <div class="pub-links"><a class="pub-link" href="publications/isr-doc-001.pdf" download><i class="ti ti-file-text" aria-hidden="true"></i> ISR Archive PDF</a></div>
@@ -977,6 +986,16 @@ function recompute(){
   ['identity','relationships','location','intent'].forEach(function(k){
     document.querySelector('.lab-tag[data-exp="'+k+'"]').classList.toggle('lit', exp[k]);
   });
+  var srEl=document.getElementById('labSrSummary');
+  if(srEl){
+    if(count===0){
+      srEl.textContent='No domains active. No facets resolved.';
+    } else {
+      var facetsOut=['identity','location','relationships','intent'].filter(function(k){return exp[k];});
+      var state = resolved ? 'Attribution resolved' : 'Attribution converging';
+      srEl.textContent = count+' of 5 domains active. '+state+' at '+sum+' percent confidence. Exposed: '+(facetsOut.length?facetsOut.join(', '):'none')+'.';
+    }
+  }
   renderIndicators();
 }
 function renderIndicators(){

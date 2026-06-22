@@ -101,11 +101,11 @@ nav { position: sticky; top: 0; z-index: 800; background: rgba(27,35,49,.85); ba
 .mobile-nav-links a:hover { color: var(--gold-bright); }
 
 /* ─── HERO ─── */
-.hero { padding: 96px 32px 80px; text-align: center; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+.hero { padding: 84px 32px 80px; text-align: center; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
 .hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 60% 50% at 50% -5%, var(--blue-ghost) 0%, transparent 70%); }
-.hero-eyebrow { font-family: var(--mono); font-size: .66rem; letter-spacing: .2em; color: var(--text-soft); margin-bottom: 30px; text-transform: uppercase; position: relative; }
-.hero-logo { position: relative; display: flex; justify-content: center; margin-bottom: 40px; }
-.hero-logo img { width: 290px; opacity: .95; filter: drop-shadow(0 0 24px rgba(91,155,213,.3)); }
+.hero-eyebrow { font-family: var(--mono); font-size: .66rem; letter-spacing: .2em; color: var(--text-soft); margin-bottom: 18px; text-transform: uppercase; position: relative; }
+.hero-logo { position: relative; display: flex; justify-content: center; margin-bottom: 20px; }
+.hero-logo img { width: 116px; opacity: .72; filter: drop-shadow(0 0 18px rgba(91,155,213,.22)); }
 .hero h1 { font-family: var(--serif); font-size: 2.6rem; font-weight: 400; color: var(--text); line-height: 1.32; max-width: 740px; margin: 0 auto 24px; position: relative; }
 .hero h1 em { font-style: italic; color: var(--blue-bright); }
 .hero-sub { font-family: var(--sans); font-size: .95rem; color: var(--text-mid); max-width: 580px; margin: 0 auto; line-height: 1.8; font-weight: 300; position: relative; }
@@ -393,8 +393,8 @@ footer { border-top: 1px solid var(--border); background: var(--bg-raised); padd
   .version-divider { display: none; }
 }
 @media (max-width: 540px) {
-  .hero { padding: 70px 20px 60px; }
-  .hero-logo img { width: 210px; }
+  .hero { padding: 60px 20px 60px; }
+  .hero-logo img { width: 96px; }
   .section-wrap { padding: 0 20px; }
   .lab-section { padding: 44px 0 52px; }
   .lab-panel { padding: 22px 18px; }
@@ -448,9 +448,8 @@ footer { border-top: 1px solid var(--border); background: var(--bg-raised); padd
 </div>
 
 <header class="hero">
-  <div class="hero-eyebrow">Institute for Signature Reduction</div>
-
   <div class="hero-logo"><img src="images/logo.png" alt="Institute for Signature Reduction emblem"></div>
+  <div class="hero-eyebrow">Institute for Signature Reduction</div>
 
   <h1>UTS is the environment.<br>Not a condition.</h1>
   <p class="hero-sub">Irregular Warfare doctrine for operators in a post-digital world.</p>

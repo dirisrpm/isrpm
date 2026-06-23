@@ -304,6 +304,12 @@ nav { position: sticky; top: 0; z-index: 800; background: rgba(27,35,49,.85); ba
 .assess-bar.fill-red  { background: var(--red);  border-color: var(--red); }
 .assess-readout-note { font-family: var(--sans); font-size: .76rem; color: var(--text-soft); font-weight: 300; line-height: 1.6; position: relative; min-height: 60px; }
 .assess-foot { padding: 16px 28px; border-top: 1px solid var(--border); font-family: var(--sans); font-size: .72rem; color: var(--text-faint); font-weight: 300; line-height: 1.6; background: var(--bg-raised); }
+.assess-cta { margin-top: 24px; display: flex; flex-direction: column; align-items: flex-start; gap: 13px; }
+.assess-cta-note { font-family: var(--sans); font-size: .82rem; color: var(--text-soft); font-weight: 300; line-height: 1.7; max-width: 620px; }
+.assess-cta-note strong { color: var(--text-mid); font-weight: 500; }
+.assess-cta-link { font-family: var(--sans); font-size: .82rem; color: var(--blue-bright); text-decoration: none; display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--blue-line); padding: 9px 18px; border-radius: 22px; transition: all var(--trans); }
+.assess-cta-link:hover { color: var(--bg); background: var(--gold); border-color: var(--gold); }
+.assess-cta-link i { font-size: 13px; }
 
 /* ─── GLOSSARY ─── */
 .glossary-section { padding: 72px 0; border-bottom: 1px solid var(--border); }
@@ -747,6 +753,11 @@ footer { border-top: 1px solid var(--border); background: var(--bg-raised); padd
     <div class="assess-foot">
       Weighting is illustrative of doctrinal principle, not a measurement of any individual. The lesson is structural: exposures compound across domains faster than any single practice suggests — and each is an intervention point.
     </div>
+  </div>
+
+  <div class="assess-cta">
+    <p class="assess-cta-note">This is a teaching illustration, not a diagnostic. The full instrument — the <strong>Digital Signature Assessment</strong> — scores your own signature across the same vectors and returns prioritized, plain-language fixes, privately in your browser. Nothing is stored or sent.</p>
+    <a class="assess-cta-link" href="https://www.isrprivacymatters.org/assessment">Run the full self-assessment <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
   </div>
 </section>
 

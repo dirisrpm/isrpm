@@ -1130,4 +1130,184 @@ function showResults(){
     const ds = r.domainScores[d.id];
     const dtag = ds==null?'<span class="tag" style="color:var(--ink-faint)">not assessed</span>':`<span class="tag" style="color:${tierColor(ds)}">${tierOf(ds)} · ${Math.round(ds)}</span>`;
     const body = items.length
-      ? `<di
+      ? `<div class="rec-wrap">${items.map(s=>{
+          const rr = RES[s.q.n] || {};
+          const detail = DETAIL[s.q.n] ? `<div class="rec-detail">${glossify(DETAIL[s.q.n])}</div>` : '';
+          const how = rr.how ? `<div class="rec-how">${glossify(rr.how)}</div>` : '';
+          const links = (rr.links&&rr.links.length)
+            ? `<div class="rec-links">${rr.links.map(L=>`<a href="${L.u}" target="_blank" rel="noopener">${L.l}<span class="u">${L.u}</span></a>`).join('')}</div>`
+            : '';
+          const tag = s.unsure ? ` <span class="na-tag verify">unverified \u2014 confirm</span>` : s.answered ? '' : ` <span class="na-tag">not yet addressed</span>`;
+          return `<div class="rec"><div class="rec-action">${glossify(s.q.mit)}${tag}</div>${detail}${how}${links}</div>`;
+        }).join('')}</div>`
+      : `<div class="rec-wrap"><div class="clean">No significant gaps in this area among assessed items.</div></div>`;
+    return `<details class="domgroup"><summary><span class="dg-left"><span class="caret"></span><span>${d.name}</span></span>${dtag}</summary>${body}</details>`;
+  }).join('');
+
+  // general resources (from the manual's "Additional Resources")
+  const GEN = [
+    {l:'EFF Surveillance Self-Defense',u:'https://ssd.eff.org'},
+    {l:'PrivacyTools',u:'https://www.privacytools.io'},
+    {l:'IntelTechniques',u:'https://inteltechniques.com'},
+    {l:'FBI Digital Exhaust Guide (PDF)',u:'https://www.isrprivacymatters.org/resources/fbi-digital-exhaust.pdf'},
+    {l:'USSOCOM Social Media Smartcards (PDF)',u:'https://www.isrprivacymatters.org/resources/ussoccom-sm-smartcards.pdf'},
+  ];
+  $('#genResources').innerHTML = GEN.map(g=>`<a href="${g.u}" target="_blank" rel="noopener">${g.l}<span class="u">${g.u}</span></a>`).join('');
+
+  // print header + disclaimer
+  const now = new Date();
+  $('#printMeta').textContent = `Generated ${now.toLocaleDateString()} ${now.toLocaleTimeString()} · ${r.confirmed}/${r.total} confirmed · Signature: ${t} (${pct}) · Tailored for: ${P.label} · Session report — not retained`;
+  $('#reportDisclaimer').innerHTML =
+    `This report was generated entirely in your browser — no cookies and no storage, and no responses transmitted or retained except any de-identified results you chose to contribute to ISR research. `+
+    P.discLead +
+    `Based on the End-User Device Digital Force Protection Manual. Results not exhaustive. Compilation and organization © Institute for Signature Reduction Inc — ` + P.useScope + ` `+
+    `The individual techniques are unclassified and derived from publicly available sources; their compilation and your completed assessment may nonetheless be sensitive in the aggregate, and should be handled and shared accordingly. `+
+    `Educational only. Verify all measures against current mission requirements. `+
+    `Content last reviewed: ${REVIEW_DATE}.`;
+
+  $('#assessment').style.display='none';
+  $('#landing').style.display='none';
+  $('#results').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ============ TOAST ============ */
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.style.display='block'; setTimeout(()=>t.style.display='none',2600); }
+
+/* ============ WIRING ============ */
+const prefersReduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+function scrollToTop(){ window.scrollTo({top:0, behavior: prefersReduced ? 'auto' : 'smooth'}); }
+
+/* ---- path selection (genus) → tailors copy + scoring, then runs the 3-screen intro ---- */
+function applyProfile(id){
+  const P = PROFILES[id]; if(!P) return;
+  state.profile = id;
+  $('#in1Eyebrow').textContent = P.eyebrow;
+  $('#in1H').textContent = P.h;
+  $('#in1P').textContent = P.p;
+  $('#step3tail').textContent = P.cadence;
+  $('#modeLabel').textContent = P.label;
+  $('#modeBar').style.display = '';
+}
+document.querySelectorAll('.genus-opt').forEach(b=>{
+  b.onclick = ()=>{
+    applyProfile(b.dataset.profile);
+    $('#genus').style.display='none';
+    $('#landing').style.display='block';
+    introIdx = 0; renderIntro();
+    scrollToTop();
+  };
+});
+function goToGenus(){
+  $('#results').style.display='none';
+  $('#assessment').style.display='none';
+  $('#landing').style.display='none';
+  $('#modeBar').style.display='none';
+  $('#genus').style.display='block';
+  scrollToTop();
+}
+
+/* ---- intro walkthrough: one screen per idea; beginBtn is Next, becomes Start on the last screen ---- */
+function startCheck(){ $('#landing').style.display='none'; $('#assessment').style.display='block'; startAssessment(); scrollToTop(); }
+const introSlides = Array.from(document.querySelectorAll('.intro-slide'));
+let introIdx = 0;
+const introDots = $('#introDots');
+introDots.innerHTML = introSlides.map((_,i)=>`<span class="idot" data-i="${i}" role="button" tabindex="0" aria-label="Go to screen ${i+1}"></span>`).join('');
+function renderIntro(){
+  introSlides.forEach((s,i)=>{ s.hidden = (i!==introIdx); });
+  introDots.querySelectorAll('.idot').forEach((d,i)=> d.classList.toggle('on', i===introIdx));
+  $('#introBack').disabled = (introIdx===0);
+  $('#beginBtn').textContent = (introIdx===introSlides.length-1) ? 'Start the check →' : 'Next →';
+}
+function introNext(){ if(introIdx < introSlides.length-1){ introIdx++; renderIntro(); } else { startCheck(); } }
+function introPrev(){ if(introIdx > 0){ introIdx--; renderIntro(); } }
+$('#beginBtn').onclick = introNext;
+$('#introBack').onclick = introPrev;
+$('#introSkip').onclick = startCheck;
+introDots.querySelectorAll('.idot').forEach(d=>{
+  const go = ()=>{ introIdx = +d.dataset.i; renderIntro(); };
+  d.onclick = go;
+  d.onkeydown = (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } };
+});
+renderIntro();
+$('#changeMode').onclick = goToGenus;
+
+$('#backBtnQ').onclick = back;
+$('#nextBtnQ').onclick = nextStep;
+$('#backBtn').onclick = ()=>{ $('#results').style.display='none'; $('#assessment').style.display='block'; renderStage(); scrollToTop(); };
+$('#printBtn').onclick = ()=>{ printRequested = true; window.print(); };
+
+function goHome(){ goToGenus(); }
+const homeTitle = $('#homeTitle');
+homeTitle.onclick = goHome;
+homeTitle.onkeydown = (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); goHome(); } };
+const toTop = $('#toTop');
+window.addEventListener('scroll', ()=>{ toTop.classList.toggle('show', window.scrollY>400); }, {passive:true});
+toTop.onclick = scrollToTop;
+
+/* ---- Research opt-in (post-download). Nothing leaves the device unless the user taps a "Share" button. ---- */
+const RESEARCH_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzz4CnibBz7ykz99xv8NxdDyRwnhtCXdFGvx6tiaWAKy30Inp4hVSHDpJa64wsBlN3Ulw/exec';   // ISR Google Apps Script collection endpoint
+let printRequested = false, surveyShown = false;
+
+function showSurvey(){
+  surveyShown = true; printRequested = false;
+  const ov = $('#survey'); if(!ov) return;
+  $('#surveyBody').style.display='';
+  $('#surveyThanks').style.display='none';
+  ov.classList.add('show');
+  ov.setAttribute('aria-hidden','false');
+}
+function closeSurvey(){ const ov=$('#survey'); if(ov){ ov.classList.remove('show'); ov.setAttribute('aria-hidden','true'); } }
+function contribute(){
+  submitResearch();
+  $('#surveyBody').style.display='none';
+  $('#surveyThanks').style.display='';
+  setTimeout(closeSurvey, 1900);
+}
+function answerLabel(q){
+  const a = state.answers[q.n];
+  if(!a) return '';                 // skipped / not answered
+  if(a.na) return 'N/A';
+  if(a.unsure) return 'Not sure';
+  if(q.type==='binary'){ const yes = (q.good==='yes')?0:1; return (a.exp===yes)?'Yes':'No'; }
+  const opt = (q.opts||[]).find(o=>o.exp===a.exp);
+  return opt ? opt.label : String(a.exp);
+}
+
+function submitResearch(){
+  try{
+    const r = compute();
+    const P = PROFILES[state.profile] || {};
+    const payload = {
+      instrument:'USAT', tool:'DSA', profile: state.profile || '',
+      ts:new Date().toISOString(), audience: P.audience || '',
+      overall:Math.round(r.overall), tier:tierOf(r.overall),
+      vectors:r.vectorScores, domains:r.domainScores,
+      confirmed:r.confirmed, unsure:r.unsureCount, na:r.naCount, total:r.total,
+      items: r.scored.slice().sort((x,y)=>x.q.n-y.q.n).map(s=>({
+        n:s.q.n, q:s.q.text, label:answerLabel(s.q),
+        exp:s.exp, eff:(s.na?null:s.eff),
+        answered:s.answered, na:s.na, unsure:s.unsure,
+        w:s.q.w, uts:s.q.uts
+      }))
+    };
+    if(!RESEARCH_ENDPOINT) return;   // no endpoint configured — choice recorded, nothing transmitted
+    fetch(RESEARCH_ENDPOINT, { method:'POST', headers:{'Content-Type':'text/plain;charset=UTF-8'}, body:JSON.stringify(payload), keepalive:true }).catch(()=>{});
+  }catch(e){ /* never block the user */ }
+}
+$('#svShare').onclick = contribute;
+$('#svNo').onclick  = closeSurvey;
+$('#survey').addEventListener('click', e=>{ if(e.target.id==='survey') closeSurvey(); });
+window.addEventListener('keydown', e=>{ if(e.key==='Escape') closeSurvey(); });
+
+// expand all per-area sections for printing/PDF, then restore on-screen state; offer the research opt-in once afterward
+window.addEventListener('beforeprint', ()=>{
+  document.querySelectorAll('details.domgroup').forEach(d=>{ d.dataset.prevOpen = d.open ? '1' : '0'; d.open = true; });
+});
+window.addEventListener('afterprint', ()=>{
+  document.querySelectorAll('details.domgroup').forEach(d=>{ d.open = d.dataset.prevOpen === '1'; });
+  if(printRequested && !surveyShown){ showSurvey(); }
+});
+</script>
+</body>
+</html>

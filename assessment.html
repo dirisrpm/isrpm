@@ -10,15 +10,17 @@
     --font-display:'Space Grotesk','Segoe UI',system-ui,-apple-system,sans-serif;
     --font-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
     --font-body:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-    --void:#0C1016;
-    --panel:#131A24;
-    --panel-2:#0F151E;
-    --line:#212E3D;
-    --line-soft:#1A2531;
-    --ink:#CBD5E1;
-    --ink-dim:#7B8A9C;
-    --ink-faint:#4E5E70;
-    --accent:#5B9BD5;        /* calm steel-blue, used sparingly */
+    --void:#1B2331;          /* ISR-site slate ground */
+    --panel:#222D3E;
+    --panel-2:#1D2634;
+    --line:#2E3B4E;
+    --line-soft:#283445;
+    --ink:#D8E1EC;
+    --ink-dim:#8B99AB;
+    --ink-faint:#5C6C80;
+    --accent:#5B9BD5;        /* calm steel-blue — interactive */
+    --gold:#E6B15E;          /* ISR gold — editorial accent */
+    --gold-bright:#F4C87E;
     --ok:#46C39B;            /* low exposure */
     --warn:#E0A33C;          /* moderate */
     --bad:#E25C68;           /* high */
@@ -33,12 +35,13 @@
     font-family:var(--font-body);font-size:14px;line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
+  ::selection{background:rgba(230,177,94,0.18);color:var(--gold-bright);}
   .mono{font-family:var(--font-mono);}
   .wrap{max-width:1160px;margin:0 auto;padding:26px 22px 80px;}
 
   /* header */
   .masthead{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:24px;}
-  .kicker{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.34em;text-transform:uppercase;color:var(--ink-faint);}
+  .kicker{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.34em;text-transform:uppercase;color:var(--gold);}
   .title{font-family:var(--font-display);font-weight:700;font-size:25px;letter-spacing:0.01em;margin:7px 0 0;cursor:pointer;display:inline-block;transition:color .15s;}
   .title:hover{color:var(--accent);}
   .title:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:5px;}
@@ -52,7 +55,7 @@
     background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:7px;
     padding:10px 18px;cursor:pointer;transition:border-color .15s,background .15s;
   }
-  .btn:hover{background:#1a2330;border-color:#30445a;}
+  .btn:hover{background:#2A3749;border-color:#3D5069;}
   .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
   .btn.primary{background:var(--accent);color:#08111c;border-color:var(--accent);font-weight:700;}
   .btn.primary:hover{background:#71b0e6;}
@@ -83,7 +86,7 @@
   .intro-card{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:14px;padding:34px 30px;min-height:320px;display:flex;align-items:center;}
   .intro-slide{width:100%;}
   .intro-slide[hidden]{display:none;}
-  .intro-eyebrow{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .intro-eyebrow{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
   .intro-h{font-family:var(--font-display);font-weight:700;font-size:27px;line-height:1.15;letter-spacing:-0.01em;color:var(--ink);margin:0 0 14px;}
   .intro-p{font-size:15px;line-height:1.6;color:var(--ink-dim);margin:0;}
   .intro-p b{color:var(--ink);}
@@ -110,12 +113,12 @@
 
   /* genus — path selection */
   .genus{max-width:560px;margin:8px auto 0;}
-  .genus-eyebrow{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+  .genus-eyebrow{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
   .genus-h{font-family:var(--font-display);font-weight:700;font-size:26px;line-height:1.15;letter-spacing:-0.01em;color:var(--ink);margin:0 0 8px;}
   .genus-sub{font-size:14px;line-height:1.55;color:var(--ink-dim);margin:0 0 20px;}
   .genus-opts{display:flex;flex-direction:column;gap:10px;}
   .genus-opt{display:block;width:100%;text-align:left;background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:10px;padding:16px 18px;cursor:pointer;transition:border-color .14s,background .14s,transform .05s;}
-  .genus-opt:hover{border-color:#30445a;background:#1a2330;}
+  .genus-opt:hover{border-color:#3D5069;background:#2A3749;}
   .genus-opt:active{transform:translateY(1px);}
   .genus-opt:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
   .genus-opt .go-t{display:block;font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--ink);}
@@ -156,14 +159,14 @@
     background:var(--panel-2);border:1px solid var(--line);border-radius:6px;
     padding:7px 13px;cursor:pointer;transition:all .12s;flex:0 0 auto;
   }
-  .seg button:hover{border-color:#30445a;color:var(--ink);}
+  .seg button:hover{border-color:#3D5069;color:var(--ink);}
   .seg button:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
   .seg button.sel{background:var(--accent);color:#08111c;border-color:var(--accent);font-weight:600;}
   .seg button.sel.lo{background:var(--ok);border-color:var(--ok);}
   .seg button.sel.mid{background:var(--warn);border-color:var(--warn);}
   .seg button.sel.hi{background:var(--bad);border-color:var(--bad);}
   .seg button.sel.na{background:var(--ink-faint);border-color:var(--ink-faint);color:#0c0c0c;}
-  .seg button.sel.unsure{background:#39414f;border-color:#4a5666;color:#e6edf5;}
+  .seg button.sel.unsure{background:#424D5F;border-color:#566481;color:#e6edf5;}
   .note-inline{font-size:11px;color:var(--warn);margin-top:8px;display:none;}
   .note-inline.show{display:block;}
 
@@ -253,7 +256,7 @@
   .disclaimer{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);font-size:10.5px;color:var(--ink-faint);line-height:1.6;}
 
   /* landing lead-in (clinical framing) */
-  .lead-label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.26em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  .lead-label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
   .lead{font-size:15.5px;line-height:1.55;color:var(--ink);}
 
   /* one-question-at-a-time stage */
@@ -268,11 +271,11 @@
   .stage-card .q-help{font-size:13px;color:var(--ink-faint);margin-top:11px;line-height:1.55;}
   .stage-card .seg{display:flex;flex-direction:column;gap:9px;margin-top:22px;}
   .stage-card .seg button{width:100%;text-align:left;font-family:var(--font-body);font-size:14px;color:var(--ink-dim);background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:14px 16px;cursor:pointer;transition:border-color .12s,background .12s,color .12s;}
-  .stage-card .seg button:hover{border-color:#30445a;color:var(--ink);}
+  .stage-card .seg button:hover{border-color:#3D5069;color:var(--ink);}
   .stage-card .seg button:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
   .stage-card .seg button.sel{background:var(--accent);color:#08111c;border-color:var(--accent);font-weight:600;}
   .stage-card .seg button.sel.na{background:var(--ink-faint);border-color:var(--ink-faint);color:#0c0c0c;}
-  .stage-card .seg button.sel.unsure{background:#39414f;border-color:#4a5666;color:#e6edf5;}
+  .stage-card .seg button.sel.unsure{background:#424D5F;border-color:#566481;color:#e6edf5;}
   .stage-nav{display:flex;justify-content:space-between;margin-top:18px;}
   .stage-nav .btn:disabled{opacity:0.35;cursor:default;}
   .stage-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;min-height:22px;}
@@ -287,7 +290,7 @@
   .seg-pip.cleared{animation:pipPulse .55s ease;}
   @keyframes pipPulse{0%{box-shadow:0 0 0 0 rgba(70,195,155,0);}35%{box-shadow:0 0 0 3px rgba(70,195,155,.5);}100%{box-shadow:0 0 0 0 rgba(70,195,155,0);}}
   /* final-stretch nudge */
-  .stage-hint{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-top:9px;min-height:13px;opacity:0;transition:opacity .25s;}
+  .stage-hint{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin-top:9px;min-height:13px;opacity:0;transition:opacity .25s;}
   .stage-hint.show{opacity:1;}
   /* concrete payoff on the last intro screen */
   .payoff{font-size:13.5px;line-height:1.6;color:var(--ink-dim);background:var(--panel-2);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:12px 14px;margin:14px 0 0;}
@@ -301,6 +304,30 @@
   .topfix-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:5px;}
   .topfix-action{font-family:var(--font-display);font-weight:600;font-size:16px;line-height:1.35;color:var(--ink);}
   .topfix-meta{font-size:11.5px;color:var(--ink-faint);font-family:var(--font-mono);margin-top:6px;}
+  /* learn-as-you-go: per-question "why this matters" expander */
+  .why-btn{background:none;border:none;color:var(--accent);font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.07em;text-transform:uppercase;cursor:pointer;padding:2px 0;margin-top:11px;}
+  .why-btn:hover{text-decoration:underline;}
+  .why-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px;}
+  .why-panel{font-size:12.5px;color:var(--ink-dim);line-height:1.6;background:var(--panel-2);border:1px solid var(--line-soft);border-left:2px solid var(--accent);border-radius:8px;padding:11px 13px;margin-top:9px;animation:whyIn .16s ease;}
+  .why-panel[hidden]{display:none;}
+  @keyframes whyIn{from{opacity:0;transform:translateY(-3px);}to{opacity:1;transform:translateY(0);}}
+  /* area transition card (clears one area, primes the next) */
+  .inter-cleared{font-family:var(--font-mono);font-size:11px;letter-spacing:0.05em;color:var(--ok);margin-bottom:15px;}
+  .inter-eyebrow{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+  .inter-h{font-family:var(--font-display);font-weight:700;font-size:22px;color:var(--ink);margin:0 0 10px;}
+  .inter-p{font-size:13.5px;line-height:1.6;color:var(--ink-dim);margin:0 0 13px;}
+  .inter-meta{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-faint);margin-bottom:18px;}
+  /* signature radar (five-vector shape) */
+  .radar-wrap{display:flex;justify-content:center;background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:10px;padding:12px 8px 6px;margin-bottom:11px;}
+  .radar{width:100%;max-width:380px;height:auto;display:block;}
+  .radar-lbl{font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.04em;fill:var(--ink-dim);}
+  .scale-note{font-family:var(--font-mono);font-size:10px;letter-spacing:0.03em;color:var(--ink-faint);margin-top:8px;}
+  /* card + selection motion */
+  .stage-anim{animation:cardIn .18s ease both;}
+  @keyframes cardIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .stage-card .seg button:active{transform:scale(0.985);}
+  .seg button.sel{animation:selPop .16s ease;}
+  @keyframes selPop{0%{transform:scale(0.985);}60%{transform:scale(1.006);}100%{transform:scale(1);}}
   .finish-inner{text-align:center;padding:14px 6px;}
   .finish-h{font-family:var(--font-display);font-weight:700;font-size:21px;color:var(--ink);}
   .finish-p{font-size:13px;color:var(--ink-dim);line-height:1.6;margin:12px auto 20px;max-width:470px;}
@@ -321,12 +348,12 @@
   .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--panel);border:1px solid var(--accent);border-radius:8px;padding:11px 18px;font-size:12.5px;color:var(--ink);box-shadow:0 8px 28px rgba(0,0,0,0.4);display:none;z-index:50;}
 
   .to-top{position:fixed;bottom:22px;right:22px;width:42px;height:42px;border-radius:50%;background:var(--panel);color:var(--ink);border:1px solid var(--line);font-size:18px;line-height:1;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.35);transition:background .15s,border-color .15s;z-index:40;}
-  .to-top:hover{background:#1a2330;border-color:#30445a;}
+  .to-top:hover{background:#2A3749;border-color:#3D5069;}
   .to-top:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
   .to-top.show{display:flex;}
 
   .term{border-bottom:1px dotted var(--ink-faint);cursor:help;position:relative;}
-  .term::after{content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 9px);width:max-content;max-width:min(280px,75vw);background:#0A0F16;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-family:var(--font-body);font-size:11.5px;font-weight:400;line-height:1.45;letter-spacing:0;text-transform:none;color:var(--ink);box-shadow:0 10px 28px rgba(0,0,0,0.5);white-space:normal;opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .15s,transform .15s;z-index:60;pointer-events:none;}
+  .term::after{content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 9px);width:max-content;max-width:min(280px,75vw);background:#10161F;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-family:var(--font-body);font-size:11.5px;font-weight:400;line-height:1.45;letter-spacing:0;text-transform:none;color:var(--ink);box-shadow:0 10px 28px rgba(0,0,0,0.5);white-space:normal;opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .15s,transform .15s;z-index:60;pointer-events:none;}
   .term::before{content:'';position:absolute;left:13px;bottom:calc(100% + 4px);border:5px solid transparent;border-top-color:var(--line);opacity:0;visibility:hidden;transition:opacity .15s;z-index:61;}
   .term:hover::after,.term:focus::after,.term:focus-visible::after{opacity:1;visibility:visible;transform:translateY(0);}
   .term:hover::before,.term:focus::before,.term:focus-visible::before{opacity:1;visibility:visible;}
@@ -356,6 +383,10 @@
     .topfix-badge{background:#5a6a7a;color:#fff;}
     .topfix-action{color:#15202b;}
     .topfix-label,.topfix-meta{color:#5a6a7a;}
+    .radar-wrap{background:#fff;border-color:#c8d2dc;page-break-inside:avoid;}
+    .radar-lbl{fill:#5a6a7a;}
+    .scale-note{color:#5a6a7a;}
+    .why-btn,.why-panel{display:none !important;}
     .prio-body .pa{color:#15202b;}
     .prio-body .pm,.domgroup summary .tag{color:#5a6a7a;}
     .domgroup summary{border-color:#c8d2dc;color:#15202b;}
@@ -508,12 +539,14 @@
         <div class="vtier" id="resTier">—</div>
         <div class="vtext" id="resText"></div>
         <div class="vassessed" id="resAssessed"></div>
+        <div class="scale-note">Scale: 0–33 Low · 34–66 Moderate · 67–100 High — lower is better</div>
       </div>
     </div>
 
     <div id="topFix"></div>
 
     <div class="sec-h">Signature by UTS vector</div>
+    <div class="radar-wrap" id="radarWrap"></div>
     <div id="vectorBreakdown"></div>
 
     <div id="correlationSection"></div>
@@ -973,7 +1006,7 @@ function renderVectorKey(){
 
 /* ============ RENDER: assessment ============ */
 /* ============ ASSESSMENT: one item at a time ============ */
-let idx = 0, atFinish = false, advTimer = null, visited = new Set(), clearedDoms = new Set();
+let idx = 0, atFinish = false, advTimer = null, visited = new Set(), clearedDoms = new Set(), pendingInter = null, shownInter = new Set();
 
 function buildSegProgress(){
   const el = $('#segProgress'); if(!el) return;
@@ -1009,13 +1042,13 @@ function animateCount(el, to, dur){
   })(performance.now());
 }
 
-function startAssessment(){ idx = 0; atFinish = false; visited = new Set(); clearedDoms = new Set(); buildSegProgress(); renderStage(); }
+function startAssessment(){ idx = 0; atFinish = false; visited = new Set(); clearedDoms = new Set(); pendingInter = null; shownInter = new Set(); buildSegProgress(); renderStage(); }
 
 function renderStage(){
   glossReset();
   if(atFinish){ renderFinish(); return; }
+  if(pendingInter){ renderInter(); return; }
   const q = Q[idx];
-  visited.add(q.n);
   const areaIdx = DOMAINS.findIndex(d=>d.id===q.dom)+1;
   $('#stageArea').textContent = `Area ${areaIdx} of ${DOMAINS.length} · ${domOf(q.dom).name}`;
   $('#qNum').textContent = idx+1;
@@ -1028,6 +1061,8 @@ function renderStage(){
   $('#stageCard').innerHTML =
     `<div class="q-text">${glossify(q.text)}</div>
      <div class="q-help">${glossify(q.help)}</div>
+     <button class="why-btn" id="whyBtn" type="button" aria-expanded="false">Why this matters ▸</button>
+     <div class="why-panel" id="whyPanel" hidden>${glossify(detailOf(q))}</div>
      <div class="seg" role="group" id="stageSeg">${optionButtons(q)}</div>
      <div class="note-inline" id="noteInline"></div>`;
   $('#stageSeg').querySelectorAll('button').forEach(b=>{
@@ -1037,12 +1072,23 @@ function renderStage(){
       pick(b, q, val, b.dataset.note||'');
     };
   });
+  const wb = $('#whyBtn'), wp = $('#whyPanel');
+  if(wb && wp){
+    wb.onclick = ()=>{
+      const opening = wp.hidden;
+      if(opening) clearTimeout(advTimer);            // don't yank the card away mid-read
+      wp.hidden = !opening;
+      wb.setAttribute('aria-expanded', String(opening));
+      wb.textContent = opening ? 'Why this matters ▾' : 'Why this matters ▸';
+    };
+  }
   markSelected(q);
   $('#stageNav').style.display='flex';
   $('#backBtnQ').disabled = idx===0;
   $('#nextBtnQ').style.display='';
   $('#nextBtnQ').textContent = (idx===Q.length-1) ? 'Finish →' : (state.answers[q.n] ? 'Next →' : 'Skip →');
   renderFoot();
+  animCard();
 }
 
 function optionButtons(q){
@@ -1089,20 +1135,70 @@ function pick(btn, q, val, note){
   $('#nextBtnQ').textContent = (idx===Q.length-1) ? 'Finish →' : 'Next →';
   renderFoot();
   clearTimeout(advTimer);
-  if(!note){ advTimer = setTimeout(advance, prefersReduced ? 0 : 260); }  // pause on items carrying a caution note so it can be read
+  const wpOpen = (()=>{ const wp=$('#whyPanel'); return wp && !wp.hidden; })();
+  if(!note && !wpOpen){ advTimer = setTimeout(advance, prefersReduced ? 0 : 260); }  // pause on caution notes and while "why this matters" is open
 }
 
 function advance(){
-  if(idx < Q.length-1){ idx++; } else { atFinish = true; }
+  if(idx < Q.length-1){
+    visited.add(Q[idx].n);
+    const cur = Q[idx], nxt = Q[idx+1];
+    idx++;
+    if(cur.dom !== nxt.dom && !shownInter.has(nxt.dom)){   // one-time card per boundary
+      shownInter.add(nxt.dom);
+      pendingInter = {from:cur.dom, to:nxt.dom};
+    }
+  } else {
+    visited.add(Q[idx].n);
+    atFinish = true;
+  }
   renderStage(); scrollStage();
 }
 function back(){
   clearTimeout(advTimer);
   if(atFinish){ atFinish=false; renderStage(); scrollStage(); return; }
+  if(pendingInter){ pendingInter=null; if(idx>0){ idx--; } renderStage(); scrollStage(); return; }
   if(idx>0){ idx--; renderStage(); scrollStage(); }
 }
 function nextStep(){ clearTimeout(advTimer); advance(); }
 function scrollStage(){ window.scrollTo({top:0, behavior: prefersReduced ? 'auto':'smooth'}); }
+
+/* one-line "why this area matters" hooks for the transition cards */
+const INTERWHY = {
+  rf:'Radios talk even when idle — this area covers what your device broadcasts over the air.',
+  hard:'Much real-world data loss starts with physical access. These items decide what someone holding your device can actually get.',
+  app:'Apps and their embedded trackers quietly report on you. This area covers what they collect and leak in the background.',
+  net:'On a network you don\u2019t control, your traffic is someone else\u2019s data. These items protect it in transit.',
+  id:'Most exposure isn\u2019t hacked — it\u2019s published. This area covers what open sources already reveal about you.',
+  comm:'Your accounts and messages are the highest-value target. These items secure the channels you talk through.',
+  ops:'Higher-risk settings reward decisions made in advance. This area covers deliberate posture and contingencies.'
+};
+function renderInter(){
+  const from = domOf(pendingInter.from), to = domOf(pendingInter.to);
+  const ti = DOMAINS.findIndex(d=>d.id===to.id)+1;
+  $('#stageArea').textContent = `${from.name} — complete`;
+  $('#qNum').textContent = idx;
+  $('#qTotal').textContent = Q.length;
+  updateSegProgress();
+  $('#stageHint').textContent=''; $('#stageHint').classList.remove('show');
+  const remaining = Q.length - idx;
+  const mins = Math.max(1, Math.round(remaining*8/60));
+  $('#stageCard').innerHTML = `<div class="inter-inner">
+    <div class="inter-cleared">✓ ${from.name} — area cleared</div>
+    <div class="inter-eyebrow">Next · Area ${ti} of ${DOMAINS.length}</div>
+    <div class="inter-h">${to.name}</div>
+    <p class="inter-p">${glossify(INTERWHY[to.id] || to.blurb)}</p>
+    <div class="inter-meta">${remaining} questions left · about ${mins} min</div>
+    <button class="btn primary" id="interGo">Continue →</button>
+  </div>`;
+  $('#interGo').onclick = ()=>{ pendingInter=null; renderStage(); scrollStage(); };
+  $('#stageNav').style.display='flex';
+  $('#backBtnQ').disabled = false;
+  $('#nextBtnQ').style.display='none';
+  renderFoot();
+  animCard();
+}
+function animCard(){ const sc=$('#stageCard'); if(!sc) return; sc.classList.remove('stage-anim'); void sc.offsetWidth; sc.classList.add('stage-anim'); }
 
 function renderFoot(){
   const r = compute();
@@ -1137,6 +1233,7 @@ function renderFinish(){
   $('#backBtnQ').disabled = false;
   $('#nextBtnQ').style.display='none';
   $('#stageFoot').innerHTML='';
+  animCard();
 }
 
 function doGenerate(){
@@ -1199,6 +1296,24 @@ function compute(){
   return {scored, answered:respondedCount, confirmed:confirmedCount, unsureCount, naCount, applicable:applicable.length, total:Q.length, overall, vectorScores, domainScores, dom, correlations};
 }
 
+/* ---- signature radar: the five-vector shape, pure inline SVG ---- */
+function radarSVG(vs){
+  const K = Object.keys(VECTORS), CX=170, CY=136, R=92;
+  const pt = (i,rr)=>{ const a=-Math.PI/2 + i*2*Math.PI/K.length; return [CX+rr*Math.cos(a), CY+rr*Math.sin(a)]; };
+  const ring = f=> K.map((_,i)=>pt(i,R*f).map(n=>n.toFixed(1)).join(',')).join(' ');
+  let s = `<svg class="radar" viewBox="0 0 340 264" role="img" aria-label="Signature shape across the five UTS vectors">`;
+  [0.25,0.5,0.75,1].forEach(f=>{ s += `<polygon points="${ring(f)}" fill="none" stroke="var(--line)" stroke-width="1" opacity="${f===1?'0.9':'0.5'}"/>`; });
+  K.forEach((k,i)=>{ const p=pt(i,R); s += `<line x1="${CX}" y1="${CY}" x2="${p[0].toFixed(1)}" y2="${p[1].toFixed(1)}" stroke="var(--line)" stroke-width="1" opacity="0.5"/>`; });
+  const poly = K.map((k,i)=>{ const v = vs[k]==null?0:vs[k]; return pt(i,R*v/100).map(n=>n.toFixed(1)).join(','); }).join(' ');
+  s += `<polygon points="${poly}" fill="rgba(91,155,213,0.18)" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>`;
+  K.forEach((k,i)=>{ const v=vs[k]; const p=pt(i,R*(v==null?0:v)/100); s += `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3.4" fill="${v==null?'var(--ink-faint)':tierColor(v)}"/>`; });
+  K.forEach((k,i)=>{ const p=pt(i,R+15), x=p[0], y=p[1];
+    const anchor = Math.abs(x-CX)<8 ? 'middle' : (x>CX ? 'start' : 'end');
+    const dy = y<CY-40 ? -4 : (y>CY+40 ? 12 : 4);
+    s += `<text x="${x.toFixed(1)}" y="${(y+dy).toFixed(1)}" text-anchor="${anchor}" class="radar-lbl">${VECTORS[k].name}${vs[k]==null?' (n/a)':''}</text>`; });
+  return s + `</svg>`;
+}
+
 /* ============ RESULTS ============ */
 function showResults(){
   const r = compute();
@@ -1244,6 +1359,7 @@ function showResults(){
       <div class="vmeta"><span class="vnum" style="color:${col}">${Math.round(v)}</span><span class="vchip" style="color:${col};background:${tierBg(v)}">${tn}</span></div>
       <div class="vbar2"><i style="width:${v}%;background:${col}"></i></div></div>`;
   }).join('') + `</div>`;
+  $('#radarWrap').innerHTML = radarSVG(r.vectorScores);
 
   // correlations
   $('#correlationSection').innerHTML = r.correlations.length

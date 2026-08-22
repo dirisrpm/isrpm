@@ -9,10 +9,14 @@
 <meta property="og:description" content="Doctrine addressing maneuver, attribution pressure, and human judgment under ubiquitous technical surveillance.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#f8f7f3">
+<link rel="canonical" href="https://www.isrprivacymatters.org/">
+<link rel="icon" href="images/favicon.png" type="image/png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: "Public Sans"; src: url("fonts/public-sans-var.woff2") format("woff2"); font-weight: 400 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Source Serif 4"; src: url("fonts/source-serif-4-var.woff2") format("woff2"); font-weight: 400 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Source Serif 4"; src: url("fonts/source-serif-4-italic-var.woff2") format("woff2"); font-weight: 400 600; font-style: italic; font-display: swap; }
+</style>
 
 <style>
 :root {
@@ -762,6 +766,7 @@ nav {
   margin-top: 14px;
   color: var(--muted);
   font-size: .66rem;
+  line-height: 1.75;
 }
 
 .form-status {
@@ -1093,7 +1098,7 @@ footer {
 
   <div class="prose">
     <p>
-      In the surveillance economy networked infrastructure, mass data retention,
+      In the surveillance economy, networked infrastructure, mass data retention,
       and machine-speed analysis have made routine digital behavior persistent,
       stored, and searchable. This is ubiquitous technical surveillance:
       persistent sensing across digital systems.
@@ -1103,8 +1108,7 @@ footer {
       Our position is that no technical protocol substitutes for the acting
       operator in this environment. Tools enable; judgment decides.
       <strong>ISR publishes doctrine, stewards the corpus, and licenses the
-      framework for applied instruction.</strong> We do not sell software, and
-      we do not promise anonymity.
+      framework for applied instruction.</strong>
     </p>
   </div>
 </section>
@@ -1290,7 +1294,7 @@ footer {
 <section class="section" id="governance" aria-labelledby="gov-h">
   <div class="section-head">
     <div class="eyebrow">Governance</div>
-    <h2 id="gov-h">Committed to excellence in the field.</h2>
+    <h2 id="gov-h">Writing from the field.</h2>
   </div>
 
   <div class="governance">
@@ -1307,11 +1311,9 @@ footer {
     <article class="gov-row">
       <div class="gov-role">Board of Directors</div>
       <div class="gov-detail">
-        <div class="gov-name">In formation</div>
+        <div class="gov-name">Independent by design</div>
         <p>
-          ISR is establishing an independent board with authority over licensing,
-          doctrinal review, conflicts of interest, and director succession.
-          Inquiries from prospective members are welcome.
+          The Institute is structured so that licensing, doctrinal review, conflicts of interest, and director succession may be held by an independent board. 
         </p>
       </div>
     </article>
@@ -1319,11 +1321,9 @@ footer {
     <article class="gov-row">
       <div class="gov-role">Contributing Authors</div>
       <div class="gov-detail">
-        <div class="gov-name">Open to submission</div>
+        <div class="gov-name">Inquiries welcome</div>
         <p>
-          We welcome contributions under ISR document numbering.
-          Contributors retain named authorship of their own work; the Institute
-          holds the framework and publication record.
+          We may accept contributions under ISR document numbering. Contributors retain named authorship of their own work; the Institute holds the framework and publication record.
         </p>
       </div>
     </article>
@@ -1380,8 +1380,8 @@ footer {
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
 
         <p class="form-note">
-          This form is processed by a third-party service. Email directly instead:<br>
-          <a class="contact-alt" href="mailto:info&#64;isrprivacymatters.org">info&#64;isrprivacymatters.org</a>
+          Submissions are handled by a third-party form service and are suitable for general correspondence. For anything else, write us directly at:<br>
+          <span id="contactEmail"><noscript>info [at] isrprivacymatters [dot] org</noscript></span>
         </p>
       </form>
     </div>
@@ -1437,6 +1437,23 @@ window.addEventListener('scroll', function () {
   scrollButton.classList.toggle('visible', window.scrollY > 600);
 }, { passive: true });
 
+(function () {
+  const user = 'info';
+  const host = 'isrprivacymatters';
+  const tld  = 'org';
+  const addr = user + String.fromCharCode(64) + host + '.' + tld;
+
+  const slot = document.getElementById('contactEmail');
+  if (!slot) return;
+
+  const link = document.createElement('a');
+  link.className = 'contact-alt';
+  link.href = 'mailto:' + addr + '?subject=' + encodeURIComponent('ISR inquiry');
+  link.textContent = addr;
+  slot.textContent = '';
+  slot.appendChild(link);
+})();
+
 const form = document.getElementById('contactForm');
 const statusEl = document.getElementById('formStatus');
 
@@ -1457,12 +1474,12 @@ form.addEventListener('submit', function (event) {
       statusEl.textContent = 'Message sent. We review correspondence periodically.';
       statusEl.className = 'form-status show ok';
     } else {
-      statusEl.textContent = 'That did not send. Email info@isrprivacymatters.org instead.';
+      statusEl.textContent = 'That did not send. Please write to us directly using the address below.';
       statusEl.className = 'form-status show err';
     }
   })
   .catch(function () {
-    statusEl.textContent = 'That did not send. Email info@isrprivacymatters.org instead.';
+    statusEl.textContent = 'That did not send. Please write to us directly using the address below.';
     statusEl.className = 'form-status show err';
   })
   .finally(function () {

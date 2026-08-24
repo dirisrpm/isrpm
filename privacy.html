@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Privacy — Institute for Signature Reduction</title>
+<meta name="description" content="How the Institute for Signature Reduction handles information collected through this website.">
+<meta name="theme-color" content="#f8f7f3">
+<link rel="canonical" href="https://www.isrprivacymatters.org/privacy.html">
+<link rel="icon" href="images/favicon.png" type="image/png">
+
+<style>
+@font-face { font-family: "Public Sans"; src: url("fonts/public-sans-var.woff2") format("woff2"); font-weight: 400 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Source Serif 4"; src: url("fonts/source-serif-4-var.woff2") format("woff2"); font-weight: 400 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Source Serif 4"; src: url("fonts/source-serif-4-italic-var.woff2") format("woff2"); font-weight: 400 600; font-style: italic; font-display: swap; }
+</style>
+
+<style>
+:root {
+  --paper: #f8f7f3;
+  --paper-deep: #f1efe9;
+  --ink: #181918;
+  --ink-soft: #4f504d;
+  --muted: #85847e;
+  --rule: #d9d6ce;
+  --rule-dark: #bcb9b0;
+
+  --max: 1120px;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Public Sans", system-ui, sans-serif;
+  --radius: 1px;
+  --transition: 180ms ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--ink); color: var(--paper); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 12px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 14px;
+  z-index: 999;
+}
+
+.skip-link:focus { left: 12px; }
+
+/* Navigation */
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(248,247,243,.96);
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-inner {
+  max-width: var(--max);
+  min-height: 68px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.nav-logo {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-decoration: none;
+}
+
+.nav-back {
+  color: var(--ink-soft);
+  font-size: .75rem;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.nav-back:hover { color: var(--ink); }
+
+/* Header */
+
+.doc-header {
+  border-bottom: 1px solid var(--rule);
+}
+
+.doc-header-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 96px 32px 72px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: var(--muted);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: var(--rule-dark);
+}
+
+.doc-header h1 {
+  max-width: 760px;
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -.03em;
+}
+
+.doc-lead {
+  max-width: 62ch;
+  margin-top: 20px;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+.doc-dates {
+  margin-top: 26px;
+  color: var(--muted);
+  font-size: .66rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+/* Body */
+
+.doc-body {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 72px 32px 96px;
+}
+
+.doc-section {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 40px;
+  padding: 34px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.doc-body > .doc-section:first-of-type {
+  border-top: 1px solid var(--ink);
+}
+
+.doc-index {
+  color: var(--muted);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.doc-content h2 {
+  margin-bottom: 14px;
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.doc-content p,
+.doc-content li {
+  max-width: 70ch;
+  color: var(--ink-soft);
+  font-size: .91rem;
+  line-height: 1.8;
+}
+
+.doc-content p + p { margin-top: 14px; }
+
+.doc-content ul {
+  margin-top: 14px;
+  padding-left: 20px;
+}
+
+.doc-content li + li { margin-top: 8px; }
+
+.doc-content strong { color: var(--ink); font-weight: 500; }
+
+.doc-content a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--rule-dark);
+  text-underline-offset: 3px;
+}
+
+.doc-note {
+  margin-top: 44px;
+  max-width: 850px;
+  border-top: 1px solid var(--rule-dark);
+  padding-top: 20px;
+  color: var(--muted);
+  font-size: .77rem;
+  line-height: 1.75;
+}
+
+/* Footer */
+
+footer { padding: 30px 32px; border-top: 1px solid var(--rule); }
+
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  font-size: .72rem;
+}
+
+.footer-left img { width: 15px; opacity: .55; display: block; }
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: var(--muted);
+  font-size: .65rem;
+  letter-spacing: .06em;
+}
+
+.footer-right a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.footer-right a:hover { color: var(--ink); border-color: var(--rule-dark); }
+
+@media (max-width: 900px) {
+  .doc-section { grid-template-columns: 130px minmax(0, 1fr); gap: 24px; }
+}
+
+@media (max-width: 560px) {
+  .nav-inner, .doc-header-inner, .doc-body, footer {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .doc-header-inner { padding-top: 64px; padding-bottom: 52px; }
+  .doc-body { padding-top: 52px; padding-bottom: 72px; }
+  .doc-section { grid-template-columns: 1fr; gap: 10px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
+</style>
+</head>
+
+<body id="top">
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav aria-label="Primary">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">ISR</a>
+    <a href="index.html" class="nav-back">← Return to site</a>
+  </div>
+</nav>
+
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <div class="eyebrow">Privacy</div>
+    <h1>What this site collects, and what it does not.</h1>
+    <p class="doc-dates">
+      Effective August 24, 2026 · Last revised August 24, 2026
+    </p>
+  </div>
+</header>
+
+<main id="main" class="doc-body">
+
+  <section class="doc-section">
+    <div class="doc-index">01 / Summary</div>
+    <div class="doc-content">
+      <h2>In short</h2>
+      <p>
+        This site uses no analytics, no advertising, no cookies, no tracking
+        pixels, and no third-party content delivery networks. Fonts, images,
+        stylesheets, scripts, and publication PDFs are served from this domain.
+        Reading this site does not require you to identify yourself.
+      </p>
+      <p>
+        Two things do produce records: your web server request logs, held by our
+        hosting provider, and the contact form, which is processed by a
+        third-party service. Both are described below.
+      </p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="doc-index">02 / Server logs</div>
+    <div class="doc-content">
+      <h2>Hosting and request logs</h2>
+      <p>
+        This site is hosted by <strong>Github Pages</strong>. Like
+        essentially all web hosts, it records standard request data, which may
+        include your IP address, the date and time of the request, the resource
+        requested, the HTTP status returned, your user agent string, and in some
+        configurations the referring page.
+      </p>
+      <p>
+        ISR does not use these logs to build visitor profiles and does not
+        combine them with other information. They are retained by the provider
+        under its own retention schedule and are subject to its policies and to
+        lawful process directed at that provider. </p>
+      <p>
+        If you would prefer not to generate such a record, the publication
+        corpus is mirrored at Small Wars Journal, and requests routed through a
+        VPN or Tor are welcome and are not blocked.
+      </p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="doc-index">03 / Cookies</div>
+    <div class="doc-content">
+      <h2>Cookies and local storage</h2>
+      <p>
+        This site sets no cookies and writes nothing to local storage or session
+        storage. There is no consent banner because there is nothing to consent
+        to. No script on this site reads or writes persistent state on your
+        device.
+      </p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="doc-index">04 / Third parties</div>
+    <div class="doc-content">
+      <h2>Third-party services</h2>
+      <p>
+        <strong>Contact form.</strong> The form on the contact section submits to
+        Formspree, a third-party form processor. When you submit it, the name,
+        email address, and message you enter are transmitted to and stored by
+        Formspree, which also records the submitting IP address and timestamp.
+        Formspree's handling of that data is governed by its own privacy policy,
+        not this one. We retain submissions only as long as needed to respond
+        and to keep a record of institutional correspondence.
+      </p>
+      <p>
+        <strong>Direct email.</strong> Writing to the address published on the
+        contact section reaches our mail provider,
+        <strong>ProtonMail</strong>, rather than Formspree. Email in transit
+        is not end-to-end encrypted by default. Correspondence you would not
+        want a third-party provider to hold should not be sent through either
+        channel.
+      </p>
+      <p>
+        <strong>Outbound links.</strong> Publication mirrors link to Small Wars
+        Journal, which operates independently and sets its own cookies. This
+        site sends a restricted referrer on such clicks, but following the link
+        places you on their infrastructure and under their policy.
+      </p>
+      <p>
+        No other third party receives data from your visit. There is no embedded
+        video, no social media widget, no comment system, no chat, no CAPTCHA,
+        and no hosted font or script.
+      </p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="doc-index">05 / Publications</div>
+    <div class="doc-content">
+      <h2>Downloading the corpus</h2>
+      <p>
+        Publication PDFs are served directly from this domain. Downloading one
+        produces an entry in the server logs described above and nothing else.
+        The files contain no tracking beacons, no remote resource references,
+        and no per-recipient identifiers, and their document metadata is stripped
+        before publication.
+      </p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="doc-index">06 / Use</div>
+    <div class="doc-content">
+      <h2>How information is used</h2>
+      <p>Information you send us is used to:</p>
+      <ul>
+        <li>respond to your inquiry;</li>
+        <li>maintain a record of institutional correspondence relating to
+            licensing, collaboration, contribution, or support;</li>
+        <li>meet legal, tax, and nonprofit recordkeeping obligations.</li>
+      </ul>
+      <p>
+        ISR does not sell, rent, trade, or share personal information with third
+        parties for their own purposes, and does not use it for advertising or
+        profiling. We disclose information only to service providers acting on
+        our behalf, where required by law or valid legal process, or where
+        necessary to protect the rights or safety of a person.
+      </p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="doc-index">07 / Your choices</div>
+    <div class="doc-content">
+      <h2>Access, correction, and deletion</h2>
+      <p>
+        You may ask what correspondence we hold from you, ask us to correct it,
+        or ask us to delete it. Write to the address on the contact section and
+        we will act on the request within a reasonable period, subject to any
+        records we are legally required to retain.
+      </p>
+      <p>
+        Depending on where you live, you may have specific statutory rights —
+        including under the EU and UK General Data Protection Regulation and
+        under California law — such as rights of access, correction, deletion,
+        portability, and objection, and the right to complain to a supervisory
+        authority. Where the GDPR applies, our lawful basis for handling
+        correspondence is legitimate interest in responding to inquiries and
+        operating the Institute. ISR does not sell personal information as that
+        term is defined under California law.
+      </p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="doc-index">08 / Retention</div>
+    <div class="doc-content">
+      <h2>Retention</h2>
+      <p>
+        Correspondence is retained for <strong>several years</strong> unless a
+        longer period is required for legal or nonprofit recordkeeping purposes,
+        or unless you ask us to delete it sooner. Server log retention is
+        controlled by the hosting provider as described in section 02.
+      </p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="doc-index">09 / Security</div>
+    <div class="doc-content">
+      <h2>Security</h2>
+      <p>
+        This site is served over HTTPS. We limit the number of systems that hold
+        correspondence and the number of people with access to them. No
+        transmission or storage system is perfectly secure, and we do not
+        represent otherwise; the appropriate assumption for sensitive material is
+        that ordinary email and web forms are observable.
+      </p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="doc-index">10 / Minors</div>
+    <div class="doc-content">
+      <h2>Children</h2>
+      <p>
+        This site is directed to a professional and institutional audience. It is
+        not intended for children under 13, and we do not knowingly collect
+        information from them. If we learn that we have, we will delete it.
+      </p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="doc-index">11 / Changes</div>
+    <div class="doc-content">
+      <h2>Changes to this policy</h2>
+      <p>
+        Material changes will be reflected in the revision date at the top of
+        this page. Because the substance of this policy is that the site
+        collects almost nothing, any future addition of analytics, embedded
+        third-party content, or tracking of any kind would be stated here
+        explicitly rather than folded into a general revision.
+      </p>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="doc-index">12 / Contact</div>
+    <div class="doc-content">
+      <h2>Contacting us about privacy</h2>
+      <p>
+        Questions about this policy, or requests concerning information we hold,
+        may be directed to the address published on the
+        <a href="index.html#contact">contact section</a> of the main site.
+      <p>
+        ISR is an independent United States 501(c)(3) nonprofit organization
+        incorporated in Wisconsin.
+      </p>
+    </div>
+  </section>
+
+  <p class="doc-note">
+    This page describes the practices of isrprivacymatters.org only. It does not
+    describe the practices of Small Wars Journal, Joint Special Operations
+    University, licensed instruction providers, or any other organization whose
+    materials or work are referenced on this site.
+  </p>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <img src="images/us_flag.png" alt="United States flag">
+      © Institute for Signature Reduction
+    </div>
+    <div class="footer-right">
+      <a href="index.html">Home</a>
+      <span>Official ISR Site · isrprivacymatters.org</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
